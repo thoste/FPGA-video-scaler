@@ -3,3 +3,7 @@
 
 # Ignore project folder
 project/
+
+# Ignore vlib work folders
+src/work/
+tb/work/
