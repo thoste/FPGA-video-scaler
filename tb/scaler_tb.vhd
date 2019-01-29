@@ -17,20 +17,20 @@ use ieee.std_logic_1164.all;
 entity scaler_tb is
 end scaler_tb;
 
-architecture scaler_tb_arch of scaler_tb is
+architecture scaler_tb_arc of scaler_tb is
 	signal clk	 				: std_logic := '0';
 	signal rst 					: std_logic := '1';
 	
 	signal startofpacket_in		: std_logic := '0';
 	signal endofpacket_in		: std_logic := '0';
-	signal data_in 				: bit_vector (19 downto 0);
+	signal data_in 				: std_logic_vector (19 downto 0);
 	signal empty_in				: std_logic := '0';
 	signal valid_in				: std_logic := '0';
 	signal ready_sent			: std_logic;
 
 	signal startofpacket_out	: std_logic;
 	signal endofpacket_out		: std_logic;
-	signal data_out				: bit_vector (19 downto 0);
+	signal data_out				: std_logic_vector (19 downto 0);
 	signal empty_out			: std_logic;
 	signal valid_out			: std_logic;
 	signal ready_recieved		: std_logic := '0';
@@ -56,31 +56,123 @@ architecture scaler_tb_arch of scaler_tb is
 
 		process
 		begin
+			clk <= not clk;
+			wait for 10ns;
+			clk <= not clk;
+			wait for 10ns;
+
 			rst <= '0';
-			clk <= '1';
+
+			clk <= not clk;
+			wait for 10ns;
+			clk <= not clk;
 			wait for 10ns;
 
-			clk <= '0';
-			data_in <= X"00005";
+			ready_recieved <= '1';
+
+			clk <= not clk;
+			wait for 10ns;
+			clk <= not clk;
 			wait for 10ns;
 
-			clk <= '1';
+			startofpacket_in <= '1';
+			data_in <= 20x"F";
+
+			clk <= not clk;
+			wait for 10ns;
+			clk <= not clk;
 			wait for 10ns;
 
-			clk <= '0';
+			startofpacket_in <= '0';
+			data_in <= 20x"FF";
+
+			clk <= not clk;
+			wait for 10ns;
+			clk <= not clk;
 			wait for 10ns;
 
-			clk <= '1';
-			data_in <= X"00300";
+
+			endofpacket_in <= '1';
+
+			clk <= not clk;
+			wait for 10ns;
+			clk <= not clk;
 			wait for 10ns;
 
-			clk <= '0';
+			endofpacket_in <= '0';
+
+			clk <= not clk;
+			wait for 10ns;
+			clk <= not clk;
 			wait for 10ns;
 
-			clk <= '1';
+			startofpacket_in <= '1';
+			data_in <= 20x"0";
+
+			clk <= not clk;
 			wait for 10ns;
+			clk <= not clk;
+			wait for 10ns;
+
+			startofpacket_in <= '0';
+			data_in <= 20x"2";
+
+			clk <= not clk;
+			wait for 10ns;
+			clk <= not clk;
+			wait for 10ns;
+
+			data_in <= 20x"3";
+
+			clk <= not clk;
+			wait for 10ns;
+			clk <= not clk;
+			wait for 10ns;
+
+			data_in <= 20x"4";
+
+			clk <= not clk;
+			wait for 10ns;
+			clk <= not clk;
+			wait for 10ns;
+
+			data_in <= 20x"5";
+			endofpacket_in <= '1';
+
+			clk <= not clk;
+			wait for 10ns;
+			clk <= not clk;
+			wait for 10ns;
+
+			endofpacket_in <= '0';
+
+			clk <= not clk;
+			wait for 10ns;
+			clk <= not clk;
+			wait for 10ns;
+
+			clk <= not clk;
+			wait for 10ns;
+			clk <= not clk;
+			wait for 10ns;
+
+			clk <= not clk;
+			wait for 10ns;
+			clk <= not clk;
+			wait for 10ns;
+
+			clk <= not clk;
+			wait for 10ns;
+			clk <= not clk;
+			wait for 10ns;
+
+			clk <= not clk;
+			wait for 10ns;
+			clk <= not clk;
+			wait for 10ns;
+
 			wait;
 		end process;
 			
-end scaler_tb_arch;
+end scaler_tb_arc;
 
