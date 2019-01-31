@@ -1,5 +1,5 @@
 ------------------------------------------------------------------------------------------
--- Project: FPGA video VIDEO_DATAr
+-- Project: FPGA video scaler
 -- Author: Thomas Stenseth
 -- Date: 2019-01-21
 -- Version: 0.1
@@ -15,113 +15,105 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 entity controller is
-    port (
-            -- To scaler
-            clk, rst            : in std_logic;
-            startofpacket_in    : in std_logic;
-            endofpacket_in      : in std_logic;
-            data_in             : in std_logic_vector (19 downto 0) := (others => '0');
-            empty_in            : in std_logic;
-            valid_in            : in std_logic;
-            ready_sent          : out std_logic;
-            -- From scaler
-            startofpacket_out   : out std_logic;
-            endofpacket_out     : out std_logic;
-            data_out            : out std_logic_vector (19 downto 0);
-            empty_out           : out std_logic;
-            valid_out           : out std_logic;
-            ready_recieved      : in std_logic;
+   port (
+      -- To scaler
+      clk_i             : in std_logic;
+      sreset_i          : in std_logic;
+      startofpacket_i   : in std_logic;
+      endofpacket_i     : in std_logic;
+      data_i            : in std_logic_vector (19 downto 0) := (others => '0');
+      empty_i           : in std_logic;
+      valid_i           : in std_logic;
+      ready_i           : in std_logic;
+      -- From scaler
+      startofpacket_o   : out std_logic;
+      endofpacket_o     : out std_logic;
+      data_o            : out std_logic_vector (19 downto 0);
+      empty_o           : out std_logic;
+      valid_o           : out std_logic;
+      ready_o           : out std_logic;
 
-            -- Internal
-            ctrl_pkt_dec_en     : out std_logic
-        );
-end entity controller;
+      -- Internal
+      rx_video_width    : out unsigned(15 downto 0);
+      rx_video_height   : out unsigned(15 downto 0);
+      rx_interlacing    : out unsigned(3 downto 0));
+   end entity controller;
 
 architecture controller_arc of controller is
-    type state_name is (IDLE, VIDEO_DATA, USER_DATA, CLOCKED_VIDEO_DATA, CONTROL_PACKET);
-    signal state                : state_name;
-    signal clear_eop            : boolean;
-
+   type t_controller_state is (s_idle, s_video_data, s_control_packet, s_others);
+   signal state                : t_controller_state;
+   signal clear_eop_o        : boolean;
 begin
-    process(clk)
-        variable v_data_in: unsigned(data_in'range);
-    begin
-        if rising_edge(clk) then
+   p_main_state_macine : process(clk_i)
+      variable v_packet_type_id: unsigned(3 downto 0);
+   begin
+      if rising_edge(clk_i) then
+         -- FSM
+         v_packet_type_id := unsigned(data_i(3 downto 0));
+         case state is
+            when s_idle =>
 
-            -- Check for reset signal
-            if rst = '1' then
-                state <= IDLE;
-                ready_sent <= '0';
-                startofpacket_out <= '0';
-                endofpacket_out <= '0';
-                data_out <= 20x"0";
-                empty_out <= '0';
-                valid_out <= '0';
+            -- Clear endofpacket after return
+            if clear_eop_o then
+               endofpacket_o <= '0';
+               clear_eop_o <= false;
             end if;
 
-            -- FSM
-            v_data_in := unsigned(data_in);
-            case state is
-                when IDLE =>
+            -- Check packet type identifier when startofpacket is recieved and next module is ready
+            if (ready_i = '1' and startofpacket_i = '1') then
+               -- Video data packet
+               if(v_packet_type_id = 0) then
+                  state <= s_video_data;
+               -- Control packet
+               elsif(v_packet_type_id = 15) then
+                  state <= s_control_packet;
+               -- Other packets
+               else
+                  state <= s_others;
+               end if;
+            -- Keep s_idle state when there is no incomming packets
+            else
+               state <= s_idle;
+            end if;
 
-                    -- Clear endofpacket after return
-                    if clear_eop then
-                        endofpacket_out <= '0';
-                        clear_eop <= false;
-                    end if;
+            when s_video_data =>
+               if (endofpacket_i = '1') then
+                  -- Last input packet, set endofpacket_o this cycle and clear on next cycle
+                  endofpacket_o <= '1';
+                  clear_eop_o <= true;
+                  -- TODO:
+                  -- Tell scaler to finish 
+                  data_o <= data_i;
+                  state <= s_idle;
+               elsif (ready_i = '1') then
+                  -- TODO:
+                  -- Enable scaler
+                  valid_o <= '1';
+                  data_o <= data_i;
+                  state <= s_video_data;
+               end if;
 
-                    -- Check packet type identifier when startofpacket is recieved and next module is ready
-                    if (ready_recieved = '1' and startofpacket_in = '1') then
-                        -- Video data packet
-                        if(v_data_in = 0) then
-                            state <= VIDEO_DATA;
+            when s_control_packet =>
+               -- Decode control packet, 5 clock cycles
+               state <= s_idle;
 
-                        -- User data packet
-                        elsif (v_data_in >= 1 and v_data_in <= 8) then
-                            state <= USER_DATA;
+            when s_others =>
+               -- Passthrough signal with delay
+               data_o <= data_i;
+               state <= s_idle;
 
-                        -- Clocked video data ancillary user packet
-                        elsif (v_data_in = 13) then
-                            state <= CLOCKED_VIDEO_DATA;
+         end case;
 
-                        -- Control packet
-                        elsif(v_data_in = 15) then
-                            ctrl_pkt_dec_en <= '1';
-                            state <= CONTROL_PACKET;
-
-                        -- Default to IDLE when not recognized
-                        else
-                            state <= IDLE;
-                        end if;
-
-                    -- Keep IDLE state when there is no incomming packets
-                    else
-                        state <= IDLE;
-                    end if;
-
-                when VIDEO_DATA =>
-                    if (endofpacket_in = '1') then
-                        endofpacket_out <= '1';
-                        data_out <= data_in;
-                        clear_eop <= true;
-                        state <= IDLE;
-                    elsif (ready_recieved = '1') then
-                        valid_out <= '1';
-                        data_out <= data_in;
-                        state <= VIDEO_DATA;
-                    end if;
-
-                when USER_DATA =>
-                    state <= IDLE;
-
-                when CLOCKED_VIDEO_DATA =>
-                    state <= IDLE;
-
-                when CONTROL_PACKET =>
-                    state <= IDLE;
-
-            end case;
-        end if;
-    end process;
-
+         -- Check for reset signal
+         if sreset_i = '1' then
+            state <= s_idle;
+            ready_o <= '0';
+            startofpacket_o <= '0';
+            endofpacket_o <= '0';
+            data_o <= 20x"0";
+            empty_o <= '0';
+            valid_o <= '0';
+         end if;
+      end if;
+   end process;
 end controller_arc;

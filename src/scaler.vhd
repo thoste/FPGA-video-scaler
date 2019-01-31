@@ -16,57 +16,49 @@ use ieee.numeric_std.all;
 
 
 entity scaler is
-	port (
-			-- To scaler
-			clk, rst 			: in std_logic;
-			startofpacket_in	: in std_logic;
-			endofpacket_in		: in std_logic;
-			data_in				: in std_logic_vector (19 downto 0);
-			empty_in			: in std_logic;
-			valid_in			: in std_logic;
-			ready_sent			: out std_logic;
-			-- From scaler
-			startofpacket_out	: out std_logic;
-			endofpacket_out		: out std_logic;
-			data_out			: out std_logic_vector (19 downto 0);
-			empty_out			: out std_logic;
-			valid_out			: out std_logic;
-			ready_recieved		: in std_logic
-		);
+   port (
+      -- To scaler
+      clk_i : in std_logic;
+      sreset_i : in std_logic;
+      startofpacket_i : in std_logic;
+      endofpacket_i : in std_logic;
+      data_i : in std_logic_vector (19 downto 0);
+      empty_i : in std_logic;
+      valid_i : in std_logic;
+      ready_i : in std_logic;
+
+      -- From scaler
+      startofpacket_o : out std_logic;
+      endofpacket_o : out std_logic;
+      data_o : out std_logic_vector (19 downto 0);
+      empty_o : out std_logic;
+      valid_o : out std_logic;
+      ready_o : out std_logic);
 end entity scaler;
 
 architecture scaler_arc of scaler is
-		signal ctrl_pkt_dec_en 	: std_logic;
-		signal in_video_width 	: unsigned(15 downto 0);
-		signal in_video_height 	: unsigned(15 downto 0);
+   signal rx_video_width    : unsigned(15 downto 0);
+   signal rx_video_height   : unsigned(15 downto 0);
+   signal rx_interlacing    : unsigned(3 downto 0);
 begin
-	controller : entity work.controller
-		port map(
-			clk => clk,
-			rst => rst,
-			startofpacket_in => startofpacket_in,
-			endofpacket_in => endofpacket_in,
-			data_in => data_in,
-			empty_in => empty_in,
-			valid_in => valid_in,
-			ready_sent => ready_sent,
-			startofpacket_out => startofpacket_out,
-			endofpacket_out => endofpacket_out,
-			data_out => data_out,
-			empty_out => empty_out,
-			valid_out => valid_out,
-			ready_recieved => ready_recieved,
-			ctrl_pkt_dec_en => ctrl_pkt_dec_en
-		); 
+   controller : entity work.controller
+   port map(
+      clk_i => clk_i,
+      sreset_i => sreset_i,
+      startofpacket_i => startofpacket_i,
+      endofpacket_i => endofpacket_i,
+      data_i => data_i,
+      empty_i => empty_i,
+      valid_i => valid_i,
+      ready_i => ready_i,
+      startofpacket_o => startofpacket_o,
+      endofpacket_o => endofpacket_o,
+      data_o => data_o,
+      empty_o => empty_o,
+      valid_o => valid_o,
+      ready_o => ready_o,
+      rx_video_width  => rx_video_width,
+      rx_video_height => rx_video_height,
+      rx_interlacing => rx_interlacing);
 
-	control_packet_decoder : entity work.control_packet_decoder
-		port map(
-			clk => clk,
-			rst => rst,
-			data_in => data_in,
-			ctrl_pkt_dec_en => ctrl_pkt_dec_en, 
-			in_video_width	=> in_video_width,
-			in_video_height	=> in_video_height
-		);
 end scaler_arc;
-		
