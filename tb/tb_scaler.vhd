@@ -21,15 +21,15 @@ architecture tb_scaler_arc of tb_scaler is
    signal clk_i               : std_logic := '0';
    signal sreset_i            : std_logic := '1';
 
-   signal startofpacket_i     : std_logic := '0';
-   signal endofpacket_i       : std_logic := '0';
+   signal sop_i               : std_logic := '0';
+   signal eop_i               : std_logic := '0';
    signal data_i              : std_logic_vector (19 downto 0);
    signal empty_i             : std_logic := '0';
    signal valid_i             : std_logic := '0';
    signal ready_i             : std_logic := '0';
 
-   signal startofpacket_o     : std_logic;
-   signal endofpacket_o       : std_logic;
+   signal sop_o               : std_logic;
+   signal eop_o               : std_logic;
    signal data_o              : std_logic_vector (19 downto 0);
    signal empty_o             : std_logic;
    signal valid_o             : std_logic;
@@ -38,20 +38,22 @@ architecture tb_scaler_arc of tb_scaler is
 begin
    UUT : entity work.scaler
    port map(
-      clk_i => clk_i,
-      sreset_i => sreset_i,
-      startofpacket_i => startofpacket_i,
-      endofpacket_i => endofpacket_i,
-      data_i => data_i,
-      empty_i => empty_i,
-      valid_i => valid_i,
-      ready_i => ready_i,
-      startofpacket_o => startofpacket_o,
-      endofpacket_o => endofpacket_o,
-      data_o => data_o,
-      empty_o => empty_o,
-      valid_o => valid_o,
-      ready_o => ready_o);
+      -- To scaler
+      clk_i          => clk_i,
+      sreset_i       => sreset_i,
+      sop_i          => sop_i,
+      eop_i          => eop_i,
+      data_i         => data_i,
+      empty_i        => empty_i,
+      valid_i        => valid_i,
+      ready_i        => ready_i,
+      -- From scaler
+      sop_o          => sop_o,
+      eop_o          => eop_o,
+      data_o         => data_o,
+      empty_o        => empty_o,
+      valid_o        => valid_o,
+      ready_o        => ready_o);
 
    process
    begin
@@ -74,7 +76,7 @@ begin
       clk_i <= not clk_i;
       wait for 10ns;
 
-      startofpacket_i <= '1';
+      sop_i <= '1';
       data_i <= 20x"F";
 
       clk_i <= not clk_i;
@@ -82,7 +84,7 @@ begin
       clk_i <= not clk_i;
       wait for 10ns;
 
-      startofpacket_i <= '0';
+      sop_i <= '0';
       data_i <= 20x"FF";
 
       clk_i <= not clk_i;
@@ -91,21 +93,21 @@ begin
       wait for 10ns;
 
 
-      endofpacket_i <= '1';
+      eop_i <= '1';
 
       clk_i <= not clk_i;
       wait for 10ns;
       clk_i <= not clk_i;
       wait for 10ns;
 
-      endofpacket_i <= '0';
+      eop_i <= '0';
 
       clk_i <= not clk_i;
       wait for 10ns;
       clk_i <= not clk_i;
       wait for 10ns;
 
-      startofpacket_i <= '1';
+      sop_i <= '1';
       data_i <= 20x"0";
 
       clk_i <= not clk_i;
@@ -113,7 +115,7 @@ begin
       clk_i <= not clk_i;
       wait for 10ns;
 
-      startofpacket_i <= '0';
+      sop_i <= '0';
       data_i <= 20x"2";
 
       clk_i <= not clk_i;
@@ -136,14 +138,14 @@ begin
       wait for 10ns;
 
       data_i <= 20x"5";
-      endofpacket_i <= '1';
+      eop_i <= '1';
 
       clk_i <= not clk_i;
       wait for 10ns;
       clk_i <= not clk_i;
       wait for 10ns;
 
-      endofpacket_i <= '0';
+      eop_i <= '0';
 
       clk_i <= not clk_i;
       wait for 10ns;
