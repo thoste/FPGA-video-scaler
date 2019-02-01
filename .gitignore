@@ -1,9 +1,10 @@
 # Ignore backup files
 *.bak
 
-# Ignore project folder
+# Ignore project folder and examples
 project/
 atv/
+examples/
 
 # Ignore vlib work folders
 src/work/
