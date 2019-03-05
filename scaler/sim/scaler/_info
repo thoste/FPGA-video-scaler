@@ -8,38 +8,37 @@ z2
 !i10f 100
 cModel Technology
 Z0 dC:/Users/stens/Documents/NTNU/FPGA-video-scaler/scaler/sim
-Escaler
-Z1 w1549621174
+Ecounter_source
+Z1 w1550844316
 Z2 DPx4 ieee 11 numeric_std 0 22 :ASDNFgHXf_ih3J@9F3Ze1
 Z3 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
 Z4 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
 R0
-Z5 8../../scaler/../scaler/src/scaler.vhd
-Z6 F../../scaler/../scaler/src/scaler.vhd
+Z5 8../../scaler/../scaler/tb/counter_source.vhd
+Z6 F../../scaler/../scaler/tb/counter_source.vhd
 l0
-L18
-VEdL?8kWN0I27N?]4GgU:k1
-!s100 CdT8Nd@g@YJCE:D8m9fh;2
+L17
+VeQlz06ibb=_akBJ3LZURX3
+!s100 j@_ePBG8hi4BTE;QicZ=a0
 Z7 OV;C;10.5b;63
 33
-Z8 !s110 1549913262
+Z8 !s110 1550845418
 !i10b 1
-Z9 !s108 1549913262.000000
-Z10 !s90 -reportprogress|300|-2008|-work|scaler|../../scaler/../scaler/src/scaler.vhd|
-Z11 !s107 ../../scaler/../scaler/src/scaler.vhd|
+Z9 !s108 1550845418.000000
+Z10 !s90 -reportprogress|300|-2008|-work|scaler|../../scaler/../scaler/tb/counter_source.vhd|
+Z11 !s107 ../../scaler/../scaler/tb/counter_source.vhd|
 !i113 1
 Z12 o-2008 -work scaler
 Z13 tExplicit 1 CvgOpt 0
-Ascaler_arc
-Z14 DEx4 work 17 scaler_controller 0 22 BoL_Sc?lCF<8[4lBPcR@T1
+Acounter_source_arc
 R2
 R3
 R4
-Z15 DEx4 work 6 scaler 0 22 EdL?8kWN0I27N?]4GgU:k1
-l46
-L39
-VMd<TW4b=cUPmMZV9E64G^1
-!s100 Fm:TF]98Di0;Ni1IQ[f[@0
+DEx4 work 14 counter_source 0 22 eQlz06ibb=_akBJ3LZURX3
+l26
+L24
+VI6h]AZ6nT48F@f?=3Z@EL3
+!s100 o91M6^I7_i`H^k;>GGG_92
 R7
 33
 R8
@@ -50,14 +49,56 @@ R11
 !i113 1
 R12
 R13
-Escaler_controller
-R1
+Escaler
+Z14 w1550511029
 R2
 R3
 R4
 R0
-Z16 8../../scaler/../scaler/src/scaler_controller.vhd
-Z17 F../../scaler/../scaler/src/scaler_controller.vhd
+Z15 8../../scaler/../scaler/src/scaler.vhd
+Z16 F../../scaler/../scaler/src/scaler.vhd
+l0
+L18
+VEdL?8kWN0I27N?]4GgU:k1
+!s100 CdT8Nd@g@YJCE:D8m9fh;2
+R7
+33
+R8
+!i10b 1
+R9
+Z17 !s90 -reportprogress|300|-2008|-work|scaler|../../scaler/../scaler/src/scaler.vhd|
+Z18 !s107 ../../scaler/../scaler/src/scaler.vhd|
+!i113 1
+R12
+R13
+Ascaler_arc
+Z19 DEx4 work 17 scaler_controller 0 22 BoL_Sc?lCF<8[4lBPcR@T1
+R2
+R3
+R4
+DEx4 work 6 scaler 0 22 EdL?8kWN0I27N?]4GgU:k1
+l46
+L39
+VMd<TW4b=cUPmMZV9E64G^1
+!s100 Fm:TF]98Di0;Ni1IQ[f[@0
+R7
+33
+R8
+!i10b 1
+R9
+R17
+R18
+!i113 1
+R12
+R13
+Escaler_controller
+R14
+R2
+R3
+R4
+R0
+Z20 8../../scaler/../scaler/src/scaler_controller.vhd
+Z21 F../../scaler/../scaler/src/scaler_controller.vhd
 l0
 L17
 VBoL_Sc?lCF<8[4lBPcR@T1
@@ -67,8 +108,8 @@ R7
 R8
 !i10b 1
 R9
-Z18 !s90 -reportprogress|300|-2008|-work|scaler|../../scaler/../scaler/src/scaler_controller.vhd|
-Z19 !s107 ../../scaler/../scaler/src/scaler_controller.vhd|
+Z22 !s90 -reportprogress|300|-2008|-work|scaler|../../scaler/../scaler/src/scaler_controller.vhd|
+Z23 !s107 ../../scaler/../scaler/src/scaler_controller.vhd|
 !i113 1
 R12
 R13
@@ -76,7 +117,7 @@ Ascaler_controller_arc
 R2
 R3
 R4
-R14
+R19
 l52
 L48
 V6cSFUOB5fUeglZFWJnU872
@@ -86,201 +127,51 @@ R7
 R8
 !i10b 1
 R9
-R18
-R19
+R22
+R23
 !i113 1
 R12
 R13
-Etb_example
-R1
-Z20 DPx18 uvvm_vvc_framework 17 ti_data_queue_pkg 0 22 n^faIiAUfB[^1;z;7oe1;0
-Z21 DPx18 uvvm_vvc_framework 16 ti_data_fifo_pkg 0 22 RJbLB6U<KMknCeU1SM[]M0
-Z22 DPx18 uvvm_vvc_framework 28 ti_vvc_framework_support_pkg 0 22 ACb__ddRTf1B;>If;>okm1
-Z23 D^#x9 uvvm_util 17 uvvm_util_context 0 22 H0FSVV8bXLj76jGB<l;Bh0
-Z24 DPx9 uvvm_util 14 bfm_common_pkg 0 22 ]aS13l;Y`m@DFmCa?X?oa2
+Etb_with_source
+Z24 w1550845411
 Z25 DPx3 std 3 env 0 22 d?`1ck@NdeD@H3RZG7FgZ2
-Z26 DPx9 uvvm_util 19 alert_hierarchy_pkg 0 22 J:9>[nO7ALEN=h21fMnRZ2
-Z27 DPx9 uvvm_util 11 license_pkg 0 22 QaN@HADO^Q0bkYCBLU7KS0
-Z28 DPx9 uvvm_util 11 methods_pkg 0 22 F;BB:13BYljfL_`]9C@ez0
-Z29 DPx9 uvvm_util 25 hierarchy_linked_list_pkg 0 22 AU3F?QnNoIHK5mg;_F]XO1
-Z30 DPx4 ieee 9 math_real 0 22 Sk6CSihbPL<f[^Shm]=KX0
-Z31 DPx9 uvvm_util 18 string_methods_pkg 0 22 :AGKd[lUN7S5_17<IMWIm2
-Z32 DPx9 uvvm_util 19 protected_types_pkg 0 22 [XPdcHl7W`=oQh;FfdAnh1
-Z33 DPx9 uvvm_util 15 adaptations_pkg 0 22 NEE[0jIH<]AYLMjF]LQ2z3
-Z34 DPx9 uvvm_util 39 global_signals_and_shared_variables_pkg 0 22 G`9N8MQJ6MP;An0C]aUA62
-Z35 DPx9 uvvm_util 9 types_pkg 0 22 LN<P^2aB;h1Fm:]U5DQSI3
-Z36 DPx12 modelsim_lib 4 util 0 22 I9VUm]?fD[2nYZzgoDM?l2
 R2
 R3
 R4
 R0
-Z37 8../../scaler/../scaler/tb/tb_example.vhd
-Z38 F../../scaler/../scaler/tb/tb_example.vhd
+Z26 8../../scaler/../scaler/tb/tb_with_source.vhd
+Z27 F../../scaler/../scaler/tb/tb_with_source.vhd
 l0
-L16
-V=PDmI37_JLK15d9HIULaY2
-!s100 3?Nz;BL=gZZeB1PK5gRaO0
+L18
+VkX^;dGdV?n6:2@QjQW^Jb0
+!s100 C:M:DdFGX=HQ03Vo`>OFV0
 R7
 33
-Z39 !s110 1549913265
+R8
 !i10b 1
-Z40 !s108 1549913264.000000
-Z41 !s90 -reportprogress|300|-2008|-work|scaler|../../scaler/../scaler/tb/tb_example.vhd|
-Z42 !s107 ../../scaler/../scaler/tb/tb_example.vhd|
+R9
+Z28 !s90 -reportprogress|300|-2008|-work|scaler|../../scaler/../scaler/tb/tb_with_source.vhd|
+Z29 !s107 ../../scaler/../scaler/tb/tb_with_source.vhd|
 !i113 1
 R12
 R13
-Asim
-Z43 DEx4 work 10 th_example 0 22 6ah2cDZ]6OUf7MkVS[`g`3
-R20
-R21
-R22
-R23
-R24
+Atb_with_source_arc
 R25
-R26
-R27
+R2
+R3
+R4
+DEx4 work 14 tb_with_source 0 22 kX^;dGdV?n6:2@QjQW^Jb0
+l69
+L21
+VJO]Q@gL1K:EOo]Y];C2820
+!s100 a421U992Uk5DF:];6fk8[0
+R7
+33
+R8
+!i10b 1
+R9
 R28
 R29
-R30
-R31
-R32
-R33
-R34
-R35
-R36
-R2
-R3
-R4
-DEx4 work 10 tb_example 0 22 =PDmI37_JLK15d9HIULaY2
-l27
-L25
-VYYXih;?lf:G;`azGW^d9O2
-!s100 I=[DPa`GW_BhQSJmkj;z]2
-R7
-33
-R39
-!i10b 1
-R40
-R41
-R42
-!i113 1
-R12
-R13
-Etb_scaler
-R1
-R3
-R4
-R0
-Z44 8../../scaler/../scaler/tb/tb_scaler.vhd
-Z45 F../../scaler/../scaler/tb/tb_scaler.vhd
-l0
-L17
-VbY^DMm>bm^gUonZRXAAWD3
-!s100 UO8ddo?M[DE[G4bN4j61V0
-R7
-33
-Z46 !s110 1549913264
-!i10b 1
-R40
-Z47 !s90 -reportprogress|300|-2008|-work|scaler|../../scaler/../scaler/tb/tb_scaler.vhd|
-Z48 !s107 ../../scaler/../scaler/tb/tb_scaler.vhd|
-!i113 1
-R12
-R13
-Atb_scaler_arc
-R2
-R15
-R3
-R4
-DEx4 work 9 tb_scaler 0 22 bY^DMm>bm^gUonZRXAAWD3
-l38
-L20
-VnA1oBCiF;0T9o0@5lKANW3
-!s100 IS?`g[9fnlYhbAYLDB`XX2
-R7
-33
-R46
-!i10b 1
-R40
-R47
-R48
-!i113 1
-R12
-R13
-Eth_example
-R1
-R20
-R21
-R22
-R23
-R24
-R25
-R26
-R27
-R28
-R29
-R30
-R31
-R32
-R33
-R34
-R35
-R36
-R2
-R3
-R4
-R0
-Z49 8../../scaler/../scaler/tb/th_example.vhd
-Z50 F../../scaler/../scaler/tb/th_example.vhd
-l0
-L16
-V6ah2cDZ]6OUf7MkVS[`g`3
-!s100 dJ6kTabaeFV29_IfU3cf:2
-R7
-33
-R46
-!i10b 1
-R40
-Z51 !s90 -reportprogress|300|-2008|-work|scaler|../../scaler/../scaler/tb/th_example.vhd|
-Z52 !s107 ../../scaler/../scaler/tb/th_example.vhd|
-!i113 1
-R12
-R13
-Asim
-DEx18 uvvm_vvc_framework 14 ti_uvvm_engine 0 22 R]61UIE00N?P0o_`1e[^G1
-R20
-R21
-R22
-R23
-R24
-R25
-R26
-R27
-R28
-R29
-R30
-R31
-R32
-R33
-R34
-R35
-R36
-R2
-R3
-R4
-R43
-l27
-L23
-VLQ5icdK0j_P9UnQE:ad`^0
-!s100 oPzY6`>BT925I=C3QNlJ>1
-R7
-33
-R46
-!i10b 1
-R40
-R51
-R52
 !i113 1
 R12
 R13
