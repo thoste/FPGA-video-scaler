@@ -1,2 +1,6 @@
 # Ignore backup files
 *.bak
+
+# Ignore ModelSim extra files
+_Alert.txt
+_Log.txt
