@@ -1,16 +1,16 @@
-# Reading C:/intelFPGA/18.1/modelsim_ase/tcl/vsim/pref.tcl
+# Reading C:/modelsim_dlx64_10.7/tcl/vsim/pref.tcl
 # OpenFile C:/Users/stens/Documents/NTNU/FPGA-video-scaler/scaler/sim/scaler.mpf
 # Loading project scaler
 # 
 # 
 # Re-gen lib and compile scaler source
 # 
-# Model Technology ModelSim - Intel FPGA Edition vmap 10.5b Lib Mapping Utility 2016.10 Oct  5 2016
+# Model Technology ModelSim DE-64 vmap 10.7 Lib Mapping Utility 2017.12 Dec  7 2017
 # vmap scaler ../../scaler/..//scaler/sim/scaler 
 # Modifying C:/Users/stens/Documents/NTNU/FPGA-video-scaler/scaler/sim/scaler.mpf
 # -2008 -work scaler
-# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 20:27:42 on Feb 11,2019
+# Model Technology ModelSim DE-64 vcom 10.7 Compiler 2017.12 Dec  7 2017
+# Start time: 09:05:28 on Mar 06,2019
 # vcom -reportprogress 300 -2008 -work scaler ../../scaler/../scaler/src/scaler_controller.vhd 
 # -- Loading package STANDARD
 # -- Loading package TEXTIO
@@ -18,10 +18,10 @@
 # -- Loading package NUMERIC_STD
 # -- Compiling entity scaler_controller
 # -- Compiling architecture scaler_controller_arc of scaler_controller
-# End time: 20:27:42 on Feb 11,2019, Elapsed time: 0:00:00
+# End time: 09:05:28 on Mar 06,2019, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
-# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 20:27:42 on Feb 11,2019
+# Model Technology ModelSim DE-64 vcom 10.7 Compiler 2017.12 Dec  7 2017
+# Start time: 09:05:28 on Mar 06,2019
 # vcom -reportprogress 300 -2008 -work scaler ../../scaler/../scaler/src/scaler.vhd 
 # -- Loading package STANDARD
 # -- Loading package TEXTIO
@@ -30,7 +30,7 @@
 # -- Compiling entity scaler
 # -- Compiling architecture scaler_arc of scaler
 # -- Loading entity scaler_controller
-# End time: 20:27:42 on Feb 11,2019, Elapsed time: 0:00:00
+# End time: 09:05:28 on Mar 06,2019, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # 
 # User specified source directory
@@ -38,108 +38,62 @@
 # 
 # === Re-gen lib and compile uvvm_util source
 # 
-# Source path: ../../scaler/..//uvvm_util
-# Taget path: ../../scaler/..//uvvm_util/sim
+# Source path: ../../scaler/../../UVVM//uvvm_util
+# Taget path: ../../scaler/../../UVVM//uvvm_util/sim
 # 
 # Compiling uvvm_util source
 # 
-# eval vcom  -quiet -suppress 1346,1236 -2008 -work uvvm_util  ../../scaler/..//uvvm_util/script/../src/types_pkg.vhd
-# eval vcom  -quiet -suppress 1346,1236 -2008 -work uvvm_util  ../../scaler/..//uvvm_util/script/../src/adaptations_pkg.vhd
-# eval vcom  -quiet -suppress 1346,1236 -2008 -work uvvm_util  ../../scaler/..//uvvm_util/script/../src/string_methods_pkg.vhd
-# eval vcom  -quiet -suppress 1346,1236 -2008 -work uvvm_util  ../../scaler/..//uvvm_util/script/../src/protected_types_pkg.vhd
-# eval vcom  -quiet -suppress 1346,1236 -2008 -work uvvm_util  ../../scaler/..//uvvm_util/script/../src/global_signals_and_shared_variables_pkg.vhd
-# eval vcom  -quiet -suppress 1346,1236 -2008 -work uvvm_util  ../../scaler/..//uvvm_util/script/../src/hierarchy_linked_list_pkg.vhd
-# eval vcom  -quiet -suppress 1346,1236 -2008 -work uvvm_util  ../../scaler/..//uvvm_util/script/../src/alert_hierarchy_pkg.vhd
-# eval vcom  -quiet -suppress 1346,1236 -2008 -work uvvm_util  ../../scaler/..//uvvm_util/script/../src/license_pkg.vhd
-# eval vcom  -quiet -suppress 1346,1236 -2008 -work uvvm_util  ../../scaler/..//uvvm_util/script/../src/methods_pkg.vhd
-# eval vcom  -quiet -suppress 1346,1236 -2008 -work uvvm_util  ../../scaler/..//uvvm_util/script/../src/bfm_common_pkg.vhd
-# eval vcom  -quiet -suppress 1346,1236 -2008 -work uvvm_util  ../../scaler/..//uvvm_util/script/../src/uvvm_util_context.vhd
+# eval vcom  -quiet -suppress 1346,1236 -2008 -work uvvm_util  ../../scaler/../../UVVM//uvvm_util/script/../src/types_pkg.vhd
+# eval vcom  -quiet -suppress 1346,1236 -2008 -work uvvm_util  ../../scaler/../../UVVM//uvvm_util/script/../src/adaptations_pkg.vhd
+# eval vcom  -quiet -suppress 1346,1236 -2008 -work uvvm_util  ../../scaler/../../UVVM//uvvm_util/script/../src/string_methods_pkg.vhd
+# eval vcom  -quiet -suppress 1346,1236 -2008 -work uvvm_util  ../../scaler/../../UVVM//uvvm_util/script/../src/protected_types_pkg.vhd
+# eval vcom  -quiet -suppress 1346,1236 -2008 -work uvvm_util  ../../scaler/../../UVVM//uvvm_util/script/../src/global_signals_and_shared_variables_pkg.vhd
+# eval vcom  -quiet -suppress 1346,1236 -2008 -work uvvm_util  ../../scaler/../../UVVM//uvvm_util/script/../src/hierarchy_linked_list_pkg.vhd
+# eval vcom  -quiet -suppress 1346,1236 -2008 -work uvvm_util  ../../scaler/../../UVVM//uvvm_util/script/../src/alert_hierarchy_pkg.vhd
+# eval vcom  -quiet -suppress 1346,1236 -2008 -work uvvm_util  ../../scaler/../../UVVM//uvvm_util/script/../src/license_pkg.vhd
+# eval vcom  -quiet -suppress 1346,1236 -2008 -work uvvm_util  ../../scaler/../../UVVM//uvvm_util/script/../src/methods_pkg.vhd
+# eval vcom  -quiet -suppress 1346,1236 -2008 -work uvvm_util  ../../scaler/../../UVVM//uvvm_util/script/../src/bfm_common_pkg.vhd
+# eval vcom  -quiet -suppress 1346,1236 -2008 -work uvvm_util  ../../scaler/../../UVVM//uvvm_util/script/../src/uvvm_util_context.vhd
 # 
 # User specified source directory
 # 
 # 
 # === Re-gen lib and compile uvvm_util source
 # 
-# Source path: ../../scaler/..//uvvm_vvc_framework/../uvvm_util
-# Taget path: ../../scaler/..//uvvm_vvc_framework/../uvvm_util/sim
+# Source path: ../../scaler/../../UVVM//uvvm_vvc_framework/../uvvm_util
+# Taget path: ../../scaler/../../UVVM//uvvm_vvc_framework/../uvvm_util/sim
 # 
 # Compiling uvvm_util source
 # 
-# eval vcom  -quiet -suppress 1346,1236 -2008 -work uvvm_util  ../../scaler/..//uvvm_vvc_framework/../uvvm_util/script/../src/types_pkg.vhd
-# eval vcom  -quiet -suppress 1346,1236 -2008 -work uvvm_util  ../../scaler/..//uvvm_vvc_framework/../uvvm_util/script/../src/adaptations_pkg.vhd
-# eval vcom  -quiet -suppress 1346,1236 -2008 -work uvvm_util  ../../scaler/..//uvvm_vvc_framework/../uvvm_util/script/../src/string_methods_pkg.vhd
-# eval vcom  -quiet -suppress 1346,1236 -2008 -work uvvm_util  ../../scaler/..//uvvm_vvc_framework/../uvvm_util/script/../src/protected_types_pkg.vhd
-# eval vcom  -quiet -suppress 1346,1236 -2008 -work uvvm_util  ../../scaler/..//uvvm_vvc_framework/../uvvm_util/script/../src/global_signals_and_shared_variables_pkg.vhd
-# eval vcom  -quiet -suppress 1346,1236 -2008 -work uvvm_util  ../../scaler/..//uvvm_vvc_framework/../uvvm_util/script/../src/hierarchy_linked_list_pkg.vhd
-# eval vcom  -quiet -suppress 1346,1236 -2008 -work uvvm_util  ../../scaler/..//uvvm_vvc_framework/../uvvm_util/script/../src/alert_hierarchy_pkg.vhd
-# eval vcom  -quiet -suppress 1346,1236 -2008 -work uvvm_util  ../../scaler/..//uvvm_vvc_framework/../uvvm_util/script/../src/license_pkg.vhd
-# eval vcom  -quiet -suppress 1346,1236 -2008 -work uvvm_util  ../../scaler/..//uvvm_vvc_framework/../uvvm_util/script/../src/methods_pkg.vhd
-# eval vcom  -quiet -suppress 1346,1236 -2008 -work uvvm_util  ../../scaler/..//uvvm_vvc_framework/../uvvm_util/script/../src/bfm_common_pkg.vhd
-# eval vcom  -quiet -suppress 1346,1236 -2008 -work uvvm_util  ../../scaler/..//uvvm_vvc_framework/../uvvm_util/script/../src/uvvm_util_context.vhd
+# eval vcom  -quiet -suppress 1346,1236 -2008 -work uvvm_util  ../../scaler/../../UVVM//uvvm_vvc_framework/../uvvm_util/script/../src/types_pkg.vhd
+# eval vcom  -quiet -suppress 1346,1236 -2008 -work uvvm_util  ../../scaler/../../UVVM//uvvm_vvc_framework/../uvvm_util/script/../src/adaptations_pkg.vhd
+# eval vcom  -quiet -suppress 1346,1236 -2008 -work uvvm_util  ../../scaler/../../UVVM//uvvm_vvc_framework/../uvvm_util/script/../src/string_methods_pkg.vhd
+# eval vcom  -quiet -suppress 1346,1236 -2008 -work uvvm_util  ../../scaler/../../UVVM//uvvm_vvc_framework/../uvvm_util/script/../src/protected_types_pkg.vhd
+# eval vcom  -quiet -suppress 1346,1236 -2008 -work uvvm_util  ../../scaler/../../UVVM//uvvm_vvc_framework/../uvvm_util/script/../src/global_signals_and_shared_variables_pkg.vhd
+# eval vcom  -quiet -suppress 1346,1236 -2008 -work uvvm_util  ../../scaler/../../UVVM//uvvm_vvc_framework/../uvvm_util/script/../src/hierarchy_linked_list_pkg.vhd
+# eval vcom  -quiet -suppress 1346,1236 -2008 -work uvvm_util  ../../scaler/../../UVVM//uvvm_vvc_framework/../uvvm_util/script/../src/alert_hierarchy_pkg.vhd
+# eval vcom  -quiet -suppress 1346,1236 -2008 -work uvvm_util  ../../scaler/../../UVVM//uvvm_vvc_framework/../uvvm_util/script/../src/license_pkg.vhd
+# eval vcom  -quiet -suppress 1346,1236 -2008 -work uvvm_util  ../../scaler/../../UVVM//uvvm_vvc_framework/../uvvm_util/script/../src/methods_pkg.vhd
+# eval vcom  -quiet -suppress 1346,1236 -2008 -work uvvm_util  ../../scaler/../../UVVM//uvvm_vvc_framework/../uvvm_util/script/../src/bfm_common_pkg.vhd
+# eval vcom  -quiet -suppress 1346,1236 -2008 -work uvvm_util  ../../scaler/../../UVVM//uvvm_vvc_framework/../uvvm_util/script/../src/uvvm_util_context.vhd
 # 
 # 
 # === Re-gen lib and compile uvvm_vvc_framework source
 # 
-# Source path: ../../scaler/..//uvvm_vvc_framework
-# Taget path: ../../scaler/..//uvvm_vvc_framework/sim
+# Source path: ../../scaler/../../UVVM//uvvm_vvc_framework
+# Taget path: ../../scaler/../../UVVM//uvvm_vvc_framework/sim
 # 
 # Compiling uvvm_vvc_framework source
 # 
-# eval vcom  -quiet -suppress 1346,1236 -2008 -work uvvm_vvc_framework  ../../scaler/..//uvvm_vvc_framework/script/../src/ti_vvc_framework_support_pkg.vhd
-# eval vcom  -quiet -suppress 1346,1236 -2008 -work uvvm_vvc_framework  ../../scaler/..//uvvm_vvc_framework/script/../src/ti_generic_queue_pkg.vhd
-# eval vcom  -quiet -suppress 1346,1236 -2008 -work uvvm_vvc_framework  ../../scaler/..//uvvm_vvc_framework/script/../src/ti_data_queue_pkg.vhd
-# eval vcom  -quiet -suppress 1346,1236 -2008 -work uvvm_vvc_framework  ../../scaler/..//uvvm_vvc_framework/script/../src/ti_data_fifo_pkg.vhd
-# eval vcom  -quiet -suppress 1346,1236 -2008 -work uvvm_vvc_framework  ../../scaler/..//uvvm_vvc_framework/script/../src/ti_data_stack_pkg.vhd
-# eval vcom  -quiet -suppress 1346,1236 -2008 -work uvvm_vvc_framework  ../../scaler/..//uvvm_vvc_framework/script/../src/ti_uvvm_engine.vhd
+# eval vcom  -quiet -suppress 1346,1236 -2008 -work uvvm_vvc_framework  ../../scaler/../../UVVM//uvvm_vvc_framework/script/../src/ti_vvc_framework_support_pkg.vhd
+# eval vcom  -quiet -suppress 1346,1236 -2008 -work uvvm_vvc_framework  ../../scaler/../../UVVM//uvvm_vvc_framework/script/../src/ti_generic_queue_pkg.vhd
+# eval vcom  -quiet -suppress 1346,1236 -2008 -work uvvm_vvc_framework  ../../scaler/../../UVVM//uvvm_vvc_framework/script/../src/ti_data_queue_pkg.vhd
+# eval vcom  -quiet -suppress 1346,1236 -2008 -work uvvm_vvc_framework  ../../scaler/../../UVVM//uvvm_vvc_framework/script/../src/ti_data_fifo_pkg.vhd
+# eval vcom  -quiet -suppress 1346,1236 -2008 -work uvvm_vvc_framework  ../../scaler/../../UVVM//uvvm_vvc_framework/script/../src/ti_data_stack_pkg.vhd
+# eval vcom  -quiet -suppress 1346,1236 -2008 -work uvvm_vvc_framework  ../../scaler/../../UVVM//uvvm_vvc_framework/script/../src/ti_uvvm_engine.vhd
 # -2008 -work scaler
-# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 20:27:44 on Feb 11,2019
-# vcom -reportprogress 300 -2008 -work scaler ../../scaler/../scaler/tb/tb_scaler.vhd 
-# -- Loading package STANDARD
-# -- Loading package TEXTIO
-# -- Loading package std_logic_1164
-# -- Compiling entity tb_scaler
-# -- Compiling architecture tb_scaler_arc of tb_scaler
-# -- Loading package NUMERIC_STD
-# -- Loading entity scaler
-# ** Warning: ../../scaler/../scaler/tb/tb_scaler.vhd(61): (vcom-1207) An abstract literal and an identifier must have a separator between them.
-# ** Warning: ../../scaler/../scaler/tb/tb_scaler.vhd(63): (vcom-1207) An abstract literal and an identifier must have a separator between them.
-# ** Warning: ../../scaler/../scaler/tb/tb_scaler.vhd(68): (vcom-1207) An abstract literal and an identifier must have a separator between them.
-# ** Warning: ../../scaler/../scaler/tb/tb_scaler.vhd(70): (vcom-1207) An abstract literal and an identifier must have a separator between them.
-# ** Warning: ../../scaler/../scaler/tb/tb_scaler.vhd(75): (vcom-1207) An abstract literal and an identifier must have a separator between them.
-# ** Warning: ../../scaler/../scaler/tb/tb_scaler.vhd(77): (vcom-1207) An abstract literal and an identifier must have a separator between them.
-# ** Warning: ../../scaler/../scaler/tb/tb_scaler.vhd(83): (vcom-1207) An abstract literal and an identifier must have a separator between them.
-# ** Warning: ../../scaler/../scaler/tb/tb_scaler.vhd(85): (vcom-1207) An abstract literal and an identifier must have a separator between them.
-# ** Warning: ../../scaler/../scaler/tb/tb_scaler.vhd(91): (vcom-1207) An abstract literal and an identifier must have a separator between them.
-# ** Warning: ../../scaler/../scaler/tb/tb_scaler.vhd(93): (vcom-1207) An abstract literal and an identifier must have a separator between them.
-# ** Warning: ../../scaler/../scaler/tb/tb_scaler.vhd(99): (vcom-1207) An abstract literal and an identifier must have a separator between them.
-# ** Warning: ../../scaler/../scaler/tb/tb_scaler.vhd(101): (vcom-1207) An abstract literal and an identifier must have a separator between them.
-# ** Warning: ../../scaler/../scaler/tb/tb_scaler.vhd(106): (vcom-1207) An abstract literal and an identifier must have a separator between them.
-# ** Warning: ../../scaler/../scaler/tb/tb_scaler.vhd(108): (vcom-1207) An abstract literal and an identifier must have a separator between them.
-# ** Warning: ../../scaler/../scaler/tb/tb_scaler.vhd(114): (vcom-1207) An abstract literal and an identifier must have a separator between them.
-# ** Warning: ../../scaler/../scaler/tb/tb_scaler.vhd(116): (vcom-1207) An abstract literal and an identifier must have a separator between them.
-# ** Warning: ../../scaler/../scaler/tb/tb_scaler.vhd(122): (vcom-1207) An abstract literal and an identifier must have a separator between them.
-# ** Warning: ../../scaler/../scaler/tb/tb_scaler.vhd(124): (vcom-1207) An abstract literal and an identifier must have a separator between them.
-# ** Warning: ../../scaler/../scaler/tb/tb_scaler.vhd(129): (vcom-1207) An abstract literal and an identifier must have a separator between them.
-# ** Warning: ../../scaler/../scaler/tb/tb_scaler.vhd(131): (vcom-1207) An abstract literal and an identifier must have a separator between them.
-# ** Warning: ../../scaler/../scaler/tb/tb_scaler.vhd(136): (vcom-1207) An abstract literal and an identifier must have a separator between them.
-# ** Warning: ../../scaler/../scaler/tb/tb_scaler.vhd(138): (vcom-1207) An abstract literal and an identifier must have a separator between them.
-# ** Warning: ../../scaler/../scaler/tb/tb_scaler.vhd(144): (vcom-1207) An abstract literal and an identifier must have a separator between them.
-# ** Warning: ../../scaler/../scaler/tb/tb_scaler.vhd(146): (vcom-1207) An abstract literal and an identifier must have a separator between them.
-# ** Warning: ../../scaler/../scaler/tb/tb_scaler.vhd(151): (vcom-1207) An abstract literal and an identifier must have a separator between them.
-# ** Warning: ../../scaler/../scaler/tb/tb_scaler.vhd(153): (vcom-1207) An abstract literal and an identifier must have a separator between them.
-# ** Warning: ../../scaler/../scaler/tb/tb_scaler.vhd(156): (vcom-1207) An abstract literal and an identifier must have a separator between them.
-# ** Warning: ../../scaler/../scaler/tb/tb_scaler.vhd(158): (vcom-1207) An abstract literal and an identifier must have a separator between them.
-# ** Warning: ../../scaler/../scaler/tb/tb_scaler.vhd(161): (vcom-1207) An abstract literal and an identifier must have a separator between them.
-# ** Warning: ../../scaler/../scaler/tb/tb_scaler.vhd(163): (vcom-1207) An abstract literal and an identifier must have a separator between them.
-# ** Warning: ../../scaler/../scaler/tb/tb_scaler.vhd(166): (vcom-1207) An abstract literal and an identifier must have a separator between them.
-# ** Warning: ../../scaler/../scaler/tb/tb_scaler.vhd(168): (vcom-1207) An abstract literal and an identifier must have a separator between them.
-# ** Warning: ../../scaler/../scaler/tb/tb_scaler.vhd(171): (vcom-1207) An abstract literal and an identifier must have a separator between them.
-# ** Warning: ../../scaler/../scaler/tb/tb_scaler.vhd(173): (vcom-1207) An abstract literal and an identifier must have a separator between them.
-# End time: 20:27:44 on Feb 11,2019, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 34
-# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 20:27:44 on Feb 11,2019
+# Model Technology ModelSim DE-64 vcom 10.7 Compiler 2017.12 Dec  7 2017
+# Start time: 09:05:32 on Mar 06,2019
 # vcom -reportprogress 300 -2008 -work scaler ../../scaler/../scaler/tb/th_example.vhd 
 # -- Loading package STANDARD
 # -- Loading package TEXTIO
@@ -169,10 +123,10 @@
 # -- Compiling architecture sim of th_example
 # -- Loading context declaration uvvm_util_context
 # -- Loading entity ti_uvvm_engine
-# End time: 20:27:44 on Feb 11,2019, Elapsed time: 0:00:00
+# End time: 09:05:32 on Mar 06,2019, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
-# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 20:27:44 on Feb 11,2019
+# Model Technology ModelSim DE-64 vcom 10.7 Compiler 2017.12 Dec  7 2017
+# Start time: 09:05:32 on Mar 06,2019
 # vcom -reportprogress 300 -2008 -work scaler ../../scaler/../scaler/tb/tb_example.vhd 
 # -- Loading package STANDARD
 # -- Loading package TEXTIO
@@ -202,31 +156,147 @@
 # -- Compiling architecture sim of tb_example
 # -- Loading context declaration uvvm_util_context
 # -- Loading entity th_example
-# End time: 20:27:45 on Feb 11,2019, Elapsed time: 0:00:01
+# End time: 09:05:32 on Mar 06,2019, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
-# Version is: Model Technology ModelSim ALTERA STARTER EDITION vsim 10.5b Simulator 2016.10 Oct  5 2016
-# vsim scaler.tb_scaler 
-# Start time: 20:27:45 on Feb 11,2019
+# Version is: Model Technology ModelSim DE-64 vsim 10.7 Simulator 2017.12 Dec  7 2017
+# vsim scaler.tb_example 
+# Start time: 09:05:32 on Mar 06,2019
+# //  ModelSim DE-64 10.7 Dec  7 2017
+# //
+# //  Copyright 1991-2017 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim DE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
 # Loading std.standard
 # Loading std.textio(body)
 # Loading ieee.std_logic_1164(body)
 # Loading ieee.numeric_std(body)
-# Loading scaler.tb_scaler(tb_scaler_arc)
-# Loading scaler.scaler(scaler_arc)
-# Loading scaler.scaler_controller(scaler_controller_arc)
-# ** Warning: (vsim-8683) Uninitialized out port /tb_scaler/UUT/scaler_controller/rx_video_width_o(15 downto 0) has no driver.
-# This port will contribute value (UUUUUUUUUUUUUUUU) to the signal network.
-# ** Warning: (vsim-8683) Uninitialized out port /tb_scaler/UUT/scaler_controller/rx_video_height_o(15 downto 0) has no driver.
-# This port will contribute value (UUUUUUUUUUUUUUUU) to the signal network.
-# ** Warning: (vsim-8683) Uninitialized out port /tb_scaler/UUT/scaler_controller/rx_video_interlacing_o(3 downto 0) has no driver.
-# This port will contribute value (UUUU) to the signal network.
-# ** Warning: (vsim-8683) Uninitialized out port /tb_scaler/UUT/scaler_controller/tx_video_width_o(15 downto 0) has no driver.
-# This port will contribute value (UUUUUUUUUUUUUUUU) to the signal network.
-# ** Warning: (vsim-8683) Uninitialized out port /tb_scaler/UUT/scaler_controller/tx_video_height_o(15 downto 0) has no driver.
-# This port will contribute value (UUUUUUUUUUUUUUUU) to the signal network.
-# ** Warning: (vsim-8683) Uninitialized out port /tb_scaler/UUT/scaler_controller/tx_video_scaling_method_o(3 downto 0) has no driver.
-# This port will contribute value (UUUU) to the signal network.
+# Loading modelsim_lib.util(body)
+# Loading uvvm_util.types_pkg(body)
+# Loading uvvm_util.adaptations_pkg(body)
+# Loading ieee.math_real(body)
+# Loading uvvm_util.string_methods_pkg(body)
+# Loading uvvm_util.protected_types_pkg(body)
+# Loading uvvm_util.global_signals_and_shared_variables_pkg
+# Loading uvvm_util.hierarchy_linked_list_pkg(body)
+# Loading uvvm_util.license_pkg(body)
+# Loading std.env(body)
+# Loading uvvm_util.alert_hierarchy_pkg(body)
+# Loading uvvm_util.methods_pkg(body)
+# ** Note: 
+# 
+# 
+# *****************************************************************************************************
+#  This is a *** LICENSED PRODUCT *** as given in the LICENSE.TXT in the root directory.
+# *****************************************************************************************************
+# 
+# 
+#    Time: 0 ps  Iteration: 0  Region: /methods_pkg File: ../../scaler/../../UVVM/uvvm_vvc_framework/../uvvm_util/script/../src/methods_pkg.vhd
+# ** Note: 
+# 
+# =====================================================================================================
+# =====================================================================================================
+# This info section may be turned off via C_SHOW_UVVM_UTILITY_LIBRARY_INFO in adaptations_pkg.vhd
+# 
+# Important Simulator setup: 
+# - Set simulator to break on severity 'FAILURE' 
+# - Set simulator transcript to a monospace font (e.g. Courier new)
+# 
+# UVVM Utility Library setup:
+# - It is recommended to go through the two powerpoint presentations provided with the download
+# - There is a Quick-Reference in the doc-directory
+# - In order to change layout or behaviour - please check the src*/adaptations_pkg.vhd
+#   This is intended for personal or company customization
+# 
+# License conditions are given in LICENSE.TXT
+# =====================================================================================================
+# =====================================================================================================
+# 
+# 
+#    Time: 0 ps  Iteration: 0  Region: /methods_pkg File: ../../scaler/../../UVVM/uvvm_vvc_framework/../uvvm_util/script/../src/methods_pkg.vhd
+# Loading uvvm_util.bfm_common_pkg(body)
+# Loading uvvm_vvc_framework.ti_vvc_framework_support_pkg(body)
+# Loading uvvm_vvc_framework.ti_data_queue_pkg(body)
+# Loading uvvm_vvc_framework.ti_data_fifo_pkg(body)
+# Loading scaler.tb_example(sim)
+# Loading scaler.th_example(sim)
+# Loading uvvm_vvc_framework.ti_uvvm_engine(func)
+# UVVM: ID_LOG_MSG_CTRL                    0.0 ns  TB seq.                        disable_log_msg(ALL_MESSAGES). 
+# UVVM: ID_LOG_MSG_CTRL                    0.0 ns  TB seq.                        enable_log_msg(ID_LOG_HDR). 
+# UVVM: ID_LOG_MSG_CTRL                    0.0 ns  TB seq.                        enable_log_msg(ID_LOG_HDR_LARGE). 
+# UVVM: ID_LOG_MSG_CTRL                    0.0 ns  TB seq.                        enable_log_msg(ID_LOG_HDR_XL). 
+# UVVM: ID_LOG_MSG_CTRL                    0.0 ns  TB seq.                        enable_log_msg(ID_SEQUENCER). 
+# UVVM: ID_LOG_MSG_CTRL                    0.0 ns  TB seq.                        enable_log_msg(ID_SEQUENCER_SUB). 
+# UVVM: 
+# UVVM: 
+# UVVM: 
+# UVVM: #########################################################################################################################################################################
+# UVVM: 
+# UVVM: ID_LOG_HDR_XL                      0.0 ns  TB seq.(uvvm)                  Starting simulation of TB for example
+# UVVM: 
+# UVVM: #########################################################################################################################################################################
+# UVVM: 
+# UVVM: 
+# UVVM: 
+# UVVM: 
+# UVVM: ID_LOG_HDR                        50.0 ns  TB seq.(uvvm)                  Test initialized
+# UVVM: -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# UVVM: ID_SEQUENCER                      50.0 ns  TB seq.(uvvm)                  Test 1
+# UVVM: 
+# UVVM: ***  WARNING #1  ***
+# UVVM:            50 ns   TB seq.(uvvm)
+# UVVM:                    check_value() => Failed. Boolean was false. 'Verifying rand_int is not 10'
+# UVVM: 
+# UVVM: ID_SEQUENCER                      55.0 ns  TB seq.(uvvm)                  Test 2
+# UVVM: 
+# UVVM: ***  WARNING #2  ***
+# UVVM:            55 ns   TB seq.(uvvm)
+# UVVM:                    check_value() => Failed. Boolean was false. 'Verifying rand_byte is less than 192'
+# UVVM: 
+# UVVM: ID_SEQUENCER                      60.0 ns  TB seq.(uvvm)                  Test 3
+# UVVM: ID_SEQUENCER                      65.0 ns  TB seq.(uvvm)                  Test 4
+# UVVM: ID_SEQUENCER                      70.0 ns  TB seq.(uvvm)                  Test 5
+# UVVM: ID_SEQUENCER                      75.0 ns  TB seq.(uvvm)                  Test 6
+# UVVM: ID_SEQUENCER                      80.0 ns  TB seq.(uvvm)                  Test 7
+# UVVM: 
+# UVVM: ***  WARNING #3  ***
+# UVVM:            80 ns   TB seq.(uvvm)
+# UVVM:                    check_value() => Failed. Boolean was false. 'Verifying rand_byte is less than 192'
+# UVVM: 
+# UVVM: ID_SEQUENCER                      85.0 ns  TB seq.(uvvm)                  Test 8
+# UVVM: ID_SEQUENCER                      90.0 ns  TB seq.(uvvm)                  Test 9
+# UVVM: ID_SEQUENCER                      95.0 ns  TB seq.(uvvm)                  Test 10
+# UVVM: ID_SEQUENCER                      97.5 ns  TB seq.(uvvm)                  All tests passed
+# UVVM:      
+# UVVM:      ====================================================================================================================================================================
+# UVVM:      *** FINAL SUMMARY OF ALL ALERTS  ***      
+# UVVM:      ====================================================================================================================================================================
+# UVVM:                                REGARDED   EXPECTED  IGNORED      Comment?
+# UVVM:                NOTE         :      0         0         0         ok      
+# UVVM:                TB_NOTE      :      0         0         0         ok      
+# UVVM:                WARNING      :      3         0         0         *** WARNING *** 
+# UVVM:                TB_WARNING   :      0         0         0         ok      
+# UVVM:                MANUAL_CHECK :      0         0         0         ok      
+# UVVM:                ERROR        :      0         0         0         ok      
+# UVVM:                TB_ERROR     :      0         0         0         ok      
+# UVVM:                FAILURE      :      0         0         0         ok      
+# UVVM:                TB_FAILURE   :      0         0         0         ok      
+# UVVM:      ====================================================================================================================================================================
+# UVVM:      >> Simulation SUCCESS: No mismatch between counted and expected serious alerts
+# UVVM:      ====================================================================================================================================================================
+# UVVM:      
+# UVVM:      
+# UVVM: 
+# UVVM: 
+# UVVM: ID_LOG_HDR                        97.5 ns  TB seq.(uvvm)                  SIMULATION COMPLETED
+# UVVM: -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# Break in Process p_main at ../../scaler/../scaler/tb/tb_example.vhd line 97
 # 0 ps
-# 357 ns
-# End time: 20:27:55 on Feb 11,2019, Elapsed time: 0:00:10
-# Errors: 0, Warnings: 6
+# 102375 ps

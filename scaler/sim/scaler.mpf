@@ -98,8 +98,8 @@ cyclone10lp_ver = $MODEL_TECH/../altera/verilog/cyclone10lp
 
 work = scaler
 scaler = ../../scaler/..//scaler/sim/scaler
-uvvm_util = ../../scaler/..//uvvm_vvc_framework/../uvvm_util/sim/uvvm_util
-uvvm_vvc_framework = ../../scaler/..//uvvm_vvc_framework/sim/uvvm_vvc_framework
+uvvm_util = ../../scaler/../../UVVM//uvvm_vvc_framework/../uvvm_util/sim/uvvm_util
+uvvm_vvc_framework = ../../scaler/../../UVVM//uvvm_vvc_framework/sim/uvvm_vvc_framework
 [vcom]
 ; VHDL93 variable selects language version as the default. 
 ; Default is VHDL-2002.
