@@ -16,7 +16,7 @@ if { [info exists 1] } {
 #------------------------------------------------------------------------
 set compdirectives "-2008 -work $lib_name"
 
-eval vcom  $compdirectives  $scaler_part_path/tb/tb_with_source.vhd
+#eval vcom  $compdirectives  $scaler_part_path/tb/tb_with_source.vhd
 #eval vcom  $compdirectives  $scaler_part_path/tb/tb_scaler.vhd
-#eval vcom  $compdirectives  $scaler_part_path/tb/th_example.vhd
-#eval vcom  $compdirectives  $scaler_part_path/tb/tb_example.vhd
+eval vcom  $compdirectives  $scaler_part_path/tb/th_example.vhd
+eval vcom  $compdirectives  $scaler_part_path/tb/tb_example.vhd

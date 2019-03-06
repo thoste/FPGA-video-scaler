@@ -18,7 +18,7 @@ if {[catch {eval "vsim -version"} message] == 0} {
 
 
 #------------------------------------------------------
-vsim  scaler.tb_with_source
+vsim  scaler.tb_example
 
 add log -r /*
 source ../script/wave_modelsim.do
