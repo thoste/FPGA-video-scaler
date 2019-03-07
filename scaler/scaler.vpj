@@ -1,0 +1,97 @@
+<!DOCTYPE Project SYSTEM "http://www.slickedit.com/dtd/vse/10.0/vpj.dtd">
+<Project
+   Version="10.0"
+   VendorName="SlickEdit"
+   TemplateName="VHDL: Model Technology ModelSim"
+   WorkingDir=".">
+   <Config
+      Name="Release"
+      OutputFile=""
+      CompilerConfigName="">
+      <Includes>
+         <Include Dir="%(INCLUDE)"/>
+      </Includes>
+      <Menu>
+         <Target
+            Name="Compile"
+            MenuCaption="&amp;Compile"
+            CaptureOutputWith="ProcessBuffer"
+            SaveOption="SaveCurrent"
+            RunFromDir="%rw">
+            <Exec CmdLine="vcom %p%n%e"/>
+         </Target>
+         <Target
+            Name="Build"
+            MenuCaption="&amp;Build"
+            CaptureOutputWith="ProcessBuffer"
+            SaveOption="SaveWorkspaceFiles"
+            RunFromDir="%rw">
+            <Exec CmdLine="nmake"/>
+         </Target>
+         <Target
+            Name="Rebuild"
+            MenuCaption="&amp;Rebuild"
+            CaptureOutputWith="ProcessBuffer"
+            SaveOption="SaveWorkspaceFiles"
+            RunFromDir="%rw">
+            <Exec CmdLine="nmake /A"/>
+         </Target>
+         <Target
+            Name="Debug"
+            MenuCaption="&amp;Debug"
+            SaveOption="SaveNone"
+            RunFromDir="%rw">
+            <Exec CmdLine="vsim"/>
+         </Target>
+         <Target
+            Name="Execute"
+            MenuCaption="E&amp;xecute"
+            SaveOption="SaveNone"
+            RunFromDir="%rw">
+            <Exec CmdLine="vsim"/>
+         </Target>
+      </Menu>
+   </Config>
+   <Files>
+      <Folder
+         Name="Source Files"
+         Filters="*.vhd;*.vhdl"
+         GUID="{18734783-B064-4BE7-0D36-7693D7B8E6A3}">
+         <F N="src/counter_source.vhd"/>
+         <F N="src/scaler.vhd"/>
+         <F N="src/scaler_controller.vhd"/>
+         <F N="src/simple_dpram.vhd"/>
+         <F N="syntest/syntest_simple_dpram.vhd"/>
+         <F N="tb/tb_example.vhd"/>
+         <F N="tb/tb_scaler.vhd"/>
+         <F N="tb/tb_simple_dpram.vhd"/>
+         <F N="tb/tb_with_source.vhd"/>
+         <F N="tb/th_example.vhd"/>
+      </Folder>
+      <Folder
+         Name="Other Files"
+         Filters=""
+         GUID="{177F7860-9BC5-4580-29B8-98CDCC4ED387}">
+         <F N="sim/_Alert.txt"/>
+         <F N="sim/scaler/_info"/>
+         <F N="sim/scaler/_lib.qdb"/>
+         <F N="sim/scaler/_lib1_0.qdb"/>
+         <F N="sim/scaler/_lib1_0.qpg"/>
+         <F N="sim/scaler/_lib1_0.qtl"/>
+         <F N="sim/_Log.txt"/>
+         <F N="sim/scaler/_vmake"/>
+         <F N="script/compile_and_sim_all.do"/>
+         <F N="script/compile_src.do"/>
+         <F N="script/compile_tb.do"/>
+         <F N="script/compile_util.do"/>
+         <F N="sim/scaler.cr.mti"/>
+         <F N="sim/scaler.mpf"/>
+         <F N="scaler.vpj"/>
+         <F N="script/simulate_tb.do"/>
+         <F N="script/transcript"/>
+         <F N="sim/transcript"/>
+         <F N="sim/vsim.wlf"/>
+         <F N="script/wave_modelsim.do"/>
+      </Folder>
+   </Files>
+</Project>
