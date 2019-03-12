@@ -63,3 +63,16 @@ if { [info exists 1] } {
 do $uvvm_part_path/script/compile_src.do $uvvm_part_path
 
 
+# Set up vip_avalon_st_part_path
+#------------------------------------------------------
+quietly set part_name "vip_avalon_st"
+# path from mpf-file in sim
+quietly set vip_avalon_st_part_path "../../../UVVM//$part_name"
+
+if { [info exists 1] } {
+  # path from this part to target part
+  quietly set vip_avalon_st_part_path "$1/../../UVVM//$part_name"
+  unset 1
+}
+
+do $vip_avalon_st_part_path/script/compile_src.do $vip_avalon_st_part_path

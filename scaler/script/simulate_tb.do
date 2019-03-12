@@ -1,3 +1,10 @@
+if {[batch_mode]} {
+  onerror {abort all; exit -f -code 1}
+  onbreak {abort all; exit -f}
+} else {
+  onerror {abort all}
+}
+
 # Detect simulator
 #------------------------------------------------------
 if {[catch {eval "vsim -version"} message] == 0} {
@@ -18,7 +25,7 @@ if {[catch {eval "vsim -version"} message] == 0} {
 
 
 #------------------------------------------------------
-vsim  scaler.tb_example
+vsim  scaler.tb_scaler_vvc
 
 add log -r /*
 source ../script/wave_modelsim.do
