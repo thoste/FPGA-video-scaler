@@ -1,8 +1,10 @@
 onerror {resume}
 quietly WaveActivateNextPane {} 0
 
-add wave -noupdate -expand -group {UART DUT} -radix hexadecimal /tb_scaler_vvc/i_test_harness/i_scaler/clk_i
-add wave -noupdate -expand -group {UART DUT} -radix hexadecimal /tb_scaler_vvc/i_test_harness/i_scaler/sreset_i
+# GLOBAL
+#add wave -noupdate -expand -group {Global} -radix hexadecimal /tb_fifo_generic/i_test_harness/clk_i
+#add wave -noupdate -expand -group {Global} -radix hexadecimal /tb_fifo_generic/i_test_harness/sreset_i
+
 
 TreeUpdate [SetDefaultTree]
 WaveRestoreCursors {{Cursor 1} {1411622 ps} 0}
