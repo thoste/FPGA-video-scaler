@@ -16,8 +16,8 @@ use ieee.numeric_std.all;
 
 entity fifo_generic is
    generic (
-      g_width 	: natural;
-      g_depth 	: natural
+      g_width 	: natural := 8;
+      g_depth 	: natural := 1
    );
    port (
       clk_i       : in  std_logic;
@@ -106,7 +106,7 @@ begin
          if sreset_i = '1' then
             ram_wr_ptr <= 0;
          elsif wr_ok = '1' then
-            ram_wr_ptr <= ram_wr_ptr + 1;
+            ram_wr_ptr <= (ram_wr_ptr + 1) mod g_depth;
          end if;
       end if;
    end process p_ram_wr_ptr;
@@ -118,13 +118,13 @@ begin
          if sreset_i = '1' then
             ram_rd_ptr <= 0;
          elsif rd_ok = '1' then
-            ram_rd_ptr <= ram_rd_ptr + 1;
+            ram_rd_ptr <= (ram_rd_ptr + 1) mod g_depth;
          end if;
       end if;
    end process p_ram_rd_ptr;
 
    -- Write to FIFO
-   p_write : process is 
+   p_write : process(clk_i) is 
    begin
       if rising_edge(clk_i) then
          if wr_ok = '1' then
@@ -134,7 +134,7 @@ begin
    end process p_write;
 
    -- Read from FIFO
-   p_read : process is 
+   p_read : process(clk_i) is 
    begin
       if rising_edge(clk_i) then
          if rd_ok = '1' then

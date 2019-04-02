@@ -21,6 +21,3 @@ set compdirectives "-2008 -work $lib_name"
 #------------------------------------------------------------------------
 eval vcom  $compdirectives  $scaler_part_path/tb/th_scaler.vhd
 eval vcom  $compdirectives  $scaler_part_path/tb/tb_scaler.vhd
-
-#eval vcom  $compdirectives  $scaler_part_path/tb/th_fifo_generic.vhd
-#eval vcom  $compdirectives  $scaler_part_path/tb/tb_fifo_generic.vhd

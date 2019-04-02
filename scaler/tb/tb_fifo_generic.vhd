@@ -32,18 +32,74 @@ architecture tb_fifo_generic_arc of tb_fifo_generic is
 
    constant C_CLK_PERIOD : time := 10 ns; -- 100 MHz
 
+   -- Width and depth of FIFO
    constant C_WIDTH     : natural   := 20;
-   constant C_DEPTH     : natural   := 128; 
+   constant C_DEPTH     : natural   := 10; 
+
+   -- Clk, sreset
+   signal clk_i      : std_logic := '0';
+   signal sreset_i   : std_logic := '0';
+   -- Write to fifo
+   signal data_i     : std_logic_vector(C_WIDTH-1 downto 0) := (others => '0');
+   signal wr_en_i    : std_logic := '0';
+   signal full_o     : std_logic;
+   -- Read from fifo
+   signal data_o     : std_logic_vector(C_WIDTH-1 downto 0);
+   signal rd_en_i    : std_logic := '0';
+   signal empty_o    : std_logic;
 
 begin
    -----------------------------------------------------------------------------
-   -- Instantiate test harness, containing DUT and Executors
+   -- Instantiate the concurrent procedure that initializes UVVM
    -----------------------------------------------------------------------------
-   i_test_harness : entity work.th_fifo_generic
-   generic map (
-      g_width     => C_WIDTH,
+   i_ti_uvvm_engine : entity uvvm_vvc_framework.ti_uvvm_engine;
+
+
+   -----------------------------------------------------------------------------
+   -- Instantiate DUT
+   -----------------------------------------------------------------------------
+   i_fifo: entity work.fifo_generic
+   generic map(
+      g_width     => C_WIDTH, 
       g_depth     => C_DEPTH
+   )
+   port map(
+      clk_i       => clk_i,
+      sreset_i    => sreset_i,
+      data_i      => data_i,
+      wr_en_i     => wr_en_i,
+      full_o      => full_o,
+      data_o      => data_o,
+      rd_en_i     => rd_en_i,
+      empty_o     => empty_o
    );
+
+
+   -----------------------------------------------------------------------------
+   -- Reset process
+   -----------------------------------------------------------------------------  
+   -- Toggle the reset after 5 clock periods
+   p_sreset: sreset_i <= '1', '0' after 5 *C_CLK_PERIOD;
+
+
+   -----------------------------------------------------------------------------
+   -- Clock process
+   -----------------------------------------------------------------------------  
+   p_clk: process
+   begin
+      clk_i <= '0', '1' after C_CLK_PERIOD / 2;
+      wait for C_CLK_PERIOD;
+   end process;
+
+   -----------------------------------------------------------------------------
+   -- Data_i generate random data process
+   ----------------------------------------------------------------------------- 
+   p_data_i : process(clk_i)
+   begin
+      if rising_edge(clk_i) then
+         data_i <= random(C_WIDTH);
+      end if;
+   end process;
 
    ------------------------------------------------
    -- PROCESS: p_main
@@ -65,6 +121,55 @@ begin
       log(ID_LOG_HDR, "Starting simulation of FIFO", C_SCOPE);
       log("Wait 10 clock period for reset to be turned off");
       wait for (10 * C_CLK_PERIOD); 
+
+      -----------------------------------------------------------------------------
+      -- Test FIFO
+      -----------------------------------------------------------------------------
+      wr_en_i <= '0';
+      rd_en_i <= '0';
+      wait until rising_edge(clk_i);
+
+      -- Fill FIFO
+      for i in 1 to C_DEPTH*2 loop
+         wr_en_i <= '1';
+         rd_en_i <= '0';
+         wait until rising_edge(clk_i);
+      end loop;
+
+      -- Empty FIFO
+      for i in 1 to C_DEPTH*2 loop
+         wr_en_i <= '0';
+         rd_en_i <= '1';
+         wait until rising_edge(clk_i);
+      end loop;
+
+      -- Idle
+      for i in 1 to C_DEPTH*2 loop
+         wr_en_i <= '0';
+         rd_en_i <= '0';
+         wait until rising_edge(clk_i);
+      end loop;
+
+      -- Stream through empty FIFO
+      for i in 1 to C_DEPTH*2 loop
+         wr_en_i <= '1';
+         rd_en_i <= '1';
+         wait until rising_edge(clk_i);
+      end loop;
+
+      -- Empty FIFO
+      for i in 1 to C_DEPTH*2 loop
+         wr_en_i <= '0';
+         rd_en_i <= '1';
+         wait until rising_edge(clk_i);
+      end loop;
+
+      -- Idle
+      for i in 1 to C_DEPTH*2 loop
+         wr_en_i <= '0';
+         rd_en_i <= '0';
+         wait until rising_edge(clk_i);
+      end loop;
 
 
       -----------------------------------------------------------------------------
