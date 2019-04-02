@@ -25,9 +25,9 @@ if {[catch {eval "vsim -version"} message] == 0} {
 
 
 #------------------------------------------------------
-vsim  scaler.tb_scaler
+vsim  scaler.tb_fifo_generic
 
 add log -r /*
-source ../script/scaler_wave_tb.do
+source ../script/fifo_generic/fifo_generic_wave_tb.do
 
 run -all

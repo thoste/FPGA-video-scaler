@@ -42,7 +42,7 @@ architecture struct of th_scaler is
    signal scaler_startofpacket_i     : std_logic;
    signal scaler_endofpacket_i       : std_logic;
    signal scaler_data_i              : std_logic_vector(DATA_WIDTH-1 downto 0);
-   signal scaler_empty_i             : std_logic_vector(EMPTY_WIDTH-1 downto 0) := (others => '0');
+   signal scaler_empty_i             : std_logic_vector(EMPTY_WIDTH-1 downto 0);
    signal scaler_valid_i             : std_logic;
    signal scaler_ready_i             : std_logic;
    -- DUT scaler outputs

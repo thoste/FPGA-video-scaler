@@ -29,7 +29,6 @@ end tb_fifo_generic;
 -- Test bench architecture
 architecture tb_fifo_generic_arc of tb_fifo_generic is
    constant C_SCOPE              : string  := C_TB_SCOPE_DEFAULT;
-
    constant C_CLK_PERIOD : time := 10 ns; -- 100 MHz
 
    -- Width and depth of FIFO
@@ -37,15 +36,15 @@ architecture tb_fifo_generic_arc of tb_fifo_generic is
    constant C_DEPTH     : natural   := 10; 
 
    -- Clk, sreset
-   signal clk_i      : std_logic := '0';
-   signal sreset_i   : std_logic := '0';
+   signal clk_i      : std_logic;
+   signal sreset_i   : std_logic;
    -- Write to fifo
    signal data_i     : std_logic_vector(C_WIDTH-1 downto 0) := (others => '0');
-   signal wr_en_i    : std_logic := '0';
+   signal wr_en_i    : std_logic;
    signal full_o     : std_logic;
    -- Read from fifo
    signal data_o     : std_logic_vector(C_WIDTH-1 downto 0);
-   signal rd_en_i    : std_logic := '0';
+   signal rd_en_i    : std_logic;
    signal empty_o    : std_logic;
 
 begin

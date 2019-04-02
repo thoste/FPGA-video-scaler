@@ -1,52 +1,62 @@
-library ieee;
-use ieee.std_logic_1164.all;
-use ieee.numeric_std.all;
-USE ieee.math_real.log2;
-USE ieee.math_real.ceil;
+------------------------------------------------------------------------------------------
+-- Project: FPGA video scaler
+-- Author: Thomas Stenseth
+-- Date: 2019-03-11
+-- Version: 0.1
+------------------------------------------------------------------------------------------
+-- Description:
+------------------------------------------------------------------------------------------
+-- v0.1:
+------------------------------------------------------------------------------------------
+
+library IEEE;
+use IEEE.std_logic_1164.all;
+use IEEE.numeric_std.all;
 
 
 entity simple_dpram is
 	generic (
-			g_word_size 	: natural;
-			g_word_count 	: natural
-		);
+		g_ram_width 	: natural;
+		g_ram_depth 	: natural
+	);
 	port (	
 		clk_i			: in std_logic;
-		sreset_i		: in std_logic;
-		-- To RAM
-		data_i		: in std_logic_vector(g_word_size-1 downto 0);
-		wr_addr_i	: in std_logic_vector(integer(ceil(log2(real(g_word_count))))-1 downto 0);
+		-- Write
+		data_i		: in std_logic_vector(g_ram_width-1 downto 0);
+		wr_addr_i	: in integer range 0 to g_ram_depth-1;
 		wr_en_i		: in std_logic;
-		-- From RAM
-		q_o			: out std_logic_vector(g_word_size-1 downto 0);
-		rd_addr_i	: in std_logic_vector(integer(ceil(log2(real(g_word_count))))-1 downto 0)
+		-- Read
+		data_o		: out std_logic_vector(g_ram_width-1 downto 0) := (others => '0');
+		rd_addr_i	: in integer range 0 to g_ram_depth-1
 	);
 	
 end simple_dpram;
 
 architecture rtl of simple_dpram is
-	
-	-- Build a 2-D array type for the RAM
-	subtype word_t is std_logic_vector(g_word_size-1 downto 0);
-	type memory_t is array(g_word_count-1 downto 0) of word_t;
-	
-	-- Declare the RAM
-	shared variable ram : memory_t;
+	-- RAM
+	type t_ram is array (natural range <>) of std_logic_vector(g_ram_width-1 downto 0);
+   signal ram_data 	: t_ram(g_ram_depth-1 downto 0) 					:= (others => (others => '0'));
+   signal ram_out 	: std_logic_vector(g_ram_width-1 downto 0) 	:= (others => '0');
 
+   -- RAM style
+	attribute ramstyle : string;
+	attribute ramstyle of ram_data : signal is "no_rw_check, M20K";
 begin
 
-	process(clk_i)
+	p_ram : process(clk_i)
 	begin
 		if(rising_edge(clk_i)) then 
+			-- Write to RAM
 			if(wr_en_i = '1') then
-				ram(to_integer(unsigned(wr_addr_i))) := data_i;
+				ram_data(wr_addr_i) <= data_i;
 			end if;
-			q_o <= ram(to_integer(unsigned(rd_addr_i)));
-		
-			if (sreset_i = '1') then
-            -- reset ram
-         end if;
+
+			-- Read from RAM
+			ram_out <= ram_data(rd_addr_i);
 		end if;
-	end process;
+	end process p_ram;
 	
+	-- Outputs
+	data_o <= ram_out;
+
 end rtl;

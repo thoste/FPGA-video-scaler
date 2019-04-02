@@ -3,7 +3,7 @@
 quietly set lib_name "scaler"
 quietly set part_name "scaler"
 # path from mpf-file in sim
-quietly set fifo_generic_part_path "../..//$part_name"
+quietly set fifo_generic_part_path "../../..//$part_name"
 
 if { [info exists 1] } {
   # path from this part to target part
