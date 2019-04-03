@@ -10,9 +10,9 @@
 ------------------------------------------------------------------------------------------
 
 
-library IEEE;
-use IEEE.std_logic_1164.all;
-use IEEE.numeric_std.all;
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
 
 library uvvm_util;
 context uvvm_util.uvvm_util_context;
@@ -27,8 +27,8 @@ library vip_avalon_st;
 -- Test harness entity
 entity th_scaler is
    generic (
-         DATA_WIDTH        : natural;
-         EMPTY_WIDTH       : natural
+         g_data_width        : natural;
+         g_empty_width       : natural
       );
 end entity;
 
@@ -41,31 +41,31 @@ architecture struct of th_scaler is
    -- DUT scaler inputs
    signal scaler_startofpacket_i     : std_logic;
    signal scaler_endofpacket_i       : std_logic;
-   signal scaler_data_i              : std_logic_vector(DATA_WIDTH-1 downto 0);
-   signal scaler_empty_i             : std_logic_vector(EMPTY_WIDTH-1 downto 0);
+   signal scaler_data_i              : std_logic_vector(g_data_width-1 downto 0);
+   signal scaler_empty_i             : std_logic_vector(g_empty_width-1 downto 0);
    signal scaler_valid_i             : std_logic;
    signal scaler_ready_i             : std_logic;
    -- DUT scaler outputs
    signal scaler_startofpacket_o     : std_logic := '0';
    signal scaler_endofpacket_o       : std_logic := '0';
-   signal scaler_data_o              : std_logic_vector(DATA_WIDTH-1 downto 0) := (others => '0');
-   signal scaler_empty_o             : std_logic_vector(EMPTY_WIDTH-1 downto 0) := (others => '0');
+   signal scaler_data_o              : std_logic_vector(g_data_width-1 downto 0) := (others => '0');
+   signal scaler_empty_o             : std_logic_vector(g_empty_width-1 downto 0) := (others => '0');
    signal scaler_valid_o             : std_logic := '0';
    signal scaler_ready_o             : std_logic := '0';
 
    -- Sink
    signal sink_startofpacket_i     : std_logic;
    signal sink_endofpacket_i       : std_logic;
-   signal sink_data_i              : std_logic_vector(DATA_WIDTH-1 downto 0);
-   signal sink_empty_i             : std_logic_vector(EMPTY_WIDTH-1 downto 0);
+   signal sink_data_i              : std_logic_vector(g_data_width-1 downto 0);
+   signal sink_empty_i             : std_logic_vector(g_empty_width-1 downto 0);
    signal sink_valid_i             : std_logic;
    signal sink_ready_o             : std_logic := '0';
 
    -- Source
    signal source_startofpacket_o     : std_logic := '0';
    signal source_endofpacket_o       : std_logic := '0';
-   signal source_data_o              : std_logic_vector(DATA_WIDTH-1 downto 0) := (others => '0');
-   signal source_empty_o             : std_logic_vector(EMPTY_WIDTH-1 downto 0) := (others => '0');
+   signal source_data_o              : std_logic_vector(g_data_width-1 downto 0) := (others => '0');
+   signal source_empty_o             : std_logic_vector(g_empty_width-1 downto 0) := (others => '0');
    signal source_valid_o             : std_logic := '0';
    signal source_ready_i             : std_logic;
 
@@ -82,8 +82,8 @@ begin
    -----------------------------------------------------------------------------
    i_scaler: entity work.scaler
    generic map (
-      DATA_WIDTH        => DATA_WIDTH,
-      EMPTY_WIDTH       => EMPTY_WIDTH
+      g_data_width      => g_data_width,
+      g_empty_width     => g_empty_width
    )
    port map (
       clk_i             => clk_i,
@@ -112,8 +112,8 @@ begin
    -----------------------------------------------------------------------------
    i1_avalon_st_vvc: entity vip_avalon_st.avalon_st_vvc
    generic map(
-      GC_DATA_WIDTH        => DATA_WIDTH,
-      GC_EMPTY_WIDTH       => EMPTY_WIDTH,
+      GC_DATA_WIDTH     => g_data_width,
+      GC_EMPTY_WIDTH    => g_empty_width,
       GC_INSTANCE_IDX   => 1
    )
    port map(

@@ -16,37 +16,38 @@ use ieee.numeric_std.all;
 
 entity scaler_controller is
    generic (
-      DATA_WIDTH        : natural;
-      EMPTY_WIDTH       : natural
+      g_data_width        : natural;
+      g_empty_width       : natural
    );
    port (
-      -- Signals to scaler
       clk_i             : in std_logic;
       sreset_i          : in std_logic;
+      -- Signals to scaler
       sop_i             : in std_logic;
       eop_i             : in std_logic;
-      data_i            : in std_logic_vector(DATA_WIDTH-1 downto 0);
-      empty_i           : in std_logic_vector(EMPTY_WIDTH-1 downto 0);
+      data_i            : in std_logic_vector(g_data_width-1 downto 0);
+      empty_i           : in std_logic_vector(g_empty_width-1 downto 0);
       valid_i           : in std_logic;
       ready_i           : in std_logic;
       -- Signals from scaler
       sop_o             : out std_logic := '0';
       eop_o             : out std_logic := '0';
-      data_o            : out std_logic_vector(DATA_WIDTH-1 downto 0) := (others => '0');
-      empty_o           : out std_logic_vector(EMPTY_WIDTH-1 downto 0) := (others => '0');
+      data_o            : out std_logic_vector(g_data_width-1 downto 0) := (others => '0');
+      empty_o           : out std_logic_vector(g_empty_width-1 downto 0) := (others => '0');
       valid_o           : out std_logic := '0';
-      ready_o           : out std_logic := '0';
+      ready_o           : out std_logic := '0'
 
-      -- Internal signals
-      -- Recieved from control packet, passed to scaler
-      rx_video_width_o           : out unsigned(15 downto 0);
-      rx_video_height_o          : out unsigned(15 downto 0);
-      rx_video_interlacing_o     : out unsigned(3 downto 0);
+      ---- Internal signals
+      ---- Recieved from control packet, passed to scaler
+      --rx_video_width_o           : out unsigned(15 downto 0);
+      --rx_video_height_o          : out unsigned(15 downto 0);
+      --rx_video_interlacing_o     : out unsigned(3 downto 0);
 
-      -- Read from config file, passed to scaler
-      tx_video_width_o           : out unsigned(15 downto 0);
-      tx_video_height_o          : out unsigned(15 downto 0);
-      tx_video_scaling_method_o  : out unsigned(3 downto 0));
+      ---- Read from config file, passed to scaler
+      --tx_video_width_o           : out unsigned(15 downto 0);
+      --tx_video_height_o          : out unsigned(15 downto 0);
+      --tx_video_scaling_method_o  : out unsigned(3 downto 0)
+      );
    end entity scaler_controller;
 
 architecture scaler_controller_arc of scaler_controller is

@@ -1,13 +1,21 @@
+------------------------------------------------------------------------------------------
+-- Project: FPGA video scaler
+-- Author: Thomas Stenseth
+-- Date: 2019-04-03
+-- Version: 0.1
+------------------------------------------------------------------------------------------
+-- Description:
+------------------------------------------------------------------------------------------
+-- v0.1:
+------------------------------------------------------------------------------------------
+
+
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 
 entity syntest_fifo_generic is
-   --generic(
-   --   g_num_inputs : natural := 1;
-   --   g_data_width : integer := 8
-   --);
    port(
       clk_i         : in  std_logic;
       sink_o        : out std_logic
@@ -16,24 +24,26 @@ end entity syntest_fifo_generic;
 
 architecture rtl of syntest_fifo_generic is
    signal source : std_logic_vector(22 downto 0) := (others => '0');
-   signal sink   : std_logic_vector(21  downto 0) := (others => '0');
+   signal sink   : std_logic_vector(21 downto 0) := (others => '0');
 
 begin
 
    i_mut : entity work.fifo_generic
    generic map(
-      g_width => 20,
-      g_depth => 64
+      g_width        => 20,
+      g_depth        => 32,
+      g_ramstyle     => "no_rw_check, MLAB",
+      g_output_reg   => true
    )
    port map(
       clk_i       => clk_i,
       sreset_i    => source(0),
-      data_i      => source(20 downto 1),
-      wr_en_i     => source(21),
-      rd_en_i     => source(22),
+      wr_en_i     => source(1),
+      rd_en_i     => source(2),
+		data_i      => source(22 downto 3),
       full_o      => sink(0),
-      data_o      => sink(20 downto 1),
-      empty_o     => sink(21)
+      empty_o     => sink(1),
+		data_o      => sink(21 downto 2)
    );
 
    i_source : entity work.atv_dummy_source

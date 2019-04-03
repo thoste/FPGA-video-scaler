@@ -17,42 +17,42 @@ use ieee.numeric_std.all;
 
 entity scaler is
    generic (
-      DATA_WIDTH        : natural;
-      EMPTY_WIDTH       : natural
+      g_data_width        : natural;
+      g_empty_width       : natural
    );
    port (
-      -- To scaler
       clk_i          : in std_logic;
       sreset_i       : in std_logic;
+      -- To scaler
       sop_i          : in std_logic;
       eop_i          : in std_logic;
-      data_i         : in std_logic_vector(DATA_WIDTH-1 downto 0);
-      empty_i        : in std_logic_vector(EMPTY_WIDTH-1 downto 0);
+      data_i         : in std_logic_vector(g_data_width-1 downto 0);
+      empty_i        : in std_logic_vector(g_empty_width-1 downto 0);
       valid_i        : in std_logic;
       ready_i        : in std_logic;
 
       -- From scaler
       sop_o          : out std_logic := '0';
       eop_o          : out std_logic := '0';
-      data_o         : out std_logic_vector(DATA_WIDTH-1 downto 0) := (others => '0');
-      empty_o        : out std_logic_vector(EMPTY_WIDTH-1 downto 0) := (others => '0');
+      data_o         : out std_logic_vector(g_data_width-1 downto 0) := (others => '0');
+      empty_o        : out std_logic_vector(g_empty_width-1 downto 0) := (others => '0');
       valid_o        : out std_logic := '0';
       ready_o        : out std_logic := '0'
       );
 end entity scaler;
 
 architecture scaler_arc of scaler is
-   signal rx_video_width_o          : unsigned(15 downto 0);
-   signal rx_video_height_o         : unsigned(15 downto 0);
-   signal rx_video_interlacing_o    : unsigned(3 downto 0);
-   signal tx_video_width_o          : unsigned(15 downto 0);
-   signal tx_video_height_o         : unsigned(15 downto 0);
-   signal tx_video_scaling_method_o : unsigned(3 downto 0);
+   --signal rx_video_width_o          : unsigned(15 downto 0);
+   --signal rx_video_height_o         : unsigned(15 downto 0);
+   --signal rx_video_interlacing_o    : unsigned(3 downto 0);
+   --signal tx_video_width_o          : unsigned(15 downto 0);
+   --signal tx_video_height_o         : unsigned(15 downto 0);
+   --signal tx_video_scaling_method_o : unsigned(3 downto 0);
 begin
    scaler_controller : entity work.scaler_controller
    generic map(
-      DATA_WIDTH     => DATA_WIDTH,
-      EMPTY_WIDTH    => EMPTY_WIDTH
+      g_data_width     => g_data_width,
+      g_empty_width    => g_empty_width
    )
 
    port map(
@@ -71,13 +71,14 @@ begin
       data_o         => data_o,
       empty_o        => empty_o,
       valid_o        => valid_o,
-      ready_o        => ready_o,
-      -- Internal
-      rx_video_width_o           => rx_video_width_o,
-      rx_video_height_o          => rx_video_height_o,
-      rx_video_interlacing_o     => rx_video_interlacing_o,
-      tx_video_width_o           => tx_video_width_o,
-      tx_video_height_o          => tx_video_height_o,
-      tx_video_scaling_method_o  => tx_video_scaling_method_o);
+      ready_o        => ready_o
+      ---- Internal
+      --rx_video_width_o           => rx_video_width_o,
+      --rx_video_height_o          => rx_video_height_o,
+      --rx_video_interlacing_o     => rx_video_interlacing_o,
+      --tx_video_width_o           => tx_video_width_o,
+      --tx_video_height_o          => tx_video_height_o,
+      --tx_video_scaling_method_o  => tx_video_scaling_method_o
+   );
 
 end scaler_arc;

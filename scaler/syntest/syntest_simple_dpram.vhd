@@ -1,7 +1,7 @@
 ------------------------------------------------------------------------------------------
 -- Project: FPGA video scaler
 -- Author: Thomas Stenseth
--- Date: 2019-03-11
+-- Date: 2019-04-03
 -- Version: 0.1
 ------------------------------------------------------------------------------------------
 -- Description:
@@ -30,8 +30,10 @@ begin
 
    i_mut : entity work.simple_dpram
    generic map(
-      g_ram_width => 20,
-      g_ram_depth => 200
+      g_ram_width    => 20,
+      g_ram_depth    => 23040,
+      g_ramstyle     => "no_rw_check, M20K",
+      g_output_reg   => true
    )
    port map(
       clk_i       => clk_i,

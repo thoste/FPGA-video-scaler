@@ -10,9 +10,9 @@
 ------------------------------------------------------------------------------------------
 
 
-library IEEE;
-use IEEE.std_logic_1164.all;
-use IEEE.numeric_std.all;
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
 
 library uvvm_util;
 context uvvm_util.uvvm_util_context;
@@ -58,8 +58,8 @@ begin
    -----------------------------------------------------------------------------
    i_test_harness : entity work.th_scaler
    generic map (
-      DATA_WIDTH        => C_DATA_WIDTH,
-      EMPTY_WIDTH       => C_EMPTY_WIDTH
+      g_data_width   => C_DATA_WIDTH,
+      g_empty_width  => C_EMPTY_WIDTH
    );
 
 

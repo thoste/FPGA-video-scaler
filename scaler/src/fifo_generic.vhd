@@ -14,10 +14,13 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
+
 entity fifo_generic is
    generic (
-      g_width 	: natural := 8;
-      g_depth 	: natural := 1
+      g_width 	      : natural   := 8;
+      g_depth 	      : natural   := 32;
+      g_ramstyle     : string    := "MLAB";
+      g_output_reg   : boolean   := false
    );
    port (
       clk_i       : in  std_logic;
@@ -36,7 +39,13 @@ end fifo_generic;
 architecture fifo_generic_arc of fifo_generic is
    -- RAM
    type t_ram is array (natural range <>) of std_logic_vector(g_width-1 downto 0);
-   signal ram_data : t_ram(g_depth-1 downto 0) := (others => (others => '0'));
+   signal ram_data      : t_ram(g_depth-1 downto 0)               := (others => (others => '0'));
+   signal ram_out       : std_logic_vector(g_width-1 downto 0)    := (others => '0');
+   signal ram_out_reg   : std_logic_vector(g_width-1 downto 0)    := (others => '0');
+
+   -- RAM style
+   attribute ramstyle : string;
+   attribute ramstyle of ram_data : signal is g_ramstyle;
 
    -- Signals
    signal ram_wr_ptr    : integer range 0 to g_depth-1;  -- RAM write pointer
@@ -47,8 +56,6 @@ architecture fifo_generic_arc of fifo_generic is
    signal rd_ok         : std_logic := '0';
    signal is_full       : std_logic := '0';
    signal is_empty      : std_logic := '1';
-
-   signal ram_out       : std_logic_vector(g_width-1 downto 0) := (others => '0');
 begin
    -- Validate write and read
    wr_ok <= '1' when wr_en_i = '1' and is_full = '0' else '0';
@@ -139,6 +146,7 @@ begin
       if rising_edge(clk_i) then
          if rd_ok = '1' then
             ram_out <= ram_data(ram_rd_ptr);
+            ram_out_reg <= ram_out;
          end if;
       end if;
    end process p_read;
@@ -146,6 +154,6 @@ begin
    -- Outputs
    full_o   <= is_full;
    empty_o  <= is_empty;
-   data_o   <= ram_out;
+   data_o   <= ram_out_reg when g_output_reg else ram_out;
    
 end fifo_generic_arc;
