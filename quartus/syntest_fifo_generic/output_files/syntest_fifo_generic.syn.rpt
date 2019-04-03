@@ -1,0 +1,524 @@
+Synthesis report
+Wed Apr  3 16:12:03 2019
+Quartus Prime Version 18.1.0 Build 222 09/21/2018 SJ Pro Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Synthesis Summary
+  2. Synthesis Settings
+  3. Parallel Compilation
+  4. Synthesis Source Files Read
+  5. Synthesis Partition Summary
+  6. Ignored Source Level Assignments for i_mut
+  7. Parameter Settings for User Entity Instance: i_mut
+  8. Parameter Settings for User Entity Instance: i_source
+  9. Parameter Settings for User Entity Instance: i_sink
+ 10. Parameter Settings for User Entity Instance: i_sink|i_atv_dummy_reduce
+ 11. Parameter Settings for User Entity Instance: i_sink|i_atv_dummy_reduce|\g_reduce_more:i_atv_dummy_reduce
+ 12. Partition "root_partition" Resource Utilization by Entity
+ 13. Registers Protected by Synthesis
+ 14. Registers Removed During Synthesis
+ 15. General Register Statistics for Partition "root_partition"
+ 16. Inverted Register Statistics
+ 17. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 18. Source Assignments for i_mut|ram_data_rtl_0|auto_generated
+ 19. Parameter Settings for Inferred Entity Instance: i_mut|ram_data_rtl_0
+ 20. Post-Synthesis Netlist Statistics for Partition "root_partition"
+ 21. Synthesis Resource Usage Summary for Partition "root_partition"
+ 22. Synthesis RAM Summary for Partition "root_partition"
+ 23. Synthesis Messages
+
+
+
++---------------------------------------------------------------+
+; Synthesis Summary                                             ;
++-----------------------+---------------------------------------+
+; Synthesis Status      ; Successful - Wed Apr  3 16:12:02 2019 ;
+; Revision Name         ; syntest_fifo_generic                  ;
+; Top-level Entity Name ; syntest_fifo_generic                  ;
+; Family                ; Arria 10                              ;
++-----------------------+---------------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------+
+; Synthesis Settings                                                                                                            ;
++---------------------------------------------------------------------------------+----------------------+----------------------+
+; Option                                                                          ; Setting              ; Default Value        ;
++---------------------------------------------------------------------------------+----------------------+----------------------+
+; Device                                                                          ; 10AX115S2F45I2SG     ;                      ;
+; Top-level entity name                                                           ; syntest_fifo_generic ; syntest_fifo_generic ;
+; Family name                                                                     ; Arria 10             ; Cyclone 10 GX        ;
+; VHDL Show LMF Mapping Messages                                                  ; Off                  ;                      ;
+; VHDL Version                                                                    ; VHDL_2008            ; VHDL_1993            ;
+; Enable parallel Assembler and Timing Analyzer during compilation                ; On                   ; On                   ;
+; Enable compact report table                                                     ; Off                  ; Off                  ;
+; Optimization Mode                                                               ; Balanced             ; Balanced             ;
+; Allow Register Merging                                                          ; On                   ; On                   ;
+; Allow Register Duplication                                                      ; On                   ; On                   ;
+; Allow Register Retiming                                                         ; On                   ; On                   ;
+; Allow RAM Retiming                                                              ; Off                  ; Off                  ;
+; Allow DSP Retiming                                                              ; Off                  ; Off                  ;
+; Restructure Multiplexers                                                        ; Auto                 ; Auto                 ;
+; MLAB Add Timing Constraints For Mixed-Port Feed-Through Mode Setting Don't Care ; Off                  ; Off                  ;
+; Preserve fewer node names                                                       ; On                   ; On                   ;
+; Intel FPGA IP Evaluation Mode                                                   ; Enable               ; Enable               ;
+; Verilog Version                                                                 ; Verilog_2001         ; Verilog_2001         ;
+; State Machine Processing                                                        ; Auto                 ; Auto                 ;
+; Safe State Machine                                                              ; Auto                 ; Auto                 ;
+; Iteration limit for constant Verilog loops                                      ; 5000                 ; 5000                 ;
+; Iteration limit for non-constant Verilog loops                                  ; 250                  ; 250                  ;
+; Infer RAMs from Raw Logic                                                       ; On                   ; On                   ;
+; DSP Block Balancing                                                             ; Auto                 ; Auto                 ;
+; NOT Gate Push-Back                                                              ; On                   ; On                   ;
+; Power-Up Don't Care                                                             ; On                   ; On                   ;
+; Remove Redundant Logic Cells                                                    ; Off                  ; Off                  ;
+; Remove Duplicate Registers                                                      ; On                   ; On                   ;
+; Ignore CARRY Buffers                                                            ; Off                  ; Off                  ;
+; Ignore CASCADE Buffers                                                          ; Off                  ; Off                  ;
+; Ignore GLOBAL Buffers                                                           ; Off                  ; Off                  ;
+; Ignore ROW GLOBAL Buffers                                                       ; Off                  ; Off                  ;
+; Ignore LCELL Buffers                                                            ; Off                  ; Off                  ;
+; Ignore SOFT Buffers                                                             ; On                   ; On                   ;
+; Optimization Technique                                                          ; Balanced             ; Balanced             ;
+; Auto Open-Drain Pins                                                            ; On                   ; On                   ;
+; Perform WYSIWYG Primitive Resynthesis                                           ; Off                  ; Off                  ;
+; Auto ROM Replacement                                                            ; On                   ; On                   ;
+; Auto RAM Replacement                                                            ; On                   ; On                   ;
+; Auto DSP Block Replacement                                                      ; On                   ; On                   ;
+; Auto Shift Register Replacement                                                 ; Auto                 ; Auto                 ;
+; Allow Shift Register Merging across Hierarchies                                 ; Auto                 ; Auto                 ;
+; Auto Clock Enable Replacement                                                   ; On                   ; On                   ;
+; Strict RAM Replacement                                                          ; Off                  ; Off                  ;
+; Allow Synchronous Control Signals                                               ; On                   ; On                   ;
+; Force Use of Synchronous Clear Signals                                          ; Off                  ; Off                  ;
+; Auto Resource Sharing                                                           ; Off                  ; Off                  ;
+; Allow Any RAM Size For Recognition                                              ; Off                  ; Off                  ;
+; Allow Any ROM Size For Recognition                                              ; Off                  ; Off                  ;
+; Allow Any Shift Register Size For Recognition                                   ; Off                  ; Off                  ;
+; Ignore translate_off and synthesis_off directives                               ; Off                  ; Off                  ;
+; Timing-Driven Synthesis                                                         ; On                   ; On                   ;
+; Ignore Maximum Fan-Out Assignments                                              ; Off                  ; Off                  ;
+; Synchronization Register Chain Length                                           ; 3                    ; 3                    ;
+; Power Optimization During Synthesis                                             ; Normal compilation   ; Normal compilation   ;
+; HDL message level                                                               ; Level2               ; Level2               ;
+; Number of Protected Registers Reported in Synthesis Report                      ; 100                  ; 100                  ;
+; Number of Removed Registers Reported in Synthesis Report                        ; 5000                 ; 5000                 ;
+; Number of Swept Nodes Reported in Synthesis Report                              ; 5000                 ; 5000                 ;
+; Number of Inverted Registers Reported in Synthesis Report                       ; 100                  ; 100                  ;
+; Clock MUX Protection                                                            ; On                   ; On                   ;
+; Auto Gated Clock Conversion                                                     ; Off                  ; Off                  ;
+; Block Design Naming                                                             ; Auto                 ; Auto                 ;
+; SDC constraint protection                                                       ; Off                  ; Off                  ;
+; Synthesis Effort                                                                ; Auto                 ; Auto                 ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal                    ; On                   ; On                   ;
+; Analysis & Synthesis Message Level                                              ; Medium               ; Medium               ;
+; Disable Register Merging Across Hierarchies                                     ; Auto                 ; Auto                 ;
+; Resource Aware Inference For Block RAM                                          ; On                   ; On                   ;
+; Automatic Parallel Synthesis                                                    ; On                   ; On                   ;
+; Partial Reconfiguration Bitstream ID                                            ; Off                  ; Off                  ;
+; Disable DSP Negate Inferencing                                                  ; Off                  ; Off                  ;
+; Report Parameter Settings                                                       ; On                   ; On                   ;
+; Report Source Assignments                                                       ; On                   ; On                   ;
+; Size of the Latch Report                                                        ; 100                  ; 100                  ;
+; Enable State Machines Inference                                                 ; On                   ; On                   ;
+; Enable formal verification support during compilation                           ; Off                  ; Off                  ;
+; Size of the PR Initial Conditions Report                                        ; 15                   ; 15                   ;
+; Report PR Initial Values as Errors                                              ; Off                  ; Off                  ;
+; Fractal Synthesis                                                               ; Off                  ; Off                  ;
++---------------------------------------------------------------------------------+----------------------+----------------------+
+
+
++-------------------------------------+
+; Parallel Compilation                ;
++----------------------------+--------+
+; Processors                 ; Number ;
++----------------------------+--------+
+; Number detected on machine ; 8      ;
+; Maximum allowed            ; 4      ;
+; Maximum used               ; 4      ;
++----------------------------+--------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Synthesis Source Files Read                                                                                                                                                                                                                                                                                                                                                                        ;
++-------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path                                                                                                          ; File Type                              ; File Name with Absolute Path                                                                                                                                                                        ; Library ;
++-------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------+
+; ../../scaler/syntest/syntest_fifo_generic.vhd                                                                                             ; User VHDL File                         ; C:/Users/stens/Documents/video-scaler/FPGA-video-scaler/scaler/syntest/syntest_fifo_generic.vhd                                                                                                     ;         ;
+; ../../scaler/src/fifo_generic.vhd                                                                                                         ; User VHDL File                         ; C:/Users/stens/Documents/video-scaler/FPGA-video-scaler/scaler/src/fifo_generic.vhd                                                                                                                 ;         ;
+; ../syntest_timing.sdc                                                                                                                     ; User File                              ; C:/Users/stens/Documents/video-scaler/FPGA-video-scaler/quartus/syntest_timing.sdc                                                                                                                  ;         ;
+; ../../../atv/atv_lib/atv_dummy_source.vhd                                                                                                 ; User VHDL File                         ; C:/Users/stens/Documents/video-scaler/atv/atv_lib/atv_dummy_source.vhd                                                                                                                              ;         ;
+; ../../../atv/atv_lib/atv_dummy_sink.vhd                                                                                                   ; User VHDL File                         ; C:/Users/stens/Documents/video-scaler/atv/atv_lib/atv_dummy_sink.vhd                                                                                                                                ;         ;
+; c:/intelfpga_pro/18.1/quartus/libraries/megafunctions/altdpram.tdf                                                                        ; Megafunction                           ; c:/intelfpga_pro/18.1/quartus/libraries/megafunctions/altdpram.tdf                                                                                                                                  ; work    ;
+; memmodes.inc                                                                                                                              ; Auto-Found AHDL File                   ; c:/intelfpga_pro/18.1/quartus/libraries/others/maxplus2/memmodes.inc                                                                                                                                ;         ;
+; lpm_decode.inc                                                                                                                            ; Auto-Found AHDL File                   ; c:/intelfpga_pro/18.1/quartus/libraries/megafunctions/lpm_decode.inc                                                                                                                                ;         ;
+; lpm_mux.inc                                                                                                                               ; Auto-Found AHDL File                   ; c:/intelfpga_pro/18.1/quartus/libraries/megafunctions/lpm_mux.inc                                                                                                                                   ;         ;
+; a_hdffe.inc                                                                                                                               ; Auto-Found AHDL File                   ; c:/intelfpga_pro/18.1/quartus/libraries/megafunctions/a_hdffe.inc                                                                                                                                   ;         ;
+; a_rdenreg.inc                                                                                                                             ; Auto-Found AHDL File                   ; c:/intelfpga_pro/18.1/quartus/libraries/megafunctions/a_rdenreg.inc                                                                                                                                 ;         ;
+; alt_le_rden_reg.inc                                                                                                                       ; Auto-Found AHDL File                   ; c:/intelfpga_pro/18.1/quartus/libraries/megafunctions/alt_le_rden_reg.inc                                                                                                                           ;         ;
+; altsyncram.inc                                                                                                                            ; Auto-Found AHDL File                   ; c:/intelfpga_pro/18.1/quartus/libraries/megafunctions/altsyncram.inc                                                                                                                                ;         ;
+; aglobal181.inc                                                                                                                            ; Auto-Found AHDL File                   ; c:/intelfpga_pro/18.1/quartus/libraries/megafunctions/aglobal181.inc                                                                                                                                ;         ;
+; cbx.lst                                                                                                                                   ; Auto-Found Unspecified File            ; c:/intelfpga_pro/18.1/quartus/libraries/megafunctions/cbx.lst                                                                                                                                       ;         ;
+; C:/Users/stens/Documents/video-scaler/FPGA-video-scaler/quartus/syntest_fifo_generic/tmp-clearbox/syntest_fifo_generic/788/dpram_1e12.tdf ; Auto-Generated Megafunction            ; C:/Users/stens/Documents/video-scaler/FPGA-video-scaler/quartus/syntest_fifo_generic/tmp-clearbox/syntest_fifo_generic/788/dpram_1e12.tdf                                                           ;         ;
+; qdb/_compiler/syntest_fifo_generic/root_partition/18.1.0/partitioned/1/mifs/ram0_fifo_generic_f3113376.hdl.mif                            ; Auto-Found Memory Initialization File  ; C:/Users/stens/Documents/video-scaler/FPGA-video-scaler/quartus/syntest_fifo_generic/qdb/_compiler/syntest_fifo_generic/root_partition/18.1.0/partitioned/1/mifs/ram0_fifo_generic_f3113376.hdl.mif ;         ;
++-------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------+
+
+
++----------------------------------------------------------------------------------+
+; Synthesis Partition Summary                                                      ;
++----------------+----------------+--------------+-------+-------------------------+
+; Partition Name ; Hierarchy Path ; Preservation ; Empty ; Partition Database File ;
++----------------+----------------+--------------+-------+-------------------------+
+; root_partition ; |              ;              ;       ;                         ;
++----------------+----------------+--------------+-------+-------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Ignored Source Level Assignments for i_mut                                                                                                                                  ;
++------------+---------------------+------------------+----------------------------+------------------------------------------------------------------------------------------+
+; Assignment ; Value               ; To               ; Reason                     ; Location                                                                                 ;
++------------+---------------------+------------------+----------------------------+------------------------------------------------------------------------------------------+
+; ORIG_DEPTH ; 32                  ; clk_write_port_0 ; Invalid assignment name    ; C:/Users/stens/Documents/video-scaler/FPGA-video-scaler/scaler/src/fifo_generic.vhd(138) ;
+; ORIG_WIDTH ; 20                  ; clk_write_port_0 ; Invalid assignment name    ; C:/Users/stens/Documents/video-scaler/FPGA-video-scaler/scaler/src/fifo_generic.vhd(138) ;
+; ramstyle   ; "no_rw_check, MLAB" ; clk_write_port_0 ; Invalid ramstyle or target ; C:/Users/stens/Documents/video-scaler/FPGA-video-scaler/scaler/src/fifo_generic.vhd(138) ;
++------------+---------------------+------------------+----------------------------+------------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------+
+; Parameter Settings for User Entity Instance: i_mut ;
++----------------+-------------------+---------------+
+; Parameter Name ; Value             ; Type          ;
++----------------+-------------------+---------------+
+; g_width        ; 20                ; Untyped       ;
+; g_depth        ; 32                ; Untyped       ;
+; g_ramstyle     ; no_rw_check, MLAB ; String        ;
+; g_output_reg   ; true              ; Untyped       ;
++----------------+-------------------+---------------+
+
+
++-------------------------------------------------------+
+; Parameter Settings for User Entity Instance: i_source ;
++----------------+-------+------------------------------+
+; Parameter Name ; Value ; Type                         ;
++----------------+-------+------------------------------+
+; g_ports        ; 23    ; Untyped                      ;
++----------------+-------+------------------------------+
+
+
++-----------------------------------------------------+
+; Parameter Settings for User Entity Instance: i_sink ;
++--------------------+-------+------------------------+
+; Parameter Name     ; Value ; Type                   ;
++--------------------+-------+------------------------+
+; g_logic_levels_ext ; 6     ; Untyped                ;
+; g_ports            ; 22    ; Untyped                ;
++--------------------+-------+------------------------+
+
+
++------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: i_sink|i_atv_dummy_reduce ;
++----------------+-------+-----------------------------------------------+
+; Parameter Name ; Value ; Type                                          ;
++----------------+-------+-----------------------------------------------+
+; g_logic_levels ; 5     ; Untyped                                       ;
+; g_inputs       ; 22    ; Untyped                                       ;
+; g_outputs      ; 1     ; Untyped                                       ;
++----------------+-------+-----------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: i_sink|i_atv_dummy_reduce|\g_reduce_more:i_atv_dummy_reduce ;
++----------------+-------+---------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                            ;
++----------------+-------+---------------------------------------------------------------------------------+
+; g_logic_levels ; 5     ; Untyped                                                                         ;
+; g_inputs       ; 5     ; Untyped                                                                         ;
+; g_outputs      ; 1     ; Untyped                                                                         ;
++----------------+-------+---------------------------------------------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Partition "root_partition" Resource Utilization by Entity                                                                                                                                                                                                          ;
++----------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+--------+-------------------------------------------------------------+----------------------+--------------+
+; Compilation Hierarchy Node                   ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; IOPLLs ; Full Hierarchy Name                                         ; Entity Name          ; Library Name ;
++----------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+--------+-------------------------------------------------------------+----------------------+--------------+
+; |                                            ; 164 (0)             ; 151 (0)                   ; 0                 ; 0          ; 0    ; 0            ; 0 (0)  ; |                                                           ; syntest_fifo_generic ; altera_work  ;
+;    |i_mut|                                   ; 29 (29)             ; 63 (58)                   ; 0                 ; 0          ; 0    ; 0            ; 0 (0)  ; i_mut                                                       ; fifo_generic         ; altera_work  ;
+;       |ram_data_rtl_0|                       ; 0 (0)               ; 5 (0)                     ; 0                 ; 0          ; 0    ; 0            ; 0 (0)  ; i_mut|ram_data_rtl_0                                        ; altdpram             ; work         ;
+;          |auto_generated|                    ; 0 (0)               ; 5 (5)                     ; 0                 ; 0          ; 0    ; 0            ; 0 (0)  ; i_mut|ram_data_rtl_0|auto_generated                         ; dpram_1e12           ; work         ;
+;    |i_sink|                                  ; 134 (128)           ; 42 (36)                   ; 0                 ; 0          ; 0    ; 0            ; 0 (0)  ; i_sink                                                      ; atv_dummy_sink       ; altera_work  ;
+;       |i_atv_dummy_reduce|                   ; 6 (5)               ; 6 (5)                     ; 0                 ; 0          ; 0    ; 0            ; 0 (0)  ; i_sink|i_atv_dummy_reduce                                   ; atv_dummy_reduce     ; altera_work  ;
+;          |\g_reduce_more:i_atv_dummy_reduce| ; 1 (1)               ; 1 (1)                     ; 0                 ; 0          ; 0    ; 0            ; 0 (0)  ; i_sink|i_atv_dummy_reduce|\g_reduce_more:i_atv_dummy_reduce ; atv_dummy_reduce     ; altera_work  ;
+;    |i_source|                                ; 1 (1)               ; 46 (46)                   ; 0                 ; 0          ; 0    ; 0            ; 0 (0)  ; i_source                                                    ; atv_dummy_source     ; altera_work  ;
++----------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+--------+-------------------------------------------------------------+----------------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Registers Protected by Synthesis                                                                                                                                                                                                               ;
++---------------------------------------------------+------------------------------------------------------------------+--------------------------------------------+----------------------------------------------------------------------------+
+; Register Name                                     ; Protected by Synthesis Attribute or Preserve Register Assignment ; Not to be Touched by Netlist Optimizations ; Cannot be Retimed (Protected by Synthesis Attribute or Quartus Assignment) ;
++---------------------------------------------------+------------------------------------------------------------------+--------------------------------------------+----------------------------------------------------------------------------+
+; i_mut|ram_data_rtl_0|auto_generated|rdaddr_reg[0] ; yes                                                              ; yes                                        ; yes                                                                        ;
+; i_mut|ram_data_rtl_0|auto_generated|rdaddr_reg[1] ; yes                                                              ; yes                                        ; yes                                                                        ;
+; i_mut|ram_data_rtl_0|auto_generated|rdaddr_reg[2] ; yes                                                              ; yes                                        ; yes                                                                        ;
+; i_mut|ram_data_rtl_0|auto_generated|rdaddr_reg[3] ; yes                                                              ; yes                                        ; yes                                                                        ;
+; i_mut|ram_data_rtl_0|auto_generated|rdaddr_reg[4] ; yes                                                              ; yes                                        ; yes                                                                        ;
+; Total number of protected registers is 5          ;                                                                  ;                                            ;                                                                            ;
++---------------------------------------------------+------------------------------------------------------------------+--------------------------------------------+----------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                          ;
++----------------------------------------+------------------------------------+
+; Register name                          ; Reason for Removal                 ;
++----------------------------------------+------------------------------------+
+; i_sink|\i:2:counter[0]                 ; Merged with i_sink|\i:0:counter[0] ;
+; i_sink|\i:4:counter[0]                 ; Merged with i_sink|\i:0:counter[0] ;
+; i_sink|\i:6:counter[0]                 ; Merged with i_sink|\i:0:counter[0] ;
+; i_sink|\i:3:counter[0]                 ; Merged with i_sink|\i:1:counter[0] ;
+; i_sink|\i:5:counter[0]                 ; Merged with i_sink|\i:1:counter[0] ;
+; i_sink|\i:7:counter[0]                 ; Merged with i_sink|\i:1:counter[0] ;
+; i_sink|\i:4:counter[1]                 ; Merged with i_sink|\i:0:counter[1] ;
+; i_sink|\i:5:counter[1]                 ; Merged with i_sink|\i:1:counter[1] ;
+; i_sink|\i:6:counter[1]                 ; Merged with i_sink|\i:2:counter[1] ;
+; i_sink|\i:7:counter[1]                 ; Merged with i_sink|\i:3:counter[1] ;
+; Total Number of Removed Registers = 10 ;                                    ;
++----------------------------------------+------------------------------------+
+
+
++------------------------------------------------------------+
+; General Register Statistics for Partition "root_partition" ;
++----------------------------------------------+-------------+
+; Statistic                                    ; Value       ;
++----------------------------------------------+-------------+
+; Total registers                              ; 151         ;
+; Number of registers using Synchronous Clear  ; 17          ;
+; Number of registers using Synchronous Load   ; 0           ;
+; Number of registers using Asynchronous Clear ; 0           ;
+; Number of registers using Asynchronous Load  ; 0           ;
+; Number of registers using Clock Enable       ; 63          ;
+; Number of registers using Preset             ; 0           ;
++----------------------------------------------+-------------+
+
+
++--------------------------------------------------+
+; Inverted Register Statistics                     ;
++----------------------------------------+---------+
+; Inverted Register                      ; Fan out ;
++----------------------------------------+---------+
+; i_sink|\i:1:counter[0]                 ; 85      ;
+; i_sink|\i:2:counter[1]                 ; 42      ;
+; i_mut|is_empty                         ; 17      ;
+; i_sink|\i:3:counter[1]                 ; 37      ;
+; i_sink|\i:4:counter[2]                 ; 21      ;
+; i_sink|\i:5:counter[2]                 ; 21      ;
+; i_sink|\i:6:counter[2]                 ; 21      ;
+; i_sink|\i:7:counter[2]                 ; 11      ;
+; Total number of inverted registers = 8 ;         ;
++----------------------------------------+---------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                           ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
+; 3:1                ; 5 bits    ; 10 LEs        ; 5 LEs                ; 5 LEs                  ; Yes        ; i_mut|ram_wr_ptr[4]        ;
+; 3:1                ; 6 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; i_mut|words_in_ram[4]      ;
+; 3:1                ; 5 bits    ; 10 LEs        ; 10 LEs               ; 0 LEs                  ; No         ; i_mut|i93                  ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
+
+
++------------------------------------------------------------+
+; Source Assignments for i_mut|ram_data_rtl_0|auto_generated ;
++-------------------+-------+------+-------------------------+
+; Assignment        ; Value ; From ; To                      ;
++-------------------+-------+------+-------------------------+
+; PRESERVE_REGISTER ; ON    ; -    ; rdaddr_reg              ;
++-------------------+-------+------+-------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: i_mut|ram_data_rtl_0                                                                                                 ;
++-------------------------------------+----------------------------------------------------------------------------------------------------------------+----------------+
+; Parameter Name                      ; Value                                                                                                          ; Type           ;
++-------------------------------------+----------------------------------------------------------------------------------------------------------------+----------------+
+; WIDTH_BYTEENA_A                     ; 1                                                                                                              ; Untyped        ;
+; WIDTH_BYTEENA_B                     ; 1                                                                                                              ; Untyped        ;
+; WIDTH_ECCSTATUS                     ; 3                                                                                                              ; Untyped        ;
+; WIDTH                               ; 20                                                                                                             ; Untyped        ;
+; WIDTHAD                             ; 5                                                                                                              ; Untyped        ;
+; NUMWORDS                            ; 32                                                                                                             ; Untyped        ;
+; FILE                                ; UNUSED                                                                                                         ; Untyped        ;
+; LPM_FILE                            ; qdb/_compiler/syntest_fifo_generic/root_partition/18.1.0/partitioned/1/mifs/ram0_fifo_generic_f3113376.hdl.mif ; Untyped        ;
+; INDATA_REG                          ; INCLOCK                                                                                                        ; Untyped        ;
+; INDATA_ACLR                         ; OFF                                                                                                            ; Untyped        ;
+; WRADDRESS_REG                       ; INCLOCK                                                                                                        ; Untyped        ;
+; WRADDRESS_ACLR                      ; OFF                                                                                                            ; Untyped        ;
+; WRCONTROL_REG                       ; INCLOCK                                                                                                        ; Untyped        ;
+; WRCONTROL_ACLR                      ; OFF                                                                                                            ; Untyped        ;
+; RDADDRESS_REG                       ; OUTCLOCK                                                                                                       ; Untyped        ;
+; RDADDRESS_ACLR                      ; OFF                                                                                                            ; Untyped        ;
+; RDCONTROL_REG                       ; UNREGISTERED                                                                                                   ; Untyped        ;
+; RDCONTROL_ACLR                      ; OFF                                                                                                            ; Untyped        ;
+; OUTDATA_REG                         ; UNREGISTERED                                                                                                   ; Untyped        ;
+; OUTDATA_ACLR                        ; OFF                                                                                                            ; Untyped        ;
+; OUTDATA_SCLR                        ; ON                                                                                                             ; Untyped        ;
+; USE_EAB                             ; ON                                                                                                             ; Untyped        ;
+; MAXIMUM_DEPTH                       ; 2048                                                                                                           ; Untyped        ;
+; DEVICE_FAMILY                       ; Arria 10                                                                                                       ; Untyped        ;
+; SUPPRESS_MEMORY_CONVERSION_WARNINGS ; OFF                                                                                                            ; Untyped        ;
+; INTENDED_DEVICE_FAMILY              ; Stratix                                                                                                        ; Untyped        ;
+; ENABLE_RAM_BENCHMARKING_MODE        ; OFF                                                                                                            ; Untyped        ;
+; RAM_BLOCK_TYPE                      ; LUTRAM                                                                                                         ; Untyped        ;
+; READ_DURING_WRITE_MODE_MIXED_PORTS  ; DONT_CARE                                                                                                      ; Untyped        ;
+; BYTE_SIZE                           ; 8                                                                                                              ; Untyped        ;
+; WIDTH_BYTEENA                       ; 1                                                                                                              ; Untyped        ;
+; DISABLE_LE_RAM_LIMIT_CHECK          ; OFF                                                                                                            ; Untyped        ;
+; CBXI_PARAMETER                      ; dpram_1e12                                                                                                     ; Untyped        ;
+; AUTO_CARRY_CHAINS                   ; ON                                                                                                             ; Untyped        ;
+; IGNORE_CARRY_BUFFERS                ; OFF                                                                                                            ; IGNORE_CARRY   ;
+; AUTO_CASCADE_CHAINS                 ; ON                                                                                                             ; AUTO_CASCADE   ;
+; IGNORE_CASCADE_BUFFERS              ; OFF                                                                                                            ; IGNORE_CASCADE ;
++-------------------------------------+----------------------------------------------------------------------------------------------------------------+----------------+
+
+
++------------------------------------------------------------------+
+; Post-Synthesis Netlist Statistics for Partition "root_partition" ;
++------------------------+-----------------------------------------+
+; Type                   ; Count                                   ;
++------------------------+-----------------------------------------+
+; boundary_port          ; 2                                       ;
+; twentynm_ff            ; 151                                     ;
+;     ENA                ; 52                                      ;
+;     ENA SCLR           ; 11                                      ;
+;     SCLR               ; 6                                       ;
+;     plain              ; 82                                      ;
+; twentynm_lcell_comb    ; 164                                     ;
+;     arith              ; 6                                       ;
+;         1 data inputs  ; 1                                       ;
+;         5 data inputs  ; 5                                       ;
+;     normal             ; 158                                     ;
+;         1 data inputs  ; 15                                      ;
+;         2 data inputs  ; 13                                      ;
+;         3 data inputs  ; 3                                       ;
+;         4 data inputs  ; 3                                       ;
+;         5 data inputs  ; 10                                      ;
+;         6 data inputs  ; 114                                     ;
+; twentynm_mlab_cell     ; 20                                      ;
+;                        ;                                         ;
+; Number of carry chains ; 1                                       ;
+; Max carry chain length ; 6                                       ;
+;                        ;                                         ;
+; Max LUT depth          ; 5.00                                    ;
+; Average LUT depth      ; 2.56                                    ;
++------------------------+-----------------------------------------+
+
+
++-----------------------------------------------------------------+
+; Synthesis Resource Usage Summary for Partition "root_partition" ;
++---------------------------------------------+-------------------+
+; Resource                                    ; Usage             ;
++---------------------------------------------+-------------------+
+; Estimate of Logic utilization (ALMs needed) ; 161               ;
+;                                             ;                   ;
+; Combinational ALUT usage for logic          ; 164               ;
+;     -- 7 input functions                    ; 0                 ;
+;     -- 6 input functions                    ; 114               ;
+;     -- 5 input functions                    ; 15                ;
+;     -- 4 input functions                    ; 3                 ;
+;     -- <=3 input functions                  ; 32                ;
+; Memory ALUT usage                           ; 20                ;
+;     -- 64-address deep                      ; 0                 ;
+;     -- 32-address deep                      ; 20                ;
+;                                             ;                   ;
+; Dedicated logic registers                   ; 151               ;
+;                                             ;                   ;
+; I/O pins                                    ; 2                 ;
+; Total MLAB memory bits                      ; 640               ;
+; Total block memory bits                     ; 0                 ;
+;                                             ;                   ;
+; Total DSP Blocks                            ; 0                 ;
+;     -- [A] Total Fixed Point DSP Blocks     ; 0                 ;
+;     -- [B] Total Floating Point DSP Blocks  ; 0                 ;
+;                                             ;                   ;
+; Maximum fan-out node                        ; clk_i             ;
+; Maximum fan-out                             ; 171               ;
+; Total fan-out                               ; 1470              ;
+; Average fan-out                             ; 4.36              ;
++---------------------------------------------+-------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Synthesis RAM Summary for Partition "root_partition"                                                                                                                                                                                                                ;
++-------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+------+----------------------------------------------------------------------------------------------------------------+
+; Name                                                  ; Type ; Mode             ; Port A Depth ; Port A Width ; Port B Depth ; Port B Width ; Size ; MIF                                                                                                            ;
++-------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+------+----------------------------------------------------------------------------------------------------------------+
+; i_mut|ram_data_rtl_0|auto_generated|ALTDPRAM_INSTANCE ; MLAB ; Simple Dual Port ; 32           ; 20           ; 32           ; 20           ; 640  ; qdb/_compiler/syntest_fifo_generic/root_partition/18.1.0/partitioned/1/mifs/ram0_fifo_generic_f3113376.hdl.mif ;
++-------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+------+----------------------------------------------------------------------------------------------------------------+
+
+
++--------------------+
+; Synthesis Messages ;
++--------------------+
+Info: *******************************************************************
+Info: Running Quartus Prime Synthesis
+    Info: Version 18.1.0 Build 222 09/21/2018 SJ Pro Edition
+    Info: Processing started: Wed Apr  3 16:11:57 2019
+Info: Command: quartus_syn --read_settings_files=on --write_settings_files=off syntest_fifo_generic -c syntest_fifo_generic
+Info: qis_default_flow_script.tcl version: #1
+Info: Initializing Synthesis...
+Info: Project = "syntest_fifo_generic"
+Info: Revision = "syntest_fifo_generic"
+Info: Analyzing source files
+Info: Elaborating from top-level entity "syntest_fifo_generic"
+Info (18235): Library search order is as follows: "ctp". Quartus will look for undefined design units in your libraries in that order. To modify the ordering, please specify a semi-colon separated library list using the assignment LIBRARY_SEARCH_ORDER.
+Info (19337): VHDL info at syntest_fifo_generic.vhd(18): executing entity "syntest_fifo_generic" with architecture "rtl" File: C:/Users/stens/Documents/video-scaler/FPGA-video-scaler/scaler/syntest/syntest_fifo_generic.vhd Line: 18
+Info (19337): VHDL info at fifo_generic.vhd(18): executing entity "fifo_generic(g_width=20,g_ramstyle="no_rw_check, MLAB",g_output_reg=true)(1,17)" with architecture "fifo_generic_arc" File: C:/Users/stens/Documents/video-scaler/FPGA-video-scaler/scaler/src/fifo_generic.vhd Line: 18
+Info (19337): VHDL info at atv_dummy_source.vhd(40): executing entity "atv_dummy_source(g_ports=23)" with architecture "rtl" File: C:/Users/stens/Documents/video-scaler/atv/atv_lib/atv_dummy_source.vhd Line: 40
+Info (19337): VHDL info at atv_dummy_sink.vhd(115): executing entity "atv_dummy_sink(g_ports=22)" with architecture "rtl" File: C:/Users/stens/Documents/video-scaler/atv/atv_lib/atv_dummy_sink.vhd Line: 115
+Info (19337): VHDL info at atv_dummy_sink.vhd(23): executing entity "atv_dummy_reduce(g_logic_levels=5,g_inputs=22)" with architecture "rtl" File: C:/Users/stens/Documents/video-scaler/atv/atv_lib/atv_dummy_sink.vhd Line: 23
+Info (19337): VHDL info at atv_dummy_sink.vhd(23): executing entity "atv_dummy_reduce(g_logic_levels=5,g_inputs=5)" with architecture "rtl" File: C:/Users/stens/Documents/video-scaler/atv/atv_lib/atv_dummy_sink.vhd Line: 23
+Info: Found 5 design entities
+Info: There are 6 partitions after elaboration.
+Info: Creating instance-specific data models and dissolving soft partitions
+Info (18299): Expanding entity and wildcard assignments.
+Info (18300): Expanded entity and wildcard assignments. Elapsed time: 00:00:00
+Info: found pre-synthesis snapshots for 1 partition(s)
+Info: Synthesizing partition "root_partition"
+Info (19000): Inferred 1 megafunctions from design logic
+    Info (276038): Inferred altdpram megafunction from the following logic: "i_mut|ram_data_rtl_0" 
+        Info (286033): Parameter WIDTH set to 20
+        Info (286033): Parameter WIDTHAD set to 5
+        Info (286033): Parameter NUMWORDS set to 32
+        Info (286033): Parameter WRADDRESS_REG set to INCLOCK
+        Info (286033): Parameter WRADDRESS_ACLR set to OFF
+        Info (286033): Parameter WRCONTROL_REG set to INCLOCK
+        Info (286033): Parameter WRCONTROL_ACLR set to OFF
+        Info (286033): Parameter RDADDRESS_REG set to OUTCLOCK
+        Info (286033): Parameter RDADDRESS_ACLR set to OFF
+        Info (286033): Parameter RDCONTROL_REG set to UNREGISTERED
+        Info (286033): Parameter RDCONTROL_ACLR set to OFF
+        Info (286033): Parameter INDATA_REG set to INCLOCK
+        Info (286033): Parameter INDATA_ACLR set to OFF
+        Info (286033): Parameter OUTDATA_REG set to UNREGISTERED
+        Info (286033): Parameter OUTDATA_ACLR set to OFF
+        Info (286033): Parameter LPM_FILE set to qdb/_compiler/syntest_fifo_generic/root_partition/18.1.0/partitioned/1/mifs/ram0_fifo_generic_f3113376.hdl.mif
+        Info (286033): Parameter RAM_BLOCK_TYPE set to LUTRAM
+Info (286030): Timing-Driven Synthesis is running
+Info (21057): Implemented 276 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 1 input pins
+    Info (21059): Implemented 1 output pins
+    Info (21061): Implemented 254 logic cells
+    Info (21064): Implemented 20 RAM segments
+Info: Successfully synthesized partition
+Info: Saving post-synthesis snapshots for 1 partition(s)
+Info: Quartus Prime Synthesis was successful. 0 errors, 0 warnings
+    Info: Peak virtual memory: 5103 megabytes
+    Info: Processing ended: Wed Apr  3 16:12:03 2019
+    Info: Elapsed time: 00:00:06
+
+
