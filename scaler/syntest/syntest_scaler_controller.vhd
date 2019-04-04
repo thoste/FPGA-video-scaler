@@ -26,8 +26,8 @@ architecture rtl of syntest_scaler_controller is
    constant C_DATA_WIDTH   : natural := 80;
    constant C_EMPTY_WIDTH  : natural := 3;
 
-   signal source : std_logic_vector((C_DATA_WIDTH + C_EMPTY_WIDTH)-1 downto 0) := (others => '0');
-   signal sink   : std_logic_vector((C_DATA_WIDTH + C_EMPTY_WIDTH)-1 downto 0) := (others => '0');
+   signal source : std_logic_vector((C_DATA_WIDTH + C_EMPTY_WIDTH + 6)-1 downto 0) := (others => '0');
+   signal sink   : std_logic_vector((C_DATA_WIDTH + C_EMPTY_WIDTH + 6)-1 downto 0) := (others => '0');
 
 begin
 

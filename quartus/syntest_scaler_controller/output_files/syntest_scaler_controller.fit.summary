@@ -1,0 +1,17 @@
+Fitter Status : Successful - Thu Apr  4 09:39:32 2019
+Quartus Prime Version : 18.1.0 Build 222 09/21/2018 SJ Pro Edition
+Revision Name : syntest_scaler_controller
+Top-level Entity Name : syntest_scaler_controller
+Family : Arria 10
+Device : 10AX115S2F45I2SG
+Timing Models : Final
+Logic utilization (in ALMs) : 373 / 427,200 ( < 1 % )
+Total registers : 475
+Total pins : 2 / 960 ( < 1 % )
+Total virtual pins : 0
+Total block memory bits : 0 / 55,562,240 ( 0 % )
+Total RAM Blocks : 0 / 2,713 ( 0 % )
+Total DSP Blocks : 0 / 1,518 ( 0 % )
+Total HSSI RX channels : 0 / 72 ( 0 % )
+Total HSSI TX channels : 0 / 72 ( 0 % )
+Total PLLs : 0 / 144 ( 0 % )

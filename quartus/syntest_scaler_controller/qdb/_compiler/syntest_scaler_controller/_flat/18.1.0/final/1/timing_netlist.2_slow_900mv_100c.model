@@ -1,0 +1,7 @@
+{
+	"type" : "tdbc",
+	"trait" : "cache",
+	"temp_payload_path" : "",
+	"signature" : "18abaf9638b7b62470d38653a7be9b19",
+	"bak" : false
+}

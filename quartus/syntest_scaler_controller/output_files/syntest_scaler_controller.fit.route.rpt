@@ -1,0 +1,209 @@
+Fitter Route Stage Report for syntest_scaler_controller
+Thu Apr  4 09:39:16 2019
+Quartus Prime Version 18.1.0 Build 222 09/21/2018 SJ Pro Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Delay Chain Summary
+  3. Routing Usage Summary
+  4. Route Messages
+  5. Estimated Delay Added for Hold Timing Summary
+  6. Estimated Delay Added for Hold Timing Details
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2018  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the applicable agreement for further details.
+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Delay Chain Summary                                                                                                                                     ;
++--------+----------+---------------------+--------------------+----------------+-----------------------------------+-------------------------------------+
+; Name   ; Pin Type ; Input Delay Chain 0 ; Output Delay Chain ; OE Delay Chain ; IO_12_LANE Input Data Delay Chain ; IO_12_LANE Input Strobe Delay Chain ;
++--------+----------+---------------------+--------------------+----------------+-----------------------------------+-------------------------------------+
+; sink_o ; Output   ; --                  ; 0                  ; 0              ; --                                ; --                                  ;
+; clk_i  ; Input    ; 0                   ; --                 ; --             ; --                                ; --                                  ;
++--------+----------+---------------------+--------------------+----------------+-----------------------------------+-------------------------------------+
+
+
++------------------------------------------------------------+
+; Routing Usage Summary                                      ;
++------------------------------+-----------------------------+
+; Routing Resource Type        ; Usage                       ;
++------------------------------+-----------------------------+
+; Block interconnects          ; 1,388 / 3,375,986 ( < 1 % ) ;
+; C27 interconnects            ; 0 / 56,741 ( 0 % )          ;
+; C4 interconnects             ; 555 / 2,570,048 ( < 1 % )   ;
+; Direct links                 ; 420 / 3,375,986 ( < 1 % )   ;
+; Global clocks                ; 1 / 32 ( 3 % )              ;
+; Periphery clocks             ; 0 / 910 ( 0 % )             ;
+; R3 interconnects             ; 335 / 1,214,760 ( < 1 % )   ;
+; R32 interconnects            ; 1 / 99,472 ( < 1 % )        ;
+; R32/C27 interconnect drivers ; 1 / 385,136 ( < 1 % )       ;
+; R6 interconnects             ; 452 / 2,336,152 ( < 1 % )   ;
+; Regional clock lefts         ; 0 / 16 ( 0 % )              ;
+; Regional clock out bottoms   ; 0 / 16 ( 0 % )              ;
+; Regional clock out tops      ; 0 / 16 ( 0 % )              ;
+; Regional clock rights        ; 0 / 16 ( 0 % )              ;
+; Regional clocks              ; 0 / 16 ( 0 % )              ;
+; Spine buffers                ; 1 / 704 ( < 1 % )           ;
+; Spine clocks                 ; 1 / 1,056 ( < 1 % )         ;
+; Spine feedthroughs           ; 0 / 1,024 ( 0 % )           ;
++------------------------------+-----------------------------+
+
+
++----------------+
+; Route Messages ;
++----------------+
+Info: *******************************************************************
+Info: Running Quartus Prime Fitter
+    Info: Version 18.1.0 Build 222 09/21/2018 SJ Pro Edition
+    Info: Processing started: Thu Apr  4 09:37:03 2019
+Info: Command: quartus_fit --read_settings_files=on --write_settings_files=off syntest_scaler_controller -c syntest_scaler_controller
+Info: qfit2_default_script.tcl version: #1
+Info: Project  = syntest_scaler_controller
+Info: Revision = syntest_scaler_controller
+Info (170193): Fitter routing operations beginning
+Info (170199): The Fitter performed an Auto Fit compilation.  Optimizations were skipped to reduce compilation time.
+    Info (170201): Optimizations that may affect the design's routability were skipped
+    Info (170200): Optimizations that may affect the design's timing were skipped
+
+
++------------------------------------------------------------+
+; Estimated Delay Added for Hold Timing Summary              ;
++-----------------+----------------------+-------------------+
+; Source Clock(s) ; Destination Clock(s) ; Delay Added in ns ;
++-----------------+----------------------+-------------------+
+; clk_i           ; clk_i                ; 115.0             ;
++-----------------+----------------------+-------------------+
+Note: For more information on problematic transfers, consider running the Fitter again with the Optimize hold timing option (Settings Menu) turned off.
+This will disable optimization of problematic paths and expose them for further analysis using the Timing Analyzer.
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Estimated Delay Added for Hold Timing Details                                                                                                                                                         ;
++------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------+-------------------+
+; Source Register                                                        ; Destination Register                                                                                     ; Delay Added in ns ;
++------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------+-------------------+
+; i_sink|\i:4:counter[3]                                                 ; i_sink|output_stage1[23]                                                                                 ; 0.328             ;
+; i_sink|\i:8:counter[3]                                                 ; i_sink|\i:8:counter[4]                                                                                   ; 0.327             ;
+; i_sink|\i:11:counter[3]                                                ; i_sink|\i:11:counter[4]                                                                                  ; 0.317             ;
+; i_sink|\i:10:counter[3]                                                ; i_sink|\i:10:counter[4]                                                                                  ; 0.315             ;
+; i_sink|\i:4:counter[4]                                                 ; i_sink|output_stage1[23]                                                                                 ; 0.312             ;
+; i_sink|output_stage1[20]                                               ; i_sink|i_atv_dummy_reduce|reduced[4]                                                                     ; 0.312             ;
+; i_sink|\i:13:counter[3]                                                ; i_sink|\i:13:counter[4]                                                                                  ; 0.312             ;
+; i_sink|\i:9:counter[3]                                                 ; i_sink|\i:9:counter[4]                                                                                   ; 0.312             ;
+; i_sink|\i:2:counter[3]                                                 ; i_sink|\i:2:counter[4]                                                                                   ; 0.311             ;
+; i_sink|\i:7:counter[3]                                                 ; i_sink|\i:7:counter[4]                                                                                   ; 0.309             ;
+; i_sink|output_stage1[55]                                               ; i_sink|i_atv_dummy_reduce|reduced[11]                                                                    ; 0.309             ;
+; i_source|\g_reg_banks:0:regs[9]                                        ; i_source|\g_reg_banks:0:outputs[9]                                                                       ; 0.308             ;
+; i_sink|\i:7:counter[2]                                                 ; i_sink|output_stage1[77]                                                                                 ; 0.308             ;
+; i_sink|output_stage1[10]                                               ; i_sink|i_atv_dummy_reduce|reduced[2]                                                                     ; 0.308             ;
+; i_sink|output_stage1[40]                                               ; i_sink|i_atv_dummy_reduce|reduced[8]                                                                     ; 0.308             ;
+; i_sink|\i:17:counter[3]                                                ; i_sink|\i:17:counter[4]                                                                                  ; 0.305             ;
+; i_sink|output_stage1[72]                                               ; i_sink|i_atv_dummy_reduce|reduced[14]                                                                    ; 0.304             ;
+; i_sink|output_stage1[60]                                               ; i_sink|i_atv_dummy_reduce|reduced[12]                                                                    ; 0.302             ;
+; i_source|\g_reg_banks:0:outputs[8]                                     ; i_source|\g_reg_banks:0:regs[9]                                                                          ; 0.301             ;
+; i_sink|\i:1:counter[0]                                                 ; i_sink|output_stage1[5]                                                                                  ; 0.301             ;
+; i_sink|output_stage1[37]                                               ; i_sink|i_atv_dummy_reduce|reduced[7]                                                                     ; 0.301             ;
+; i_sink|i_atv_dummy_reduce|reduced[10]                                  ; i_sink|i_atv_dummy_reduce|\g_reduce_more:i_atv_dummy_reduce|reduced[2]                                   ; 0.301             ;
+; i_source|\g_reg_banks:0:regs[8]                                        ; i_source|\g_reg_banks:0:outputs[8]                                                                       ; 0.299             ;
+; i_sink|output_stage1[18]                                               ; i_sink|i_atv_dummy_reduce|reduced[3]                                                                     ; 0.299             ;
+; i_sink|\i:1:counter[2]                                                 ; i_sink|\i:1:counter[4]                                                                                   ; 0.298             ;
+; i_source|\g_reg_banks:0:regs[35]                                       ; i_source|\g_reg_banks:0:outputs[35]                                                                      ; 0.297             ;
+; i_sink|output_stage1[56]                                               ; i_sink|i_atv_dummy_reduce|reduced[11]                                                                    ; 0.295             ;
+; i_sink|\i:15:counter[4]                                                ; i_sink|output_stage1[77]                                                                                 ; 0.294             ;
+; i_sink|\i:17:counter[4]                                                ; i_sink|output_stage1[87]                                                                                 ; 0.292             ;
+; i_source|\g_reg_banks:0:regs[7]                                        ; i_source|\g_reg_banks:0:outputs[7]                                                                       ; 0.291             ;
+; i_source|\g_reg_banks:0:regs[23]                                       ; i_source|\g_reg_banks:0:outputs[23]                                                                      ; 0.291             ;
+; i_sink|\i:1:counter[1]                                                 ; i_sink|output_stage1[45]                                                                                 ; 0.291             ;
+; i_sink|output_stage1[65]                                               ; i_sink|i_atv_dummy_reduce|reduced[13]                                                                    ; 0.291             ;
+; i_source|\g_reg_banks:0:regs[32]                                       ; i_source|\g_reg_banks:0:outputs[32]                                                                      ; 0.288             ;
+; i_source|\g_reg_banks:0:regs[4]                                        ; i_source|\g_reg_banks:0:outputs[4]                                                                       ; 0.288             ;
+; i_source|\g_reg_banks:0:regs[25]                                       ; i_source|\g_reg_banks:0:outputs[25]                                                                      ; 0.288             ;
+; i_sink|output_stage1[80]                                               ; i_sink|i_atv_dummy_reduce|reduced[16]                                                                    ; 0.288             ;
+; i_sink|output_stage1[57]                                               ; i_sink|i_atv_dummy_reduce|reduced[11]                                                                    ; 0.288             ;
+; i_source|\g_reg_banks:0:regs[2]                                        ; i_source|\g_reg_banks:0:outputs[2]                                                                       ; 0.288             ;
+; i_sink|\i:0:counter[1]                                                 ; i_sink|output_stage1[20]                                                                                 ; 0.288             ;
+; i_source|\g_reg_banks:0:outputs[7]                                     ; i_source|\g_reg_banks:0:regs[8]                                                                          ; 0.287             ;
+; i_source|\g_reg_banks:0:regs[54]                                       ; i_source|\g_reg_banks:0:outputs[54]                                                                      ; 0.285             ;
+; i_sink|output_stage1[75]                                               ; i_sink|i_atv_dummy_reduce|reduced[15]                                                                    ; 0.285             ;
+; i_sink|output_stage1[30]                                               ; i_sink|i_atv_dummy_reduce|reduced[6]                                                                     ; 0.285             ;
+; i_sink|\i:6:counter[3]                                                 ; i_sink|\i:6:counter[4]                                                                                   ; 0.284             ;
+; i_sink|\i:3:counter[1]                                                 ; i_sink|output_stage1[16]                                                                                 ; 0.284             ;
+; i_sink|\i:3:counter[4]                                                 ; i_sink|output_stage1[16]                                                                                 ; 0.282             ;
+; i_sink|output_stage1[66]                                               ; i_sink|i_atv_dummy_reduce|reduced[13]                                                                    ; 0.282             ;
+; i_sink|\i:3:counter[3]                                                 ; i_sink|\i:3:counter[4]                                                                                   ; 0.281             ;
+; i_source|\g_reg_banks:0:regs[53]                                       ; i_source|\g_reg_banks:0:outputs[53]                                                                      ; 0.279             ;
+; i_source|\g_reg_banks:0:outputs[71]                                    ; i_source|\g_reg_banks:0:regs[72]                                                                         ; 0.279             ;
+; i_sink|\i:12:counter[3]                                                ; i_sink|\i:12:counter[4]                                                                                  ; 0.279             ;
+; i_sink|output_stage1[16]                                               ; i_sink|i_atv_dummy_reduce|reduced[3]                                                                     ; 0.279             ;
+; i_source|\g_reg_banks:0:regs[70]                                       ; i_source|\g_reg_banks:0:outputs[70]                                                                      ; 0.278             ;
+; i_sink|output_stage1[62]                                               ; i_sink|i_atv_dummy_reduce|reduced[12]                                                                    ; 0.278             ;
+; i_source|\g_reg_banks:0:regs[21]                                       ; i_source|\g_reg_banks:0:outputs[21]                                                                      ; 0.278             ;
+; i_sink|output_stage1[73]                                               ; i_sink|i_atv_dummy_reduce|reduced[14]                                                                    ; 0.276             ;
+; i_sink|output_stage1[74]                                               ; i_sink|i_atv_dummy_reduce|reduced[14]                                                                    ; 0.275             ;
+; i_sink|output_stage1[24]                                               ; i_sink|i_atv_dummy_reduce|reduced[4]                                                                     ; 0.275             ;
+; i_sink|\i:14:counter[3]                                                ; i_sink|\i:14:counter[4]                                                                                  ; 0.275             ;
+; i_sink|output_stage1[12]                                               ; i_sink|i_atv_dummy_reduce|reduced[2]                                                                     ; 0.275             ;
+; i_sink|output_stage1[35]                                               ; i_sink|i_atv_dummy_reduce|reduced[7]                                                                     ; 0.275             ;
+; i_sink|output_stage1[21]                                               ; i_sink|i_atv_dummy_reduce|reduced[4]                                                                     ; 0.275             ;
+; i_sink|output_stage1[36]                                               ; i_sink|i_atv_dummy_reduce|reduced[7]                                                                     ; 0.274             ;
+; i_source|\g_reg_banks:0:regs[37]                                       ; i_source|\g_reg_banks:0:outputs[37]                                                                      ; 0.274             ;
+; i_sink|output_stage1[25]                                               ; i_sink|i_atv_dummy_reduce|reduced[5]                                                                     ; 0.274             ;
+; i_source|\g_reg_banks:0:outputs[2]                                     ; i_source|\g_reg_banks:0:regs[3]                                                                          ; 0.274             ;
+; i_sink|\i:1:counter[3]                                                 ; i_sink|\i:1:counter[4]                                                                                   ; 0.272             ;
+; i_sink|\i:5:counter[3]                                                 ; i_sink|\i:5:counter[4]                                                                                   ; 0.271             ;
+; i_sink|i_atv_dummy_reduce|reduced[17]                                  ; i_sink|i_atv_dummy_reduce|\g_reduce_more:i_atv_dummy_reduce|reduced[3]                                   ; 0.269             ;
+; i_source|\g_reg_banks:0:regs[29]                                       ; i_source|\g_reg_banks:0:outputs[29]                                                                      ; 0.268             ;
+; i_sink|\i:15:counter[3]                                                ; i_sink|\i:15:counter[4]                                                                                  ; 0.266             ;
+; i_sink|output_stage1[11]                                               ; i_sink|i_atv_dummy_reduce|reduced[2]                                                                     ; 0.266             ;
+; i_sink|i_atv_dummy_reduce|\g_reduce_more:i_atv_dummy_reduce|reduced[0] ; i_sink|i_atv_dummy_reduce|\g_reduce_more:i_atv_dummy_reduce|\g_reduce_more:i_atv_dummy_reduce|reduced[0] ; 0.266             ;
+; i_sink|output_stage1[46]                                               ; i_sink|i_atv_dummy_reduce|reduced[9]                                                                     ; 0.265             ;
+; i_sink|output_stage1[58]                                               ; i_sink|i_atv_dummy_reduce|reduced[11]                                                                    ; 0.265             ;
+; i_source|\g_reg_banks:0:regs[59]                                       ; i_source|\g_reg_banks:0:outputs[59]                                                                      ; 0.264             ;
+; i_sink|output_stage1[61]                                               ; i_sink|i_atv_dummy_reduce|reduced[12]                                                                    ; 0.264             ;
+; i_source|\g_reg_banks:0:regs[5]                                        ; i_source|\g_reg_banks:0:outputs[5]                                                                       ; 0.264             ;
+; i_sink|output_stage1[79]                                               ; i_sink|i_atv_dummy_reduce|reduced[15]                                                                    ; 0.264             ;
+; i_source|\g_reg_banks:0:regs[71]                                       ; i_source|\g_reg_banks:0:outputs[71]                                                                      ; 0.262             ;
+; i_sink|output_stage1[47]                                               ; i_sink|i_atv_dummy_reduce|reduced[9]                                                                     ; 0.262             ;
+; i_source|\g_reg_banks:0:outputs[54]                                    ; i_source|\g_reg_banks:0:regs[55]                                                                         ; 0.261             ;
+; i_sink|output_stage1[64]                                               ; i_sink|i_atv_dummy_reduce|reduced[12]                                                                    ; 0.261             ;
+; i_sink|output_stage1[83]                                               ; i_sink|i_atv_dummy_reduce|reduced[16]                                                                    ; 0.259             ;
+; i_sink|output_stage1[51]                                               ; i_sink|i_atv_dummy_reduce|reduced[10]                                                                    ; 0.259             ;
+; i_sink|output_stage1[23]                                               ; i_sink|i_atv_dummy_reduce|reduced[4]                                                                     ; 0.259             ;
+; i_sink|output_stage1[70]                                               ; i_sink|i_atv_dummy_reduce|reduced[14]                                                                    ; 0.259             ;
+; i_sink|output_stage1[67]                                               ; i_sink|i_atv_dummy_reduce|reduced[13]                                                                    ; 0.258             ;
+; i_sink|output_stage1[50]                                               ; i_sink|i_atv_dummy_reduce|reduced[10]                                                                    ; 0.258             ;
+; i_source|\g_reg_banks:0:regs[77]                                       ; i_source|\g_reg_banks:0:outputs[77]                                                                      ; 0.256             ;
+; i_sink|\i:0:counter[0]                                                 ; i_sink|output_stage1[77]                                                                                 ; 0.256             ;
+; i_sink|output_stage1[32]                                               ; i_sink|i_atv_dummy_reduce|reduced[6]                                                                     ; 0.256             ;
+; i_sink|output_stage1[9]                                                ; i_sink|i_atv_dummy_reduce|reduced[1]                                                                     ; 0.256             ;
+; i_source|\g_reg_banks:0:regs[72]                                       ; i_source|\g_reg_banks:0:outputs[72]                                                                      ; 0.255             ;
+; i_source|\g_reg_banks:0:regs[65]                                       ; i_source|\g_reg_banks:0:outputs[65]                                                                      ; 0.255             ;
+; i_source|\g_reg_banks:0:regs[58]                                       ; i_source|\g_reg_banks:0:outputs[58]                                                                      ; 0.255             ;
+; i_source|\g_reg_banks:0:regs[47]                                       ; i_source|\g_reg_banks:0:outputs[47]                                                                      ; 0.254             ;
+; i_source|\g_reg_banks:0:outputs[3]                                     ; i_source|\g_reg_banks:0:regs[4]                                                                          ; 0.254             ;
+; i_source|\g_reg_banks:0:outputs[20]                                    ; i_source|\g_reg_banks:0:regs[21]                                                                         ; 0.254             ;
++------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------+-------------------+
+Note: This table only shows the top 100 path(s) that have the largest delay added for hold.
+
+
