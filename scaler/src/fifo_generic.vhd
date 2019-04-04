@@ -17,22 +17,23 @@ use ieee.numeric_std.all;
 
 entity fifo_generic is
    generic (
-      g_width 	      : natural   := 8;
-      g_depth 	      : natural   := 32;
+      g_width        : natural   := 8;
+      g_depth        : natural   := 32;
       g_ramstyle     : string    := "MLAB";
       g_output_reg   : boolean   := false
    );
    port (
-      clk_i       : in  std_logic;
-      sreset_i    : in  std_logic;
+      clk_i          : in  std_logic;
+      sreset_i       : in  std_logic;
       -- Write
-      data_i      : in  std_logic_vector(g_width-1 downto 0);
-      wr_en_i     : in  std_logic;
-      full_o      : out std_logic := '0';
+      data_i         : in  std_logic_vector(g_width-1 downto 0);
+      wr_en_i        : in  std_logic;
+      full_o         : out std_logic := '0';
+      almostfull_o   : out std_logic := '0';
       -- Read
-      data_o      : out std_logic_vector(g_width-1 downto 0) := (others => '0');
-      rd_en_i     : in  std_logic;
-      empty_o     : out std_logic := '1'
+      data_o         : out std_logic_vector(g_width-1 downto 0) := (others => '0');
+      rd_en_i        : in  std_logic;
+      empty_o        : out std_logic := '1'
    );
 end fifo_generic;
 
@@ -55,6 +56,7 @@ architecture fifo_generic_arc of fifo_generic is
    signal wr_ok         : std_logic := '0';
    signal rd_ok         : std_logic := '0';
    signal is_full       : std_logic := '0';
+   signal is_almostfull : std_logic := '0';
    signal is_empty      : std_logic := '1';
 begin
    -- Validate write and read
@@ -101,6 +103,12 @@ begin
                is_full <= '1';
             else
                is_full <= '0';
+            end if;
+            -- Assert almostfull signal
+            if(words_in_ram = g_depth) or (words_in_ram = g_depth-1) or (words_in_ram = g_depth-2 and wr_ok = '1' and rd_ok = '0') then
+               is_almostfull <= '1';
+            else
+               is_almostfull <= '0';
             end if;
          end if;
       end if;
@@ -152,8 +160,9 @@ begin
    end process p_read;
 
    -- Outputs
-   full_o   <= is_full;
-   empty_o  <= is_empty;
-   data_o   <= ram_out_reg when g_output_reg else ram_out;
+   full_o         <= is_full;
+   almostfull_o   <= is_almostfull;
+   empty_o        <= is_empty;
+   data_o         <= ram_out_reg when g_output_reg else ram_out;
    
 end fifo_generic_arc;

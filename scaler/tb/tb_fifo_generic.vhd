@@ -36,16 +36,17 @@ architecture tb_fifo_generic_arc of tb_fifo_generic is
    constant C_DEPTH     : natural   := 10; 
 
    -- Clk, sreset
-   signal clk_i      : std_logic;
-   signal sreset_i   : std_logic;
+   signal clk_i         : std_logic;
+   signal sreset_i      : std_logic;
    -- Write to fifo
-   signal data_i     : std_logic_vector(C_WIDTH-1 downto 0) := (others => '0');
-   signal wr_en_i    : std_logic;
-   signal full_o     : std_logic;
+   signal data_i        : std_logic_vector(C_WIDTH-1 downto 0) := (others => '0');
+   signal wr_en_i       : std_logic;
+   signal full_o        : std_logic;
+   signal almostfull_o  : std_logic;
    -- Read from fifo
-   signal data_o     : std_logic_vector(C_WIDTH-1 downto 0);
-   signal rd_en_i    : std_logic;
-   signal empty_o    : std_logic;
+   signal data_o        : std_logic_vector(C_WIDTH-1 downto 0);
+   signal rd_en_i       : std_logic;
+   signal empty_o       : std_logic;
 
 begin
    -----------------------------------------------------------------------------
@@ -63,14 +64,15 @@ begin
       g_depth     => C_DEPTH
    )
    port map(
-      clk_i       => clk_i,
-      sreset_i    => sreset_i,
-      data_i      => data_i,
-      wr_en_i     => wr_en_i,
-      full_o      => full_o,
-      data_o      => data_o,
-      rd_en_i     => rd_en_i,
-      empty_o     => empty_o
+      clk_i          => clk_i,
+      sreset_i       => sreset_i,
+      data_i         => data_i,
+      wr_en_i        => wr_en_i,
+      full_o         => full_o,
+      almostfull_o   => almostfull_o,
+      data_o         => data_o,
+      rd_en_i        => rd_en_i,
+      empty_o        => empty_o
    );
 
 

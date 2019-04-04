@@ -9,6 +9,7 @@ add wave -noupdate -expand -group {Global} -radix hexadecimal /tb_fifo_generic/s
 add wave -noupdate -expand -group {FIFO} -radix hexadecimal /tb_fifo_generic/data_i
 add wave -noupdate -expand -group {FIFO} -radix hexadecimal /tb_fifo_generic/wr_en_i
 add wave -noupdate -expand -group {FIFO} -radix hexadecimal /tb_fifo_generic/full_o
+add wave -noupdate -expand -group {FIFO} -radix hexadecimal /tb_fifo_generic/almostfull_o
 add wave -noupdate -expand -group {FIFO} -radix hexadecimal /tb_fifo_generic/data_o
 add wave -noupdate -expand -group {FIFO} -radix hexadecimal /tb_fifo_generic/rd_en_i
 add wave -noupdate -expand -group {FIFO} -radix hexadecimal /tb_fifo_generic/empty_o

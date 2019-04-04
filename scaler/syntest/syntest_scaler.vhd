@@ -34,7 +34,9 @@ begin
    i_mut : entity work.scaler
    generic map(
       g_data_width         => C_DATA_WIDTH,
-      g_empty_width        => C_EMPTY_WIDTH
+      g_empty_width        => C_EMPTY_WIDTH,
+      g_fifo_data_width    => C_DATA_WIDTH,
+      g_fifo_data_depth    => 512
    )
    port map(
       clk_i       => source(0),
