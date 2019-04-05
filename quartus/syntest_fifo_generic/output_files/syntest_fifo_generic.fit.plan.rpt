@@ -1,5 +1,5 @@
 Fitter Plan Stage Report for syntest_fifo_generic
-Wed Apr  3 16:12:56 2019
+Fri Apr  5 08:14:16 2019
 Quartus Prime Version 18.1.0 Build 222 09/21/2018 SJ Pro Edition
 
 
@@ -96,7 +96,7 @@ The pin-out file can be found in C:/Users/stens/Documents/video-scaler/FPGA-vide
 +-------+-------+----------+--------------+--------------+--------------+-----------------------+--------------------+--------+----------------+----------+--------------+--------------+-------------+---------------------------+----------------------+-----------+
 ; Name  ; Pin # ; I/O Bank ; X coordinate ; Y coordinate ; Z coordinate ; Combinational Fan-Out ; Registered Fan-Out ; Global ; Input Register ; Bus Hold ; Weak Pull Up ; I/O Standard ; Termination ; Termination Control Block ; Location assigned by ; Slew Rate ;
 +-------+-------+----------+--------------+--------------+--------------+-----------------------+--------------------+--------+----------------+----------+--------------+--------------+-------------+---------------------------+----------------------+-----------+
-; clk_i ; G26   ; 2L       ; 78           ; 196          ; 46           ; 171                   ; 0                  ; yes    ; no             ; no       ; Off          ; 1.8 V        ; Off         ; --                        ; Fitter               ; no        ;
+; clk_i ; G26   ; 2L       ; 78           ; 196          ; 46           ; 457                   ; 0                  ; yes    ; no             ; no       ; Off          ; 1.8 V        ; Off         ; --                        ; Fitter               ; no        ;
 +-------+-------+----------+--------------+--------------+--------------+-----------------------+--------------------+--------+----------------+----------+--------------+--------------+-------------+---------------------------+----------------------+-----------+
 
 
@@ -2099,24 +2099,34 @@ Note: Pin directions (input, output or bidir) are based on device operating in u
 +----------+-------------------------------+
 
 
-+-------------------------------------------------------------------------------------------------+
-; Control Signals                                                                                 ;
-+------------------------------------+------------+---------+--------------+----------------------+
-; Name                               ; Location   ; Fan-Out ; Usage        ; Global Resource Used ;
-+------------------------------------+------------+---------+--------------+----------------------+
-; clk_i                              ; PIN_G26    ; 151     ; Clock        ;                      ;
-; i_mut|ram_wr_ptr[4]~0              ; Unassigned ; 5       ; Clock enable ;                      ;
-; i_mut|rd_ok                        ; Unassigned ; 43      ; Clock enable ;                      ;
-; i_mut|words_in_ram[4]~0            ; Unassigned ; 6       ; Clock enable ;                      ;
-; i_mut|wr_ok                        ; Unassigned ; 21      ; Clock enable ;                      ;
-; i_sink|\i:0:counter[0]             ; Unassigned ; 75      ; Clock enable ;                      ;
-; i_sink|\i:1:counter[0]             ; Unassigned ; 85      ; Clock enable ;                      ;
-; i_sink|add_0~0                     ; Unassigned ; 2       ; Clock enable ;                      ;
-; i_sink|add_1~0                     ; Unassigned ; 2       ; Clock enable ;                      ;
-; i_sink|add_2~0                     ; Unassigned ; 2       ; Clock enable ;                      ;
-; i_sink|add_3~0                     ; Unassigned ; 2       ; Clock enable ;                      ;
-; i_source|\g_reg_banks:0:outputs[0] ; Unassigned ; 26      ; Sync. clear  ;                      ;
-+------------------------------------+------------+---------+--------------+----------------------+
++--------------------------------------------------------------------------------------------------------------+
+; Control Signals                                                                                              ;
++------------------------------------+------------+---------+---------------------------+----------------------+
+; Name                               ; Location   ; Fan-Out ; Usage                     ; Global Resource Used ;
++------------------------------------+------------+---------+---------------------------+----------------------+
+; clk_i                              ; PIN_G26    ; 457     ; Clock                     ;                      ;
+; i_mut|ram_rd_ptr[1]~0              ; Unassigned ; 9       ; Clock enable              ;                      ;
+; i_mut|ram_wr_ptr[0]~0              ; Unassigned ; 9       ; Clock enable              ;                      ;
+; i_mut|rd_ok                        ; Unassigned ; 88      ; Clock enable, Read enable ;                      ;
+; i_mut|words_in_ram[1]~0            ; Unassigned ; 10      ; Clock enable              ;                      ;
+; i_mut|wr_ok                        ; Unassigned ; 88      ; Write enable              ;                      ;
+; i_sink|\i:0:counter[0]             ; Unassigned ; 185     ; Clock enable              ;                      ;
+; i_sink|\i:1:counter[0]             ; Unassigned ; 189     ; Clock enable              ;                      ;
+; i_sink|add_0~0                     ; Unassigned ; 2       ; Clock enable              ;                      ;
+; i_sink|add_0~1                     ; Unassigned ; 2       ; Clock enable              ;                      ;
+; i_sink|add_10~0                    ; Unassigned ; 2       ; Clock enable              ;                      ;
+; i_sink|add_11~0                    ; Unassigned ; 2       ; Clock enable              ;                      ;
+; i_sink|add_16~0                    ; Unassigned ; 3       ; Clock enable              ;                      ;
+; i_sink|add_1~0                     ; Unassigned ; 5       ; Clock enable              ;                      ;
+; i_sink|add_2~0                     ; Unassigned ; 4       ; Clock enable              ;                      ;
+; i_sink|add_3~0                     ; Unassigned ; 4       ; Clock enable              ;                      ;
+; i_sink|add_4~0                     ; Unassigned ; 4       ; Clock enable              ;                      ;
+; i_sink|add_5~0                     ; Unassigned ; 4       ; Clock enable              ;                      ;
+; i_sink|add_6~0                     ; Unassigned ; 4       ; Clock enable              ;                      ;
+; i_sink|add_7~0                     ; Unassigned ; 4       ; Clock enable              ;                      ;
+; i_sink|add_9~0                     ; Unassigned ; 4       ; Clock enable              ;                      ;
+; i_source|\g_reg_banks:0:outputs[0] ; Unassigned ; 35      ; Clock enable, Sync. clear ;                      ;
++------------------------------------+------------+---------+---------------------------+----------------------+
 
 
 +----------------------------------------------------------------------------------+
@@ -2124,7 +2134,7 @@ Note: Pin directions (input, output or bidir) are based on device operating in u
 +-------+----------+---------+-------------+----------------+----------------------+
 ; Name  ; Location ; Fan-Out ; Signal Type ; Promotion Type ; Global Resource Used ;
 +-------+----------+---------+-------------+----------------+----------------------+
-; clk_i ; PIN_G26  ; 151     ; Global      ; Automatic      ; Global Clock Region  ;
+; clk_i ; PIN_G26  ; 457     ; Global      ; Automatic      ; Global Clock Region  ;
 +-------+----------+---------+-------------+----------------+----------------------+
 
 
@@ -2136,7 +2146,7 @@ Note: Pin directions (input, output or bidir) are based on device operating in u
 ; Name                                   ; clk_i                ;
 ;     -- Source Type                     ; I/O pad              ;
 ;     -- Source Location                 ; PIN_G26              ;
-;     -- Fan-Out                         ; 151                  ;
+;     -- Fan-Out                         ; 457                  ;
 ;     -- Promotion Type                  ; Automatic Promotion  ;
 ;     -- Global Buffer                   ; clk_i~inputCLKENA0   ;
 ;     -- Global Buffer Location          ; CLKCTRL_2L_G_I6      ;
@@ -2161,12 +2171,14 @@ Info (21076): Core supply voltage operating condition is not set. Assuming a def
 Info (21077): Low junction temperature is -40 degrees C
 Info (21077): High junction temperature is 100 degrees C
 Info (171003): Fitter is performing an Auto Fit compilation, which may decrease Fitter effort to reduce compilation time
+Info (176045): Design uses memory blocks. Violating setup or hold times of memory block address registers for either read or write operations could cause memory contents to be corrupted. Make sure that all memory block address registers meet the setup and hold time requirements.
 Info (12262): Starting Fitter periphery placement operations
 Info (12290): Loading the periphery placement data.
-Info (12291): Periphery placement data loaded: elapsed time is 00:00:20
+Info (12291): Periphery placement data loaded: elapsed time is 00:00:18
 Info (12627): Pin ~ALTERA_DATA0~ is reserved at location AU27
 Warning (15714): Some pins have incomplete I/O assignments. Refer to the I/O Assignment Warnings report for details
 Critical Warning (12677): No exact pin location assignment(s) for 2 pins of 2 total pins. For the list of pins please refer to the I/O Assignment Warnings table in the fitter report
+Info (176045): Design uses memory blocks. Violating setup or hold times of memory block address registers for either read or write operations could cause memory contents to be corrupted. Make sure that all memory block address registers meet the setup and hold time requirements.
 Info (16210): Plan updated with currently enabled project assignments.
 Info (12295): Periphery placement of all unplaced cells complete: elapsed time is 00:00:01
 Critical Warning (17951): There are 72 unused RX channels in the design.
@@ -2176,7 +2188,7 @@ Critical Warning (18655): There are 72 unused TX channels in the design.
     Info (19540): Add the QSF assignment 'set_instance_assignment -name PRESERVE_UNUSED_XCVR_CHANNEL ON -to <pin_name>' for each unused channel that will be used in future.
     Info (19541): The above QSF assignment will preserve the performance of specified channels over time, and works only if the design uses at least 1 transceiver channel.
 Info (11191): Automatically promoted 1 clock (1 global)
-    Info (13173): clk_i~inputCLKENA0 (171 fanout) drives Global Clock Region, with the buffer placed at CLKCTRL_2L_G_I6
+    Info (13173): clk_i~inputCLKENA0 (543 fanout) drives Global Clock Region, with the buffer placed at CLKCTRL_2L_G_I6
 Info (176233): Starting register packing
 Info (19539): Reading the HDL-embedded SDC files elapsed 00:00:00.
 Info (332104): Reading SDC File: '../syntest_timing.sdc'
@@ -2189,7 +2201,7 @@ Info (332111): Found 1 clocks
     Info (332111): ======== ============
     Info (332111):    3.333        clk_i
 Info (176235): Finished register packing
-    Extra Info (176218): Packed 20 registers into blocks of type MLAB cell
+    Extra Info (176218): Packed 86 registers into blocks of type Block RAM
 Info (20273): Intermediate fitter snapshots will not be committed because ENABLE_INTERMEDIATE_SNAPSHOTS QSF assignment is disabled during compilation.
 
 

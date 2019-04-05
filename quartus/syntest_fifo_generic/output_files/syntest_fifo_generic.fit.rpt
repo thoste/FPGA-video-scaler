@@ -1,5 +1,5 @@
 Fitter report for syntest_fifo_generic
-Wed Apr  3 16:14:31 2019
+Fri Apr  5 08:15:54 2019
 Quartus Prime Version 18.1.0 Build 222 09/21/2018 SJ Pro Edition
 
 
@@ -61,19 +61,19 @@ refer to the applicable agreement for further details.
 +--------------------------------------------------------------------------+
 ; Fitter Summary                                                           ;
 +-----------------------------+--------------------------------------------+
-; Fitter Status               ; Successful - Wed Apr  3 16:14:31 2019      ;
+; Fitter Status               ; Successful - Fri Apr  5 08:15:54 2019      ;
 ; Quartus Prime Version       ; 18.1.0 Build 222 09/21/2018 SJ Pro Edition ;
 ; Revision Name               ; syntest_fifo_generic                       ;
 ; Top-level Entity Name       ; syntest_fifo_generic                       ;
 ; Family                      ; Arria 10                                   ;
 ; Device                      ; 10AX115S2F45I2SG                           ;
 ; Timing Models               ; Final                                      ;
-; Logic utilization (in ALMs) ; 115 / 427,200 ( < 1 % )                    ;
-; Total registers             ; 137                                        ;
+; Logic utilization (in ALMs) ; 362 / 427,200 ( < 1 % )                    ;
+; Total registers             ; 397                                        ;
 ; Total pins                  ; 2 / 960 ( < 1 % )                          ;
 ; Total virtual pins          ; 0                                          ;
-; Total block memory bits     ; 0 / 55,562,240 ( 0 % )                     ;
-; Total RAM Blocks            ; 0 / 2,713 ( 0 % )                          ;
+; Total block memory bits     ; 44,032 / 55,562,240 ( < 1 % )              ;
+; Total RAM Blocks            ; 3 / 2,713 ( < 1 % )                        ;
 ; Total DSP Blocks            ; 0 / 1,518 ( 0 % )                          ;
 ; Total HSSI RX channels      ; 0 / 72 ( 0 % )                             ;
 ; Total HSSI TX channels      ; 0 / 72 ( 0 % )                             ;
@@ -169,32 +169,118 @@ refer to the applicable agreement for further details.
 +------------------------------------+-----------------+---------------------------------------------------+----------------------------+-----------+----------------------------------------------+------------------+
 ; Node                               ; Action          ; Operation                                         ; Reason                     ; Node Port ; Destination Node                             ; Destination Port ;
 +------------------------------------+-----------------+---------------------------------------------------+----------------------------+-----------+----------------------------------------------+------------------+
-; i_mut|ram_out[0]                   ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q[0]     ; PORTBDATAOUT     ;
-; i_mut|ram_out[1]                   ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q[1]     ; PORTBDATAOUT     ;
-; i_mut|ram_out[2]                   ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q[2]     ; PORTBDATAOUT     ;
-; i_mut|ram_out[3]                   ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q[3]     ; PORTBDATAOUT     ;
-; i_mut|ram_out[4]                   ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q[4]     ; PORTBDATAOUT     ;
-; i_mut|ram_out[5]                   ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q[5]     ; PORTBDATAOUT     ;
-; i_mut|ram_out[6]                   ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q[6]     ; PORTBDATAOUT     ;
-; i_mut|ram_out[7]                   ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q[7]     ; PORTBDATAOUT     ;
-; i_mut|ram_out[8]                   ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q[8]     ; PORTBDATAOUT     ;
-; i_mut|ram_out[9]                   ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q[9]     ; PORTBDATAOUT     ;
-; i_mut|ram_out[10]                  ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q[10]    ; PORTBDATAOUT     ;
-; i_mut|ram_out[11]                  ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q[11]    ; PORTBDATAOUT     ;
-; i_mut|ram_out[12]                  ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q[12]    ; PORTBDATAOUT     ;
-; i_mut|ram_out[13]                  ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q[13]    ; PORTBDATAOUT     ;
-; i_mut|ram_out[14]                  ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q[14]    ; PORTBDATAOUT     ;
-; i_mut|ram_out[15]                  ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q[15]    ; PORTBDATAOUT     ;
-; i_mut|ram_out[16]                  ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q[16]    ; PORTBDATAOUT     ;
-; i_mut|ram_out[17]                  ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q[17]    ; PORTBDATAOUT     ;
-; i_mut|ram_out[18]                  ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q[18]    ; PORTBDATAOUT     ;
-; i_mut|ram_out[19]                  ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q[19]    ; PORTBDATAOUT     ;
+; i_mut|ram_out_reg[0]               ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q_b[0]   ; PORTBDATAOUT     ;
+; i_mut|ram_out_reg[1]               ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q_b[1]   ; PORTBDATAOUT     ;
+; i_mut|ram_out_reg[2]               ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q_b[2]   ; PORTBDATAOUT     ;
+; i_mut|ram_out_reg[3]               ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q_b[3]   ; PORTBDATAOUT     ;
+; i_mut|ram_out_reg[4]               ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q_b[4]   ; PORTBDATAOUT     ;
+; i_mut|ram_out_reg[5]               ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q_b[5]   ; PORTBDATAOUT     ;
+; i_mut|ram_out_reg[6]               ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q_b[6]   ; PORTBDATAOUT     ;
+; i_mut|ram_out_reg[7]               ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q_b[7]   ; PORTBDATAOUT     ;
+; i_mut|ram_out_reg[8]               ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q_b[8]   ; PORTBDATAOUT     ;
+; i_mut|ram_out_reg[9]               ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q_b[9]   ; PORTBDATAOUT     ;
+; i_mut|ram_out_reg[10]              ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q_b[10]  ; PORTBDATAOUT     ;
+; i_mut|ram_out_reg[11]              ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q_b[11]  ; PORTBDATAOUT     ;
+; i_mut|ram_out_reg[12]              ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q_b[12]  ; PORTBDATAOUT     ;
+; i_mut|ram_out_reg[13]              ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q_b[13]  ; PORTBDATAOUT     ;
+; i_mut|ram_out_reg[14]              ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q_b[14]  ; PORTBDATAOUT     ;
+; i_mut|ram_out_reg[15]              ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q_b[15]  ; PORTBDATAOUT     ;
+; i_mut|ram_out_reg[16]              ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q_b[16]  ; PORTBDATAOUT     ;
+; i_mut|ram_out_reg[17]              ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q_b[17]  ; PORTBDATAOUT     ;
+; i_mut|ram_out_reg[18]              ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q_b[18]  ; PORTBDATAOUT     ;
+; i_mut|ram_out_reg[19]              ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q_b[19]  ; PORTBDATAOUT     ;
+; i_mut|ram_out_reg[20]              ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q_b[20]  ; PORTBDATAOUT     ;
+; i_mut|ram_out_reg[21]              ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q_b[21]  ; PORTBDATAOUT     ;
+; i_mut|ram_out_reg[22]              ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q_b[22]  ; PORTBDATAOUT     ;
+; i_mut|ram_out_reg[23]              ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q_b[23]  ; PORTBDATAOUT     ;
+; i_mut|ram_out_reg[24]              ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q_b[24]  ; PORTBDATAOUT     ;
+; i_mut|ram_out_reg[25]              ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q_b[25]  ; PORTBDATAOUT     ;
+; i_mut|ram_out_reg[26]              ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q_b[26]  ; PORTBDATAOUT     ;
+; i_mut|ram_out_reg[27]              ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q_b[27]  ; PORTBDATAOUT     ;
+; i_mut|ram_out_reg[28]              ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q_b[28]  ; PORTBDATAOUT     ;
+; i_mut|ram_out_reg[29]              ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q_b[29]  ; PORTBDATAOUT     ;
+; i_mut|ram_out_reg[30]              ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q_b[30]  ; PORTBDATAOUT     ;
+; i_mut|ram_out_reg[31]              ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q_b[31]  ; PORTBDATAOUT     ;
+; i_mut|ram_out_reg[32]              ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q_b[32]  ; PORTBDATAOUT     ;
+; i_mut|ram_out_reg[33]              ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q_b[33]  ; PORTBDATAOUT     ;
+; i_mut|ram_out_reg[34]              ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q_b[34]  ; PORTBDATAOUT     ;
+; i_mut|ram_out_reg[35]              ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q_b[35]  ; PORTBDATAOUT     ;
+; i_mut|ram_out_reg[36]              ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q_b[36]  ; PORTBDATAOUT     ;
+; i_mut|ram_out_reg[37]              ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q_b[37]  ; PORTBDATAOUT     ;
+; i_mut|ram_out_reg[38]              ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q_b[38]  ; PORTBDATAOUT     ;
+; i_mut|ram_out_reg[39]              ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q_b[39]  ; PORTBDATAOUT     ;
+; i_mut|ram_out_reg[40]              ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q_b[40]  ; PORTBDATAOUT     ;
+; i_mut|ram_out_reg[41]              ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q_b[41]  ; PORTBDATAOUT     ;
+; i_mut|ram_out_reg[42]              ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q_b[42]  ; PORTBDATAOUT     ;
+; i_mut|ram_out_reg[43]              ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q_b[43]  ; PORTBDATAOUT     ;
+; i_mut|ram_out_reg[44]              ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q_b[44]  ; PORTBDATAOUT     ;
+; i_mut|ram_out_reg[45]              ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q_b[45]  ; PORTBDATAOUT     ;
+; i_mut|ram_out_reg[46]              ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q_b[46]  ; PORTBDATAOUT     ;
+; i_mut|ram_out_reg[47]              ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q_b[47]  ; PORTBDATAOUT     ;
+; i_mut|ram_out_reg[48]              ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q_b[48]  ; PORTBDATAOUT     ;
+; i_mut|ram_out_reg[49]              ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q_b[49]  ; PORTBDATAOUT     ;
+; i_mut|ram_out_reg[50]              ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q_b[50]  ; PORTBDATAOUT     ;
+; i_mut|ram_out_reg[51]              ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q_b[51]  ; PORTBDATAOUT     ;
+; i_mut|ram_out_reg[52]              ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q_b[52]  ; PORTBDATAOUT     ;
+; i_mut|ram_out_reg[53]              ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q_b[53]  ; PORTBDATAOUT     ;
+; i_mut|ram_out_reg[54]              ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q_b[54]  ; PORTBDATAOUT     ;
+; i_mut|ram_out_reg[55]              ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q_b[55]  ; PORTBDATAOUT     ;
+; i_mut|ram_out_reg[56]              ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q_b[56]  ; PORTBDATAOUT     ;
+; i_mut|ram_out_reg[57]              ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q_b[57]  ; PORTBDATAOUT     ;
+; i_mut|ram_out_reg[58]              ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q_b[58]  ; PORTBDATAOUT     ;
+; i_mut|ram_out_reg[59]              ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q_b[59]  ; PORTBDATAOUT     ;
+; i_mut|ram_out_reg[60]              ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q_b[60]  ; PORTBDATAOUT     ;
+; i_mut|ram_out_reg[61]              ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q_b[61]  ; PORTBDATAOUT     ;
+; i_mut|ram_out_reg[62]              ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q_b[62]  ; PORTBDATAOUT     ;
+; i_mut|ram_out_reg[63]              ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q_b[63]  ; PORTBDATAOUT     ;
+; i_mut|ram_out_reg[64]              ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q_b[64]  ; PORTBDATAOUT     ;
+; i_mut|ram_out_reg[65]              ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q_b[65]  ; PORTBDATAOUT     ;
+; i_mut|ram_out_reg[66]              ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q_b[66]  ; PORTBDATAOUT     ;
+; i_mut|ram_out_reg[67]              ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q_b[67]  ; PORTBDATAOUT     ;
+; i_mut|ram_out_reg[68]              ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q_b[68]  ; PORTBDATAOUT     ;
+; i_mut|ram_out_reg[69]              ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q_b[69]  ; PORTBDATAOUT     ;
+; i_mut|ram_out_reg[70]              ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q_b[70]  ; PORTBDATAOUT     ;
+; i_mut|ram_out_reg[71]              ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q_b[71]  ; PORTBDATAOUT     ;
+; i_mut|ram_out_reg[72]              ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q_b[72]  ; PORTBDATAOUT     ;
+; i_mut|ram_out_reg[73]              ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q_b[73]  ; PORTBDATAOUT     ;
+; i_mut|ram_out_reg[74]              ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q_b[74]  ; PORTBDATAOUT     ;
+; i_mut|ram_out_reg[75]              ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q_b[75]  ; PORTBDATAOUT     ;
+; i_mut|ram_out_reg[76]              ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q_b[76]  ; PORTBDATAOUT     ;
+; i_mut|ram_out_reg[77]              ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q_b[77]  ; PORTBDATAOUT     ;
+; i_mut|ram_out_reg[78]              ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q_b[78]  ; PORTBDATAOUT     ;
+; i_mut|ram_out_reg[79]              ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q_b[79]  ; PORTBDATAOUT     ;
+; i_mut|ram_out_reg[80]              ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q_b[80]  ; PORTBDATAOUT     ;
+; i_mut|ram_out_reg[81]              ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q_b[81]  ; PORTBDATAOUT     ;
+; i_mut|ram_out_reg[82]              ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q_b[82]  ; PORTBDATAOUT     ;
+; i_mut|ram_out_reg[83]              ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q_b[83]  ; PORTBDATAOUT     ;
+; i_mut|ram_out_reg[84]              ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q_b[84]  ; PORTBDATAOUT     ;
+; i_mut|ram_out_reg[85]              ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|ram_data_rtl_0|auto_generated|q_b[85]  ; PORTBDATAOUT     ;
+; i_mut|is_almostfull                ; Duplicated      ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ; i_mut|is_almostfull~DUPLICATE                ;                  ;
 ; i_mut|is_empty                     ; Duplicated      ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ; i_mut|is_empty~DUPLICATE                     ;                  ;
-; i_mut|ram_out_reg[8]               ; Duplicated      ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ; i_mut|ram_out_reg[8]~DUPLICATE               ;                  ;
-; i_mut|ram_out_reg[18]              ; Duplicated      ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ; i_mut|ram_out_reg[18]~DUPLICATE              ;                  ;
-; i_mut|ram_out_reg[19]              ; Duplicated      ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ; i_mut|ram_out_reg[19]~DUPLICATE              ;                  ;
+; i_mut|is_full                      ; Duplicated      ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ; i_mut|is_full~DUPLICATE                      ;                  ;
+; i_mut|ram_rd_ptr[6]                ; Duplicated      ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ; i_mut|ram_rd_ptr[6]~DUPLICATE                ;                  ;
+; i_sink|\i:0:counter[1]             ; Duplicated      ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ; i_sink|\i:0:counter[1]~DUPLICATE             ;                  ;
+; i_sink|\i:0:counter[2]             ; Duplicated      ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ; i_sink|\i:0:counter[2]~DUPLICATE             ;                  ;
+; i_sink|\i:0:counter[4]             ; Duplicated      ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ; i_sink|\i:0:counter[4]~DUPLICATE             ;                  ;
 ; i_sink|\i:1:counter[1]             ; Duplicated      ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ; i_sink|\i:1:counter[1]~DUPLICATE             ;                  ;
-; i_source|\g_reg_banks:0:outputs[2] ; Duplicated      ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ; i_source|\g_reg_banks:0:outputs[2]~DUPLICATE ;                  ;
+; i_sink|\i:1:counter[2]             ; Duplicated      ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ; i_sink|\i:1:counter[2]~DUPLICATE             ;                  ;
+; i_sink|\i:3:counter[1]             ; Duplicated      ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ; i_sink|\i:3:counter[1]~DUPLICATE             ;                  ;
+; i_sink|\i:3:counter[2]             ; Duplicated      ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ; i_sink|\i:3:counter[2]~DUPLICATE             ;                  ;
+; i_sink|\i:3:counter[3]             ; Duplicated      ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ; i_sink|\i:3:counter[3]~DUPLICATE             ;                  ;
+; i_sink|\i:3:counter[4]             ; Duplicated      ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ; i_sink|\i:3:counter[4]~DUPLICATE             ;                  ;
+; i_sink|\i:4:counter[2]             ; Duplicated      ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ; i_sink|\i:4:counter[2]~DUPLICATE             ;                  ;
+; i_sink|\i:4:counter[3]             ; Duplicated      ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ; i_sink|\i:4:counter[3]~DUPLICATE             ;                  ;
+; i_sink|\i:4:counter[4]             ; Duplicated      ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ; i_sink|\i:4:counter[4]~DUPLICATE             ;                  ;
+; i_sink|\i:5:counter[2]             ; Duplicated      ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ; i_sink|\i:5:counter[2]~DUPLICATE             ;                  ;
+; i_sink|\i:5:counter[3]             ; Duplicated      ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ; i_sink|\i:5:counter[3]~DUPLICATE             ;                  ;
+; i_sink|\i:6:counter[2]             ; Duplicated      ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ; i_sink|\i:6:counter[2]~DUPLICATE             ;                  ;
+; i_sink|\i:8:counter[4]             ; Duplicated      ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ; i_sink|\i:8:counter[4]~DUPLICATE             ;                  ;
+; i_sink|\i:9:counter[2]             ; Duplicated      ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ; i_sink|\i:9:counter[2]~DUPLICATE             ;                  ;
+; i_sink|\i:9:counter[3]             ; Duplicated      ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ; i_sink|\i:9:counter[3]~DUPLICATE             ;                  ;
+; i_sink|\i:9:counter[4]             ; Duplicated      ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ; i_sink|\i:9:counter[4]~DUPLICATE             ;                  ;
+; i_sink|\i:12:counter[4]            ; Duplicated      ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ; i_sink|\i:12:counter[4]~DUPLICATE            ;                  ;
+; i_sink|\i:16:counter[4]            ; Duplicated      ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ; i_sink|\i:16:counter[4]~DUPLICATE            ;                  ;
+; i_source|\g_reg_banks:0:outputs[1] ; Duplicated      ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ; i_source|\g_reg_banks:0:outputs[1]~DUPLICATE ;                  ;
 ; clk_i~input                        ; Created         ; Placement                                         ; Fitter Periphery Placement ;           ;                                              ;                  ;
 ; clk_i~inputCLKENA0                 ; Created         ; Placement                                         ; Fitter Periphery Placement ;           ;                                              ;                  ;
 ; clk_i~pad                          ; Created         ; Placement                                         ; Fitter Periphery Placement ;           ;                                              ;                  ;
@@ -253,7 +339,7 @@ Note: Retiming optimizations are not included in this table
 +-------+-------+----------+--------------+--------------+--------------+-----------------------+--------------------+--------+----------------+----------+--------------+--------------+-------------+---------------------------+----------------------+-----------+
 ; Name  ; Pin # ; I/O Bank ; X coordinate ; Y coordinate ; Z coordinate ; Combinational Fan-Out ; Registered Fan-Out ; Global ; Input Register ; Bus Hold ; Weak Pull Up ; I/O Standard ; Termination ; Termination Control Block ; Location assigned by ; Slew Rate ;
 +-------+-------+----------+--------------+--------------+--------------+-----------------------+--------------------+--------+----------------+----------+--------------+--------------+-------------+---------------------------+----------------------+-----------+
-; clk_i ; G26   ; 2L       ; 78           ; 196          ; 46           ; 171                   ; 0                  ; yes    ; no             ; no       ; Off          ; 1.8 V        ; Off         ; --                        ; Fitter               ; no        ;
+; clk_i ; G26   ; 2L       ; 78           ; 196          ; 46           ; 457                   ; 0                  ; yes    ; no             ; no       ; Off          ; 1.8 V        ; Off         ; --                        ; Fitter               ; no        ;
 +-------+-------+----------+--------------+--------------+--------------+-----------------------+--------------------+--------+----------------+----------+--------------+--------------+-------------+---------------------------+----------------------+-----------+
 
 
@@ -2256,24 +2342,34 @@ Note: Pin directions (input, output or bidir) are based on device operating in u
 +----------+-------------------------------+
 
 
-+-------------------------------------------------------------------------------------------------+
-; Control Signals                                                                                 ;
-+------------------------------------+------------+---------+--------------+----------------------+
-; Name                               ; Location   ; Fan-Out ; Usage        ; Global Resource Used ;
-+------------------------------------+------------+---------+--------------+----------------------+
-; clk_i                              ; PIN_G26    ; 151     ; Clock        ;                      ;
-; i_mut|ram_wr_ptr[4]~0              ; Unassigned ; 5       ; Clock enable ;                      ;
-; i_mut|rd_ok                        ; Unassigned ; 43      ; Clock enable ;                      ;
-; i_mut|words_in_ram[4]~0            ; Unassigned ; 6       ; Clock enable ;                      ;
-; i_mut|wr_ok                        ; Unassigned ; 21      ; Clock enable ;                      ;
-; i_sink|\i:0:counter[0]             ; Unassigned ; 75      ; Clock enable ;                      ;
-; i_sink|\i:1:counter[0]             ; Unassigned ; 85      ; Clock enable ;                      ;
-; i_sink|add_0~0                     ; Unassigned ; 2       ; Clock enable ;                      ;
-; i_sink|add_1~0                     ; Unassigned ; 2       ; Clock enable ;                      ;
-; i_sink|add_2~0                     ; Unassigned ; 2       ; Clock enable ;                      ;
-; i_sink|add_3~0                     ; Unassigned ; 2       ; Clock enable ;                      ;
-; i_source|\g_reg_banks:0:outputs[0] ; Unassigned ; 26      ; Sync. clear  ;                      ;
-+------------------------------------+------------+---------+--------------+----------------------+
++--------------------------------------------------------------------------------------------------------------+
+; Control Signals                                                                                              ;
++------------------------------------+------------+---------+---------------------------+----------------------+
+; Name                               ; Location   ; Fan-Out ; Usage                     ; Global Resource Used ;
++------------------------------------+------------+---------+---------------------------+----------------------+
+; clk_i                              ; PIN_G26    ; 457     ; Clock                     ;                      ;
+; i_mut|ram_rd_ptr[1]~0              ; Unassigned ; 9       ; Clock enable              ;                      ;
+; i_mut|ram_wr_ptr[0]~0              ; Unassigned ; 9       ; Clock enable              ;                      ;
+; i_mut|rd_ok                        ; Unassigned ; 88      ; Clock enable, Read enable ;                      ;
+; i_mut|words_in_ram[1]~0            ; Unassigned ; 10      ; Clock enable              ;                      ;
+; i_mut|wr_ok                        ; Unassigned ; 88      ; Write enable              ;                      ;
+; i_sink|\i:0:counter[0]             ; Unassigned ; 185     ; Clock enable              ;                      ;
+; i_sink|\i:1:counter[0]             ; Unassigned ; 189     ; Clock enable              ;                      ;
+; i_sink|add_0~0                     ; Unassigned ; 2       ; Clock enable              ;                      ;
+; i_sink|add_0~1                     ; Unassigned ; 2       ; Clock enable              ;                      ;
+; i_sink|add_10~0                    ; Unassigned ; 2       ; Clock enable              ;                      ;
+; i_sink|add_11~0                    ; Unassigned ; 2       ; Clock enable              ;                      ;
+; i_sink|add_16~0                    ; Unassigned ; 3       ; Clock enable              ;                      ;
+; i_sink|add_1~0                     ; Unassigned ; 5       ; Clock enable              ;                      ;
+; i_sink|add_2~0                     ; Unassigned ; 4       ; Clock enable              ;                      ;
+; i_sink|add_3~0                     ; Unassigned ; 4       ; Clock enable              ;                      ;
+; i_sink|add_4~0                     ; Unassigned ; 4       ; Clock enable              ;                      ;
+; i_sink|add_5~0                     ; Unassigned ; 4       ; Clock enable              ;                      ;
+; i_sink|add_6~0                     ; Unassigned ; 4       ; Clock enable              ;                      ;
+; i_sink|add_7~0                     ; Unassigned ; 4       ; Clock enable              ;                      ;
+; i_sink|add_9~0                     ; Unassigned ; 4       ; Clock enable              ;                      ;
+; i_source|\g_reg_banks:0:outputs[0] ; Unassigned ; 35      ; Clock enable, Sync. clear ;                      ;
++------------------------------------+------------+---------+---------------------------+----------------------+
 
 
 +----------------------------------------------------------------------------------+
@@ -2281,7 +2377,7 @@ Note: Pin directions (input, output or bidir) are based on device operating in u
 +-------+----------+---------+-------------+----------------+----------------------+
 ; Name  ; Location ; Fan-Out ; Signal Type ; Promotion Type ; Global Resource Used ;
 +-------+----------+---------+-------------+----------------+----------------------+
-; clk_i ; PIN_G26  ; 151     ; Global      ; Automatic      ; Global Clock Region  ;
+; clk_i ; PIN_G26  ; 457     ; Global      ; Automatic      ; Global Clock Region  ;
 +-------+----------+---------+-------------+----------------+----------------------+
 
 
@@ -2293,7 +2389,7 @@ Note: Pin directions (input, output or bidir) are based on device operating in u
 ; Name                                   ; clk_i                ;
 ;     -- Source Type                     ; I/O pad              ;
 ;     -- Source Location                 ; PIN_G26              ;
-;     -- Fan-Out                         ; 151                  ;
+;     -- Fan-Out                         ; 457                  ;
 ;     -- Promotion Type                  ; Automatic Promotion  ;
 ;     -- Global Buffer                   ; clk_i~inputCLKENA0   ;
 ;     -- Global Buffer Location          ; CLKCTRL_2L_G_I6      ;
@@ -2304,121 +2400,118 @@ Note: Pin directions (input, output or bidir) are based on device operating in u
 +----------------------------------------+----------------------+
 
 
-+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Fitter RAM Summary                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           ;
-+-------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+--------------+------------------------+-------------------------+------------------------+-------------------------+------+-----------------------------+-----------------------------+-----------------------------+-----------------------------+---------------------+-------------+-------+----------------------------------------------------------------------------------------------------------------+-----------------+---------------------+-----------------+-----------------+----------+------------------------+---------------+
-; Name                                                  ; Type ; Mode             ; Clock Mode   ; Port A Depth ; Port A Width ; Port B Depth ; Port B Width ; Port A Input Registers ; Port A Output Registers ; Port B Input Registers ; Port B Output Registers ; Size ; Implementation Port A Depth ; Implementation Port A Width ; Implementation Port B Depth ; Implementation Port B Width ; Implementation Bits ; M20K blocks ; MLABs ; MIF                                                                                                            ; Location        ; Mixed Port RDW Mode ; Port A RDW Mode ; Port B RDW Mode ; ECC Mode ; ECC Pipeline Registers ; Fits in MLABs ;
-+-------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+--------------+------------------------+-------------------------+------------------------+-------------------------+------+-----------------------------+-----------------------------+-----------------------------+-----------------------------+---------------------+-------------+-------+----------------------------------------------------------------------------------------------------------------+-----------------+---------------------+-----------------+-----------------+----------+------------------------+---------------+
-; i_mut|ram_data_rtl_0|auto_generated|ALTDPRAM_INSTANCE ; MLAB ; Simple Dual Port ; Single Clock ; 32           ; 20           ; 32           ; 20           ; yes                    ; no                      ; no                     ; yes                     ; 640  ; 32                          ; 20                          ; 32                          ; 20                          ; 640                 ; 0           ; 1     ; qdb/_compiler/syntest_fifo_generic/root_partition/18.1.0/partitioned/1/mifs/ram0_fifo_generic_f3113376.hdl.mif ; LAB_X74_Y122_N0 ; Don't care          ;                 ;                 ;          ;                        ;               ;
-+-------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+--------------+------------------------+-------------------------+------------------------+-------------------------+------+-----------------------------+-----------------------------+-----------------------------+-----------------------------+---------------------+-------------+-------+----------------------------------------------------------------------------------------------------------------+-----------------+---------------------+-----------------+-----------------+----------+------------------------+---------------+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Fitter RAM Summary                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              ;
++------------------------------------------------+------------+------------------+--------------+--------------+--------------+--------------+--------------+------------------------+-------------------------+------------------------+-------------------------+-------+-----------------------------+-----------------------------+-----------------------------+-----------------------------+---------------------+-------------+-------+------+------------------------------------------------------+---------------------+-----------------+-----------------+----------+------------------------+-----------------------+
+; Name                                           ; Type       ; Mode             ; Clock Mode   ; Port A Depth ; Port A Width ; Port B Depth ; Port B Width ; Port A Input Registers ; Port A Output Registers ; Port B Input Registers ; Port B Output Registers ; Size  ; Implementation Port A Depth ; Implementation Port A Width ; Implementation Port B Depth ; Implementation Port B Width ; Implementation Bits ; M20K blocks ; MLABs ; MIF  ; Location                                             ; Mixed Port RDW Mode ; Port A RDW Mode ; Port B RDW Mode ; ECC Mode ; ECC Pipeline Registers ; Fits in MLABs         ;
++------------------------------------------------+------------+------------------+--------------+--------------+--------------+--------------+--------------+------------------------+-------------------------+------------------------+-------------------------+-------+-----------------------------+-----------------------------+-----------------------------+-----------------------------+---------------------+-------------+-------+------+------------------------------------------------------+---------------------+-----------------+-----------------+----------+------------------------+-----------------------+
+; i_mut|ram_data_rtl_0|auto_generated|ALTSYNCRAM ; M20K block ; Simple Dual Port ; Single Clock ; --           ; --           ; 512          ; 86           ; yes                    ; no                      ; yes                    ; yes                     ; 44032 ; --                          ; --                          ; 512                         ; 86                          ; 44032               ; 3           ; 0     ; None ; M20K_X70_Y116_N0, M20K_X70_Y117_N0, M20K_X70_Y118_N0 ; Old data            ; New data        ; New data        ; Off      ; No                     ; No - Address Too Wide ;
++------------------------------------------------+------------+------------------+--------------+--------------+--------------+--------------+--------------+------------------------+-------------------------+------------------------+-------------------------+-------+-----------------------------+-----------------------------+-----------------------------+-----------------------------+---------------------+-------------+-------+------+------------------------------------------------------+---------------------+-----------------+-----------------+----------+------------------------+-----------------------+
 Note: Fitter may spread logical memories into multiple blocks to improve timing. The actual required RAM blocks can be found in the Fitter Resource Usage section.
 
 
-+------------------------------------------------------------------------------------------+
-; Fitter Resource Usage Summary                                                            ;
-+-------------------------------------------------------------+--------------------+-------+
-; Resource                                                    ; Usage              ; %     ;
-+-------------------------------------------------------------+--------------------+-------+
-; Logic utilization (ALMs needed / total ALMs on device)      ; 115 / 427,200      ; < 1 % ;
-; ALMs needed [=A-B+C]                                        ; 115                ;       ;
-;     [A] ALMs used in final placement [=a+b+c+d]             ; 129 / 427,200      ; < 1 % ;
-;         [a] ALMs used for LUT logic and registers           ; 38                 ;       ;
-;         [b] ALMs used for LUT logic                         ; 63                 ;       ;
-;         [c] ALMs used for registers                         ; 18                 ;       ;
-;         [d] ALMs used for memory (up to half of total ALMs) ; 10                 ;       ;
-;     [B] Estimate of ALMs recoverable by dense packing       ; 15 / 427,200       ; < 1 % ;
-;     [C] Estimate of ALMs unavailable [=a+b+c+d]             ; 1 / 427,200        ; < 1 % ;
-;         [a] Due to location constrained logic               ; 0                  ;       ;
-;         [b] Due to LAB-wide signal conflicts                ; 1                  ;       ;
-;         [c] Due to LAB input limits                         ; 0                  ;       ;
-;         [d] Due to virtual I/Os                             ; 0                  ;       ;
-;                                                             ;                    ;       ;
-; Difficulty packing design                                   ; Low                ;       ;
-;                                                             ;                    ;       ;
-; Total LABs:  partially or completely used                   ; 15 / 42,720        ; < 1 % ;
-;     -- Logic LABs                                           ; 14                 ;       ;
-;     -- Memory LABs (up to half of total LABs)               ; 1                  ;       ;
-;                                                             ;                    ;       ;
-; Combinational ALUT usage for logic                          ; 164                ;       ;
-;     -- 7 input functions                                    ; 0                  ;       ;
-;     -- 6 input functions                                    ; 114                ;       ;
-;     -- 5 input functions                                    ; 15                 ;       ;
-;     -- 4 input functions                                    ; 3                  ;       ;
-;     -- <=3 input functions                                  ; 32                 ;       ;
-; Combinational ALUT usage for route-throughs                 ; 23                 ;       ;
-; Memory ALUT usage                                           ; 20                 ;       ;
-;     -- 64-address deep                                      ; 0                  ;       ;
-;     -- 32-address deep                                      ; 20                 ;       ;
-;                                                             ;                    ;       ;
-;                                                             ;                    ;       ;
-; Dedicated logic registers                                   ; 137                ;       ;
-;     -- By type:                                             ;                    ;       ;
-;         -- Primary logic registers                          ; 111 / 854,400      ; < 1 % ;
-;         -- Secondary logic registers                        ; 26 / 854,400       ; < 1 % ;
-;     -- By function:                                         ;                    ;       ;
-;         -- Design implementation registers                  ; 131                ;       ;
-;         -- Routing optimization registers                   ; 6                  ;       ;
-;                                                             ;                    ;       ;
-; ALMs adjustment for power estimation                        ; 4                  ;       ;
-;                                                             ;                    ;       ;
-; Virtual pins                                                ; 0                  ;       ;
-; I/O pins                                                    ; 2 / 960            ; < 1 % ;
-;     -- Clock pins                                           ; 1 / 50             ; 2 %   ;
-;     -- Dedicated input pins                                 ; 0 / 155            ; 0 %   ;
-;                                                             ;                    ;       ;
-; M20K blocks                                                 ; 0 / 2,713          ; 0 %   ;
-; Total MLAB memory bits                                      ; 640                ;       ;
-; Total block memory bits                                     ; 0 / 55,562,240     ; 0 %   ;
-; Total block memory implementation bits                      ; 0 / 55,562,240     ; 0 %   ;
-;                                                             ;                    ;       ;
-; DSP Blocks Needed [=A+B-C]                                  ; 0 / 1,518          ; 0 %   ;
-;     [A] Total Fixed Point DSP Blocks                        ; 0                  ;       ;
-;     [B] Total Floating Point DSP Blocks                     ; 0                  ;       ;
-;     [C] Estimate of DSP Blocks recoverable by dense merging ; 0                  ;       ;
-;                                                             ;                    ;       ;
-; IOPLLs                                                      ; 0 / 13             ; 0 %   ;
-; FPLLs                                                       ; 0 / 32             ; 0 %   ;
-; Global signals                                              ; 1                  ;       ;
-;     -- Global clocks                                        ; 1 / 32             ; 3 %   ;
-;     -- Regional clocks                                      ; 0 / 16             ; 0 %   ;
-;     -- Periphery clocks                                     ; 0 / 384            ; 0 %   ;
-; JTAGs                                                       ; 0 / 1              ; 0 %   ;
-; ASMI blocks                                                 ; 0 / 1              ; 0 %   ;
-; CRC blocks                                                  ; 0 / 1              ; 0 %   ;
-; Remote update blocks                                        ; 0 / 1              ; 0 %   ;
-; Oscillator blocks                                           ; 0 / 1              ; 0 %   ;
-; PCIe Hard IPs                                               ; 0 / 4              ; 0 %   ;
-; HSSI RX PCSs                                                ; 0 / 72             ; 0 %   ;
-; HSSI PMA RX DESERs                                          ; 0 / 72             ; 0 %   ;
-; HSSI TX PCSs                                                ; 0 / 72             ; 0 %   ;
-; HSSI PMA TX SERs                                            ; 0 / 72             ; 0 %   ;
-; HSSI CDR PLL                                                ; 0 / 72             ; 0 %   ;
-;     -- CDR PLLs for Unused RX Clock Workaround              ; 0 / 72             ; 0 %   ;
-; HSSI ATX PLL                                                ; 0 / 24             ; 0 %   ;
-; Impedance control blocks                                    ; 0 / 16             ; 0 %   ;
-; Average interconnect usage (total/H/V)                      ; 0.0% / 0.0% / 0.0% ;       ;
-; Peak interconnect usage (total/H/V)                         ; 2.0% / 2.2% / 1.7% ;       ;
-; Maximum fan-out                                             ; 177                ;       ;
-; Highest non-global fan-out                                  ; 86                 ;       ;
-; Total fan-out                                               ; 1452               ;       ;
-; Average fan-out                                             ; 4.40               ;       ;
-+-------------------------------------------------------------+--------------------+-------+
++-------------------------------------------------------------------------------------------+
+; Fitter Resource Usage Summary                                                             ;
++-------------------------------------------------------------+---------------------+-------+
+; Resource                                                    ; Usage               ; %     ;
++-------------------------------------------------------------+---------------------+-------+
+; Logic utilization (ALMs needed / total ALMs on device)      ; 362 / 427,200       ; < 1 % ;
+; ALMs needed [=A-B+C]                                        ; 362                 ;       ;
+;     [A] ALMs used in final placement [=a+b+c+d]             ; 417 / 427,200       ; < 1 % ;
+;         [a] ALMs used for LUT logic and registers           ; 97                  ;       ;
+;         [b] ALMs used for LUT logic                         ; 274                 ;       ;
+;         [c] ALMs used for registers                         ; 46                  ;       ;
+;         [d] ALMs used for memory (up to half of total ALMs) ; 0                   ;       ;
+;     [B] Estimate of ALMs recoverable by dense packing       ; 55 / 427,200        ; < 1 % ;
+;     [C] Estimate of ALMs unavailable [=a+b+c+d]             ; 0 / 427,200         ; 0 %   ;
+;         [a] Due to location constrained logic               ; 0                   ;       ;
+;         [b] Due to LAB-wide signal conflicts                ; 0                   ;       ;
+;         [c] Due to LAB input limits                         ; 0                   ;       ;
+;         [d] Due to virtual I/Os                             ; 0                   ;       ;
+;                                                             ;                     ;       ;
+; Difficulty packing design                                   ; Low                 ;       ;
+;                                                             ;                     ;       ;
+; Total LABs:  partially or completely used                   ; 49 / 42,720         ; < 1 % ;
+;     -- Logic LABs                                           ; 49                  ;       ;
+;     -- Memory LABs (up to half of total LABs)               ; 0                   ;       ;
+;                                                             ;                     ;       ;
+; Combinational ALUT usage for logic                          ; 574                 ;       ;
+;     -- 7 input functions                                    ; 0                   ;       ;
+;     -- 6 input functions                                    ; 449                 ;       ;
+;     -- 5 input functions                                    ; 36                  ;       ;
+;     -- 4 input functions                                    ; 4                   ;       ;
+;     -- <=3 input functions                                  ; 85                  ;       ;
+; Combinational ALUT usage for route-throughs                 ; 87                  ;       ;
+;                                                             ;                     ;       ;
+; Dedicated logic registers                                   ; 397                 ;       ;
+;     -- By type:                                             ;                     ;       ;
+;         -- Primary logic registers                          ; 285 / 854,400       ; < 1 % ;
+;         -- Secondary logic registers                        ; 112 / 854,400       ; < 1 % ;
+;     -- By function:                                         ;                     ;       ;
+;         -- Design implementation registers                  ; 371                 ;       ;
+;         -- Routing optimization registers                   ; 26                  ;       ;
+;                                                             ;                     ;       ;
+; ALMs adjustment for power estimation                        ; 19                  ;       ;
+;                                                             ;                     ;       ;
+; Virtual pins                                                ; 0                   ;       ;
+; I/O pins                                                    ; 2 / 960             ; < 1 % ;
+;     -- Clock pins                                           ; 1 / 50              ; 2 %   ;
+;     -- Dedicated input pins                                 ; 0 / 155             ; 0 %   ;
+;                                                             ;                     ;       ;
+; M20K blocks                                                 ; 3 / 2,713           ; < 1 % ;
+; Total MLAB memory bits                                      ; 0                   ;       ;
+; Total block memory bits                                     ; 44,032 / 55,562,240 ; < 1 % ;
+; Total block memory implementation bits                      ; 61,440 / 55,562,240 ; < 1 % ;
+;                                                             ;                     ;       ;
+; DSP Blocks Needed [=A+B-C]                                  ; 0 / 1,518           ; 0 %   ;
+;     [A] Total Fixed Point DSP Blocks                        ; 0                   ;       ;
+;     [B] Total Floating Point DSP Blocks                     ; 0                   ;       ;
+;     [C] Estimate of DSP Blocks recoverable by dense merging ; 0                   ;       ;
+;                                                             ;                     ;       ;
+; IOPLLs                                                      ; 0 / 13              ; 0 %   ;
+; FPLLs                                                       ; 0 / 32              ; 0 %   ;
+; Global signals                                              ; 1                   ;       ;
+;     -- Global clocks                                        ; 1 / 32              ; 3 %   ;
+;     -- Regional clocks                                      ; 0 / 16              ; 0 %   ;
+;     -- Periphery clocks                                     ; 0 / 384             ; 0 %   ;
+; JTAGs                                                       ; 0 / 1               ; 0 %   ;
+; ASMI blocks                                                 ; 0 / 1               ; 0 %   ;
+; CRC blocks                                                  ; 0 / 1               ; 0 %   ;
+; Remote update blocks                                        ; 0 / 1               ; 0 %   ;
+; Oscillator blocks                                           ; 0 / 1               ; 0 %   ;
+; PCIe Hard IPs                                               ; 0 / 4               ; 0 %   ;
+; HSSI RX PCSs                                                ; 0 / 72              ; 0 %   ;
+; HSSI PMA RX DESERs                                          ; 0 / 72              ; 0 %   ;
+; HSSI TX PCSs                                                ; 0 / 72              ; 0 %   ;
+; HSSI PMA TX SERs                                            ; 0 / 72              ; 0 %   ;
+; HSSI CDR PLL                                                ; 0 / 72              ; 0 %   ;
+;     -- CDR PLLs for Unused RX Clock Workaround              ; 0 / 72              ; 0 %   ;
+; HSSI ATX PLL                                                ; 0 / 24              ; 0 %   ;
+; Impedance control blocks                                    ; 0 / 16              ; 0 %   ;
+; Average interconnect usage (total/H/V)                      ; 0.0% / 0.0% / 0.0%  ;       ;
+; Peak interconnect usage (total/H/V)                         ; 2.9% / 3.4% / 2.2%  ;       ;
+; Maximum fan-out                                             ; 483                 ;       ;
+; Highest non-global fan-out                                  ; 191                 ;       ;
+; Total fan-out                                               ; 5860                ;       ;
+; Average fan-out                                             ; 5.50                ;       ;
++-------------------------------------------------------------+---------------------+-------+
 
 
-+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Fitter Resource Utilization by Entity                                                                                                                                                                                                                                                                                                                                                                                                                              ;
-+----------------------------------------------+----------------------+----------------------------------+---------------------------------------------------+----------------------------------+----------------------+---------------------+---------------------------+---------------+-------------------+-------+------------+------+--------------+--------+-------------------------------------------------------------+----------------------+--------------+
-; Compilation Hierarchy Node                   ; ALMs needed [=A-B+C] ; [A] ALMs used in final placement ; [B] Estimate of ALMs recoverable by dense packing ; [C] Estimate of ALMs unavailable ; ALMs used for memory ; Combinational ALUTs ; Dedicated Logic Registers ; I/O Registers ; Block Memory Bits ; M20Ks ; DSP Blocks ; Pins ; Virtual Pins ; IOPLLs ; Full Hierarchy Name                                         ; Entity Name          ; Library Name ;
-+----------------------------------------------+----------------------+----------------------------------+---------------------------------------------------+----------------------------------+----------------------+---------------------+---------------------------+---------------+-------------------+-------+------------+------+--------------+--------+-------------------------------------------------------------+----------------------+--------------+
-; |                                            ; 114.5 (0.0)          ; 128.5 (0.0)                      ; 15.0 (0.0)                                        ; 1.0 (0.0)                        ; 10.0 (0.0)           ; 164 (0)             ; 137 (0)                   ; 0 (0)         ; 0                 ; 0     ; 0          ; 2    ; 0            ; 0 (0)  ; |                                                           ; syntest_fifo_generic ; altera_work  ;
-;    |i_mut|                                   ; 32.3 (21.1)          ; 32.8 (21.6)                      ; 0.5 (0.5)                                         ; 0.0 (0.0)                        ; 10.0 (0.0)           ; 29 (29)             ; 47 (42)                   ; 0 (0)         ; 0                 ; 0     ; 0          ; 0    ; 0            ; 0 (0)  ; i_mut                                                       ; fifo_generic         ; altera_work  ;
-;       |ram_data_rtl_0|                       ; 11.3 (0.0)           ; 11.3 (0.0)                       ; 0.0 (0.0)                                         ; 0.0 (0.0)                        ; 10.0 (0.0)           ; 0 (0)               ; 5 (0)                     ; 0 (0)         ; 0                 ; 0     ; 0          ; 0    ; 0            ; 0 (0)  ; i_mut|ram_data_rtl_0                                        ; altdpram             ; work         ;
-;          |auto_generated|                    ; 11.3 (11.3)          ; 11.3 (11.3)                      ; 0.0 (0.0)                                         ; 0.0 (0.0)                        ; 10.0 (10.0)          ; 0 (0)               ; 5 (5)                     ; 0 (0)         ; 0                 ; 0     ; 0          ; 0    ; 0            ; 0 (0)  ; i_mut|ram_data_rtl_0|auto_generated                         ; dpram_1e12           ; work         ;
-;    |i_sink|                                  ; 80.3 (75.8)          ; 83.2 (78.5)                      ; 3.9 (3.6)                                         ; 1.0 (1.0)                        ; 0.0 (0.0)            ; 134 (128)           ; 43 (37)                   ; 0 (0)         ; 0                 ; 0     ; 0          ; 0    ; 0            ; 0 (0)  ; i_sink                                                      ; atv_dummy_sink       ; altera_work  ;
-;       |i_atv_dummy_reduce|                   ; 4.5 (3.7)            ; 4.8 (3.7)                        ; 0.3 (0.0)                                         ; 0.0 (0.0)                        ; 0.0 (0.0)            ; 6 (5)               ; 6 (5)                     ; 0 (0)         ; 0                 ; 0     ; 0          ; 0    ; 0            ; 0 (0)  ; i_sink|i_atv_dummy_reduce                                   ; atv_dummy_reduce     ; altera_work  ;
-;          |\g_reduce_more:i_atv_dummy_reduce| ; 0.8 (0.8)            ; 1.0 (1.0)                        ; 0.3 (0.3)                                         ; 0.0 (0.0)                        ; 0.0 (0.0)            ; 1 (1)               ; 1 (1)                     ; 0 (0)         ; 0                 ; 0     ; 0          ; 0    ; 0            ; 0 (0)  ; i_sink|i_atv_dummy_reduce|\g_reduce_more:i_atv_dummy_reduce ; atv_dummy_reduce     ; altera_work  ;
-;    |i_source|                                ; 1.8 (1.8)            ; 12.4 (12.4)                      ; 10.6 (10.6)                                       ; 0.0 (0.0)                        ; 0.0 (0.0)            ; 1 (1)               ; 47 (47)                   ; 0 (0)         ; 0                 ; 0     ; 0          ; 0    ; 0            ; 0 (0)  ; i_source                                                    ; atv_dummy_source     ; altera_work  ;
-+----------------------------------------------+----------------------+----------------------------------+---------------------------------------------------+----------------------------------+----------------------+---------------------+---------------------------+---------------+-------------------+-------+------------+------+--------------+--------+-------------------------------------------------------------+----------------------+--------------+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Fitter Resource Utilization by Entity                                                                                                                                                                                                                                                                                                                                                                                                                                                                   ;
++-------------------------------------------------+----------------------+----------------------------------+---------------------------------------------------+----------------------------------+----------------------+---------------------+---------------------------+---------------+-------------------+-------+------------+------+--------------+--------+-----------------------------------------------------------------------------------------------+----------------------+--------------+
+; Compilation Hierarchy Node                      ; ALMs needed [=A-B+C] ; [A] ALMs used in final placement ; [B] Estimate of ALMs recoverable by dense packing ; [C] Estimate of ALMs unavailable ; ALMs used for memory ; Combinational ALUTs ; Dedicated Logic Registers ; I/O Registers ; Block Memory Bits ; M20Ks ; DSP Blocks ; Pins ; Virtual Pins ; IOPLLs ; Full Hierarchy Name                                                                           ; Entity Name          ; Library Name ;
++-------------------------------------------------+----------------------+----------------------------------+---------------------------------------------------+----------------------------------+----------------------+---------------------+---------------------------+---------------+-------------------+-------+------------+------+--------------+--------+-----------------------------------------------------------------------------------------------+----------------------+--------------+
+; |                                               ; 362.0 (0.0)          ; 416.0 (0.0)                      ; 54.0 (0.0)                                        ; 0.0 (0.0)                        ; 0.0 (0.0)            ; 574 (0)             ; 397 (0)                   ; 0 (0)         ; 44032             ; 3     ; 0          ; 2    ; 0            ; 0 (0)  ; |                                                                                             ; syntest_fifo_generic ; altera_work  ;
+;    |i_mut|                                      ; 23.2 (23.2)          ; 24.6 (24.6)                      ; 1.5 (1.5)                                         ; 0.0 (0.0)                        ; 0.0 (0.0)            ; 42 (42)             ; 35 (35)                   ; 0 (0)         ; 44032             ; 3     ; 0          ; 0    ; 0            ; 0 (0)  ; i_mut                                                                                         ; fifo_generic         ; altera_work  ;
+;       |ram_data_rtl_0|                          ; 0.0 (0.0)            ; 0.0 (0.0)                        ; 0.0 (0.0)                                         ; 0.0 (0.0)                        ; 0.0 (0.0)            ; 0 (0)               ; 0 (0)                     ; 0 (0)         ; 44032             ; 3     ; 0          ; 0    ; 0            ; 0 (0)  ; i_mut|ram_data_rtl_0                                                                          ; altsyncram           ; work         ;
+;          |auto_generated|                       ; 0.0 (0.0)            ; 0.0 (0.0)                        ; 0.0 (0.0)                                         ; 0.0 (0.0)                        ; 0.0 (0.0)            ; 0 (0)               ; 0 (0)                     ; 0 (0)         ; 44032             ; 3     ; 0          ; 0    ; 0            ; 0 (0)  ; i_mut|ram_data_rtl_0|auto_generated                                                           ; altsyncram_8r42      ; work         ;
+;    |i_sink|                                     ; 337.5 (316.5)        ; 346.0 (325.3)                    ; 8.5 (8.8)                                         ; 0.0 (0.0)                        ; 0.0 (0.0)            ; 531 (508)           ; 183 (160)                 ; 0 (0)         ; 0                 ; 0     ; 0          ; 0    ; 0            ; 0 (0)  ; i_sink                                                                                        ; atv_dummy_sink       ; altera_work  ;
+;       |i_atv_dummy_reduce|                      ; 20.7 (16.4)          ; 20.7 (16.4)                      ; 0.0 (0.0)                                         ; 0.0 (0.0)                        ; 0.0 (0.0)            ; 23 (18)             ; 23 (18)                   ; 0 (0)         ; 0                 ; 0     ; 0          ; 0    ; 0            ; 0 (0)  ; i_sink|i_atv_dummy_reduce                                                                     ; atv_dummy_reduce     ; altera_work  ;
+;          |\g_reduce_more:i_atv_dummy_reduce|    ; 3.5 (3.0)            ; 4.2 (3.7)                        ; 0.7 (0.7)                                         ; 0.0 (0.0)                        ; 0.0 (0.0)            ; 5 (4)               ; 5 (4)                     ; 0 (0)         ; 0                 ; 0     ; 0          ; 0    ; 0            ; 0 (0)  ; i_sink|i_atv_dummy_reduce|\g_reduce_more:i_atv_dummy_reduce                                   ; atv_dummy_reduce     ; altera_work  ;
+;             |\g_reduce_more:i_atv_dummy_reduce| ; 0.5 (0.5)            ; 0.5 (0.5)                        ; 0.0 (0.0)                                         ; 0.0 (0.0)                        ; 0.0 (0.0)            ; 1 (1)               ; 1 (1)                     ; 0 (0)         ; 0                 ; 0     ; 0          ; 0    ; 0            ; 0 (0)  ; i_sink|i_atv_dummy_reduce|\g_reduce_more:i_atv_dummy_reduce|\g_reduce_more:i_atv_dummy_reduce ; atv_dummy_reduce     ; altera_work  ;
+;    |i_source|                                   ; 1.3 (1.3)            ; 45.3 (45.3)                      ; 44.0 (44.0)                                       ; 0.0 (0.0)                        ; 0.0 (0.0)            ; 1 (1)               ; 179 (179)                 ; 0 (0)         ; 0                 ; 0     ; 0          ; 0    ; 0            ; 0 (0)  ; i_source                                                                                      ; atv_dummy_source     ; altera_work  ;
++-------------------------------------------------+----------------------+----------------------------------+---------------------------------------------------+----------------------------------+----------------------+---------------------+---------------------------+---------------+-------------------+-------+------------+------+--------------+--------+-----------------------------------------------------------------------------------------------+----------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
 
@@ -2432,30 +2525,30 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +--------+----------+---------------------+--------------------+----------------+-----------------------------------+-------------------------------------+
 
 
-+----------------------------------------------------------+
-; Routing Usage Summary                                    ;
-+------------------------------+---------------------------+
-; Routing Resource Type        ; Usage                     ;
-+------------------------------+---------------------------+
-; Block interconnects          ; 427 / 3,375,986 ( < 1 % ) ;
-; C27 interconnects            ; 0 / 56,741 ( 0 % )        ;
-; C4 interconnects             ; 131 / 2,570,048 ( < 1 % ) ;
-; Direct links                 ; 137 / 3,375,986 ( < 1 % ) ;
-; Global clocks                ; 1 / 32 ( 3 % )            ;
-; Periphery clocks             ; 0 / 910 ( 0 % )           ;
-; R3 interconnects             ; 108 / 1,214,760 ( < 1 % ) ;
-; R32 interconnects            ; 0 / 99,472 ( 0 % )        ;
-; R32/C27 interconnect drivers ; 0 / 385,136 ( 0 % )       ;
-; R6 interconnects             ; 155 / 2,336,152 ( < 1 % ) ;
-; Regional clock lefts         ; 0 / 16 ( 0 % )            ;
-; Regional clock out bottoms   ; 0 / 16 ( 0 % )            ;
-; Regional clock out tops      ; 0 / 16 ( 0 % )            ;
-; Regional clock rights        ; 0 / 16 ( 0 % )            ;
-; Regional clocks              ; 0 / 16 ( 0 % )            ;
-; Spine buffers                ; 1 / 704 ( < 1 % )         ;
-; Spine clocks                 ; 1 / 1,056 ( < 1 % )       ;
-; Spine feedthroughs           ; 0 / 1,024 ( 0 % )         ;
-+------------------------------+---------------------------+
++------------------------------------------------------------+
+; Routing Usage Summary                                      ;
++------------------------------+-----------------------------+
+; Routing Resource Type        ; Usage                       ;
++------------------------------+-----------------------------+
+; Block interconnects          ; 1,437 / 3,375,986 ( < 1 % ) ;
+; C27 interconnects            ; 0 / 56,741 ( 0 % )          ;
+; C4 interconnects             ; 504 / 2,570,048 ( < 1 % )   ;
+; Direct links                 ; 414 / 3,375,986 ( < 1 % )   ;
+; Global clocks                ; 1 / 32 ( 3 % )              ;
+; Periphery clocks             ; 0 / 910 ( 0 % )             ;
+; R3 interconnects             ; 386 / 1,214,760 ( < 1 % )   ;
+; R32 interconnects            ; 2 / 99,472 ( < 1 % )        ;
+; R32/C27 interconnect drivers ; 2 / 385,136 ( < 1 % )       ;
+; R6 interconnects             ; 541 / 2,336,152 ( < 1 % )   ;
+; Regional clock lefts         ; 0 / 16 ( 0 % )              ;
+; Regional clock out bottoms   ; 0 / 16 ( 0 % )              ;
+; Regional clock out tops      ; 0 / 16 ( 0 % )              ;
+; Regional clock rights        ; 0 / 16 ( 0 % )              ;
+; Regional clocks              ; 0 / 16 ( 0 % )              ;
+; Spine buffers                ; 1 / 704 ( < 1 % )           ;
+; Spine clocks                 ; 1 / 1,056 ( < 1 % )         ;
+; Spine feedthroughs           ; 0 / 1,024 ( 0 % )           ;
++------------------------------+-----------------------------+
 
 
 +------------------------------------------------------------+
@@ -2463,118 +2556,118 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +-----------------+----------------------+-------------------+
 ; Source Clock(s) ; Destination Clock(s) ; Delay Added in ns ;
 +-----------------+----------------------+-------------------+
-; clk_i           ; clk_i                ; 66.5              ;
+; clk_i           ; clk_i                ; 149.9             ;
 +-----------------+----------------------+-------------------+
 Note: For more information on problematic transfers, consider running the Fitter again with the Optimize hold timing option (Settings Menu) turned off.
 This will disable optimization of problematic paths and expose them for further analysis using the Timing Analyzer.
 
 
-+------------------------------------------------------------------------------------------------------------------------------------------------+
-; Estimated Delay Added for Hold Timing Details                                                                                                  ;
-+---------------------------------------------------+------------------------------------------------------------------------+-------------------+
-; Source Register                                   ; Destination Register                                                   ; Delay Added in ns ;
-+---------------------------------------------------+------------------------------------------------------------------------+-------------------+
-; i_mut|ram_rd_ptr[0]                               ; i_mut|ram_data_rtl_0|auto_generated|rdaddr_reg[4]                      ; 0.370             ;
-; i_mut|ram_rd_ptr[1]                               ; i_mut|ram_data_rtl_0|auto_generated|rdaddr_reg[4]                      ; 0.360             ;
-; i_mut|ram_data_rtl_0|auto_generated|rdaddr_reg[4] ; i_mut|ram_data_rtl_0|auto_generated|lutrama6~reg1                      ; 0.344             ;
-; i_mut|ram_rd_ptr[3]                               ; i_mut|ram_data_rtl_0|auto_generated|rdaddr_reg[4]                      ; 0.343             ;
-; i_sink|\i:2:counter[2]                            ; i_sink|output_stage1[8]                                                ; 0.329             ;
-; i_sink|output_stage1[2]                           ; i_sink|i_atv_dummy_reduce|reduced[4]                                   ; 0.324             ;
-; i_sink|\i:3:counter[1]                            ; i_sink|output_stage1[20]                                               ; 0.314             ;
-; i_mut|ram_rd_ptr[2]                               ; i_mut|ram_data_rtl_0|auto_generated|rdaddr_reg[4]                      ; 0.313             ;
-; i_sink|\i:2:counter[1]                            ; i_sink|output_stage1[19]                                               ; 0.308             ;
-; i_sink|i_atv_dummy_reduce|reduced[0]              ; i_sink|i_atv_dummy_reduce|\g_reduce_more:i_atv_dummy_reduce|reduced[0] ; 0.301             ;
-; i_sink|\i:0:counter[1]                            ; i_sink|output_stage1[11]                                               ; 0.300             ;
-; i_mut|words_in_ram[4]                             ; i_mut|is_full                                                          ; 0.299             ;
-; i_source|\g_reg_banks:0:outputs[0]                ; i_mut|ram_data_rtl_0|auto_generated|rdaddr_reg[1]                      ; 0.298             ;
-; i_sink|\i:1:counter[1]                            ; i_sink|output_stage1[1]                                                ; 0.297             ;
-; i_sink|output_stage1[19]                          ; i_sink|i_atv_dummy_reduce|reduced[3]                                   ; 0.295             ;
-; i_sink|\i:6:counter[2]                            ; i_sink|output_stage1[20]                                               ; 0.294             ;
-; i_sink|\i:3:counter[2]                            ; i_sink|output_stage1[11]                                               ; 0.293             ;
-; i_sink|\i:0:counter[2]                            ; i_sink|output_stage1[1]                                                ; 0.289             ;
-; i_source|\g_reg_banks:0:regs[1]                   ; i_source|\g_reg_banks:0:outputs[1]                                     ; 0.288             ;
-; i_source|\g_reg_banks:0:outputs[15]               ; i_source|\g_reg_banks:0:regs[16]                                       ; 0.285             ;
-; i_source|\g_reg_banks:0:regs[2]                   ; i_source|\g_reg_banks:0:outputs[2]                                     ; 0.284             ;
-; i_source|\g_reg_banks:0:outputs[7]                ; i_source|\g_reg_banks:0:regs[8]                                        ; 0.281             ;
-; i_sink|\i:1:counter[2]                            ; i_sink|output_stage1[2]                                                ; 0.281             ;
-; i_sink|output_stage1[10]                          ; i_sink|i_atv_dummy_reduce|reduced[2]                                   ; 0.281             ;
-; i_source|\g_reg_banks:0:regs[11]                  ; i_source|\g_reg_banks:0:outputs[11]                                    ; 0.276             ;
-; i_source|\g_reg_banks:0:regs[7]                   ; i_source|\g_reg_banks:0:outputs[7]                                     ; 0.272             ;
-; i_sink|output_stage1[15]                          ; i_sink|i_atv_dummy_reduce|reduced[3]                                   ; 0.272             ;
-; i_source|\g_reg_banks:0:regs[13]                  ; i_source|\g_reg_banks:0:outputs[13]                                    ; 0.272             ;
-; i_sink|output_stage1[16]                          ; i_sink|i_atv_dummy_reduce|reduced[3]                                   ; 0.272             ;
-; i_source|\g_reg_banks:0:regs[4]                   ; i_source|\g_reg_banks:0:outputs[4]                                     ; 0.271             ;
-; i_sink|output_stage1[4]                           ; i_sink|i_atv_dummy_reduce|reduced[0]                                   ; 0.269             ;
-; i_mut|ram_wr_ptr[2]                               ; i_mut|ram_wr_ptr[3]                                                    ; 0.264             ;
-; i_sink|output_stage1[18]                          ; i_sink|i_atv_dummy_reduce|reduced[3]                                   ; 0.262             ;
-; i_sink|output_stage1[13]                          ; i_sink|i_atv_dummy_reduce|reduced[2]                                   ; 0.262             ;
-; i_mut|ram_wr_ptr[0]                               ; i_mut|ram_wr_ptr[4]                                                    ; 0.262             ;
-; i_sink|output_stage1[6]                           ; i_sink|i_atv_dummy_reduce|reduced[1]                                   ; 0.261             ;
-; i_sink|output_stage1[5]                           ; i_sink|i_atv_dummy_reduce|reduced[1]                                   ; 0.259             ;
-; i_source|\g_reg_banks:0:regs[16]                  ; i_source|\g_reg_banks:0:outputs[16]                                    ; 0.259             ;
-; i_mut|words_in_ram[5]                             ; i_mut|is_empty                                                         ; 0.259             ;
-; i_source|\g_reg_banks:0:outputs[4]                ; i_source|\g_reg_banks:0:regs[5]                                        ; 0.258             ;
-; i_mut|ram_out_reg[16]                             ; i_sink|output_stage1[18]                                               ; 0.258             ;
-; i_source|\g_reg_banks:0:outputs[12]               ; i_source|\g_reg_banks:0:regs[13]                                       ; 0.256             ;
-; i_mut|ram_wr_ptr[1]                               ; i_mut|ram_wr_ptr[4]                                                    ; 0.255             ;
-; i_mut|ram_out_reg[17]                             ; i_sink|output_stage1[19]                                               ; 0.255             ;
-; i_sink|\i:4:counter[2]                            ; i_sink|output_stage1[11]                                               ; 0.255             ;
-; i_source|\g_reg_banks:0:regs[19]                  ; i_source|\g_reg_banks:0:outputs[19]                                    ; 0.254             ;
-; i_source|\g_reg_banks:0:outputs[3]                ; i_source|\g_reg_banks:0:regs[4]                                        ; 0.251             ;
-; i_sink|output_stage1[12]                          ; i_sink|i_atv_dummy_reduce|reduced[2]                                   ; 0.249             ;
-; i_sink|output_stage1[8]                           ; i_sink|i_atv_dummy_reduce|reduced[1]                                   ; 0.249             ;
-; i_sink|\i:0:counter[0]                            ; i_sink|output_stage1[0]                                                ; 0.245             ;
-; i_sink|output_stage1[17]                          ; i_sink|i_atv_dummy_reduce|reduced[3]                                   ; 0.244             ;
-; i_source|\g_reg_banks:0:regs[8]                   ; i_source|\g_reg_banks:0:outputs[8]                                     ; 0.242             ;
-; i_source|\g_reg_banks:0:regs[3]                   ; i_source|\g_reg_banks:0:outputs[3]                                     ; 0.239             ;
-; i_source|\g_reg_banks:0:outputs[10]               ; i_source|\g_reg_banks:0:regs[11]                                       ; 0.238             ;
-; i_sink|output_stage1[14]                          ; i_sink|i_atv_dummy_reduce|reduced[2]                                   ; 0.238             ;
-; i_sink|i_atv_dummy_reduce|reduced[4]              ; i_sink|i_atv_dummy_reduce|\g_reduce_more:i_atv_dummy_reduce|reduced[0] ; 0.236             ;
-; i_mut|ram_out_reg[19]                             ; i_sink|output_stage1[21]                                               ; 0.236             ;
-; i_mut|ram_out_reg[7]                              ; i_sink|output_stage1[9]                                                ; 0.235             ;
-; i_sink|\i:1:counter[0]                            ; i_sink|output_stage1[8]                                                ; 0.235             ;
-; i_sink|output_stage1[7]                           ; i_sink|i_atv_dummy_reduce|reduced[1]                                   ; 0.232             ;
-; i_source|\g_reg_banks:0:regs[5]                   ; i_source|\g_reg_banks:0:outputs[5]                                     ; 0.228             ;
-; i_sink|output_stage1[20]                          ; i_sink|i_atv_dummy_reduce|reduced[4]                                   ; 0.225             ;
-; i_source|\g_reg_banks:0:outputs[6]                ; i_source|\g_reg_banks:0:regs[7]                                        ; 0.224             ;
-; i_sink|\i:7:counter[2]                            ; i_sink|output_stage1[20]                                               ; 0.222             ;
-; i_mut|ram_out_reg[14]                             ; i_sink|output_stage1[16]                                               ; 0.218             ;
-; i_sink|i_atv_dummy_reduce|reduced[3]              ; i_sink|i_atv_dummy_reduce|\g_reduce_more:i_atv_dummy_reduce|reduced[0] ; 0.218             ;
-; i_sink|output_stage1[21]                          ; i_sink|i_atv_dummy_reduce|reduced[4]                                   ; 0.216             ;
-; i_source|\g_reg_banks:0:outputs[13]               ; i_source|\g_reg_banks:0:regs[14]                                       ; 0.215             ;
-; i_mut|ram_out_reg[9]                              ; i_sink|output_stage1[11]                                               ; 0.215             ;
-; i_mut|is_empty                                    ; i_mut|ram_data_rtl_0|auto_generated|rdaddr_reg[0]                      ; 0.213             ;
-; i_mut|ram_out_reg[15]                             ; i_sink|output_stage1[17]                                               ; 0.212             ;
-; i_mut|ram_data_rtl_0|auto_generated|rdaddr_reg[3] ; i_mut|ram_data_rtl_0|auto_generated|lutrama1~reg1                      ; 0.212             ;
-; i_mut|words_in_ram[0]                             ; i_mut|is_empty                                                         ; 0.211             ;
-; i_sink|output_stage1[11]                          ; i_sink|i_atv_dummy_reduce|reduced[2]                                   ; 0.209             ;
-; i_mut|ram_data_rtl_0|auto_generated|rdaddr_reg[0] ; i_mut|ram_data_rtl_0|auto_generated|lutrama0~reg1                      ; 0.209             ;
-; i_mut|ram_wr_ptr[3]                               ; i_mut|ram_wr_ptr[4]                                                    ; 0.209             ;
-; i_source|\g_reg_banks:0:outputs[21]               ; i_source|\g_reg_banks:0:regs[22]                                       ; 0.208             ;
-; i_sink|output_stage1[3]                           ; i_sink|i_atv_dummy_reduce|reduced[0]                                   ; 0.206             ;
-; i_mut|ram_out_reg[5]                              ; i_sink|output_stage1[7]                                                ; 0.198             ;
-; i_source|\g_reg_banks:0:outputs[17]               ; i_source|\g_reg_banks:0:regs[0]                                        ; 0.196             ;
-; i_sink|\i:5:counter[2]                            ; i_sink|output_stage1[15]                                               ; 0.196             ;
-; i_source|\g_reg_banks:0:outputs[8]                ; i_source|\g_reg_banks:0:regs[9]                                        ; 0.195             ;
-; i_source|\g_reg_banks:0:outputs[5]                ; i_source|\g_reg_banks:0:regs[6]                                        ; 0.192             ;
-; i_mut|ram_data_rtl_0|auto_generated|rdaddr_reg[1] ; i_mut|ram_data_rtl_0|auto_generated|lutrama3~reg1                      ; 0.191             ;
-; i_mut|ram_out_reg[11]                             ; i_sink|output_stage1[13]                                               ; 0.191             ;
-; i_mut|ram_out_reg[6]                              ; i_sink|output_stage1[8]                                                ; 0.189             ;
-; i_source|\g_reg_banks:0:outputs[18]               ; i_source|\g_reg_banks:0:regs[19]                                       ; 0.186             ;
-; i_source|\g_reg_banks:0:outputs[9]                ; i_source|\g_reg_banks:0:regs[10]                                       ; 0.186             ;
-; i_sink|i_atv_dummy_reduce|reduced[2]              ; i_sink|i_atv_dummy_reduce|\g_reduce_more:i_atv_dummy_reduce|reduced[0] ; 0.186             ;
-; i_source|\g_reg_banks:0:outputs[14]               ; i_source|\g_reg_banks:0:regs[15]                                       ; 0.183             ;
-; i_sink|i_atv_dummy_reduce|reduced[1]              ; i_sink|i_atv_dummy_reduce|\g_reduce_more:i_atv_dummy_reduce|reduced[0] ; 0.182             ;
-; i_source|\g_reg_banks:0:outputs[22]               ; i_source|\g_reg_banks:0:regs[0]                                        ; 0.182             ;
-; i_mut|ram_out_reg[0]                              ; i_sink|output_stage1[2]                                                ; 0.181             ;
-; i_mut|ram_data_rtl_0|auto_generated|rdaddr_reg[2] ; i_mut|ram_data_rtl_0|auto_generated|lutrama0~reg1                      ; 0.178             ;
-; i_source|\g_reg_banks:0:outputs[11]               ; i_source|\g_reg_banks:0:regs[12]                                       ; 0.175             ;
-; i_source|\g_reg_banks:0:outputs[2]                ; i_mut|ram_data_rtl_0|auto_generated|rdaddr_reg[2]                      ; 0.174             ;
-; i_source|\g_reg_banks:0:outputs[16]               ; i_source|\g_reg_banks:0:regs[17]                                       ; 0.172             ;
-; i_mut|ram_out_reg[10]                             ; i_sink|output_stage1[12]                                               ; 0.169             ;
-; i_mut|ram_out_reg[2]                              ; i_sink|output_stage1[4]                                                ; 0.168             ;
-; i_mut|ram_out_reg[18]                             ; i_sink|output_stage1[20]                                               ; 0.167             ;
-+---------------------------------------------------+------------------------------------------------------------------------+-------------------+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Estimated Delay Added for Hold Timing Details                                                                                                                                                         ;
++------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------+-------------------+
+; Source Register                                                        ; Destination Register                                                                                     ; Delay Added in ns ;
++------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------+-------------------+
+; i_source|\g_reg_banks:0:outputs[49]                                    ; i_mut|ram_data_rtl_0|auto_generated|ram_block1a46~reg0                                                   ; 0.399             ;
+; i_source|\g_reg_banks:0:outputs[28]                                    ; i_mut|ram_data_rtl_0|auto_generated|ram_block1a25~reg0                                                   ; 0.362             ;
+; i_source|\g_reg_banks:0:regs[1]                                        ; i_source|\g_reg_banks:0:outputs[1]                                                                       ; 0.345             ;
+; i_sink|\i:6:counter[3]                                                 ; i_sink|\i:6:counter[4]                                                                                   ; 0.339             ;
+; i_source|\g_reg_banks:0:outputs[68]                                    ; i_mut|ram_data_rtl_0|auto_generated|ram_block1a65~reg0                                                   ; 0.335             ;
+; i_sink|output_stage1[0]                                                ; i_sink|i_atv_dummy_reduce|reduced[0]                                                                     ; 0.325             ;
+; i_sink|\i:7:counter[3]                                                 ; i_sink|\i:7:counter[4]                                                                                   ; 0.322             ;
+; i_sink|\i:1:counter[0]                                                 ; i_sink|output_stage1[15]                                                                                 ; 0.322             ;
+; i_source|\g_reg_banks:0:outputs[50]                                    ; i_mut|ram_data_rtl_0|auto_generated|ram_block1a47~reg0                                                   ; 0.319             ;
+; i_sink|\i:15:counter[3]                                                ; i_sink|\i:15:counter[4]                                                                                  ; 0.316             ;
+; i_mut|is_empty                                                         ; i_mut|is_full                                                                                            ; 0.316             ;
+; i_sink|\i:12:counter[3]                                                ; i_sink|\i:12:counter[4]                                                                                  ; 0.316             ;
+; i_sink|\i:8:counter[3]                                                 ; i_sink|\i:8:counter[4]                                                                                   ; 0.315             ;
+; i_sink|output_stage1[20]                                               ; i_sink|i_atv_dummy_reduce|reduced[4]                                                                     ; 0.312             ;
+; i_sink|\i:2:counter[3]                                                 ; i_sink|\i:2:counter[4]                                                                                   ; 0.312             ;
+; i_sink|output_stage1[85]                                               ; i_sink|i_atv_dummy_reduce|reduced[17]                                                                    ; 0.309             ;
+; i_sink|\i:10:counter[3]                                                ; i_sink|\i:10:counter[4]                                                                                  ; 0.309             ;
+; i_source|\g_reg_banks:0:outputs[25]                                    ; i_mut|ram_data_rtl_0|auto_generated|ram_block1a22~reg0                                                   ; 0.309             ;
+; i_sink|\i:0:counter[2]                                                 ; i_sink|output_stage1[2]                                                                                  ; 0.309             ;
+; i_sink|output_stage1[21]                                               ; i_sink|i_atv_dummy_reduce|reduced[4]                                                                     ; 0.309             ;
+; i_sink|\i:4:counter[3]                                                 ; i_sink|\i:4:counter[4]                                                                                   ; 0.306             ;
+; i_sink|output_stage1[56]                                               ; i_sink|i_atv_dummy_reduce|reduced[11]                                                                    ; 0.306             ;
+; i_source|\g_reg_banks:0:outputs[41]                                    ; i_source|\g_reg_banks:0:regs[42]                                                                         ; 0.306             ;
+; i_sink|output_stage1[55]                                               ; i_sink|i_atv_dummy_reduce|reduced[11]                                                                    ; 0.306             ;
+; i_source|\g_reg_banks:0:outputs[51]                                    ; i_mut|ram_data_rtl_0|auto_generated|ram_block1a48~reg0                                                   ; 0.303             ;
+; i_source|\g_reg_banks:0:outputs[27]                                    ; i_mut|ram_data_rtl_0|auto_generated|ram_block1a24~reg0                                                   ; 0.303             ;
+; i_source|\g_reg_banks:0:regs[29]                                       ; i_source|\g_reg_banks:0:outputs[29]                                                                      ; 0.299             ;
+; i_sink|output_stage1[70]                                               ; i_sink|i_atv_dummy_reduce|reduced[14]                                                                    ; 0.299             ;
+; i_source|\g_reg_banks:0:outputs[63]                                    ; i_source|\g_reg_banks:0:regs[64]                                                                         ; 0.299             ;
+; i_source|\g_reg_banks:0:outputs[34]                                    ; i_source|\g_reg_banks:0:regs[35]                                                                         ; 0.299             ;
+; i_sink|output_stage1[35]                                               ; i_sink|i_atv_dummy_reduce|reduced[7]                                                                     ; 0.296             ;
+; i_source|\g_reg_banks:0:outputs[61]                                    ; i_source|\g_reg_banks:0:regs[62]                                                                         ; 0.296             ;
+; i_sink|\i:17:counter[3]                                                ; i_sink|\i:17:counter[4]                                                                                  ; 0.296             ;
+; i_sink|output_stage1[60]                                               ; i_sink|i_atv_dummy_reduce|reduced[12]                                                                    ; 0.296             ;
+; i_sink|output_stage1[3]                                                ; i_sink|i_atv_dummy_reduce|reduced[0]                                                                     ; 0.296             ;
+; i_sink|output_stage1[1]                                                ; i_sink|i_atv_dummy_reduce|reduced[0]                                                                     ; 0.296             ;
+; i_mut|words_in_ram[9]                                                  ; i_mut|is_empty                                                                                           ; 0.296             ;
+; i_sink|output_stage1[16]                                               ; i_sink|i_atv_dummy_reduce|reduced[3]                                                                     ; 0.295             ;
+; i_source|\g_reg_banks:0:outputs[52]                                    ; i_source|\g_reg_banks:0:regs[53]                                                                         ; 0.293             ;
+; i_sink|output_stage1[80]                                               ; i_sink|i_atv_dummy_reduce|reduced[16]                                                                    ; 0.293             ;
+; i_sink|output_stage1[22]                                               ; i_sink|i_atv_dummy_reduce|reduced[4]                                                                     ; 0.292             ;
+; i_source|\g_reg_banks:0:regs[44]                                       ; i_source|\g_reg_banks:0:outputs[44]                                                                      ; 0.289             ;
+; i_source|\g_reg_banks:0:outputs[66]                                    ; i_source|\g_reg_banks:0:regs[67]                                                                         ; 0.289             ;
+; i_sink|output_stage1[40]                                               ; i_sink|i_atv_dummy_reduce|reduced[8]                                                                     ; 0.289             ;
+; i_sink|output_stage1[27]                                               ; i_sink|i_atv_dummy_reduce|reduced[5]                                                                     ; 0.289             ;
+; i_sink|output_stage1[25]                                               ; i_sink|i_atv_dummy_reduce|reduced[5]                                                                     ; 0.289             ;
+; i_sink|i_atv_dummy_reduce|\g_reduce_more:i_atv_dummy_reduce|reduced[0] ; i_sink|i_atv_dummy_reduce|\g_reduce_more:i_atv_dummy_reduce|\g_reduce_more:i_atv_dummy_reduce|reduced[0] ; 0.289             ;
+; i_sink|\i:14:counter[3]                                                ; i_sink|\i:14:counter[4]                                                                                  ; 0.286             ;
+; i_source|\g_reg_banks:0:outputs[2]                                     ; i_source|\g_reg_banks:0:regs[3]                                                                          ; 0.286             ;
+; i_sink|\i:9:counter[3]                                                 ; i_sink|\i:9:counter[4]                                                                                   ; 0.286             ;
+; i_sink|output_stage1[65]                                               ; i_sink|i_atv_dummy_reduce|reduced[13]                                                                    ; 0.286             ;
+; i_sink|output_stage1[45]                                               ; i_sink|i_atv_dummy_reduce|reduced[9]                                                                     ; 0.286             ;
+; i_sink|output_stage1[2]                                                ; i_sink|i_atv_dummy_reduce|reduced[0]                                                                     ; 0.286             ;
+; i_source|\g_reg_banks:0:outputs[23]                                    ; i_mut|ram_data_rtl_0|auto_generated|ram_block1a20~reg0                                                   ; 0.285             ;
+; i_source|\g_reg_banks:0:regs[62]                                       ; i_source|\g_reg_banks:0:outputs[62]                                                                      ; 0.285             ;
+; i_source|\g_reg_banks:0:regs[37]                                       ; i_source|\g_reg_banks:0:outputs[37]                                                                      ; 0.285             ;
+; i_source|\g_reg_banks:0:regs[67]                                       ; i_source|\g_reg_banks:0:outputs[67]                                                                      ; 0.283             ;
+; i_sink|output_stage1[7]                                                ; i_sink|i_atv_dummy_reduce|reduced[1]                                                                     ; 0.283             ;
+; i_source|\g_reg_banks:0:outputs[20]                                    ; i_mut|ram_data_rtl_0|auto_generated|ram_block1a17~reg0                                                   ; 0.283             ;
+; i_sink|output_stage1[63]                                               ; i_sink|i_atv_dummy_reduce|reduced[12]                                                                    ; 0.283             ;
+; i_source|\g_reg_banks:0:regs[85]                                       ; i_source|\g_reg_banks:0:outputs[85]                                                                      ; 0.282             ;
+; i_source|\g_reg_banks:0:outputs[16]                                    ; i_mut|ram_data_rtl_0|auto_generated|ram_block1a13~reg0                                                   ; 0.282             ;
+; i_source|\g_reg_banks:0:outputs[62]                                    ; i_source|\g_reg_banks:0:regs[63]                                                                         ; 0.282             ;
+; i_sink|output_stage1[43]                                               ; i_sink|i_atv_dummy_reduce|reduced[8]                                                                     ; 0.279             ;
+; i_source|\g_reg_banks:0:regs[16]                                       ; i_source|\g_reg_banks:0:outputs[16]                                                                      ; 0.279             ;
+; i_source|\g_reg_banks:0:outputs[48]                                    ; i_mut|ram_data_rtl_0|auto_generated|ram_block1a45~reg0                                                   ; 0.279             ;
+; i_source|\g_reg_banks:0:outputs[45]                                    ; i_mut|ram_data_rtl_0|auto_generated|ram_block1a42~reg0                                                   ; 0.279             ;
+; i_source|\g_reg_banks:0:outputs[26]                                    ; i_mut|ram_data_rtl_0|auto_generated|ram_block1a23~reg0                                                   ; 0.279             ;
+; i_sink|output_stage1[49]                                               ; i_sink|i_atv_dummy_reduce|reduced[9]                                                                     ; 0.279             ;
+; i_source|\g_reg_banks:0:regs[59]                                       ; i_source|\g_reg_banks:0:outputs[59]                                                                      ; 0.279             ;
+; i_sink|\i:0:counter[4]                                                 ; i_sink|output_stage1[2]                                                                                  ; 0.279             ;
+; i_sink|i_atv_dummy_reduce|reduced[14]                                  ; i_sink|i_atv_dummy_reduce|\g_reduce_more:i_atv_dummy_reduce|reduced[2]                                   ; 0.279             ;
+; i_source|\g_reg_banks:0:regs[39]                                       ; i_source|\g_reg_banks:0:outputs[39]                                                                      ; 0.276             ;
+; i_sink|i_atv_dummy_reduce|reduced[13]                                  ; i_sink|i_atv_dummy_reduce|\g_reduce_more:i_atv_dummy_reduce|reduced[2]                                   ; 0.276             ;
+; i_source|\g_reg_banks:0:regs[77]                                       ; i_source|\g_reg_banks:0:outputs[77]                                                                      ; 0.276             ;
+; i_source|\g_reg_banks:0:regs[71]                                       ; i_source|\g_reg_banks:0:outputs[71]                                                                      ; 0.276             ;
+; i_source|\g_reg_banks:0:regs[33]                                       ; i_source|\g_reg_banks:0:outputs[33]                                                                      ; 0.276             ;
+; i_source|\g_reg_banks:0:outputs[35]                                    ; i_source|\g_reg_banks:0:regs[36]                                                                         ; 0.276             ;
+; i_sink|\i:11:counter[3]                                                ; i_sink|\i:11:counter[4]                                                                                  ; 0.276             ;
+; i_sink|\i:3:counter[3]                                                 ; i_sink|\i:3:counter[4]                                                                                   ; 0.276             ;
+; i_sink|output_stage1[66]                                               ; i_sink|i_atv_dummy_reduce|reduced[13]                                                                    ; 0.276             ;
+; i_sink|output_stage1[26]                                               ; i_sink|i_atv_dummy_reduce|reduced[5]                                                                     ; 0.276             ;
+; i_sink|output_stage1[9]                                                ; i_sink|i_atv_dummy_reduce|reduced[1]                                                                     ; 0.276             ;
+; i_sink|\i:13:counter[3]                                                ; i_sink|\i:13:counter[4]                                                                                  ; 0.276             ;
+; i_sink|\i:5:counter[3]                                                 ; i_sink|\i:5:counter[4]                                                                                   ; 0.276             ;
+; i_sink|output_stage1[57]                                               ; i_sink|i_atv_dummy_reduce|reduced[11]                                                                    ; 0.276             ;
+; i_source|\g_reg_banks:0:outputs[83]                                    ; i_source|\g_reg_banks:0:regs[84]                                                                         ; 0.273             ;
+; i_sink|output_stage1[36]                                               ; i_sink|i_atv_dummy_reduce|reduced[7]                                                                     ; 0.273             ;
+; i_sink|output_stage1[24]                                               ; i_sink|i_atv_dummy_reduce|reduced[4]                                                                     ; 0.273             ;
+; i_sink|output_stage1[61]                                               ; i_sink|i_atv_dummy_reduce|reduced[12]                                                                    ; 0.273             ;
+; i_sink|output_stage1[50]                                               ; i_sink|i_atv_dummy_reduce|reduced[10]                                                                    ; 0.272             ;
+; i_source|\g_reg_banks:0:outputs[15]                                    ; i_source|\g_reg_banks:0:regs[16]                                                                         ; 0.272             ;
+; i_source|\g_reg_banks:0:outputs[22]                                    ; i_source|\g_reg_banks:0:regs[23]                                                                         ; 0.272             ;
+; i_source|\g_reg_banks:0:regs[63]                                       ; i_source|\g_reg_banks:0:outputs[63]                                                                      ; 0.269             ;
+; i_source|\g_reg_banks:0:regs[42]                                       ; i_source|\g_reg_banks:0:outputs[42]                                                                      ; 0.269             ;
+; i_source|\g_reg_banks:0:regs[15]                                       ; i_source|\g_reg_banks:0:outputs[15]                                                                      ; 0.269             ;
+; i_source|\g_reg_banks:0:outputs[67]                                    ; i_mut|ram_data_rtl_0|auto_generated|ram_block1a64~reg0                                                   ; 0.269             ;
+; i_source|\g_reg_banks:0:outputs[60]                                    ; i_source|\g_reg_banks:0:regs[61]                                                                         ; 0.269             ;
+; i_source|\g_reg_banks:0:outputs[32]                                    ; i_source|\g_reg_banks:0:regs[33]                                                                         ; 0.269             ;
+; i_source|\g_reg_banks:0:regs[2]                                        ; i_source|\g_reg_banks:0:outputs[2]                                                                       ; 0.269             ;
++------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------+-------------------+
 Note: This table only shows the top 100 path(s) that have the largest delay added for hold.
 
 
@@ -2586,13 +2679,13 @@ Note: This table only shows the top 100 path(s) that have the largest delay adde
 ;                                                        ;                 ;       ;
 ; Programmable power technology high-speed tiles         ; 12 / 18,244     ; < 1 % ;
 ; Programmable power technology low-power tiles          ; 18,232 / 18,244 ; 100 % ;
-;     -- low-power tiles that are used by the design     ; 12 / 18,232     ; < 1 % ;
-;     -- unused tiles (low-power)                        ; 18,220 / 18,232 ; 100 % ;
+;     -- low-power tiles that are used by the design     ; 41 / 18,232     ; < 1 % ;
+;     -- unused tiles (low-power)                        ; 18,191 / 18,232 ; 100 % ;
 ;                                                        ;                 ;       ;
-; Programmable power technology high-speed LAB tiles     ; 12 / 13,898     ; < 1 % ;
-; Programmable power technology low-power LAB tiles      ; 13,886 / 13,898 ; 100 % ;
-;     -- low-power LAB tiles that are used by the design ; 12 / 13,886     ; < 1 % ;
-;     -- unused LAB tiles (low-power)                    ; 13,874 / 13,886 ; 100 % ;
+; Programmable power technology high-speed LAB tiles     ; 9 / 13,898      ; < 1 % ;
+; Programmable power technology low-power LAB tiles      ; 13,889 / 13,898 ; 100 % ;
+;     -- low-power LAB tiles that are used by the design ; 41 / 13,889     ; < 1 % ;
+;     -- unused LAB tiles (low-power)                    ; 13,848 / 13,889 ; 100 % ;
 ;                                                        ;                 ;       ;
 +--------------------------------------------------------+-----------------+-------+
 
@@ -2611,12 +2704,14 @@ Info (21076): Core supply voltage operating condition is not set. Assuming a def
 Info (21077): Low junction temperature is -40 degrees C
 Info (21077): High junction temperature is 100 degrees C
 Info (171003): Fitter is performing an Auto Fit compilation, which may decrease Fitter effort to reduce compilation time
+Info (176045): Design uses memory blocks. Violating setup or hold times of memory block address registers for either read or write operations could cause memory contents to be corrupted. Make sure that all memory block address registers meet the setup and hold time requirements.
 Info (12262): Starting Fitter periphery placement operations
 Info (12290): Loading the periphery placement data.
-Info (12291): Periphery placement data loaded: elapsed time is 00:00:20
+Info (12291): Periphery placement data loaded: elapsed time is 00:00:18
 Info (12627): Pin ~ALTERA_DATA0~ is reserved at location AU27
 Warning (15714): Some pins have incomplete I/O assignments. Refer to the I/O Assignment Warnings report for details
 Critical Warning (12677): No exact pin location assignment(s) for 2 pins of 2 total pins. For the list of pins please refer to the I/O Assignment Warnings table in the fitter report
+Info (176045): Design uses memory blocks. Violating setup or hold times of memory block address registers for either read or write operations could cause memory contents to be corrupted. Make sure that all memory block address registers meet the setup and hold time requirements.
 Info (16210): Plan updated with currently enabled project assignments.
 Info (12295): Periphery placement of all unplaced cells complete: elapsed time is 00:00:01
 Critical Warning (17951): There are 72 unused RX channels in the design.
@@ -2626,7 +2721,7 @@ Critical Warning (18655): There are 72 unused TX channels in the design.
     Info (19540): Add the QSF assignment 'set_instance_assignment -name PRESERVE_UNUSED_XCVR_CHANNEL ON -to <pin_name>' for each unused channel that will be used in future.
     Info (19541): The above QSF assignment will preserve the performance of specified channels over time, and works only if the design uses at least 1 transceiver channel.
 Info (11191): Automatically promoted 1 clock (1 global)
-    Info (13173): clk_i~inputCLKENA0 (171 fanout) drives Global Clock Region, with the buffer placed at CLKCTRL_2L_G_I6
+    Info (13173): clk_i~inputCLKENA0 (543 fanout) drives Global Clock Region, with the buffer placed at CLKCTRL_2L_G_I6
 Info (176233): Starting register packing
 Info (19539): Reading the HDL-embedded SDC files elapsed 00:00:00.
 Info (332104): Reading SDC File: '../syntest_timing.sdc'
@@ -2639,29 +2734,29 @@ Info (332111): Found 1 clocks
     Info (332111): ======== ============
     Info (332111):    3.333        clk_i
 Info (176235): Finished register packing
-    Extra Info (176218): Packed 20 registers into blocks of type MLAB cell
+    Extra Info (176218): Packed 86 registers into blocks of type Block RAM
 Info (20273): Intermediate fitter snapshots will not be committed because ENABLE_INTERMEDIATE_SNAPSHOTS QSF assignment is disabled during compilation.
-Info (12517): Periphery placement operations ending: elapsed time is 00:00:51
-Info (11165): Fitter preparation operations ending: elapsed time is 00:00:42
+Info (12517): Periphery placement operations ending: elapsed time is 00:00:50
+Info (11165): Fitter preparation operations ending: elapsed time is 00:00:40
 Info (170189): Fitter placement preparation operations beginning
 Info (14951): The Fitter is using Advanced Physical Optimization.
-Info (170190): Fitter placement preparation operations ending: elapsed time is 00:00:12
+Info (170190): Fitter placement preparation operations ending: elapsed time is 00:00:15
 Info (170191): Fitter placement operations beginning
 Info (170137): Fitter placement was successful
-Info (170192): Fitter placement operations ending: elapsed time is 00:00:07
-Info (11888): Total time spent on timing analysis during Placement is 2.60 seconds.
+Info (170192): Fitter placement operations ending: elapsed time is 00:00:06
+Info (11888): Total time spent on timing analysis during Placement is 2.80 seconds.
 Info (170193): Fitter routing operations beginning
 Info (170199): The Fitter performed an Auto Fit compilation.  Optimizations were skipped to reduce compilation time.
     Info (170201): Optimizations that may affect the design's routability were skipped
     Info (170200): Optimizations that may affect the design's timing were skipped
-Info (11888): Total time spent on timing analysis during Routing is 0.10 seconds.
-Info (16607): Fitter routing operations ending: elapsed time is 00:00:30
-Info (11888): Total time spent on timing analysis during Post-Routing is 0.02 seconds.
-Info (16557): Fitter post-fit operations ending: elapsed time is 00:00:13
+Info (11888): Total time spent on timing analysis during Routing is 0.20 seconds.
+Info (16607): Fitter routing operations ending: elapsed time is 00:00:31
+Info (11888): Total time spent on timing analysis during Post-Routing is 0.04 seconds.
+Info (16557): Fitter post-fit operations ending: elapsed time is 00:00:14
 Info (20274): Successfully committed final database.
 Info: Quartus Prime Fitter was successful. 0 errors, 4 warnings
-    Info: Peak virtual memory: 10841 megabytes
-    Info: Processing ended: Wed Apr  3 16:14:31 2019
-    Info: Elapsed time: 00:02:27
+    Info: Peak virtual memory: 10823 megabytes
+    Info: Processing ended: Fri Apr  5 08:15:54 2019
+    Info: Elapsed time: 00:02:28
 
 

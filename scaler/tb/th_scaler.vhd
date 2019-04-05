@@ -27,8 +27,10 @@ library vip_avalon_st;
 -- Test harness entity
 entity th_scaler is
    generic (
-         g_data_width        : natural;
-         g_empty_width       : natural
+         g_data_width         : natural;
+         g_empty_width        : natural;
+         g_fifo_data_width    : natural;
+         g_fifo_data_depth    : natural
       );
 end entity;
 
@@ -83,27 +85,29 @@ begin
    i_scaler: entity work.scaler
    generic map (
       g_data_width      => g_data_width,
-      g_empty_width     => g_empty_width
+      g_empty_width     => g_empty_width,
+      g_fifo_data_width => g_fifo_data_width,
+      g_fifo_data_depth => g_fifo_data_depth
    )
    port map (
       clk_i             => clk_i,
       sreset_i          => sreset_i,
 
       -- x -> scaler
-      data_i            => scaler_data_i,
-      ready_o           => scaler_ready_o,
-      valid_i           => scaler_valid_i,
-      empty_i           => scaler_empty_i,
-      eop_i             => scaler_endofpacket_i,
-      sop_i             => scaler_startofpacket_i,
+      scaler_data_i            => scaler_data_i,
+      scaler_ready_o           => scaler_ready_o,
+      scaler_valid_i           => scaler_valid_i,
+      scaler_empty_i           => scaler_empty_i,
+      scaler_eop_i             => scaler_endofpacket_i,
+      scaler_sop_i             => scaler_startofpacket_i,
       
       -- scaler -> x
-      data_o            => scaler_data_o,
-      ready_i           => scaler_ready_i,
-      valid_o           => scaler_valid_o,
-      empty_o           => scaler_empty_o,
-      eop_o             => scaler_endofpacket_o,
-      sop_o             => scaler_startofpacket_o
+      scaler_data_o            => scaler_data_o,
+      scaler_ready_i           => scaler_ready_i,
+      scaler_valid_o           => scaler_valid_o,
+      scaler_empty_o           => scaler_empty_o,
+      scaler_eop_o             => scaler_endofpacket_o,
+      scaler_sop_o             => scaler_startofpacket_o
    );
 
 

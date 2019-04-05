@@ -20,22 +20,23 @@ entity scaler_controller is
       g_empty_width       : natural
    );
    port (
-      clk_i             : in std_logic;
-      sreset_i          : in std_logic;
+      clk_i             : in  std_logic;
+      sreset_i          : in  std_logic;
       -- scaler -> scaler_controller
-      startofpacket_i   : in std_logic;
-      endofpacket_i     : in std_logic;
-      data_i            : in std_logic_vector(g_data_width-1 downto 0);
-      empty_i           : in std_logic_vector(g_empty_width-1 downto 0);
-      valid_i           : in std_logic;
-      ready_i           : in std_logic;
+      startofpacket_i   : in  std_logic;
+      endofpacket_i     : in  std_logic;
+      data_i            : in  std_logic_vector(g_data_width-1 downto 0);
+      empty_i           : in  std_logic_vector(g_empty_width-1 downto 0);
+      valid_i           : in  std_logic;
+      ready_o           : out std_logic := '0';
+      
       -- scaler_controller -> scaler
       startofpacket_o   : out std_logic := '0';
       endofpacket_o     : out std_logic := '0';
       data_o            : out std_logic_vector(g_data_width-1 downto 0) := (others => '0');
       empty_o           : out std_logic_vector(g_empty_width-1 downto 0) := (others => '0');
       valid_o           : out std_logic := '0';
-      ready_o           : out std_logic := '0';
+      ready_i           : in  std_logic
 
       ---- Internal signals
       ---- Recieved from control packet, passed to scaler
@@ -48,17 +49,17 @@ entity scaler_controller is
       --tx_video_height_o          : out unsigned(15 downto 0);
       --tx_video_scaling_method_o  : out unsigned(3 downto 0)
 
-      -- Input FIFO
-      fifo_in_wr_en_i   : in  std_logic;
-      fifo_in_rd_en_i   : in  std_logic;
-      fifo_in_full_o    : out std_logic;
-      fifo_in_empty_o   : out std_logic;
+      ---- Input FIFO
+      --fifo_in_wr_en_i   : in  std_logic;
+      --fifo_in_rd_en_i   : in  std_logic;
+      --fifo_in_full_o    : out std_logic;
+      --fifo_in_empty_o   : out std_logic
 
-      -- Output FIFO
-      fifo_out_wr_en_i  : in  std_logic;
-      fifo_out_rd_en_i  : in  std_logic;
-      fifo_out_full_o   : out std_logic;
-      fifo_out_empty_o  : out std_logic
+      ---- Output FIFO
+      --fifo_out_wr_en_i  : in  std_logic;
+      --fifo_out_rd_en_i  : in  std_logic;
+      --fifo_out_full_o   : out std_logic;
+      --fifo_out_empty_o  : out std_logic
       );
    end entity scaler_controller;
 
@@ -69,7 +70,8 @@ architecture scaler_controller_arc of scaler_controller is
 begin
 
    -- Asseart ready out
-   ready_o <= (ready_i or not valid_o) and fsm_ready;
+   --ready_o <= (ready_i or not valid_o) and fsm_ready;
+   ready_o <= '0', '1' after 500 ns;
 
    ------------------------------------------------
    -- PROCESS: p_decode_packet_type

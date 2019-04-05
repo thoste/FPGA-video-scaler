@@ -1,5 +1,5 @@
 Assembler report for syntest_fifo_generic
-Wed Apr  3 16:15:32 2019
+Fri Apr  5 08:16:48 2019
 Quartus Prime Version 18.1.0 Build 222 09/21/2018 SJ Pro Edition
 
 
@@ -38,7 +38,7 @@ refer to the applicable agreement for further details.
 +---------------------------------------------------------------+
 ; Assembler Summary                                             ;
 +-----------------------+---------------------------------------+
-; Assembler Status      ; Successful - Wed Apr  3 16:15:32 2019 ;
+; Assembler Status      ; Successful - Fri Apr  5 08:16:48 2019 ;
 ; Revision Name         ; syntest_fifo_generic                  ;
 ; Top-level Entity Name ; syntest_fifo_generic                  ;
 ; Family                ; Arria 10                              ;
@@ -101,15 +101,15 @@ refer to the applicable agreement for further details.
 Info: *******************************************************************
 Info: Running Quartus Prime Assembler
     Info: Version 18.1.0 Build 222 09/21/2018 SJ Pro Edition
-    Info: Processing started: Wed Apr  3 16:14:43 2019
+    Info: Processing started: Fri Apr  5 08:16:06 2019
 Info: Command: quartus_asm --read_settings_files=on --write_settings_files=off syntest_fifo_generic -c syntest_fifo_generic
 Info (16677): Loading final database
 Info (16734): Loading "final" snapshot for partition "root_partition".
 Info (16678): Successfully loaded final database: elapsed time is 00:00:02
 Info: Quartus Prime Assembler was successful. 0 errors, 0 warnings
-    Info: Peak virtual memory: 10498 megabytes
-    Info: Processing ended: Wed Apr  3 16:15:34 2019
-    Info: Elapsed time: 00:00:51
+    Info: Peak virtual memory: 10501 megabytes
+    Info: Processing ended: Fri Apr  5 08:16:50 2019
+    Info: Elapsed time: 00:00:44
 
 
 +----------------------------------------------------------------------------------------------------------------------------+
@@ -127,7 +127,7 @@ Info: Quartus Prime Assembler was successful. 0 errors, 0 warnings
 ; Option         ; Setting                                                                                                                             ;
 +----------------+-------------------------------------------------------------------------------------------------------------------------------------+
 ; JTAG usercode  ; 0xFFFFFFFF                                                                                                                          ;
-; Checksum       ; 0x306EDE48                                                                                                                          ;
+; Checksum       ; 0x3070C8B8                                                                                                                          ;
 +----------------+-------------------------------------------------------------------------------------------------------------------------------------+
 
 
