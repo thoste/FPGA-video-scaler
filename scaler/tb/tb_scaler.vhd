@@ -39,8 +39,8 @@ architecture func of tb_scaler is
    constant C_BIT_PERIOD         : time := 16 * C_CLK_PERIOD;
 
    -- Avalon-ST bus widths
-   constant C_DATA_WIDTH      : natural := 16;
-   constant C_BITS_PER_SYMBOL : natural := 8;
+   constant C_DATA_WIDTH      : natural := 80;
+   constant C_BITS_PER_SYMBOL : natural := 10;
    constant C_DATA_LENGTH     : natural := 10;
    constant C_EMPTY_WIDTH     : natural := 4;
 
@@ -65,7 +65,10 @@ begin
       g_data_width      => C_DATA_WIDTH,
       g_empty_width     => C_EMPTY_WIDTH,
       g_fifo_data_width => C_FIFO_DATA_WIDTH,
-      g_fifo_data_depth => C_FIFO_DATA_DEPTH
+      g_fifo_data_depth => C_FIFO_DATA_DEPTH,
+      g_tx_video_width  => 1920,
+      g_tx_video_height => 1080,
+      g_tx_video_scaling_method => 0
    );
 
 
@@ -73,11 +76,15 @@ begin
    -- PROCESS: p_main
    ------------------------------------------------
    p_main: process
+      variable v_ctrl_pkt_array  : t_slv_array(0 to 1)(C_DATA_WIDTH-1 downto 0)                 := (others => (others => '0'));
       variable v_data_array      : t_slv_array(0 to C_DATA_LENGTH-1)(C_DATA_WIDTH-1 downto 0)   := (others => (others => '0'));
       variable v_exp_data_array  : t_slv_array(0 to C_DATA_LENGTH-2)(C_DATA_WIDTH-1 downto 0)   := (others => (others => '0'));
       variable v_empty           : std_logic_vector(C_EMPTY_WIDTH-1 downto 0) := (others => '0');
 
       variable v_num_test_loops  : natural := 0;
+
+      variable v_rx_video_width   : std_logic_vector(15 downto 0) := (others => '0');
+      variable v_rx_video_height  : std_logic_vector(15 downto 0) := (others => '0');
    begin
 
    -- Wait for UVVM to finish initialization
@@ -123,6 +130,38 @@ begin
    log("Wait 10 clock period for reset to be turned off");
    wait for (10 * C_CLK_PERIOD); 
 
+
+   -----------------------------------------------------------------------------
+   -- Control packet
+   -----------------------------------------------------------------------------
+   log(ID_LOG_HDR, "Sending control packet", C_SCOPE);
+   -- Send control packet
+   v_ctrl_pkt_array(0) := std_logic_vector(to_unsigned(15, C_DATA_WIDTH));
+   -- Set rx resolution
+   v_rx_video_width  := std_logic_vector(to_unsigned(1920, v_rx_video_width'length));
+   v_rx_video_height := std_logic_vector(to_unsigned(1080, v_rx_video_height'length));
+   v_ctrl_pkt_array(1)(3 downto 0)   := v_rx_video_width(15 downto 12);
+   v_ctrl_pkt_array(1)(13 downto 10) := v_rx_video_width(11 downto 8);
+   v_ctrl_pkt_array(1)(23 downto 20) := v_rx_video_width(7 downto 4);
+   v_ctrl_pkt_array(1)(33 downto 30) := v_rx_video_width(3 downto 0);
+   v_ctrl_pkt_array(1)(43 downto 40) := v_rx_video_height(15 downto 12);
+   v_ctrl_pkt_array(1)(53 downto 50) := v_rx_video_height(11 downto 8);
+   v_ctrl_pkt_array(1)(63 downto 60) := v_rx_video_height(7 downto 4);
+   v_ctrl_pkt_array(1)(73 downto 70) := v_rx_video_height(3 downto 0);
+
+   -- Start send and receive VVC
+   avalon_st_send(AVALON_ST_VVCT, 1, v_ctrl_pkt_array, v_empty, "Sending v_data_array");
+   --avalon_st_expect(AVALON_ST_VVCT, 1, v_ctrl_pkt_array, v_empty, "Checking data", ERROR);
+   avalon_st_receive(AVALON_ST_VVCT, 1, "Receiving");
+
+   -- Wait for completion
+   await_completion(AVALON_ST_VVCT, 1, RX, 10*C_DATA_LENGTH*C_CLK_PERIOD);
+   wait for (10 * C_CLK_PERIOD); 
+   
+   -----------------------------------------------------------------------------
+   -- Video data packet
+   -----------------------------------------------------------------------------
+   log(ID_LOG_HDR, "Sending video data packet", C_SCOPE);
    -- Number of times to run the test loop
    v_num_test_loops := 1;
 
@@ -130,13 +169,14 @@ begin
 
    for i in 1 to v_num_test_loops loop
       -- Create a random ready percentage for the recieve module
-      shared_avalon_st_vvc_config(RX, 1).bfm_config.ready_percentage := random(1,100);
+      --shared_avalon_st_vvc_config(RX, 1).bfm_config.ready_percentage := random(1,100);
+      --shared_avalon_st_vvc_config(RX, 1).bfm_config.ready_percentage := 50;
 
       -- Random empty signal between 0 and number of symbols - 1. 
       --v_empty := std_logic_vector(to_unsigned(random(0,(C_DATA_WIDTH/C_BITS_PER_SYMBOL)-1), v_empty'length));
 
       -- Write packet info, Data[3:0] = 0 for video_packet
-      v_data_array(0) := std_logic_vector(to_unsigned(0, C_DATA_WIDTH));
+      --v_data_array(0) := std_logic_vector(to_unsigned(0, C_DATA_WIDTH));
       v_data_array(0) := (3 downto 0 => '0', others => '1');
 
       -- Write random data to data_array
@@ -153,12 +193,12 @@ begin
 
       -- Start send and receive VVC
       avalon_st_send(AVALON_ST_VVCT, 1, v_data_array, v_empty, "Sending v_data_array");
-      --avalon_st_expect(AVALON_ST_VVCT, 1, v_exp_data_array, v_empty, "Checking data", ERROR);
+      --avalon_st_expect(AVALON_ST_VVCT, 1, v_data_array, v_empty, "Checking data", ERROR);
       avalon_st_receive(AVALON_ST_VVCT, 1, "Receiving");
       
 
       -- Wait for completion
-      await_completion(AVALON_ST_VVCT, 1, RX, 10*C_DATA_LENGTH*C_CLK_PERIOD);
+      await_completion(AVALON_ST_VVCT, 1, RX, 100*C_DATA_LENGTH*C_CLK_PERIOD);
    end loop;
    
 

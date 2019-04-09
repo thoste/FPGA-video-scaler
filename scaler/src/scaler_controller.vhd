@@ -16,8 +16,11 @@ use ieee.numeric_std.all;
 
 entity scaler_controller is
    generic (
-      g_data_width        : natural;
-      g_empty_width       : natural
+      g_data_width               : natural;
+      g_empty_width              : natural;
+      g_tx_video_width           : natural;
+      g_tx_video_height          : natural;
+      g_tx_video_scaling_method  : natural
    );
    port (
       clk_i             : in  std_logic;
@@ -36,18 +39,11 @@ entity scaler_controller is
       data_o            : out std_logic_vector(g_data_width-1 downto 0) := (others => '0');
       empty_o           : out std_logic_vector(g_empty_width-1 downto 0) := (others => '0');
       valid_o           : out std_logic := '0';
-      ready_i           : in  std_logic
+      ready_i           : in  std_logic;
 
-      ---- Internal signals
-      ---- Recieved from control packet, passed to scaler
-      --rx_video_width_o           : out unsigned(15 downto 0);
-      --rx_video_height_o          : out unsigned(15 downto 0);
-      --rx_video_interlacing_o     : out unsigned(3 downto 0);
-
-      ---- Read from config file, passed to scaler
-      --tx_video_width_o           : out unsigned(15 downto 0);
-      --tx_video_height_o          : out unsigned(15 downto 0);
-      --tx_video_scaling_method_o  : out unsigned(3 downto 0)
+      -- Config
+      rx_video_width_o           : out std_logic_vector(15 downto 0);
+      rx_video_height_o          : out std_logic_vector(15 downto 0)
 
       ---- Input FIFO
       --fifo_in_wr_en_i   : in  std_logic;
@@ -64,125 +60,112 @@ entity scaler_controller is
    end entity scaler_controller;
 
 architecture scaler_controller_arc of scaler_controller is
-   type t_controller_state is (s_idle, s_video_data, s_user_data, s_reserved_data, s_clocked_video_data, s_control_packet);
-   signal state         : t_controller_state := s_idle;
+   type t_packet_type is (s_idle, s_video_data, s_control_packet);
+   signal state   : t_packet_type := s_idle;
    signal fsm_ready     : std_logic := '0';
+
 begin
-
    -- Asseart ready out
-   --ready_o <= (ready_i or not valid_o) and fsm_ready;
-   ready_o <= '0', '1' after 500 ns;
+   ready_o <= (ready_i or not valid_o) and fsm_ready;
 
-   ------------------------------------------------
-   -- PROCESS: p_decode_packet_type
-   ------------------------------------------------
-   p_decode_packet_type : process(clk_i) is
-      variable v_packet_type_id  : natural range 0 to 15;
+   p_fsm : process(clk_i) is
+      variable v_tx_video_width : std_logic_vector(15 downto 0);
+      variable v_tx_video_height : std_logic_vector(15 downto 0);
    begin
       if rising_edge(clk_i) then
-         -- Decode packet
-         if startofpacket_i = '1' and valid_i = '1' then
-            v_packet_type_id := to_integer(unsigned(data_i(3 downto 0)));
-            case(v_packet_type_id) is
-               when 0 => 
-                  state <= s_video_data;
-               when 1 to 8 =>
-                  state <= s_user_data;
-               when 9 to 12 =>
-                  state <= s_reserved_data;
-               when 13 =>
-                  state <= s_clocked_video_data;
-               when 14 =>
-                  state <= s_reserved_data;
-               when 15 =>
-                  state <= s_control_packet;
-            end case;
-         end if;
-
-         -- Go back to idle after endofpacket
-         if endofpacket_i = '1' then
-            state <= s_idle;
-         end if;
-         
-         -- Handle reset
-         if sreset_i = '1' then
-            state <= s_idle;
-         end if;
-      end if;
-   end process p_decode_packet_type;
-
-
-   ------------------------------------------------
-   -- PROCESS: p_main_state_macine
-   ------------------------------------------------
-   p_main_state_macine : process(clk_i) is
-      variable v_sent_sop : boolean := false;
-      variable v_sent_eop : boolean := false;
-   begin
-      if rising_edge(clk_i) then
-         -- Reset valid_o signal
          if ready_i = '1' then
             valid_o <= '0';
          end if;
 
-         if v_sent_sop then
-            startofpacket_o <= '0';
-         end if;
-
-         if v_sent_eop then
-            endofpacket_o <= '0';
-            -- Clear flags after transmission
-            v_sent_sop := false;
-            v_sent_eop := false;
-         end if;
-         
          fsm_ready <= '1';
 
-         -- FSM
          case state is
             when s_idle =>
-               -- Nothing
+               if ready_o = '1' and valid_i = '1' then
+                  if startofpacket_i = '1' and data_i(3 downto 0) = "0000" then
+                     -- Send startofpacket and video packet identifier to output
+                     data_o  <= (3 downto 0 => '0', others => '1'); -- Using others => 1 for easy identification in modelsim
+                     valid_o   <= '1';
+                     startofpacket_o <= '1';
+
+                     -- Next state
+                     fsm_ready <= '0';
+                     state <= s_video_data;
+                  elsif startofpacket_i = '1' and data_i(3 downto 0) = "1111" then
+                     -- Send startofpacket and ctrl pkg identifier to output
+                     data_o  <= (3 downto 0 => '1', others => '0');
+                     valid_o   <= '1';
+                     startofpacket_o <= '1';
+
+                     -- Next state
+                     fsm_ready <= '0';
+                     state <= s_control_packet;
+                  end if;
+
+                  -- Reset endofpacket
+                  endofpacket_o <= '0';
+               end if;
+
 
             when s_video_data =>
-               fsm_ready <= '1';
-               if not v_sent_sop then
-                  startofpacket_o <= '1';
-                  v_sent_sop := true;
+               if ready_o = '1' and valid_i = '1' then
+                  if endofpacket_i = '1' then
+                     endofpacket_o <= '1';
+
+                     -- Next state
+                     fsm_ready <= '1';
+                     state <= s_idle;
+                  else
+                     -- Next state
+                     fsm_ready <= '0';
+                     state <= s_video_data;
+                  end if;
+                  data_o  <= data_i;
+                  valid_o   <= '1';
+                  startofpacket_o <= '0';
                end if;
 
-               if endofpacket_i = '1' then
-                  endofpacket_o <= '1';
-                  v_sent_eop := true;
-               end if;
-
-               -- Passthrough signal
-               data_o   <= data_i;
-               valid_o  <= valid_i;
-               empty_o  <= empty_i;
-               
-
-            when s_user_data =>
-               -- Nothing
-
-            when s_reserved_data =>
-               -- Nothing
-
-            when s_clocked_video_data =>
-               -- Nothing
 
             when s_control_packet =>
-               -- Nothing
+               if ready_o = '1' and valid_i = '1' then
+                  -- Decode input video resolution
+                  rx_video_width_o(3 downto 0)     <= data_i(33 downto 30);
+                  rx_video_width_o(7 downto 4)     <= data_i(23 downto 20);
+                  rx_video_width_o(11 downto 8)    <= data_i(13 downto 10);
+                  rx_video_width_o(15 downto 12)   <= data_i(3 downto 0);
+                  rx_video_height_o(3 downto 0)    <= data_i(73 downto 70);
+                  rx_video_height_o(7 downto 4)    <= data_i(63 downto 60);
+                  rx_video_height_o(11 downto 8)   <= data_i(53 downto 50);
+                  rx_video_height_o(15 downto 12)  <= data_i(43 downto 40);
+
+                  -- Set output to slv format
+                  v_tx_video_width  := std_logic_vector(to_unsigned(g_tx_video_width, v_tx_video_width'length));
+                  v_tx_video_height := std_logic_vector(to_unsigned(g_tx_video_height, v_tx_video_height'length));
+
+                  -- Send output resolution and endofpacket
+                  data_o(3 downto 0)   <= v_tx_video_width(15 downto 12);
+                  data_o(13 downto 10) <= v_tx_video_width(11 downto 8);
+                  data_o(23 downto 20) <= v_tx_video_width(7 downto 4);
+                  data_o(33 downto 30) <= v_tx_video_width(3 downto 0);
+                  data_o(43 downto 40) <= v_tx_video_height(15 downto 12);
+                  data_o(53 downto 50) <= v_tx_video_height(11 downto 8);
+                  data_o(63 downto 60) <= v_tx_video_height(7 downto 4);
+                  data_o(73 downto 70) <= v_tx_video_height(3 downto 0);
+
+                  valid_o   <= '1';
+                  startofpacket_o <= '0';
+                  endofpacket_o <= '1';
+
+                  -- Next state
+                  fsm_ready <= '1';
+                  state <= s_idle;
+               end if;
+
          end case;
 
-         -- Check for reset signal
-         if (sreset_i = '1') then
-            fsm_ready <= '0';
-            startofpacket_o <= '0';
-            endofpacket_o <= '0';
-            data_o <= (others => '0');
-            empty_o <= (others =>'0');
+         if sreset_i = '1' then
             valid_o <= '0';
          end if;
       end if;
-   end process p_main_state_macine;
+   end process p_fsm;
 end scaler_controller_arc;

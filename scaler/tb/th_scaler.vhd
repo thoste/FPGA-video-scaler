@@ -27,10 +27,13 @@ library vip_avalon_st;
 -- Test harness entity
 entity th_scaler is
    generic (
-         g_data_width         : natural;
-         g_empty_width        : natural;
-         g_fifo_data_width    : natural;
-         g_fifo_data_depth    : natural
+         g_data_width               : natural;
+         g_empty_width              : natural;
+         g_fifo_data_width          : natural;
+         g_fifo_data_depth          : natural;
+         g_tx_video_width           : natural;
+         g_tx_video_height          : natural;
+         g_tx_video_scaling_method  : natural
       );
 end entity;
 
@@ -87,7 +90,10 @@ begin
       g_data_width      => g_data_width,
       g_empty_width     => g_empty_width,
       g_fifo_data_width => g_fifo_data_width,
-      g_fifo_data_depth => g_fifo_data_depth
+      g_fifo_data_depth => g_fifo_data_depth,
+      g_tx_video_width  => g_tx_video_width,
+      g_tx_video_height => g_tx_video_height,
+      g_tx_video_scaling_method => g_tx_video_scaling_method
    )
    port map (
       clk_i             => clk_i,

@@ -27,32 +27,41 @@ architecture rtl of syntest_scaler_controller is
    constant C_EMPTY_WIDTH  : natural := 3;
 
    signal source : std_logic_vector((C_DATA_WIDTH + C_EMPTY_WIDTH + 6)-1 downto 0) := (others => '0');
-   signal sink   : std_logic_vector((C_DATA_WIDTH + C_EMPTY_WIDTH + 6)-1 downto 0) := (others => '0');
+   signal sink   : std_logic_vector((C_DATA_WIDTH + C_EMPTY_WIDTH + 36)-1 downto 0) := (others => '0');
 
 begin
 
    i_mut : entity work.scaler_controller
    generic map(
-      g_data_width         => C_DATA_WIDTH,
-      g_empty_width        => C_EMPTY_WIDTH
+      g_data_width               => C_DATA_WIDTH,
+      g_empty_width              => C_EMPTY_WIDTH,
+      g_tx_video_width           => 1920,
+      g_tx_video_height          => 1080,
+      g_tx_video_scaling_method  => 0
    )
    port map(
       clk_i       => source(0),
       sreset_i    => source(1),
-      -- Signals to scaler
-      sop_i       => source(2),
-      eop_i       => source(3),
-      valid_i     => source(4),
-      ready_i     => source(5),
-      data_i      => source(C_DATA_WIDTH+5 downto 6),
-      empty_i     => source(C_EMPTY_WIDTH+C_DATA_WIDTH+5 downto C_DATA_WIDTH+6),
-      -- Signals from scaler
-      sop_o       => sink(0),
-      eop_o       => sink(1),
-      valid_o     => sink(2),
-      ready_o     => sink(3),
-      data_o      => sink(C_DATA_WIDTH+3 downto 4), 
-      empty_o     => sink(C_EMPTY_WIDTH+C_DATA_WIDTH+3 downto C_DATA_WIDTH+4)
+      
+      -- Source
+      startofpacket_i   => source(2),
+      endofpacket_i     => source(3),
+      valid_i           => source(4),
+      ready_i           => source(5),
+      data_i            => source(C_DATA_WIDTH+5 downto 6),
+      empty_i           => source(C_EMPTY_WIDTH+C_DATA_WIDTH+5 downto C_DATA_WIDTH+6),
+
+      -- Sink
+      startofpacket_o   => sink(0),
+      endofpacket_o     => sink(1),
+      valid_o           => sink(2),
+      ready_o           => sink(3),
+
+      rx_video_width_o  => sink(19 downto 4),
+      rx_video_height_o => sink(35 downto 20),
+
+      data_o            => sink(C_DATA_WIDTH+35 downto 36), 
+      empty_o           => sink(C_EMPTY_WIDTH+C_DATA_WIDTH+35 downto C_DATA_WIDTH+36)
    );
 
    i_source : entity work.atv_dummy_source
