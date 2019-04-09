@@ -1,11 +1,8 @@
 
 State Machine - i_mut|state
-Name state.s_control_packet state.s_clocked_video_data state.s_reserved_data state.s_user_data state.s_video_data state.s_idle 
-state.s_idle 0 0 0 0 0 0 
-state.s_video_data 0 0 0 0 1 1 
-state.s_user_data 0 0 0 1 0 1 
-state.s_reserved_data 0 0 1 0 0 1 
-state.s_clocked_video_data 0 1 0 0 0 1 
-state.s_control_packet 1 0 0 0 0 1 
+Name state.s_control_packet state.s_video_data state.s_idle 
+state.s_idle 0 0 0 
+state.s_video_data 0 1 1 
+state.s_control_packet 1 0 1 
 
 State Machine - Summary

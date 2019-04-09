@@ -1,5 +1,5 @@
 Flow report for syntest_scaler_controller
-Thu Apr  4 09:40:27 2019
+Tue Apr  9 23:46:03 2019
 Quartus Prime Version 18.1.0 Build 222 09/21/2018 SJ Pro Edition
 
 
@@ -22,9 +22,9 @@ Quartus Prime Version 18.1.0 Build 222 09/21/2018 SJ Pro Edition
 +----------------------------+--------+
 ; Processors                 ; Number ;
 +----------------------------+--------+
-; Number detected on machine ; 8      ;
-; Maximum allowed            ; 4      ;
-; Maximum used               ; 4      ;
+; Number detected on machine ; 12     ;
+; Maximum allowed            ; 6      ;
+; Maximum used               ; 6      ;
 +----------------------------+--------+
 
 
@@ -50,15 +50,15 @@ refer to the applicable agreement for further details.
 +--------------------------------------------------------------------------+
 ; Flow Summary                                                             ;
 +-----------------------------+--------------------------------------------+
-; Flow Status                 ; Successful - Thu Apr  4 09:40:27 2019      ;
+; Flow Status                 ; Successful - Tue Apr  9 23:46:03 2019      ;
 ; Quartus Prime Version       ; 18.1.0 Build 222 09/21/2018 SJ Pro Edition ;
 ; Revision Name               ; syntest_scaler_controller                  ;
 ; Top-level Entity Name       ; syntest_scaler_controller                  ;
 ; Family                      ; Arria 10                                   ;
 ; Device                      ; 10AX115S2F45I2SG                           ;
 ; Timing Models               ; Final                                      ;
-; Logic utilization (in ALMs) ; 373 / 427,200 ( < 1 % )                    ;
-; Total registers             ; 475                                        ;
+; Logic utilization (in ALMs) ; 506 / 427,200 ( < 1 % )                    ;
+; Total registers             ; 543                                        ;
 ; Total pins                  ; 2 / 960 ( < 1 % )                          ;
 ; Total virtual pins          ; 0                                          ;
 ; Total block memory bits     ; 0 / 55,562,240 ( 0 % )                     ;
@@ -74,7 +74,7 @@ refer to the applicable agreement for further details.
 +-------------------+---------------------------+
 ; Option            ; Setting                   ;
 +-------------------+---------------------------+
-; Start date & time ; 04/04/2019 09:36:58       ;
+; Start date & time ; 04/09/2019 23:43:15       ;
 ; Main task         ; Compilation               ;
 ; Revision Name     ; syntest_scaler_controller ;
 +-------------------+---------------------------+
@@ -85,7 +85,7 @@ refer to the applicable agreement for further details.
 +--------------------------------+---------------------------------------+---------------+-------------+------------+
 ; Assignment Name                ; Value                                 ; Default Value ; Entity Name ; Section Id ;
 +--------------------------------+---------------------------------------+---------------+-------------+------------+
-; COMPILER_SIGNATURE_ID          ; 157221603133.155436341803936          ; --            ; --          ; --         ;
+; COMPILER_SIGNATURE_ID          ; 193989711024204.155484619502444       ; --            ; --          ; --         ;
 ; MAX_CORE_JUNCTION_TEMP         ; 100                                   ; --            ; --          ; --         ;
 ; MIN_CORE_JUNCTION_TEMP         ; -40                                   ; --            ; --          ; --         ;
 ; POWER_BOARD_THERMAL_MODEL      ; None (CONSERVATIVE)                   ; --            ; --          ; --         ;
@@ -101,11 +101,11 @@ refer to the applicable agreement for further details.
 +-----------------+--------------+-------------------------+---------------------+
 ; Module Name     ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ;
 +-----------------+--------------+-------------------------+---------------------+
-; Synthesis       ; 00:00:04     ; 1.0                     ; 5096 MB             ;
-; Fitter          ; 00:02:29     ; 1.0                     ; 10815 MB            ;
-; Timing Analyzer ; 00:00:08     ; 1.0                     ; 7532 MB             ;
-; Assembler       ; 00:00:42     ; 1.7                     ; 10501 MB            ;
-; Total           ; 00:03:23     ; --                      ; --                  ;
+; Synthesis       ; 00:00:04     ; 1.0                     ; 5109 MB             ;
+; Fitter          ; 00:02:00     ; 1.0                     ; 11002 MB            ;
+; Timing Analyzer ; 00:00:06     ; 1.0                     ; 7559 MB             ;
+; Assembler       ; 00:00:34     ; 2.1                     ; 10497 MB            ;
+; Total           ; 00:02:44     ; --                      ; --                  ;
 +-----------------+--------------+-------------------------+---------------------+
 
 
@@ -114,10 +114,10 @@ refer to the applicable agreement for further details.
 +-----------------+------------------+------------+------------+----------------+
 ; Module Name     ; Machine Hostname ; OS Name    ; OS Version ; Processor type ;
 +-----------------+------------------+------------+------------+----------------+
-; Synthesis       ; Thomas-XPS       ; Windows 10 ; 10.0       ; x86_64         ;
-; Fitter          ; Thomas-XPS       ; Windows 10 ; 10.0       ; x86_64         ;
-; Timing Analyzer ; Thomas-XPS       ; Windows 10 ; 10.0       ; x86_64         ;
-; Assembler       ; Thomas-XPS       ; Windows 10 ; 10.0       ; x86_64         ;
+; Synthesis       ; Thomas-PC        ; Windows 10 ; 10.0       ; x86_64         ;
+; Fitter          ; Thomas-PC        ; Windows 10 ; 10.0       ; x86_64         ;
+; Timing Analyzer ; Thomas-PC        ; Windows 10 ; 10.0       ; x86_64         ;
+; Assembler       ; Thomas-PC        ; Windows 10 ; 10.0       ; x86_64         ;
 +-----------------+------------------+------------+------------+----------------+
 
 

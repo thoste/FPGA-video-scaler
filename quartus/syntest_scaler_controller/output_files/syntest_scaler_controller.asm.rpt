@@ -1,5 +1,5 @@
 Assembler report for syntest_scaler_controller
-Thu Apr  4 09:40:27 2019
+Tue Apr  9 23:46:03 2019
 Quartus Prime Version 18.1.0 Build 222 09/21/2018 SJ Pro Edition
 
 
@@ -12,7 +12,7 @@ Quartus Prime Version 18.1.0 Build 222 09/21/2018 SJ Pro Edition
   4. Parallel Compilation
   5. Assembler Messages
   6. Assembler Generated Files
-  7. Assembler Device Options: C:/Users/stens/Documents/video-scaler/FPGA-video-scaler/quartus/syntest_scaler_controller/output_files/syntest_scaler_controller.sof
+  7. Assembler Device Options: C:/Users/stens/Documents/NTNU/FPGA-video-scaler/quartus/syntest_scaler_controller/output_files/syntest_scaler_controller.sof
 
 
 
@@ -38,7 +38,7 @@ refer to the applicable agreement for further details.
 +---------------------------------------------------------------+
 ; Assembler Summary                                             ;
 +-----------------------+---------------------------------------+
-; Assembler Status      ; Successful - Thu Apr  4 09:40:27 2019 ;
+; Assembler Status      ; Successful - Tue Apr  9 23:46:03 2019 ;
 ; Revision Name         ; syntest_scaler_controller             ;
 ; Top-level Entity Name ; syntest_scaler_controller             ;
 ; Family                ; Arria 10                              ;
@@ -89,9 +89,9 @@ refer to the applicable agreement for further details.
 +----------------------------+--------+
 ; Processors                 ; Number ;
 +----------------------------+--------+
-; Number detected on machine ; 8      ;
-; Maximum allowed            ; 4      ;
-; Maximum used               ; 4      ;
+; Number detected on machine ; 12     ;
+; Maximum allowed            ; 6      ;
+; Maximum used               ; 6      ;
 +----------------------------+--------+
 
 
@@ -101,33 +101,33 @@ refer to the applicable agreement for further details.
 Info: *******************************************************************
 Info: Running Quartus Prime Assembler
     Info: Version 18.1.0 Build 222 09/21/2018 SJ Pro Edition
-    Info: Processing started: Thu Apr  4 09:39:45 2019
+    Info: Processing started: Tue Apr  9 23:45:29 2019
 Info: Command: quartus_asm --read_settings_files=on --write_settings_files=off syntest_scaler_controller -c syntest_scaler_controller
 Info (16677): Loading final database
 Info (16734): Loading "final" snapshot for partition "root_partition".
 Info (16678): Successfully loaded final database: elapsed time is 00:00:02
 Info: Quartus Prime Assembler was successful. 0 errors, 0 warnings
-    Info: Peak virtual memory: 10501 megabytes
-    Info: Processing ended: Thu Apr  4 09:40:29 2019
-    Info: Elapsed time: 00:00:44
+    Info: Peak virtual memory: 10497 megabytes
+    Info: Processing ended: Tue Apr  9 23:46:04 2019
+    Info: Elapsed time: 00:00:35
 
 
-+--------------------------------------------------------------------------------------------------------------------------------------+
-; Assembler Generated Files                                                                                                            ;
-+--------------------------------------------------------------------------------------------------------------------------------------+
-; File Name                                                                                                                            ;
-+--------------------------------------------------------------------------------------------------------------------------------------+
-; C:/Users/stens/Documents/video-scaler/FPGA-video-scaler/quartus/syntest_scaler_controller/output_files/syntest_scaler_controller.sof ;
-+--------------------------------------------------------------------------------------------------------------------------------------+
++------------------------------------------------------------------------------------------------------------------------------+
+; Assembler Generated Files                                                                                                    ;
++------------------------------------------------------------------------------------------------------------------------------+
+; File Name                                                                                                                    ;
++------------------------------------------------------------------------------------------------------------------------------+
+; C:/Users/stens/Documents/NTNU/FPGA-video-scaler/quartus/syntest_scaler_controller/output_files/syntest_scaler_controller.sof ;
++------------------------------------------------------------------------------------------------------------------------------+
 
 
-+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Assembler Device Options: C:/Users/stens/Documents/video-scaler/FPGA-video-scaler/quartus/syntest_scaler_controller/output_files/syntest_scaler_controller.sof ;
-+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------+
-; Option         ; Setting                                                                                                                                       ;
-+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------+
-; JTAG usercode  ; 0xFFFFFFFF                                                                                                                                    ;
-; Checksum       ; 0x307065A1                                                                                                                                    ;
-+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------+
++--------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Assembler Device Options: C:/Users/stens/Documents/NTNU/FPGA-video-scaler/quartus/syntest_scaler_controller/output_files/syntest_scaler_controller.sof ;
++----------------+---------------------------------------------------------------------------------------------------------------------------------------+
+; Option         ; Setting                                                                                                                               ;
++----------------+---------------------------------------------------------------------------------------------------------------------------------------+
+; JTAG usercode  ; 0xFFFFFFFF                                                                                                                            ;
+; Checksum       ; 0x3070AA72                                                                                                                            ;
++----------------+---------------------------------------------------------------------------------------------------------------------------------------+
 
 

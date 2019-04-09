@@ -1,5 +1,5 @@
 Synthesis report
-Thu Apr  4 09:37:01 2019
+Tue Apr  9 23:43:18 2019
 Quartus Prime Version 18.1.0 Build 222 09/21/2018 SJ Pro Edition
 
 
@@ -33,7 +33,7 @@ Quartus Prime Version 18.1.0 Build 222 09/21/2018 SJ Pro Edition
 +---------------------------------------------------------------+
 ; Synthesis Summary                                             ;
 +-----------------------+---------------------------------------+
-; Synthesis Status      ; Successful - Thu Apr  4 09:37:01 2019 ;
+; Synthesis Status      ; Successful - Tue Apr  9 23:43:18 2019 ;
 ; Revision Name         ; syntest_scaler_controller             ;
 ; Top-level Entity Name ; syntest_scaler_controller             ;
 ; Family                ; Arria 10                              ;
@@ -133,23 +133,23 @@ Quartus Prime Version 18.1.0 Build 222 09/21/2018 SJ Pro Edition
 +----------------------------+--------+
 ; Processors                 ; Number ;
 +----------------------------+--------+
-; Number detected on machine ; 8      ;
-; Maximum allowed            ; 4      ;
-; Maximum used               ; 4      ;
+; Number detected on machine ; 12     ;
+; Maximum allowed            ; 6      ;
+; Maximum used               ; 6      ;
 +----------------------------+--------+
 
 
-+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Synthesis Source Files Read                                                                                                                                                           ;
-+----------------------------------------------------+-----------------+------------------------------------------------------------------------------------------------------+---------+
-; File Name with User-Entered Path                   ; File Type       ; File Name with Absolute Path                                                                         ; Library ;
-+----------------------------------------------------+-----------------+------------------------------------------------------------------------------------------------------+---------+
-; ../syntest_timing.sdc                              ; User File       ; C:/Users/stens/Documents/video-scaler/FPGA-video-scaler/quartus/syntest_timing.sdc                   ;         ;
-; ../../scaler/syntest/syntest_scaler_controller.vhd ; User VHDL File  ; C:/Users/stens/Documents/video-scaler/FPGA-video-scaler/scaler/syntest/syntest_scaler_controller.vhd ;         ;
-; ../../scaler/src/scaler_controller.vhd             ; User VHDL File  ; C:/Users/stens/Documents/video-scaler/FPGA-video-scaler/scaler/src/scaler_controller.vhd             ;         ;
-; ../../../atv/atv_lib/atv_dummy_source.vhd          ; User VHDL File  ; C:/Users/stens/Documents/video-scaler/atv/atv_lib/atv_dummy_source.vhd                               ;         ;
-; ../../../atv/atv_lib/atv_dummy_sink.vhd            ; User VHDL File  ; C:/Users/stens/Documents/video-scaler/atv/atv_lib/atv_dummy_sink.vhd                                 ;         ;
-+----------------------------------------------------+-----------------+------------------------------------------------------------------------------------------------------+---------+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Synthesis Source Files Read                                                                                                                                                   ;
++----------------------------------------------------+-----------------+----------------------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path                   ; File Type       ; File Name with Absolute Path                                                                 ; Library ;
++----------------------------------------------------+-----------------+----------------------------------------------------------------------------------------------+---------+
+; ../syntest_timing.sdc                              ; User File       ; C:/Users/stens/Documents/NTNU/FPGA-video-scaler/quartus/syntest_timing.sdc                   ;         ;
+; ../../scaler/syntest/syntest_scaler_controller.vhd ; User VHDL File  ; C:/Users/stens/Documents/NTNU/FPGA-video-scaler/scaler/syntest/syntest_scaler_controller.vhd ;         ;
+; ../../scaler/src/scaler_controller.vhd             ; User VHDL File  ; C:/Users/stens/Documents/NTNU/FPGA-video-scaler/scaler/src/scaler_controller.vhd             ;         ;
+; ../../../atv/atv_lib/atv_dummy_source.vhd          ; User VHDL File  ; C:/Users/stens/Documents/NTNU/atv/atv_lib/atv_dummy_source.vhd                               ;         ;
+; ../../../atv/atv_lib/atv_dummy_sink.vhd            ; User VHDL File  ; C:/Users/stens/Documents/NTNU/atv/atv_lib/atv_dummy_sink.vhd                                 ;         ;
++----------------------------------------------------+-----------------+----------------------------------------------------------------------------------------------+---------+
 
 
 +----------------------------------------------------------------------------------+
@@ -163,12 +163,15 @@ Quartus Prime Version 18.1.0 Build 222 09/21/2018 SJ Pro Edition
 
 +----------------------------------------------------+
 ; Parameter Settings for User Entity Instance: i_mut ;
-+----------------+-------+---------------------------+
-; Parameter Name ; Value ; Type                      ;
-+----------------+-------+---------------------------+
-; g_data_width   ; 80    ; Untyped                   ;
-; g_empty_width  ; 3     ; Untyped                   ;
-+----------------+-------+---------------------------+
++---------------------------+-------+----------------+
+; Parameter Name            ; Value ; Type           ;
++---------------------------+-------+----------------+
+; g_data_width              ; 80    ; Untyped        ;
+; g_empty_width             ; 3     ; Untyped        ;
+; g_tx_video_width          ; 1920  ; Untyped        ;
+; g_tx_video_height         ; 1080  ; Untyped        ;
+; g_tx_video_scaling_method ; 0     ; Untyped        ;
++---------------------------+-------+----------------+
 
 
 +-------------------------------------------------------+
@@ -186,7 +189,7 @@ Quartus Prime Version 18.1.0 Build 222 09/21/2018 SJ Pro Edition
 ; Parameter Name     ; Value ; Type                   ;
 +--------------------+-------+------------------------+
 ; g_logic_levels_ext ; 6     ; Untyped                ;
-; g_ports            ; 89    ; Untyped                ;
+; g_ports            ; 119   ; Untyped                ;
 +--------------------+-------+------------------------+
 
 
@@ -196,7 +199,7 @@ Quartus Prime Version 18.1.0 Build 222 09/21/2018 SJ Pro Edition
 ; Parameter Name ; Value ; Type                                          ;
 +----------------+-------+-----------------------------------------------+
 ; g_logic_levels ; 5     ; Untyped                                       ;
-; g_inputs       ; 89    ; Untyped                                       ;
+; g_inputs       ; 119   ; Untyped                                       ;
 ; g_outputs      ; 1     ; Untyped                                       ;
 +----------------+-------+-----------------------------------------------+
 
@@ -207,7 +210,7 @@ Quartus Prime Version 18.1.0 Build 222 09/21/2018 SJ Pro Edition
 ; Parameter Name ; Value ; Type                                                                            ;
 +----------------+-------+---------------------------------------------------------------------------------+
 ; g_logic_levels ; 5     ; Untyped                                                                         ;
-; g_inputs       ; 18    ; Untyped                                                                         ;
+; g_inputs       ; 24    ; Untyped                                                                         ;
 ; g_outputs      ; 1     ; Untyped                                                                         ;
 +----------------+-------+---------------------------------------------------------------------------------+
 
@@ -218,7 +221,7 @@ Quartus Prime Version 18.1.0 Build 222 09/21/2018 SJ Pro Edition
 ; Parameter Name ; Value ; Type                                                                                                              ;
 +----------------+-------+-------------------------------------------------------------------------------------------------------------------+
 ; g_logic_levels ; 5     ; Untyped                                                                                                           ;
-; g_inputs       ; 4     ; Untyped                                                                                                           ;
+; g_inputs       ; 5     ; Untyped                                                                                                           ;
 ; g_outputs      ; 1     ; Untyped                                                                                                           ;
 +----------------+-------+-------------------------------------------------------------------------------------------------------------------+
 
@@ -228,11 +231,11 @@ Quartus Prime Version 18.1.0 Build 222 09/21/2018 SJ Pro Edition
 +-------------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+--------+-----------------------------------------------------------------------------------------------+---------------------------+--------------+
 ; Compilation Hierarchy Node                      ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; IOPLLs ; Full Hierarchy Name                                                                           ; Entity Name               ; Library Name ;
 +-------------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+--------+-----------------------------------------------------------------------------------------------+---------------------------+--------------+
-; |                                               ; 533 (0)             ; 430 (0)                   ; 0                 ; 0          ; 0    ; 0            ; 0 (0)  ; |                                                                                             ; syntest_scaler_controller ; altera_work  ;
-;    |i_mut|                                      ; 10 (10)             ; 90 (90)                   ; 0                 ; 0          ; 0    ; 0            ; 0 (0)  ; i_mut                                                                                         ; scaler_controller         ; altera_work  ;
-;    |i_sink|                                     ; 522 (499)           ; 162 (139)                 ; 0                 ; 0          ; 0    ; 0            ; 0 (0)  ; i_sink                                                                                        ; atv_dummy_sink            ; altera_work  ;
-;       |i_atv_dummy_reduce|                      ; 23 (18)             ; 23 (18)                   ; 0                 ; 0          ; 0    ; 0            ; 0 (0)  ; i_sink|i_atv_dummy_reduce                                                                     ; atv_dummy_reduce          ; altera_work  ;
-;          |\g_reduce_more:i_atv_dummy_reduce|    ; 5 (4)               ; 5 (4)                     ; 0                 ; 0          ; 0    ; 0            ; 0 (0)  ; i_sink|i_atv_dummy_reduce|\g_reduce_more:i_atv_dummy_reduce                                   ; atv_dummy_reduce          ; altera_work  ;
+; |                                               ; 754 (0)             ; 502 (0)                   ; 0                 ; 0          ; 0    ; 0            ; 0 (0)  ; |                                                                                             ; syntest_scaler_controller ; altera_work  ;
+;    |i_mut|                                      ; 68 (68)             ; 119 (119)                 ; 0                 ; 0          ; 0    ; 0            ; 0 (0)  ; i_mut                                                                                         ; scaler_controller         ; altera_work  ;
+;    |i_sink|                                     ; 685 (655)           ; 205 (175)                 ; 0                 ; 0          ; 0    ; 0            ; 0 (0)  ; i_sink                                                                                        ; atv_dummy_sink            ; altera_work  ;
+;       |i_atv_dummy_reduce|                      ; 30 (24)             ; 30 (24)                   ; 0                 ; 0          ; 0    ; 0            ; 0 (0)  ; i_sink|i_atv_dummy_reduce                                                                     ; atv_dummy_reduce          ; altera_work  ;
+;          |\g_reduce_more:i_atv_dummy_reduce|    ; 6 (5)               ; 6 (5)                     ; 0                 ; 0          ; 0    ; 0            ; 0 (0)  ; i_sink|i_atv_dummy_reduce|\g_reduce_more:i_atv_dummy_reduce                                   ; atv_dummy_reduce          ; altera_work  ;
 ;             |\g_reduce_more:i_atv_dummy_reduce| ; 1 (1)               ; 1 (1)                     ; 0                 ; 0          ; 0    ; 0            ; 0 (0)  ; i_sink|i_atv_dummy_reduce|\g_reduce_more:i_atv_dummy_reduce|\g_reduce_more:i_atv_dummy_reduce ; atv_dummy_reduce          ; altera_work  ;
 ;    |i_source|                                   ; 1 (1)               ; 178 (178)                 ; 0                 ; 0          ; 0    ; 0            ; 0 (0)  ; i_source                                                                                      ; atv_dummy_source          ; altera_work  ;
 +-------------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+--------+-----------------------------------------------------------------------------------------------+---------------------------+--------------+
@@ -240,18 +243,15 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 
 
 Encoding Type:  One-Hot
-+------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; State Machine - i_mut|state                                                                                                                                      ;
-+----------------------------+------------------------+----------------------------+-----------------------+-------------------+--------------------+--------------+
-; Name                       ; state.s_control_packet ; state.s_clocked_video_data ; state.s_reserved_data ; state.s_user_data ; state.s_video_data ; state.s_idle ;
-+----------------------------+------------------------+----------------------------+-----------------------+-------------------+--------------------+--------------+
-; state.s_idle               ; 0                      ; 0                          ; 0                     ; 0                 ; 0                  ; 0            ;
-; state.s_video_data         ; 0                      ; 0                          ; 0                     ; 0                 ; 1                  ; 1            ;
-; state.s_user_data          ; 0                      ; 0                          ; 0                     ; 1                 ; 0                  ; 1            ;
-; state.s_reserved_data      ; 0                      ; 0                          ; 1                     ; 0                 ; 0                  ; 1            ;
-; state.s_clocked_video_data ; 0                      ; 1                          ; 0                     ; 0                 ; 0                  ; 1            ;
-; state.s_control_packet     ; 1                      ; 0                          ; 0                     ; 0                 ; 0                  ; 1            ;
-+----------------------------+------------------------+----------------------------+-----------------------+-------------------+--------------------+--------------+
++-------------------------------------------------------------------------------------+
+; State Machine - i_mut|state                                                         ;
++------------------------+------------------------+--------------------+--------------+
+; Name                   ; state.s_control_packet ; state.s_video_data ; state.s_idle ;
++------------------------+------------------------+--------------------+--------------+
+; state.s_idle           ; 0                      ; 0                  ; 0            ;
+; state.s_video_data     ; 0                      ; 1                  ; 1            ;
+; state.s_control_packet ; 1                      ; 0                  ; 1            ;
++------------------------+------------------------+--------------------+--------------+
 
 
 +-------------------------------------------------------------------------+
@@ -259,7 +259,7 @@ Encoding Type:  One-Hot
 +-------------+------------------+------------+----------------+----------+
 ; Name        ; Number of States ; Using aclr ; Encoding Style ; Safeness ;
 +-------------+------------------+------------+----------------+----------+
-; i_mut|state ; 6                ; No         ; One-Hot        ; Not Safe ;
+; i_mut|state ; 3                ; No         ; One-Hot        ; Not Safe ;
 +-------------+------------------+------------+----------------+----------+
 
 
@@ -276,6 +276,9 @@ Encoding Type:  One-Hot
 ; i_sink|\i:12:counter[0]                ; Merged with i_sink|\i:0:counter[0] ;
 ; i_sink|\i:14:counter[0]                ; Merged with i_sink|\i:0:counter[0] ;
 ; i_sink|\i:16:counter[0]                ; Merged with i_sink|\i:0:counter[0] ;
+; i_sink|\i:18:counter[0]                ; Merged with i_sink|\i:0:counter[0] ;
+; i_sink|\i:20:counter[0]                ; Merged with i_sink|\i:0:counter[0] ;
+; i_sink|\i:22:counter[0]                ; Merged with i_sink|\i:0:counter[0] ;
 ; i_sink|\i:3:counter[0]                 ; Merged with i_sink|\i:1:counter[0] ;
 ; i_sink|\i:5:counter[0]                 ; Merged with i_sink|\i:1:counter[0] ;
 ; i_sink|\i:7:counter[0]                 ; Merged with i_sink|\i:1:counter[0] ;
@@ -284,36 +287,52 @@ Encoding Type:  One-Hot
 ; i_sink|\i:13:counter[0]                ; Merged with i_sink|\i:1:counter[0] ;
 ; i_sink|\i:15:counter[0]                ; Merged with i_sink|\i:1:counter[0] ;
 ; i_sink|\i:17:counter[0]                ; Merged with i_sink|\i:1:counter[0] ;
-; i_mut|state.s_idle                     ; Lost fanout                        ;
-; i_mut|state.s_user_data                ; Lost fanout                        ;
-; i_mut|state.s_reserved_data            ; Lost fanout                        ;
-; i_mut|state.s_clocked_video_data       ; Lost fanout                        ;
-; i_mut|state.s_control_packet           ; Lost fanout                        ;
+; i_sink|\i:19:counter[0]                ; Merged with i_sink|\i:1:counter[0] ;
+; i_sink|\i:21:counter[0]                ; Merged with i_sink|\i:1:counter[0] ;
+; i_sink|\i:23:counter[0]                ; Merged with i_sink|\i:1:counter[0] ;
 ; i_sink|\i:4:counter[1]                 ; Merged with i_sink|\i:0:counter[1] ;
 ; i_sink|\i:8:counter[1]                 ; Merged with i_sink|\i:0:counter[1] ;
 ; i_sink|\i:12:counter[1]                ; Merged with i_sink|\i:0:counter[1] ;
 ; i_sink|\i:16:counter[1]                ; Merged with i_sink|\i:0:counter[1] ;
+; i_sink|\i:20:counter[1]                ; Merged with i_sink|\i:0:counter[1] ;
 ; i_sink|\i:6:counter[1]                 ; Merged with i_sink|\i:2:counter[1] ;
 ; i_sink|\i:10:counter[1]                ; Merged with i_sink|\i:2:counter[1] ;
 ; i_sink|\i:14:counter[1]                ; Merged with i_sink|\i:2:counter[1] ;
+; i_sink|\i:18:counter[1]                ; Merged with i_sink|\i:2:counter[1] ;
+; i_sink|\i:22:counter[1]                ; Merged with i_sink|\i:2:counter[1] ;
 ; i_sink|\i:7:counter[1]                 ; Merged with i_sink|\i:3:counter[1] ;
 ; i_sink|\i:11:counter[1]                ; Merged with i_sink|\i:3:counter[1] ;
 ; i_sink|\i:15:counter[1]                ; Merged with i_sink|\i:3:counter[1] ;
+; i_sink|\i:19:counter[1]                ; Merged with i_sink|\i:3:counter[1] ;
+; i_sink|\i:23:counter[1]                ; Merged with i_sink|\i:3:counter[1] ;
 ; i_sink|\i:9:counter[1]                 ; Merged with i_sink|\i:5:counter[1] ;
 ; i_sink|\i:13:counter[1]                ; Merged with i_sink|\i:5:counter[1] ;
 ; i_sink|\i:17:counter[1]                ; Merged with i_sink|\i:5:counter[1] ;
+; i_sink|\i:21:counter[1]                ; Merged with i_sink|\i:5:counter[1] ;
 ; i_sink|\i:8:counter[2]                 ; Merged with i_sink|\i:0:counter[2] ;
 ; i_sink|\i:16:counter[2]                ; Merged with i_sink|\i:0:counter[2] ;
 ; i_sink|\i:10:counter[2]                ; Merged with i_sink|\i:2:counter[2] ;
+; i_sink|\i:18:counter[2]                ; Merged with i_sink|\i:2:counter[2] ;
 ; i_sink|\i:11:counter[2]                ; Merged with i_sink|\i:3:counter[2] ;
+; i_sink|\i:19:counter[2]                ; Merged with i_sink|\i:3:counter[2] ;
 ; i_sink|\i:12:counter[2]                ; Merged with i_sink|\i:4:counter[2] ;
+; i_sink|\i:20:counter[2]                ; Merged with i_sink|\i:4:counter[2] ;
 ; i_sink|\i:13:counter[2]                ; Merged with i_sink|\i:5:counter[2] ;
+; i_sink|\i:21:counter[2]                ; Merged with i_sink|\i:5:counter[2] ;
 ; i_sink|\i:14:counter[2]                ; Merged with i_sink|\i:6:counter[2] ;
+; i_sink|\i:22:counter[2]                ; Merged with i_sink|\i:6:counter[2] ;
 ; i_sink|\i:15:counter[2]                ; Merged with i_sink|\i:7:counter[2] ;
+; i_sink|\i:23:counter[2]                ; Merged with i_sink|\i:7:counter[2] ;
 ; i_sink|\i:17:counter[2]                ; Merged with i_sink|\i:9:counter[2] ;
 ; i_sink|\i:16:counter[3]                ; Merged with i_sink|\i:0:counter[3] ;
+; i_sink|\i:18:counter[3]                ; Merged with i_sink|\i:2:counter[3] ;
+; i_sink|\i:19:counter[3]                ; Merged with i_sink|\i:3:counter[3] ;
+; i_sink|\i:20:counter[3]                ; Merged with i_sink|\i:4:counter[3] ;
+; i_sink|\i:21:counter[3]                ; Merged with i_sink|\i:5:counter[3] ;
+; i_sink|\i:22:counter[3]                ; Merged with i_sink|\i:6:counter[3] ;
+; i_sink|\i:23:counter[3]                ; Merged with i_sink|\i:7:counter[3] ;
 ; i_sink|\i:5:counter[1]                 ; Merged with i_sink|\i:1:counter[1] ;
-; Total Number of Removed Registers = 45 ;                                    ;
+; Total Number of Removed Registers = 64 ;                                    ;
 +----------------------------------------+------------------------------------+
 
 
@@ -322,12 +341,12 @@ Encoding Type:  One-Hot
 +----------------------------------------------+-------------+
 ; Statistic                                    ; Value       ;
 +----------------------------------------------+-------------+
-; Total registers                              ; 430         ;
-; Number of registers using Synchronous Clear  ; 86          ;
-; Number of registers using Synchronous Load   ; 0           ;
+; Total registers                              ; 502         ;
+; Number of registers using Synchronous Clear  ; 48          ;
+; Number of registers using Synchronous Load   ; 32          ;
 ; Number of registers using Asynchronous Clear ; 0           ;
 ; Number of registers using Asynchronous Load  ; 0           ;
-; Number of registers using Clock Enable       ; 113         ;
+; Number of registers using Clock Enable       ; 154         ;
 ; Number of registers using Preset             ; 0           ;
 +----------------------------------------------+-------------+
 
@@ -337,13 +356,13 @@ Encoding Type:  One-Hot
 +-----------------------------------------+---------+
 ; Inverted Register                       ; Fan out ;
 +-----------------------------------------+---------+
-; i_sink|\i:2:counter[1]                  ; 84      ;
-; i_sink|\i:1:counter[0]                  ; 182     ;
-; i_sink|\i:3:counter[1]                  ; 84      ;
-; i_sink|\i:4:counter[2]                  ; 42      ;
-; i_sink|\i:5:counter[2]                  ; 42      ;
-; i_sink|\i:6:counter[2]                  ; 42      ;
-; i_sink|\i:7:counter[2]                  ; 42      ;
+; i_sink|\i:1:counter[0]                  ; 241     ;
+; i_sink|\i:2:counter[1]                  ; 125     ;
+; i_sink|\i:3:counter[1]                  ; 114     ;
+; i_sink|\i:4:counter[2]                  ; 63      ;
+; i_sink|\i:5:counter[2]                  ; 63      ;
+; i_sink|\i:6:counter[2]                  ; 60      ;
+; i_sink|\i:7:counter[2]                  ; 51      ;
 ; i_sink|\i:8:counter[3]                  ; 22      ;
 ; i_sink|\i:9:counter[3]                  ; 22      ;
 ; i_sink|\i:10:counter[3]                 ; 22      ;
@@ -352,9 +371,15 @@ Encoding Type:  One-Hot
 ; i_sink|\i:13:counter[3]                 ; 22      ;
 ; i_sink|\i:14:counter[3]                 ; 22      ;
 ; i_sink|\i:15:counter[3]                 ; 22      ;
-; i_sink|\i:16:counter[4]                 ; 16      ;
-; i_sink|\i:17:counter[4]                 ; 10      ;
-; Total number of inverted registers = 17 ;         ;
+; i_sink|\i:16:counter[4]                 ; 21      ;
+; i_sink|\i:17:counter[4]                 ; 21      ;
+; i_sink|\i:18:counter[4]                 ; 21      ;
+; i_sink|\i:19:counter[4]                 ; 21      ;
+; i_sink|\i:20:counter[4]                 ; 21      ;
+; i_sink|\i:21:counter[4]                 ; 21      ;
+; i_sink|\i:22:counter[4]                 ; 12      ;
+; i_sink|\i:23:counter[4]                 ; 9       ;
+; Total number of inverted registers = 23 ;         ;
 +-----------------------------------------+---------+
 
 
@@ -363,8 +388,9 @@ Encoding Type:  One-Hot
 +--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
-; 3:1                ; 83 bits   ; 166 LEs       ; 0 LEs                ; 166 LEs                ; Yes        ; i_mut|data_o[67]           ;
-; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; i_mut|i40                  ;
+; 7:1                ; 48 bits   ; 192 LEs       ; 48 LEs               ; 144 LEs                ; Yes        ; i_mut|data_o[68]           ;
+; 8:1                ; 32 bits   ; 160 LEs       ; 64 LEs               ; 96 LEs                 ; Yes        ; i_mut|data_o[63]           ;
+; 8:1                ; 2 bits    ; 10 LEs        ; 6 LEs                ; 4 LEs                  ; No         ; i_mut|Select_83            ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
 
 
@@ -374,25 +400,25 @@ Encoding Type:  One-Hot
 ; Type                   ; Count                                   ;
 +------------------------+-----------------------------------------+
 ; boundary_port          ; 2                                       ;
-; twentynm_ff            ; 430                                     ;
-;     ENA                ; 30                                      ;
-;     ENA SCLR           ; 83                                      ;
-;     SCLR               ; 3                                       ;
-;     plain              ; 314                                     ;
-; twentynm_lcell_comb    ; 533                                     ;
-;     normal             ; 533                                     ;
-;         1 data inputs  ; 33                                      ;
-;         2 data inputs  ; 9                                       ;
-;         3 data inputs  ; 26                                      ;
-;         4 data inputs  ; 8                                       ;
-;         5 data inputs  ; 24                                      ;
-;         6 data inputs  ; 433                                     ;
+; twentynm_ff            ; 502                                     ;
+;     ENA                ; 74                                      ;
+;     ENA SCLR           ; 48                                      ;
+;     ENA SLD            ; 32                                      ;
+;     plain              ; 348                                     ;
+; twentynm_lcell_comb    ; 754                                     ;
+;     normal             ; 754                                     ;
+;         1 data inputs  ; 45                                      ;
+;         2 data inputs  ; 55                                      ;
+;         3 data inputs  ; 19                                      ;
+;         4 data inputs  ; 13                                      ;
+;         5 data inputs  ; 38                                      ;
+;         6 data inputs  ; 584                                     ;
 ;                        ;                                         ;
 ; Number of carry chains ; 0                                       ;
 ; Max carry chain length ; 0                                       ;
 ;                        ;                                         ;
 ; Max LUT depth          ; 5.00                                    ;
-; Average LUT depth      ; 3.19                                    ;
+; Average LUT depth      ; 3.29                                    ;
 +------------------------+-----------------------------------------+
 
 
@@ -401,16 +427,16 @@ Encoding Type:  One-Hot
 +---------------------------------------------+-------------------+
 ; Resource                                    ; Usage             ;
 +---------------------------------------------+-------------------+
-; Estimate of Logic utilization (ALMs needed) ; 521               ;
+; Estimate of Logic utilization (ALMs needed) ; 711               ;
 ;                                             ;                   ;
-; Combinational ALUT usage for logic          ; 533               ;
+; Combinational ALUT usage for logic          ; 754               ;
 ;     -- 7 input functions                    ; 0                 ;
-;     -- 6 input functions                    ; 433               ;
-;     -- 5 input functions                    ; 24                ;
-;     -- 4 input functions                    ; 8                 ;
-;     -- <=3 input functions                  ; 68                ;
+;     -- 6 input functions                    ; 584               ;
+;     -- 5 input functions                    ; 38                ;
+;     -- 4 input functions                    ; 13                ;
+;     -- <=3 input functions                  ; 119               ;
 ;                                             ;                   ;
-; Dedicated logic registers                   ; 430               ;
+; Dedicated logic registers                   ; 502               ;
 ;                                             ;                   ;
 ; I/O pins                                    ; 2                 ;
 ;                                             ;                   ;
@@ -419,9 +445,9 @@ Encoding Type:  One-Hot
 ;     -- [B] Total Floating Point DSP Blocks  ; 0                 ;
 ;                                             ;                   ;
 ; Maximum fan-out node                        ; clk_i             ;
-; Maximum fan-out                             ; 340               ;
-; Total fan-out                               ; 3939              ;
-; Average fan-out                             ; 4.08              ;
+; Maximum fan-out                             ; 383               ;
+; Total fan-out                               ; 5229              ;
+; Average fan-out                             ; 4.16              ;
 +---------------------------------------------+-------------------+
 
 
@@ -431,7 +457,7 @@ Encoding Type:  One-Hot
 Info: *******************************************************************
 Info: Running Quartus Prime Synthesis
     Info: Version 18.1.0 Build 222 09/21/2018 SJ Pro Edition
-    Info: Processing started: Thu Apr  4 09:36:57 2019
+    Info: Processing started: Tue Apr  9 23:43:14 2019
 Info: Command: quartus_syn --read_settings_files=on --write_settings_files=off syntest_scaler_controller -c syntest_scaler_controller
 Info: qis_default_flow_script.tcl version: #1
 Info: Initializing Synthesis...
@@ -440,14 +466,13 @@ Info: Revision = "syntest_scaler_controller"
 Info: Analyzing source files
 Info: Elaborating from top-level entity "syntest_scaler_controller"
 Info (18235): Library search order is as follows: "ctp". Quartus will look for undefined design units in your libraries in that order. To modify the ordering, please specify a semi-colon separated library list using the assignment LIBRARY_SEARCH_ORDER.
-Info (19337): VHDL info at syntest_scaler_controller.vhd(18): executing entity "syntest_scaler_controller" with architecture "rtl" File: C:/Users/stens/Documents/video-scaler/FPGA-video-scaler/scaler/syntest/syntest_scaler_controller.vhd Line: 18
-Info (19337): VHDL info at scaler_controller.vhd(17): executing entity "scaler_controller(g_data_width=80,g_empty_width=3)" with architecture "scaler_controller_arc" File: C:/Users/stens/Documents/video-scaler/FPGA-video-scaler/scaler/src/scaler_controller.vhd Line: 17
-Info (19337): VHDL info at atv_dummy_source.vhd(40): executing entity "atv_dummy_source(g_ports=89)" with architecture "rtl" File: C:/Users/stens/Documents/video-scaler/atv/atv_lib/atv_dummy_source.vhd Line: 40
-Info (19337): VHDL info at atv_dummy_sink.vhd(115): executing entity "atv_dummy_sink(g_ports=89)" with architecture "rtl" File: C:/Users/stens/Documents/video-scaler/atv/atv_lib/atv_dummy_sink.vhd Line: 115
-Info (19337): VHDL info at atv_dummy_sink.vhd(23): executing entity "atv_dummy_reduce(g_logic_levels=5,g_inputs=89)" with architecture "rtl" File: C:/Users/stens/Documents/video-scaler/atv/atv_lib/atv_dummy_sink.vhd Line: 23
-Info (19337): VHDL info at atv_dummy_sink.vhd(23): executing entity "atv_dummy_reduce(g_logic_levels=5,g_inputs=18)" with architecture "rtl" File: C:/Users/stens/Documents/video-scaler/atv/atv_lib/atv_dummy_sink.vhd Line: 23
-Info (19337): VHDL info at atv_dummy_sink.vhd(23): executing entity "atv_dummy_reduce(g_logic_levels=5,g_inputs=4)" with architecture "rtl" File: C:/Users/stens/Documents/video-scaler/atv/atv_lib/atv_dummy_sink.vhd Line: 23
-Warning (16788): Net "sink[88]" does not have a driver at syntest_scaler_controller.vhd(30) File: C:/Users/stens/Documents/video-scaler/FPGA-video-scaler/scaler/syntest/syntest_scaler_controller.vhd Line: 30
+Info (19337): VHDL info at syntest_scaler_controller.vhd(18): executing entity "syntest_scaler_controller" with architecture "rtl" File: C:/Users/stens/Documents/NTNU/FPGA-video-scaler/scaler/syntest/syntest_scaler_controller.vhd Line: 18
+Info (19337): VHDL info at scaler_controller.vhd(17): executing entity "scaler_controller(g_data_width=80,g_empty_width=3,g_tx_video_width=1920,g_tx_video_height=1080,g_tx_video_scaling_method=0)" with architecture "scaler_controller_arc" File: C:/Users/stens/Documents/NTNU/FPGA-video-scaler/scaler/src/scaler_controller.vhd Line: 17
+Info (19337): VHDL info at atv_dummy_source.vhd(40): executing entity "atv_dummy_source(g_ports=89)" with architecture "rtl" File: C:/Users/stens/Documents/NTNU/atv/atv_lib/atv_dummy_source.vhd Line: 40
+Info (19337): VHDL info at atv_dummy_sink.vhd(115): executing entity "atv_dummy_sink(g_ports=119)" with architecture "rtl" File: C:/Users/stens/Documents/NTNU/atv/atv_lib/atv_dummy_sink.vhd Line: 115
+Info (19337): VHDL info at atv_dummy_sink.vhd(23): executing entity "atv_dummy_reduce(g_logic_levels=5,g_inputs=119)" with architecture "rtl" File: C:/Users/stens/Documents/NTNU/atv/atv_lib/atv_dummy_sink.vhd Line: 23
+Info (19337): VHDL info at atv_dummy_sink.vhd(23): executing entity "atv_dummy_reduce(g_logic_levels=5,g_inputs=24)" with architecture "rtl" File: C:/Users/stens/Documents/NTNU/atv/atv_lib/atv_dummy_sink.vhd Line: 23
+Info (19337): VHDL info at atv_dummy_sink.vhd(23): executing entity "atv_dummy_reduce(g_logic_levels=5,g_inputs=5)" with architecture "rtl" File: C:/Users/stens/Documents/NTNU/atv/atv_lib/atv_dummy_sink.vhd Line: 23
 Info: Found 5 design entities
 Info: There are 7 partitions after elaboration.
 Info: Creating instance-specific data models and dissolving soft partitions
@@ -456,16 +481,15 @@ Info (18300): Expanded entity and wildcard assignments. Elapsed time: 00:00:00
 Info: found pre-synthesis snapshots for 1 partition(s)
 Info: Synthesizing partition "root_partition"
 Info (286030): Timing-Driven Synthesis is running
-Info (17049): 5 registers lost all their fanouts during netlist optimizations.
-Info (21057): Implemented 795 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 997 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 1 input pins
     Info (21059): Implemented 1 output pins
-    Info (21061): Implemented 793 logic cells
+    Info (21061): Implemented 995 logic cells
 Info: Successfully synthesized partition
 Info: Saving post-synthesis snapshots for 1 partition(s)
-Info: Quartus Prime Synthesis was successful. 0 errors, 1 warning
-    Info: Peak virtual memory: 5096 megabytes
-    Info: Processing ended: Thu Apr  4 09:37:01 2019
+Info: Quartus Prime Synthesis was successful. 0 errors, 0 warnings
+    Info: Peak virtual memory: 5109 megabytes
+    Info: Processing ended: Tue Apr  9 23:43:18 2019
     Info: Elapsed time: 00:00:04
 
 
