@@ -45,6 +45,9 @@ entity scaler_controller is
       rx_video_width_o           : out std_logic_vector(15 downto 0);
       rx_video_height_o          : out std_logic_vector(15 downto 0)
 
+      --mode_in_i   : in t_mode; -- t_mode := 720p, 1080p
+      --mode_out_i  : in t_mode; 
+
       ---- Input FIFO
       --fifo_in_wr_en_i   : in  std_logic;
       --fifo_in_rd_en_i   : in  std_logic;
@@ -62,11 +65,10 @@ entity scaler_controller is
 architecture scaler_controller_arc of scaler_controller is
    type t_packet_type is (s_idle, s_video_data, s_control_packet);
    signal state   : t_packet_type := s_idle;
-   signal fsm_ready     : std_logic := '0';
 
 begin
    -- Asseart ready out
-   ready_o <= (ready_i or not valid_o) and fsm_ready;
+   ready_o <= ready_i or not valid_o;
 
    p_fsm : process(clk_i) is
       variable v_tx_video_width : std_logic_vector(15 downto 0);
@@ -77,7 +79,6 @@ begin
             valid_o <= '0';
          end if;
 
-         fsm_ready <= '1';
 
          case state is
             when s_idle =>
@@ -89,7 +90,6 @@ begin
                      startofpacket_o <= '1';
 
                      -- Next state
-                     fsm_ready <= '0';
                      state <= s_video_data;
                   elsif startofpacket_i = '1' and data_i(3 downto 0) = "1111" then
                      -- Send startofpacket and ctrl pkg identifier to output
@@ -98,7 +98,6 @@ begin
                      startofpacket_o <= '1';
 
                      -- Next state
-                     fsm_ready <= '0';
                      state <= s_control_packet;
                   end if;
 
@@ -113,11 +112,9 @@ begin
                      endofpacket_o <= '1';
 
                      -- Next state
-                     fsm_ready <= '1';
                      state <= s_idle;
                   else
                      -- Next state
-                     fsm_ready <= '0';
                      state <= s_video_data;
                   end if;
                   data_o  <= data_i;
@@ -157,7 +154,6 @@ begin
                   endofpacket_o <= '1';
 
                   -- Next state
-                  fsm_ready <= '1';
                   state <= s_idle;
                end if;
 
@@ -165,6 +161,7 @@ begin
 
          if sreset_i = '1' then
             valid_o <= '0';
+            state <= s_idle;
          end if;
       end if;
    end process p_fsm;

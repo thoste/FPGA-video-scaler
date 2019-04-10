@@ -36,7 +36,7 @@ add wave -noupdate -expand -group {Scaler in} -radix hexadecimal /tb_scaler/i_te
 #	add wave -noupdate -expand -group {FIFO in} -radix hexadecimal /tb_scaler/i_test_harness/i_scaler/fifo_in/data_o
 
 # CONTROLLER
-add wave -noupdate -expand -group {Ctrl} -radix hexadecimal /tb_scaler/i_test_harness/i_scaler/scaler_controller/fsm_ready
+# 	add wave -noupdate -expand -group {Ctrl} -radix hexadecimal /tb_scaler/i_test_harness/i_scaler/scaler_controller/fsm_ready
 add wave -noupdate -expand -group {Ctrl} -radix hexadecimal /tb_scaler/i_test_harness/i_scaler/scaler_controller/ready_i
 add wave -noupdate -expand -group {Ctrl} -radix hexadecimal /tb_scaler/i_test_harness/i_scaler/scaler_controller/valid_o
 #  add wave -noupdate -expand -group {Ctrl} -radix hexadecimal /tb_scaler/i_test_harness/i_scaler/scaler_controller/data_i
