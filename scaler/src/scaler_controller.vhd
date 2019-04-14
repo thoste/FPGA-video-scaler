@@ -43,7 +43,11 @@ entity scaler_controller is
 
       -- Config
       rx_video_width_o           : out std_logic_vector(15 downto 0);
-      rx_video_height_o          : out std_logic_vector(15 downto 0)
+      rx_video_height_o          : out std_logic_vector(15 downto 0);
+
+      -- Framebuffer
+      framebuffer_wr_addr     : out integer := 0;
+      framebuffer_wr_en       : out std_logic := '0'
 
       --mode_in_i   : in t_mode; -- t_mode := 720p, 1080p
       --mode_out_i  : in t_mode; 
@@ -73,6 +77,7 @@ begin
    p_fsm : process(clk_i) is
       variable v_tx_video_width : std_logic_vector(15 downto 0);
       variable v_tx_video_height : std_logic_vector(15 downto 0);
+      variable v_framebuffer_index : integer := 0;
    begin
       if rising_edge(clk_i) then
          if ready_i = '1' then
@@ -103,6 +108,7 @@ begin
 
                   -- Reset endofpacket
                   endofpacket_o <= '0';
+                  v_framebuffer_index := 0;
                end if;
 
 
@@ -119,6 +125,9 @@ begin
                   end if;
                   data_o  <= data_i;
                   valid_o   <= '1';
+                  framebuffer_wr_en <= '1';
+                  framebuffer_wr_addr <= v_framebuffer_index;
+                  v_framebuffer_index := v_framebuffer_index + 1;
                   startofpacket_o <= '0';
                end if;
 
