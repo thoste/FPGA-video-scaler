@@ -15,7 +15,7 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 
-entity scaler is
+entity scaler_wrapper is
    generic (
       g_data_width               : natural;
       g_empty_width              : natural;
@@ -44,9 +44,9 @@ entity scaler is
       scaler_valid_o    : out std_logic := '0';
       scaler_ready_i    : in  std_logic
    );
-end entity scaler;
+end entity scaler_wrapper;
 
-architecture scaler_arc of scaler is
+architecture scaler_wrapper_arc of scaler_wrapper is
    --constant c_data_range_fifo    : natural := g_data_width;
    --constant c_empty_range_fifo   : natural := g_data_width + g_empty_width;
    --constant c_sop_range_fifo     : natural := g_data_width + g_empty_width + 1;
@@ -236,4 +236,4 @@ begin
    ---- FIFO output
    --ctrl_ready_i <= '1';
 
-end scaler_arc;
+end scaler_wrapper_arc;

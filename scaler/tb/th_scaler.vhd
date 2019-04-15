@@ -85,7 +85,7 @@ begin
    -----------------------------------------------------------------------------
    -- Instantiate DUT
    -----------------------------------------------------------------------------
-   i_scaler: entity work.scaler
+   i_scaler: entity work.scaler_wrapper
    generic map (
       g_data_width      => g_data_width,
       g_empty_width     => g_empty_width,
