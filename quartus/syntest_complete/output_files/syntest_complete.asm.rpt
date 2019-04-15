@@ -1,0 +1,133 @@
+Assembler report for syntest_complete
+Mon Apr 15 11:30:28 2019
+Quartus Prime Version 18.1.0 Build 222 09/21/2018 SJ Pro Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Assembler Summary
+  3. Assembler Settings
+  4. Parallel Compilation
+  5. Assembler Messages
+  6. Assembler Generated Files
+  7. Assembler Device Options: C:/Users/stens/Documents/video-scaler/FPGA-video-scaler/quartus/syntest_complete/output_files/syntest_complete.sof
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2018  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the applicable agreement for further details.
+
+
+
++---------------------------------------------------------------+
+; Assembler Summary                                             ;
++-----------------------+---------------------------------------+
+; Assembler Status      ; Successful - Mon Apr 15 11:30:28 2019 ;
+; Revision Name         ; syntest_complete                      ;
+; Top-level Entity Name ; syntest_complete                      ;
+; Family                ; Arria 10                              ;
+; Device                ; 10AX115S2F45I2SG                      ;
++-----------------------+---------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------+
+; Assembler Settings                                                                                            ;
++-----------------------------------------------------------------------------+----------------+----------------+
+; Option                                                                      ; Setting        ; Default Value  ;
++-----------------------------------------------------------------------------+----------------+----------------+
+; Enable parallel Assembler and Timing Analyzer during compilation            ; On             ; On             ;
+; Enable compact report table                                                 ; Off            ; Off            ;
+; Allow RAM Retiming                                                          ; Off            ; Off            ;
+; Allow DSP Retiming                                                          ; Off            ; Off            ;
+; Use Checkered Pattern as Uninitialized RAM Content                          ; Off            ; Off            ;
+; Generate compressed bitstreams                                              ; On             ; On             ;
+; Compression mode                                                            ; Off            ; Off            ;
+; Clock source for configuration device                                       ; Internal       ; Internal       ;
+; Clock frequency of the configuration device                                 ; 10 MHz         ; 10 MHz         ;
+; Divide clock frequency by                                                   ; 1              ; 1              ;
+; Auto user code                                                              ; On             ; On             ;
+; Configuration device                                                        ; Auto           ; Auto           ;
+; Voltage output format                                                       ; Auto discovery ; Auto discovery ;
+; Translated voltage value unit                                               ; Volts          ; Volts          ;
+; Configuration device auto user code                                         ; Off            ; Off            ;
+; Generate Tabular Text File (.ttf) For Target Device                         ; Off            ; Off            ;
+; Generate Raw Binary File (.rbf) For Target Device                           ; Off            ; Off            ;
+; Generate Partial Reconfiguration Raw Binary File (.rbf)                     ; Off            ; Off            ;
+; Generate Hexadecimal (Intel-Format) Output File (.hexout) for Target Device ; Off            ; Off            ;
+; Hexadecimal Output File start address                                       ; 0              ; 0              ;
+; Hexadecimal Output File count direction                                     ; Up             ; Up             ;
+; Release clears before tri-states                                            ; Off            ; Off            ;
+; Auto-restart configuration after error                                      ; On             ; On             ;
+; Enable OCT_DONE                                                             ; Off            ; Off            ;
+; Enable autonomous PCIe HIP mode                                             ; Off            ; Off            ;
+; Generate Serial Vector Format File (.svf) for Target Device                 ; Off            ; Off            ;
+; Generate a JEDEC STAPL Format File (.jam) for Target Device                 ; Off            ; Off            ;
+; Generate a compressed Jam STAPL Byte Code 2.0 File (.jbc) for Target Device ; Off            ; Off            ;
+; Generate a compressed Jam STAPL Byte Code 2.0 File (.jbc) for Target Device ; On             ; On             ;
+; Enables the HPS early release of HPS IO                                     ; Off            ; Off            ;
++-----------------------------------------------------------------------------+----------------+----------------+
+
+
++-------------------------------------+
+; Parallel Compilation                ;
++----------------------------+--------+
+; Processors                 ; Number ;
++----------------------------+--------+
+; Number detected on machine ; 8      ;
+; Maximum allowed            ; 4      ;
+; Maximum used               ; 4      ;
++----------------------------+--------+
+
+
++--------------------+
+; Assembler Messages ;
++--------------------+
+Info: *******************************************************************
+Info: Running Quartus Prime Assembler
+    Info: Version 18.1.0 Build 222 09/21/2018 SJ Pro Edition
+    Info: Processing started: Mon Apr 15 11:29:44 2019
+Info: Command: quartus_asm --read_settings_files=on --write_settings_files=off syntest_complete -c syntest_complete
+Info (16677): Loading final database
+Info (16734): Loading "final" snapshot for partition "root_partition".
+Info (16678): Successfully loaded final database: elapsed time is 00:00:02
+Info: Quartus Prime Assembler was successful. 0 errors, 0 warnings
+    Info: Peak virtual memory: 10501 megabytes
+    Info: Processing ended: Mon Apr 15 11:30:30 2019
+    Info: Elapsed time: 00:00:46
+
+
++--------------------------------------------------------------------------------------------------------------------+
+; Assembler Generated Files                                                                                          ;
++--------------------------------------------------------------------------------------------------------------------+
+; File Name                                                                                                          ;
++--------------------------------------------------------------------------------------------------------------------+
+; C:/Users/stens/Documents/video-scaler/FPGA-video-scaler/quartus/syntest_complete/output_files/syntest_complete.sof ;
++--------------------------------------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------+
+; Assembler Device Options: C:/Users/stens/Documents/video-scaler/FPGA-video-scaler/quartus/syntest_complete/output_files/syntest_complete.sof ;
++----------------+-----------------------------------------------------------------------------------------------------------------------------+
+; Option         ; Setting                                                                                                                     ;
++----------------+-----------------------------------------------------------------------------------------------------------------------------+
+; JTAG usercode  ; 0xFFFFFFFF                                                                                                                  ;
+; Checksum       ; 0x30705473                                                                                                                  ;
++----------------+-----------------------------------------------------------------------------------------------------------------------------+
+
+
