@@ -26,23 +26,23 @@ entity scaler_wrapper is
       g_tx_video_scaling_method  : natural
    );
    port (
-      clk_i             : in  std_logic;
-      sreset_i          : in  std_logic;
+      clk_i       : in  std_logic;
+      sreset_i    : in  std_logic;
       -- To scaler
-      scaler_sop_i      : in  std_logic;
-      scaler_eop_i      : in  std_logic;
-      scaler_data_i     : in  std_logic_vector(g_data_width-1 downto 0);
-      scaler_empty_i    : in  std_logic_vector(g_empty_width-1 downto 0);
-      scaler_valid_i    : in  std_logic;
-      scaler_ready_o    : out std_logic := '0';
+      startofpacket_i   : in  std_logic;
+      endofpacket_i     : in  std_logic;
+      data_i            : in  std_logic_vector(g_data_width-1 downto 0);
+      empty_i           : in  std_logic_vector(g_empty_width-1 downto 0);
+      valid_i           : in  std_logic;
+      ready_o           : out std_logic := '0';
 
       -- From scaler
-      scaler_sop_o      : out std_logic := '0';
-      scaler_eop_o      : out std_logic := '0';
-      scaler_data_o     : out std_logic_vector(g_data_width-1 downto 0) := (others => '0');
-      scaler_empty_o    : out std_logic_vector(g_empty_width-1 downto 0) := (others => '0');
-      scaler_valid_o    : out std_logic := '0';
-      scaler_ready_i    : in  std_logic
+      startofpacket_o   : out std_logic := '0';
+      endofpacket_o     : out std_logic := '0';
+      data_o            : out std_logic_vector(g_data_width-1 downto 0) := (others => '0');
+      empty_o           : out std_logic_vector(g_empty_width-1 downto 0) := (others => '0');
+      valid_o           : out std_logic := '0';
+      ready_i           : in  std_logic
    );
 end entity scaler_wrapper;
 
@@ -62,11 +62,11 @@ architecture scaler_wrapper_arc of scaler_wrapper is
    signal rx_video_height_o         : std_logic_vector(15 downto 0);
 
    -- Framebuffer
-   signal framebuffer_data_i     : std_logic_vector(g_data_width-1 downto 0) := (others => '0');
-   signal framebuffer_wr_addr_i  : integer := 0;
-   signal framebuffer_wr_en_i    : std_logic := '0';
-   signal framebuffer_data_o     : std_logic_vector(g_data_width-1 downto 0) := (others => '0');
-   signal framebuffer_rd_addr_i  : integer := 0;
+   signal fb_data_i     : std_logic_vector(g_data_width-1 downto 0) := (others => '0');
+   signal fb_wr_addr_i  : integer := 0;
+   signal fb_wr_en_i    : std_logic := '0';
+   signal fb_data_o     : std_logic_vector(g_data_width-1 downto 0) := (others => '0');
+   signal fb_rd_addr_i  : integer := 0;
 
    ---- Input FIFO
    --signal fifo_in_wr_en_i        : std_logic;
@@ -96,28 +96,28 @@ begin
       --endofpacket_i     => fifo_in_data_o(c_eop_range_fifo-1),
       --data_i            => fifo_in_data_o(c_data_range_fifo-1 downto 0),
       --empty_i           => fifo_in_data_o(c_empty_range_fifo-1 downto c_data_range_fifo),
-      startofpacket_i   => scaler_sop_i,
-      endofpacket_i     => scaler_eop_i,
-      data_i            => scaler_data_i,
-      empty_i           => scaler_empty_i,
-      valid_i           => ctrl_valid_i,
-      ready_o           => ctrl_ready_o,
+      ctrl_startofpacket_i   => startofpacket_i,
+      ctrl_endofpacket_i     => endofpacket_i,
+      ctrl_data_i            => data_i,
+      ctrl_empty_i           => empty_i,
+      ctrl_valid_i           => ctrl_valid_i,
+      ctrl_ready_o           => ctrl_ready_o,
 
       -- From scaler_controller
-      startofpacket_o   => scaler_sop_o,
-      endofpacket_o     => scaler_eop_o,
-      data_o            => framebuffer_data_i,
-      empty_o           => scaler_empty_o,
-      valid_o           => ctrl_valid_o,
-      ready_i           => ctrl_ready_i,
+      ctrl_startofpacket_o   => startofpacket_o,
+      ctrl_endofpacket_o     => endofpacket_o,
+      ctrl_data_o            => fb_data_i,
+      ctrl_empty_o           => empty_o,
+      ctrl_valid_o           => ctrl_valid_o,
+      ctrl_ready_i           => ctrl_ready_i,
 
       -- Config
       rx_video_width_o           => rx_video_width_o,
       rx_video_height_o          => rx_video_height_o,
 
       -- Framebuffer
-      framebuffer_wr_addr        => framebuffer_wr_addr_i,
-      framebuffer_wr_en          => framebuffer_wr_en_i
+      fb_wr_addr        => fb_wr_addr_i,
+      fb_wr_en          => fb_wr_en_i
 
       ---- Input FIFO
       --fifo_in_wr_en_i         => fifo_in_wr_en_i,
@@ -127,10 +127,10 @@ begin
       --fifo_in_empty_o         => fifo_in_empty_o
    );
 
-   ctrl_ready_i      <= scaler_ready_i;
-   ctrl_valid_i      <= scaler_valid_i;
-   scaler_ready_o    <= ctrl_ready_o;
-   scaler_valid_o    <= ctrl_valid_o;
+   ctrl_ready_i   <= ready_i;
+   ctrl_valid_i   <= valid_i;
+   ready_o        <= ctrl_ready_o;
+   valid_o        <= ctrl_valid_o;
 
    framebuffer : entity work.simple_dpram
    generic map (
@@ -142,20 +142,20 @@ begin
    port map(
       clk_i          => clk_i,
       -- Write
-      data_i         => framebuffer_data_i,
-      wr_addr_i      => framebuffer_wr_addr_i,
-      wr_en_i        => framebuffer_wr_en_i,
+      data_i         => fb_data_i,
+      wr_addr_i      => fb_wr_addr_i,
+      wr_en_i        => fb_wr_en_i,
       -- Read
-      data_o         => framebuffer_data_o,
-      rd_addr_i      => framebuffer_rd_addr_i
+      data_o         => fb_data_o,
+      rd_addr_i      => fb_rd_addr_i
    );
 
    p_empty_framebuffer : process(clk_i) is
       variable v_index : integer := 0;
    begin
       if rising_edge(clk_i) then
-         framebuffer_rd_addr_i <= v_index;
-         scaler_data_o <= framebuffer_data_o;
+         fb_rd_addr_i <= v_index;
+         data_o <= fb_data_o;
          v_index := v_index + 1;
          if v_index = 19 then
             v_index := 0;

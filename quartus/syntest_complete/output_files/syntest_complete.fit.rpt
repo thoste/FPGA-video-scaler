@@ -1,5 +1,5 @@
 Fitter report for syntest_complete
-Mon Apr 15 11:29:31 2019
+Tue Apr 16 15:54:40 2019
 Quartus Prime Version 18.1.0 Build 222 09/21/2018 SJ Pro Edition
 
 
@@ -61,7 +61,7 @@ refer to the applicable agreement for further details.
 +--------------------------------------------------------------------------+
 ; Fitter Summary                                                           ;
 +-----------------------------+--------------------------------------------+
-; Fitter Status               ; Successful - Mon Apr 15 11:29:31 2019      ;
+; Fitter Status               ; Successful - Tue Apr 16 15:54:40 2019      ;
 ; Quartus Prime Version       ; 18.1.0 Build 222 09/21/2018 SJ Pro Edition ;
 ; Revision Name               ; syntest_complete                           ;
 ; Top-level Entity Name       ; syntest_complete                           ;
@@ -164,125 +164,125 @@ refer to the applicable agreement for further details.
 +----------------+----------------+--------------+-------+-------------------------+
 
 
-+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Fitter Netlist Optimizations                                                                                                                                                                                                        ;
-+-----------------------------------------+-----------------+---------------------------------------------------+----------------------------+-----------+---------------------------------------------------------+------------------+
-; Node                                    ; Action          ; Operation                                         ; Reason                     ; Node Port ; Destination Node                                        ; Destination Port ;
-+-----------------------------------------+-----------------+---------------------------------------------------+----------------------------+-----------+---------------------------------------------------------+------------------+
-; i_mut|framebuffer|ram_out_reg[0]        ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[0]  ; PORTBDATAOUT     ;
-; i_mut|framebuffer|ram_out_reg[1]        ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[1]  ; PORTBDATAOUT     ;
-; i_mut|framebuffer|ram_out_reg[2]        ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[2]  ; PORTBDATAOUT     ;
-; i_mut|framebuffer|ram_out_reg[3]        ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[3]  ; PORTBDATAOUT     ;
-; i_mut|framebuffer|ram_out_reg[4]        ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[4]  ; PORTBDATAOUT     ;
-; i_mut|framebuffer|ram_out_reg[5]        ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[5]  ; PORTBDATAOUT     ;
-; i_mut|framebuffer|ram_out_reg[6]        ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[6]  ; PORTBDATAOUT     ;
-; i_mut|framebuffer|ram_out_reg[7]        ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[7]  ; PORTBDATAOUT     ;
-; i_mut|framebuffer|ram_out_reg[8]        ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[8]  ; PORTBDATAOUT     ;
-; i_mut|framebuffer|ram_out_reg[9]        ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[9]  ; PORTBDATAOUT     ;
-; i_mut|framebuffer|ram_out_reg[10]       ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[10] ; PORTBDATAOUT     ;
-; i_mut|framebuffer|ram_out_reg[11]       ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[11] ; PORTBDATAOUT     ;
-; i_mut|framebuffer|ram_out_reg[12]       ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[12] ; PORTBDATAOUT     ;
-; i_mut|framebuffer|ram_out_reg[13]       ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[13] ; PORTBDATAOUT     ;
-; i_mut|framebuffer|ram_out_reg[14]       ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[14] ; PORTBDATAOUT     ;
-; i_mut|framebuffer|ram_out_reg[15]       ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[15] ; PORTBDATAOUT     ;
-; i_mut|framebuffer|ram_out_reg[16]       ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[16] ; PORTBDATAOUT     ;
-; i_mut|framebuffer|ram_out_reg[17]       ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[17] ; PORTBDATAOUT     ;
-; i_mut|framebuffer|ram_out_reg[18]       ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[18] ; PORTBDATAOUT     ;
-; i_mut|framebuffer|ram_out_reg[19]       ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[19] ; PORTBDATAOUT     ;
-; i_mut|framebuffer|ram_out_reg[20]       ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[20] ; PORTBDATAOUT     ;
-; i_mut|framebuffer|ram_out_reg[21]       ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[21] ; PORTBDATAOUT     ;
-; i_mut|framebuffer|ram_out_reg[22]       ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[22] ; PORTBDATAOUT     ;
-; i_mut|framebuffer|ram_out_reg[23]       ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[23] ; PORTBDATAOUT     ;
-; i_mut|framebuffer|ram_out_reg[24]       ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[24] ; PORTBDATAOUT     ;
-; i_mut|framebuffer|ram_out_reg[25]       ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[25] ; PORTBDATAOUT     ;
-; i_mut|framebuffer|ram_out_reg[26]       ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[26] ; PORTBDATAOUT     ;
-; i_mut|framebuffer|ram_out_reg[27]       ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[27] ; PORTBDATAOUT     ;
-; i_mut|framebuffer|ram_out_reg[28]       ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[28] ; PORTBDATAOUT     ;
-; i_mut|framebuffer|ram_out_reg[29]       ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[29] ; PORTBDATAOUT     ;
-; i_mut|framebuffer|ram_out_reg[30]       ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[30] ; PORTBDATAOUT     ;
-; i_mut|framebuffer|ram_out_reg[31]       ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[31] ; PORTBDATAOUT     ;
-; i_mut|framebuffer|ram_out_reg[32]       ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[32] ; PORTBDATAOUT     ;
-; i_mut|framebuffer|ram_out_reg[33]       ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[33] ; PORTBDATAOUT     ;
-; i_mut|framebuffer|ram_out_reg[34]       ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[34] ; PORTBDATAOUT     ;
-; i_mut|framebuffer|ram_out_reg[35]       ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[35] ; PORTBDATAOUT     ;
-; i_mut|framebuffer|ram_out_reg[36]       ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[36] ; PORTBDATAOUT     ;
-; i_mut|framebuffer|ram_out_reg[37]       ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[37] ; PORTBDATAOUT     ;
-; i_mut|framebuffer|ram_out_reg[38]       ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[38] ; PORTBDATAOUT     ;
-; i_mut|framebuffer|ram_out_reg[39]       ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[39] ; PORTBDATAOUT     ;
-; i_mut|framebuffer|ram_out_reg[40]       ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[40] ; PORTBDATAOUT     ;
-; i_mut|framebuffer|ram_out_reg[41]       ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[41] ; PORTBDATAOUT     ;
-; i_mut|framebuffer|ram_out_reg[42]       ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[42] ; PORTBDATAOUT     ;
-; i_mut|framebuffer|ram_out_reg[43]       ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[43] ; PORTBDATAOUT     ;
-; i_mut|framebuffer|ram_out_reg[44]       ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[44] ; PORTBDATAOUT     ;
-; i_mut|framebuffer|ram_out_reg[45]       ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[45] ; PORTBDATAOUT     ;
-; i_mut|framebuffer|ram_out_reg[46]       ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[46] ; PORTBDATAOUT     ;
-; i_mut|framebuffer|ram_out_reg[47]       ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[47] ; PORTBDATAOUT     ;
-; i_mut|framebuffer|ram_out_reg[48]       ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[48] ; PORTBDATAOUT     ;
-; i_mut|framebuffer|ram_out_reg[49]       ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[49] ; PORTBDATAOUT     ;
-; i_mut|framebuffer|ram_out_reg[50]       ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[50] ; PORTBDATAOUT     ;
-; i_mut|framebuffer|ram_out_reg[51]       ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[51] ; PORTBDATAOUT     ;
-; i_mut|framebuffer|ram_out_reg[52]       ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[52] ; PORTBDATAOUT     ;
-; i_mut|framebuffer|ram_out_reg[53]       ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[53] ; PORTBDATAOUT     ;
-; i_mut|framebuffer|ram_out_reg[54]       ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[54] ; PORTBDATAOUT     ;
-; i_mut|framebuffer|ram_out_reg[55]       ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[55] ; PORTBDATAOUT     ;
-; i_mut|framebuffer|ram_out_reg[56]       ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[56] ; PORTBDATAOUT     ;
-; i_mut|framebuffer|ram_out_reg[57]       ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[57] ; PORTBDATAOUT     ;
-; i_mut|framebuffer|ram_out_reg[58]       ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[58] ; PORTBDATAOUT     ;
-; i_mut|framebuffer|ram_out_reg[59]       ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[59] ; PORTBDATAOUT     ;
-; i_mut|framebuffer|ram_out_reg[60]       ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[60] ; PORTBDATAOUT     ;
-; i_mut|framebuffer|ram_out_reg[61]       ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[61] ; PORTBDATAOUT     ;
-; i_mut|framebuffer|ram_out_reg[62]       ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[62] ; PORTBDATAOUT     ;
-; i_mut|framebuffer|ram_out_reg[63]       ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[63] ; PORTBDATAOUT     ;
-; i_mut|framebuffer|ram_out_reg[64]       ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[64] ; PORTBDATAOUT     ;
-; i_mut|framebuffer|ram_out_reg[65]       ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[65] ; PORTBDATAOUT     ;
-; i_mut|framebuffer|ram_out_reg[66]       ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[66] ; PORTBDATAOUT     ;
-; i_mut|framebuffer|ram_out_reg[67]       ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[67] ; PORTBDATAOUT     ;
-; i_mut|framebuffer|ram_out_reg[68]       ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[68] ; PORTBDATAOUT     ;
-; i_mut|framebuffer|ram_out_reg[69]       ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[69] ; PORTBDATAOUT     ;
-; i_mut|framebuffer|ram_out_reg[70]       ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[70] ; PORTBDATAOUT     ;
-; i_mut|framebuffer|ram_out_reg[71]       ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[71] ; PORTBDATAOUT     ;
-; i_mut|framebuffer|ram_out_reg[72]       ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[72] ; PORTBDATAOUT     ;
-; i_mut|framebuffer|ram_out_reg[73]       ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[73] ; PORTBDATAOUT     ;
-; i_mut|framebuffer|ram_out_reg[74]       ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[74] ; PORTBDATAOUT     ;
-; i_mut|framebuffer|ram_out_reg[75]       ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[75] ; PORTBDATAOUT     ;
-; i_mut|framebuffer|ram_out_reg[76]       ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[76] ; PORTBDATAOUT     ;
-; i_mut|framebuffer|ram_out_reg[77]       ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[77] ; PORTBDATAOUT     ;
-; i_mut|framebuffer|ram_out_reg[78]       ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[78] ; PORTBDATAOUT     ;
-; i_mut|framebuffer|ram_out_reg[79]       ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[79] ; PORTBDATAOUT     ;
-; i_mut|scaler_controller|startofpacket_o ; Duplicated      ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ; i_mut|scaler_controller|startofpacket_o~DUPLICATE       ;                  ;
-; i_mut|scaler_data_o[3]                  ; Duplicated      ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ; i_mut|scaler_data_o[3]~DUPLICATE                        ;                  ;
-; i_mut|scaler_data_o[13]                 ; Duplicated      ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ; i_mut|scaler_data_o[13]~DUPLICATE                       ;                  ;
-; i_mut|scaler_data_o[16]                 ; Duplicated      ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ; i_mut|scaler_data_o[16]~DUPLICATE                       ;                  ;
-; i_mut|scaler_data_o[22]                 ; Duplicated      ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ; i_mut|scaler_data_o[22]~DUPLICATE                       ;                  ;
-; i_mut|scaler_data_o[23]                 ; Duplicated      ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ; i_mut|scaler_data_o[23]~DUPLICATE                       ;                  ;
-; i_mut|scaler_data_o[33]                 ; Duplicated      ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ; i_mut|scaler_data_o[33]~DUPLICATE                       ;                  ;
-; i_mut|scaler_data_o[34]                 ; Duplicated      ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ; i_mut|scaler_data_o[34]~DUPLICATE                       ;                  ;
-; i_mut|scaler_data_o[39]                 ; Duplicated      ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ; i_mut|scaler_data_o[39]~DUPLICATE                       ;                  ;
-; i_mut|scaler_data_o[44]                 ; Duplicated      ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ; i_mut|scaler_data_o[44]~DUPLICATE                       ;                  ;
-; i_mut|scaler_data_o[45]                 ; Duplicated      ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ; i_mut|scaler_data_o[45]~DUPLICATE                       ;                  ;
-; i_mut|scaler_data_o[59]                 ; Duplicated      ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ; i_mut|scaler_data_o[59]~DUPLICATE                       ;                  ;
-; i_mut|scaler_data_o[76]                 ; Duplicated      ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ; i_mut|scaler_data_o[76]~DUPLICATE                       ;                  ;
-; i_sink|\i:0:counter[1]                  ; Duplicated      ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ; i_sink|\i:0:counter[1]~DUPLICATE                        ;                  ;
-; i_sink|\i:0:counter[2]                  ; Duplicated      ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ; i_sink|\i:0:counter[2]~DUPLICATE                        ;                  ;
-; i_sink|\i:0:counter[3]                  ; Duplicated      ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ; i_sink|\i:0:counter[3]~DUPLICATE                        ;                  ;
-; i_sink|\i:0:counter[4]                  ; Duplicated      ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ; i_sink|\i:0:counter[4]~DUPLICATE                        ;                  ;
-; i_sink|\i:1:counter[3]                  ; Duplicated      ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ; i_sink|\i:1:counter[3]~DUPLICATE                        ;                  ;
-; i_sink|\i:2:counter[2]                  ; Duplicated      ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ; i_sink|\i:2:counter[2]~DUPLICATE                        ;                  ;
-; i_sink|\i:2:counter[4]                  ; Duplicated      ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ; i_sink|\i:2:counter[4]~DUPLICATE                        ;                  ;
-; i_sink|\i:3:counter[2]                  ; Duplicated      ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ; i_sink|\i:3:counter[2]~DUPLICATE                        ;                  ;
-; i_sink|\i:3:counter[3]                  ; Duplicated      ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ; i_sink|\i:3:counter[3]~DUPLICATE                        ;                  ;
-; i_sink|\i:4:counter[3]                  ; Duplicated      ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ; i_sink|\i:4:counter[3]~DUPLICATE                        ;                  ;
-; i_sink|\i:4:counter[4]                  ; Duplicated      ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ; i_sink|\i:4:counter[4]~DUPLICATE                        ;                  ;
-; i_sink|\i:6:counter[2]                  ; Duplicated      ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ; i_sink|\i:6:counter[2]~DUPLICATE                        ;                  ;
-; i_sink|\i:7:counter[2]                  ; Duplicated      ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ; i_sink|\i:7:counter[2]~DUPLICATE                        ;                  ;
-; i_sink|\i:7:counter[3]                  ; Duplicated      ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ; i_sink|\i:7:counter[3]~DUPLICATE                        ;                  ;
-; i_sink|\i:11:counter[3]                 ; Duplicated      ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ; i_sink|\i:11:counter[3]~DUPLICATE                       ;                  ;
-; clk_i~input                             ; Created         ; Placement                                         ; Fitter Periphery Placement ;           ;                                                         ;                  ;
-; clk_i~inputCLKENA0                      ; Created         ; Placement                                         ; Fitter Periphery Placement ;           ;                                                         ;                  ;
-; clk_i~pad                               ; Created         ; Placement                                         ; Fitter Periphery Placement ;           ;                                                         ;                  ;
-; sink_o~output                           ; Created         ; Placement                                         ; Fitter Periphery Placement ;           ;                                                         ;                  ;
-; sink_o~pad                              ; Created         ; Placement                                         ; Fitter Periphery Placement ;           ;                                                         ;                  ;
-+-----------------------------------------+-----------------+---------------------------------------------------+----------------------------+-----------+---------------------------------------------------------+------------------+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Fitter Netlist Optimizations                                                                                                                                                                                                             ;
++----------------------------------------------+-----------------+---------------------------------------------------+----------------------------+-----------+---------------------------------------------------------+------------------+
+; Node                                         ; Action          ; Operation                                         ; Reason                     ; Node Port ; Destination Node                                        ; Destination Port ;
++----------------------------------------------+-----------------+---------------------------------------------------+----------------------------+-----------+---------------------------------------------------------+------------------+
+; i_mut|framebuffer|ram_out_reg[0]             ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[0]  ; PORTBDATAOUT     ;
+; i_mut|framebuffer|ram_out_reg[1]             ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[1]  ; PORTBDATAOUT     ;
+; i_mut|framebuffer|ram_out_reg[2]             ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[2]  ; PORTBDATAOUT     ;
+; i_mut|framebuffer|ram_out_reg[3]             ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[3]  ; PORTBDATAOUT     ;
+; i_mut|framebuffer|ram_out_reg[4]             ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[4]  ; PORTBDATAOUT     ;
+; i_mut|framebuffer|ram_out_reg[5]             ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[5]  ; PORTBDATAOUT     ;
+; i_mut|framebuffer|ram_out_reg[6]             ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[6]  ; PORTBDATAOUT     ;
+; i_mut|framebuffer|ram_out_reg[7]             ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[7]  ; PORTBDATAOUT     ;
+; i_mut|framebuffer|ram_out_reg[8]             ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[8]  ; PORTBDATAOUT     ;
+; i_mut|framebuffer|ram_out_reg[9]             ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[9]  ; PORTBDATAOUT     ;
+; i_mut|framebuffer|ram_out_reg[10]            ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[10] ; PORTBDATAOUT     ;
+; i_mut|framebuffer|ram_out_reg[11]            ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[11] ; PORTBDATAOUT     ;
+; i_mut|framebuffer|ram_out_reg[12]            ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[12] ; PORTBDATAOUT     ;
+; i_mut|framebuffer|ram_out_reg[13]            ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[13] ; PORTBDATAOUT     ;
+; i_mut|framebuffer|ram_out_reg[14]            ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[14] ; PORTBDATAOUT     ;
+; i_mut|framebuffer|ram_out_reg[15]            ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[15] ; PORTBDATAOUT     ;
+; i_mut|framebuffer|ram_out_reg[16]            ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[16] ; PORTBDATAOUT     ;
+; i_mut|framebuffer|ram_out_reg[17]            ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[17] ; PORTBDATAOUT     ;
+; i_mut|framebuffer|ram_out_reg[18]            ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[18] ; PORTBDATAOUT     ;
+; i_mut|framebuffer|ram_out_reg[19]            ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[19] ; PORTBDATAOUT     ;
+; i_mut|framebuffer|ram_out_reg[20]            ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[20] ; PORTBDATAOUT     ;
+; i_mut|framebuffer|ram_out_reg[21]            ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[21] ; PORTBDATAOUT     ;
+; i_mut|framebuffer|ram_out_reg[22]            ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[22] ; PORTBDATAOUT     ;
+; i_mut|framebuffer|ram_out_reg[23]            ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[23] ; PORTBDATAOUT     ;
+; i_mut|framebuffer|ram_out_reg[24]            ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[24] ; PORTBDATAOUT     ;
+; i_mut|framebuffer|ram_out_reg[25]            ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[25] ; PORTBDATAOUT     ;
+; i_mut|framebuffer|ram_out_reg[26]            ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[26] ; PORTBDATAOUT     ;
+; i_mut|framebuffer|ram_out_reg[27]            ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[27] ; PORTBDATAOUT     ;
+; i_mut|framebuffer|ram_out_reg[28]            ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[28] ; PORTBDATAOUT     ;
+; i_mut|framebuffer|ram_out_reg[29]            ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[29] ; PORTBDATAOUT     ;
+; i_mut|framebuffer|ram_out_reg[30]            ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[30] ; PORTBDATAOUT     ;
+; i_mut|framebuffer|ram_out_reg[31]            ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[31] ; PORTBDATAOUT     ;
+; i_mut|framebuffer|ram_out_reg[32]            ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[32] ; PORTBDATAOUT     ;
+; i_mut|framebuffer|ram_out_reg[33]            ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[33] ; PORTBDATAOUT     ;
+; i_mut|framebuffer|ram_out_reg[34]            ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[34] ; PORTBDATAOUT     ;
+; i_mut|framebuffer|ram_out_reg[35]            ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[35] ; PORTBDATAOUT     ;
+; i_mut|framebuffer|ram_out_reg[36]            ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[36] ; PORTBDATAOUT     ;
+; i_mut|framebuffer|ram_out_reg[37]            ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[37] ; PORTBDATAOUT     ;
+; i_mut|framebuffer|ram_out_reg[38]            ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[38] ; PORTBDATAOUT     ;
+; i_mut|framebuffer|ram_out_reg[39]            ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[39] ; PORTBDATAOUT     ;
+; i_mut|framebuffer|ram_out_reg[40]            ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[40] ; PORTBDATAOUT     ;
+; i_mut|framebuffer|ram_out_reg[41]            ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[41] ; PORTBDATAOUT     ;
+; i_mut|framebuffer|ram_out_reg[42]            ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[42] ; PORTBDATAOUT     ;
+; i_mut|framebuffer|ram_out_reg[43]            ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[43] ; PORTBDATAOUT     ;
+; i_mut|framebuffer|ram_out_reg[44]            ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[44] ; PORTBDATAOUT     ;
+; i_mut|framebuffer|ram_out_reg[45]            ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[45] ; PORTBDATAOUT     ;
+; i_mut|framebuffer|ram_out_reg[46]            ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[46] ; PORTBDATAOUT     ;
+; i_mut|framebuffer|ram_out_reg[47]            ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[47] ; PORTBDATAOUT     ;
+; i_mut|framebuffer|ram_out_reg[48]            ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[48] ; PORTBDATAOUT     ;
+; i_mut|framebuffer|ram_out_reg[49]            ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[49] ; PORTBDATAOUT     ;
+; i_mut|framebuffer|ram_out_reg[50]            ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[50] ; PORTBDATAOUT     ;
+; i_mut|framebuffer|ram_out_reg[51]            ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[51] ; PORTBDATAOUT     ;
+; i_mut|framebuffer|ram_out_reg[52]            ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[52] ; PORTBDATAOUT     ;
+; i_mut|framebuffer|ram_out_reg[53]            ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[53] ; PORTBDATAOUT     ;
+; i_mut|framebuffer|ram_out_reg[54]            ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[54] ; PORTBDATAOUT     ;
+; i_mut|framebuffer|ram_out_reg[55]            ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[55] ; PORTBDATAOUT     ;
+; i_mut|framebuffer|ram_out_reg[56]            ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[56] ; PORTBDATAOUT     ;
+; i_mut|framebuffer|ram_out_reg[57]            ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[57] ; PORTBDATAOUT     ;
+; i_mut|framebuffer|ram_out_reg[58]            ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[58] ; PORTBDATAOUT     ;
+; i_mut|framebuffer|ram_out_reg[59]            ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[59] ; PORTBDATAOUT     ;
+; i_mut|framebuffer|ram_out_reg[60]            ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[60] ; PORTBDATAOUT     ;
+; i_mut|framebuffer|ram_out_reg[61]            ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[61] ; PORTBDATAOUT     ;
+; i_mut|framebuffer|ram_out_reg[62]            ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[62] ; PORTBDATAOUT     ;
+; i_mut|framebuffer|ram_out_reg[63]            ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[63] ; PORTBDATAOUT     ;
+; i_mut|framebuffer|ram_out_reg[64]            ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[64] ; PORTBDATAOUT     ;
+; i_mut|framebuffer|ram_out_reg[65]            ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[65] ; PORTBDATAOUT     ;
+; i_mut|framebuffer|ram_out_reg[66]            ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[66] ; PORTBDATAOUT     ;
+; i_mut|framebuffer|ram_out_reg[67]            ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[67] ; PORTBDATAOUT     ;
+; i_mut|framebuffer|ram_out_reg[68]            ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[68] ; PORTBDATAOUT     ;
+; i_mut|framebuffer|ram_out_reg[69]            ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[69] ; PORTBDATAOUT     ;
+; i_mut|framebuffer|ram_out_reg[70]            ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[70] ; PORTBDATAOUT     ;
+; i_mut|framebuffer|ram_out_reg[71]            ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[71] ; PORTBDATAOUT     ;
+; i_mut|framebuffer|ram_out_reg[72]            ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[72] ; PORTBDATAOUT     ;
+; i_mut|framebuffer|ram_out_reg[73]            ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[73] ; PORTBDATAOUT     ;
+; i_mut|framebuffer|ram_out_reg[74]            ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[74] ; PORTBDATAOUT     ;
+; i_mut|framebuffer|ram_out_reg[75]            ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[75] ; PORTBDATAOUT     ;
+; i_mut|framebuffer|ram_out_reg[76]            ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[76] ; PORTBDATAOUT     ;
+; i_mut|framebuffer|ram_out_reg[77]            ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[77] ; PORTBDATAOUT     ;
+; i_mut|framebuffer|ram_out_reg[78]            ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[78] ; PORTBDATAOUT     ;
+; i_mut|framebuffer|ram_out_reg[79]            ; Packed Register ; Register Packing                                  ; Timing optimization        ; Q         ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|q_b[79] ; PORTBDATAOUT     ;
+; i_mut|data_o[3]                              ; Duplicated      ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ; i_mut|data_o[3]~DUPLICATE                               ;                  ;
+; i_mut|data_o[13]                             ; Duplicated      ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ; i_mut|data_o[13]~DUPLICATE                              ;                  ;
+; i_mut|data_o[16]                             ; Duplicated      ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ; i_mut|data_o[16]~DUPLICATE                              ;                  ;
+; i_mut|data_o[22]                             ; Duplicated      ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ; i_mut|data_o[22]~DUPLICATE                              ;                  ;
+; i_mut|data_o[23]                             ; Duplicated      ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ; i_mut|data_o[23]~DUPLICATE                              ;                  ;
+; i_mut|data_o[33]                             ; Duplicated      ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ; i_mut|data_o[33]~DUPLICATE                              ;                  ;
+; i_mut|data_o[34]                             ; Duplicated      ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ; i_mut|data_o[34]~DUPLICATE                              ;                  ;
+; i_mut|data_o[39]                             ; Duplicated      ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ; i_mut|data_o[39]~DUPLICATE                              ;                  ;
+; i_mut|data_o[44]                             ; Duplicated      ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ; i_mut|data_o[44]~DUPLICATE                              ;                  ;
+; i_mut|data_o[45]                             ; Duplicated      ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ; i_mut|data_o[45]~DUPLICATE                              ;                  ;
+; i_mut|data_o[59]                             ; Duplicated      ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ; i_mut|data_o[59]~DUPLICATE                              ;                  ;
+; i_mut|data_o[76]                             ; Duplicated      ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ; i_mut|data_o[76]~DUPLICATE                              ;                  ;
+; i_mut|scaler_controller|ctrl_startofpacket_o ; Duplicated      ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ; i_mut|scaler_controller|ctrl_startofpacket_o~DUPLICATE  ;                  ;
+; i_sink|\i:0:counter[1]                       ; Duplicated      ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ; i_sink|\i:0:counter[1]~DUPLICATE                        ;                  ;
+; i_sink|\i:0:counter[2]                       ; Duplicated      ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ; i_sink|\i:0:counter[2]~DUPLICATE                        ;                  ;
+; i_sink|\i:0:counter[3]                       ; Duplicated      ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ; i_sink|\i:0:counter[3]~DUPLICATE                        ;                  ;
+; i_sink|\i:0:counter[4]                       ; Duplicated      ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ; i_sink|\i:0:counter[4]~DUPLICATE                        ;                  ;
+; i_sink|\i:1:counter[3]                       ; Duplicated      ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ; i_sink|\i:1:counter[3]~DUPLICATE                        ;                  ;
+; i_sink|\i:2:counter[2]                       ; Duplicated      ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ; i_sink|\i:2:counter[2]~DUPLICATE                        ;                  ;
+; i_sink|\i:2:counter[4]                       ; Duplicated      ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ; i_sink|\i:2:counter[4]~DUPLICATE                        ;                  ;
+; i_sink|\i:3:counter[2]                       ; Duplicated      ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ; i_sink|\i:3:counter[2]~DUPLICATE                        ;                  ;
+; i_sink|\i:3:counter[3]                       ; Duplicated      ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ; i_sink|\i:3:counter[3]~DUPLICATE                        ;                  ;
+; i_sink|\i:4:counter[3]                       ; Duplicated      ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ; i_sink|\i:4:counter[3]~DUPLICATE                        ;                  ;
+; i_sink|\i:4:counter[4]                       ; Duplicated      ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ; i_sink|\i:4:counter[4]~DUPLICATE                        ;                  ;
+; i_sink|\i:6:counter[2]                       ; Duplicated      ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ; i_sink|\i:6:counter[2]~DUPLICATE                        ;                  ;
+; i_sink|\i:7:counter[2]                       ; Duplicated      ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ; i_sink|\i:7:counter[2]~DUPLICATE                        ;                  ;
+; i_sink|\i:7:counter[3]                       ; Duplicated      ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ; i_sink|\i:7:counter[3]~DUPLICATE                        ;                  ;
+; i_sink|\i:11:counter[3]                      ; Duplicated      ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ; i_sink|\i:11:counter[3]~DUPLICATE                       ;                  ;
+; clk_i~input                                  ; Created         ; Placement                                         ; Fitter Periphery Placement ;           ;                                                         ;                  ;
+; clk_i~inputCLKENA0                           ; Created         ; Placement                                         ; Fitter Periphery Placement ;           ;                                                         ;                  ;
+; clk_i~pad                                    ; Created         ; Placement                                         ; Fitter Periphery Placement ;           ;                                                         ;                  ;
+; sink_o~output                                ; Created         ; Placement                                         ; Fitter Periphery Placement ;           ;                                                         ;                  ;
+; sink_o~pad                                   ; Created         ; Placement                                         ; Fitter Periphery Placement ;           ;                                                         ;                  ;
++----------------------------------------------+-----------------+---------------------------------------------------+----------------------------+-----------+---------------------------------------------------------+------------------+
 Note: Retiming optimizations are not included in this table
 
 
@@ -2345,9 +2345,9 @@ Note: Pin directions (input, output or bidir) are based on device operating in u
 +---------------------------------------------------------+------------+---------+-------------------------+----------------------+
 ; clk_i                                                   ; PIN_G26    ; 340     ; Clock                   ;                      ;
 ; i_mut|scaler_controller|\p_fsm:v_framebuffer_index[6]~0 ; Unassigned ; 5       ; Clock enable            ;                      ;
-; i_mut|scaler_controller|data_o[49]~0                    ; Unassigned ; 6       ; Clock enable            ;                      ;
-; i_mut|scaler_controller|data_o[49]~1                    ; Unassigned ; 48      ; Sync. clear             ;                      ;
-; i_mut|scaler_controller|data_o[49]~2                    ; Unassigned ; 48      ; Clock enable            ;                      ;
+; i_mut|scaler_controller|ctrl_data_o[49]~0               ; Unassigned ; 6       ; Clock enable            ;                      ;
+; i_mut|scaler_controller|ctrl_data_o[49]~1               ; Unassigned ; 48      ; Sync. clear             ;                      ;
+; i_mut|scaler_controller|ctrl_data_o[49]~2               ; Unassigned ; 48      ; Clock enable            ;                      ;
 ; i_mut|scaler_controller|framebuffer_wr_en               ; Unassigned ; 80      ; Write enable            ;                      ;
 ; i_mut|scaler_controller|i763~1                          ; Unassigned ; 32      ; Clock enable            ;                      ;
 ; i_mut|scaler_controller|state.s_video_data              ; Unassigned ; 91      ; Sync. clear, Sync. load ;                      ;
@@ -2707,7 +2707,7 @@ Info (171003): Fitter is performing an Auto Fit compilation, which may decrease 
 Info (176045): Design uses memory blocks. Violating setup or hold times of memory block address registers for either read or write operations could cause memory contents to be corrupted. Make sure that all memory block address registers meet the setup and hold time requirements.
 Info (12262): Starting Fitter periphery placement operations
 Info (12290): Loading the periphery placement data.
-Info (12291): Periphery placement data loaded: elapsed time is 00:00:18
+Info (12291): Periphery placement data loaded: elapsed time is 00:00:19
 Info (12627): Pin ~ALTERA_DATA0~ is reserved at location AU27
 Warning (15714): Some pins have incomplete I/O assignments. Refer to the I/O Assignment Warnings report for details
 Critical Warning (12677): No exact pin location assignment(s) for 2 pins of 2 total pins. For the list of pins please refer to the I/O Assignment Warnings table in the fitter report
@@ -2738,27 +2738,27 @@ Info (332111): Found 1 clocks
 Info (176235): Finished register packing
     Extra Info (176218): Packed 80 registers into blocks of type Block RAM
 Info (20273): Intermediate fitter snapshots will not be committed because ENABLE_INTERMEDIATE_SNAPSHOTS QSF assignment is disabled during compilation.
-Info (12517): Periphery placement operations ending: elapsed time is 00:00:49
-Info (11165): Fitter preparation operations ending: elapsed time is 00:00:39
+Info (12517): Periphery placement operations ending: elapsed time is 00:00:50
+Info (11165): Fitter preparation operations ending: elapsed time is 00:00:40
 Info (170189): Fitter placement preparation operations beginning
 Info (14951): The Fitter is using Advanced Physical Optimization.
-Info (170190): Fitter placement preparation operations ending: elapsed time is 00:00:14
+Info (170190): Fitter placement preparation operations ending: elapsed time is 00:00:15
 Info (170191): Fitter placement operations beginning
 Info (170137): Fitter placement was successful
 Info (170192): Fitter placement operations ending: elapsed time is 00:00:07
-Info (11888): Total time spent on timing analysis during Placement is 2.79 seconds.
+Info (11888): Total time spent on timing analysis during Placement is 2.88 seconds.
 Info (170193): Fitter routing operations beginning
 Info (170199): The Fitter performed an Auto Fit compilation.  Optimizations were skipped to reduce compilation time.
     Info (170201): Optimizations that may affect the design's routability were skipped
     Info (170200): Optimizations that may affect the design's timing were skipped
 Info (11888): Total time spent on timing analysis during Routing is 0.16 seconds.
-Info (16607): Fitter routing operations ending: elapsed time is 00:00:31
+Info (16607): Fitter routing operations ending: elapsed time is 00:00:33
 Info (11888): Total time spent on timing analysis during Post-Routing is 0.03 seconds.
 Info (16557): Fitter post-fit operations ending: elapsed time is 00:00:15
 Info (20274): Successfully committed final database.
 Info: Quartus Prime Fitter was successful. 0 errors, 5 warnings
-    Info: Peak virtual memory: 10855 megabytes
-    Info: Processing ended: Mon Apr 15 11:29:32 2019
-    Info: Elapsed time: 00:02:31
+    Info: Peak virtual memory: 10859 megabytes
+    Info: Processing ended: Tue Apr 16 15:54:41 2019
+    Info: Elapsed time: 00:02:38
 
 

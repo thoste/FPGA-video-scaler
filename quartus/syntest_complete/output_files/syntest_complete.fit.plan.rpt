@@ -1,5 +1,5 @@
 Fitter Plan Stage Report for syntest_complete
-Mon Apr 15 11:27:51 2019
+Tue Apr 16 15:52:54 2019
 Quartus Prime Version 18.1.0 Build 222 09/21/2018 SJ Pro Edition
 
 
@@ -2106,9 +2106,9 @@ Note: Pin directions (input, output or bidir) are based on device operating in u
 +---------------------------------------------------------+------------+---------+-------------------------+----------------------+
 ; clk_i                                                   ; PIN_G26    ; 340     ; Clock                   ;                      ;
 ; i_mut|scaler_controller|\p_fsm:v_framebuffer_index[6]~0 ; Unassigned ; 5       ; Clock enable            ;                      ;
-; i_mut|scaler_controller|data_o[49]~0                    ; Unassigned ; 6       ; Clock enable            ;                      ;
-; i_mut|scaler_controller|data_o[49]~1                    ; Unassigned ; 48      ; Sync. clear             ;                      ;
-; i_mut|scaler_controller|data_o[49]~2                    ; Unassigned ; 48      ; Clock enable            ;                      ;
+; i_mut|scaler_controller|ctrl_data_o[49]~0               ; Unassigned ; 6       ; Clock enable            ;                      ;
+; i_mut|scaler_controller|ctrl_data_o[49]~1               ; Unassigned ; 48      ; Sync. clear             ;                      ;
+; i_mut|scaler_controller|ctrl_data_o[49]~2               ; Unassigned ; 48      ; Clock enable            ;                      ;
 ; i_mut|scaler_controller|framebuffer_wr_en               ; Unassigned ; 80      ; Write enable            ;                      ;
 ; i_mut|scaler_controller|i763~1                          ; Unassigned ; 32      ; Clock enable            ;                      ;
 ; i_mut|scaler_controller|state.s_video_data              ; Unassigned ; 91      ; Sync. clear, Sync. load ;                      ;
@@ -2176,7 +2176,7 @@ Info (171003): Fitter is performing an Auto Fit compilation, which may decrease 
 Info (176045): Design uses memory blocks. Violating setup or hold times of memory block address registers for either read or write operations could cause memory contents to be corrupted. Make sure that all memory block address registers meet the setup and hold time requirements.
 Info (12262): Starting Fitter periphery placement operations
 Info (12290): Loading the periphery placement data.
-Info (12291): Periphery placement data loaded: elapsed time is 00:00:18
+Info (12291): Periphery placement data loaded: elapsed time is 00:00:19
 Info (12627): Pin ~ALTERA_DATA0~ is reserved at location AU27
 Warning (15714): Some pins have incomplete I/O assignments. Refer to the I/O Assignment Warnings report for details
 Critical Warning (12677): No exact pin location assignment(s) for 2 pins of 2 total pins. For the list of pins please refer to the I/O Assignment Warnings table in the fitter report

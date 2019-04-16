@@ -31,5 +31,6 @@ set compdirectives "-2008 -work $lib_name"
 
 eval vcom  $compdirectives  $scaler_part_path/src/fifo_generic.vhd
 eval vcom  $compdirectives  $scaler_part_path/src/simple_dpram.vhd
+eval vcom  $compdirectives  $scaler_part_path/src/scaler.vhd
 eval vcom  $compdirectives  $scaler_part_path/src/scaler_controller.vhd
 eval vcom  $compdirectives  $scaler_part_path/src/scaler_wrapper.vhd

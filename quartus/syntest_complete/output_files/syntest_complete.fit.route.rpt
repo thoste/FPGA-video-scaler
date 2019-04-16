@@ -1,5 +1,5 @@
 Fitter Route Stage Report for syntest_complete
-Mon Apr 15 11:29:15 2019
+Tue Apr 16 15:54:24 2019
 Quartus Prime Version 18.1.0 Build 222 09/21/2018 SJ Pro Edition
 
 
@@ -76,7 +76,7 @@ refer to the applicable agreement for further details.
 Info: *******************************************************************
 Info: Running Quartus Prime Fitter
     Info: Version 18.1.0 Build 222 09/21/2018 SJ Pro Edition
-    Info: Processing started: Mon Apr 15 11:27:01 2019
+    Info: Processing started: Tue Apr 16 15:52:03 2019
 Info: Command: quartus_fit --read_settings_files=on --write_settings_files=off syntest_complete -c syntest_complete
 Info: qfit2_default_script.tcl version: #1
 Info: Project  = syntest_complete
@@ -85,6 +85,8 @@ Info (170193): Fitter routing operations beginning
 Info (170199): The Fitter performed an Auto Fit compilation.  Optimizations were skipped to reduce compilation time.
     Info (170201): Optimizations that may affect the design's routability were skipped
     Info (170200): Optimizations that may affect the design's timing were skipped
+Info (11888): Total time spent on timing analysis during Routing is 0.16 seconds.
+Info (16607): Fitter routing operations ending: elapsed time is 00:00:33
 
 
 +------------------------------------------------------------+

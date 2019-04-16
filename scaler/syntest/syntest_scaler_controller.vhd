@@ -44,24 +44,24 @@ begin
       sreset_i    => source(1),
       
       -- Source
-      startofpacket_i   => source(2),
-      endofpacket_i     => source(3),
-      valid_i           => source(4),
-      ready_i           => source(5),
-      data_i            => source(C_DATA_WIDTH+5 downto 6),
-      empty_i           => source(C_EMPTY_WIDTH+C_DATA_WIDTH+5 downto C_DATA_WIDTH+6),
+      ctrl_startofpacket_i   => source(2),
+      ctrl_endofpacket_i     => source(3),
+      ctrl_valid_i           => source(4),
+      ctrl_ready_i           => source(5),
+      ctrl_data_i            => source(C_DATA_WIDTH+5 downto 6),
+      ctrl_empty_i           => source(C_EMPTY_WIDTH+C_DATA_WIDTH+5 downto C_DATA_WIDTH+6),
 
       -- Sink
-      startofpacket_o   => sink(0),
-      endofpacket_o     => sink(1),
-      valid_o           => sink(2),
-      ready_o           => sink(3),
+      ctrl_startofpacket_o   => sink(0),
+      ctrl_endofpacket_o     => sink(1),
+      ctrl_valid_o           => sink(2),
+      ctrl_ready_o           => sink(3),
 
-      rx_video_width_o  => sink(19 downto 4),
-      rx_video_height_o => sink(35 downto 20),
+      rx_video_width_o       => sink(19 downto 4),
+      rx_video_height_o      => sink(35 downto 20),
 
-      data_o            => sink(C_DATA_WIDTH+35 downto 36), 
-      empty_o           => sink(C_EMPTY_WIDTH+C_DATA_WIDTH+35 downto C_DATA_WIDTH+36)
+      ctrl_data_o            => sink(C_DATA_WIDTH+35 downto 36), 
+      ctrl_empty_o           => sink(C_EMPTY_WIDTH+C_DATA_WIDTH+35 downto C_DATA_WIDTH+36)
    );
 
    i_source : entity work.atv_dummy_source

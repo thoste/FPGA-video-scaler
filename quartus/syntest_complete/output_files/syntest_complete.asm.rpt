@@ -1,5 +1,5 @@
 Assembler report for syntest_complete
-Mon Apr 15 11:30:28 2019
+Tue Apr 16 15:55:37 2019
 Quartus Prime Version 18.1.0 Build 222 09/21/2018 SJ Pro Edition
 
 
@@ -38,7 +38,7 @@ refer to the applicable agreement for further details.
 +---------------------------------------------------------------+
 ; Assembler Summary                                             ;
 +-----------------------+---------------------------------------+
-; Assembler Status      ; Successful - Mon Apr 15 11:30:28 2019 ;
+; Assembler Status      ; Successful - Tue Apr 16 15:55:37 2019 ;
 ; Revision Name         ; syntest_complete                      ;
 ; Top-level Entity Name ; syntest_complete                      ;
 ; Family                ; Arria 10                              ;
@@ -101,15 +101,15 @@ refer to the applicable agreement for further details.
 Info: *******************************************************************
 Info: Running Quartus Prime Assembler
     Info: Version 18.1.0 Build 222 09/21/2018 SJ Pro Edition
-    Info: Processing started: Mon Apr 15 11:29:44 2019
+    Info: Processing started: Tue Apr 16 15:54:54 2019
 Info: Command: quartus_asm --read_settings_files=on --write_settings_files=off syntest_complete -c syntest_complete
 Info (16677): Loading final database
 Info (16734): Loading "final" snapshot for partition "root_partition".
 Info (16678): Successfully loaded final database: elapsed time is 00:00:02
 Info: Quartus Prime Assembler was successful. 0 errors, 0 warnings
-    Info: Peak virtual memory: 10501 megabytes
-    Info: Processing ended: Mon Apr 15 11:30:30 2019
-    Info: Elapsed time: 00:00:46
+    Info: Peak virtual memory: 10503 megabytes
+    Info: Processing ended: Tue Apr 16 15:55:39 2019
+    Info: Elapsed time: 00:00:45
 
 
 +--------------------------------------------------------------------------------------------------------------------+

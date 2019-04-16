@@ -1,0 +1,7 @@
+{
+	"type" : "directory",
+	"trait" : "temp",
+	"temp_payload_path" : "C:/Users/stens/Documents/video-scaler/FPGA-video-scaler/quartus/syntest_simple_dpram/qdb/.t/5cb6194b55c8.tmp/",
+	"signature" : "",
+	"bak" : false
+}

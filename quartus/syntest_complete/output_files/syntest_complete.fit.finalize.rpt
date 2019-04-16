@@ -1,5 +1,5 @@
 Fitter Finalize Stage Report for syntest_complete
-Mon Apr 15 11:29:31 2019
+Tue Apr 16 15:54:40 2019
 Quartus Prime Version 18.1.0 Build 222 09/21/2018 SJ Pro Edition
 
 
@@ -56,11 +56,12 @@ refer to the applicable agreement for further details.
 Info: *******************************************************************
 Info: Running Quartus Prime Fitter
     Info: Version 18.1.0 Build 222 09/21/2018 SJ Pro Edition
-    Info: Processing started: Mon Apr 15 11:27:01 2019
+    Info: Processing started: Tue Apr 16 15:52:03 2019
 Info: Command: quartus_fit --read_settings_files=on --write_settings_files=off syntest_complete -c syntest_complete
 Info: qfit2_default_script.tcl version: #1
 Info: Project  = syntest_complete
 Info: Revision = syntest_complete
 Info (11888): Total time spent on timing analysis during Post-Routing is 0.03 seconds.
+Info (16557): Fitter post-fit operations ending: elapsed time is 00:00:15
 
 

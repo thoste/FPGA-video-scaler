@@ -44,19 +44,19 @@ architecture struct of th_scaler is
    signal sreset_i            : std_logic := '0';
 
    -- DUT scaler inputs
-   signal scaler_startofpacket_i     : std_logic;
-   signal scaler_endofpacket_i       : std_logic;
-   signal scaler_data_i              : std_logic_vector(g_data_width-1 downto 0);
-   signal scaler_empty_i             : std_logic_vector(g_empty_width-1 downto 0);
-   signal scaler_valid_i             : std_logic;
-   signal scaler_ready_i             : std_logic;
+   signal startofpacket_i     : std_logic;
+   signal endofpacket_i       : std_logic;
+   signal data_i              : std_logic_vector(g_data_width-1 downto 0);
+   signal empty_i             : std_logic_vector(g_empty_width-1 downto 0);
+   signal valid_i             : std_logic;
+   signal ready_i             : std_logic;
    -- DUT scaler outputs
-   signal scaler_startofpacket_o     : std_logic := '0';
-   signal scaler_endofpacket_o       : std_logic := '0';
-   signal scaler_data_o              : std_logic_vector(g_data_width-1 downto 0) := (others => '0');
-   signal scaler_empty_o             : std_logic_vector(g_empty_width-1 downto 0) := (others => '0');
-   signal scaler_valid_o             : std_logic := '0';
-   signal scaler_ready_o             : std_logic := '0';
+   signal startofpacket_o     : std_logic := '0';
+   signal endofpacket_o       : std_logic := '0';
+   signal data_o              : std_logic_vector(g_data_width-1 downto 0) := (others => '0');
+   signal empty_o             : std_logic_vector(g_empty_width-1 downto 0) := (others => '0');
+   signal valid_o             : std_logic := '0';
+   signal ready_o             : std_logic := '0';
 
    -- Sink
    signal sink_startofpacket_i     : std_logic;
@@ -100,20 +100,20 @@ begin
       sreset_i          => sreset_i,
 
       -- x -> scaler
-      scaler_data_i            => scaler_data_i,
-      scaler_ready_o           => scaler_ready_o,
-      scaler_valid_i           => scaler_valid_i,
-      scaler_empty_i           => scaler_empty_i,
-      scaler_eop_i             => scaler_endofpacket_i,
-      scaler_sop_i             => scaler_startofpacket_i,
+      data_i            => data_i,
+      ready_o           => ready_o,
+      valid_i           => valid_i,
+      empty_i           => empty_i,
+      endofpacket_i     => endofpacket_i,
+      startofpacket_i   => startofpacket_i,
       
       -- scaler -> x
-      scaler_data_o            => scaler_data_o,
-      scaler_ready_i           => scaler_ready_i,
-      scaler_valid_o           => scaler_valid_o,
-      scaler_empty_o           => scaler_empty_o,
-      scaler_eop_o             => scaler_endofpacket_o,
-      scaler_sop_o             => scaler_startofpacket_o
+      data_o            => data_o,
+      ready_i           => ready_i,
+      valid_o           => valid_o,
+      empty_o           => empty_o,
+      endofpacket_o     => endofpacket_o,
+      startofpacket_o   => startofpacket_o
    );
 
 
@@ -150,19 +150,19 @@ begin
    -----------------------------------------------------------------------------
    -- Connect: source -> scaler -> sink
    -----------------------------------------------------------------------------
-   scaler_data_i           <= source_data_o;
-   source_ready_i          <= scaler_ready_o;
-   scaler_valid_i          <= source_valid_o;
-   scaler_empty_i          <= source_empty_o;
-   scaler_endofpacket_i    <= source_endofpacket_o;
-   scaler_startofpacket_i  <= source_startofpacket_o;
+   data_i           <= source_data_o;
+   source_ready_i   <= ready_o;
+   valid_i          <= source_valid_o;
+   empty_i          <= source_empty_o;
+   endofpacket_i    <= source_endofpacket_o;
+   startofpacket_i  <= source_startofpacket_o;
 
-   sink_data_i             <= scaler_data_o;
-   scaler_ready_i          <= sink_ready_o;
-   sink_valid_i            <= scaler_valid_o;
-   sink_empty_i            <= scaler_empty_o;
-   sink_endofpacket_i      <= scaler_endofpacket_o;
-   sink_startofpacket_i    <= scaler_startofpacket_o;
+   sink_data_i             <= data_o;
+   ready_i                 <= sink_ready_o;
+   sink_valid_i            <= valid_o;
+   sink_empty_i            <= empty_o;
+   sink_endofpacket_i      <= endofpacket_o;
+   sink_startofpacket_i    <= startofpacket_o;
 
 
 

@@ -1,5 +1,5 @@
 Timing Analyzer report for syntest_complete
-Mon Apr 15 11:29:42 2019
+Tue Apr 16 15:54:51 2019
 Quartus Prime Version 18.1.0 Build 222 09/21/2018 SJ Pro Edition
 
 
@@ -118,7 +118,7 @@ refer to the applicable agreement for further details.
 +-----------------------+----------+--------+--------------------------+-----------------+
 ; SDC File Path         ; Instance ; Status ; Read at                  ; Processing Time ;
 +-----------------------+----------+--------+--------------------------+-----------------+
-; ../syntest_timing.sdc ;          ; OK     ; Mon Apr 15 11:29:41 2019 ; 00:00:00        ;
+; ../syntest_timing.sdc ;          ; OK     ; Tue Apr 16 15:54:50 2019 ; 00:00:00        ;
 +-----------------------+----------+--------+--------------------------+-----------------+
 Note: All paths for non-entity SDC files are reported relative to the project directory (C:/Users/stens/Documents/video-scaler/FPGA-video-scaler/quartus/syntest_complete/).
 
@@ -437,7 +437,7 @@ Entries labeled "false path" only account for clock-to-clock false paths and not
 Info: *******************************************************************
 Info: Running Quartus Prime Timing Analyzer
     Info: Version 18.1.0 Build 222 09/21/2018 SJ Pro Edition
-    Info: Processing started: Mon Apr 15 11:29:34 2019
+    Info: Processing started: Tue Apr 16 15:54:43 2019
 Info: Command: quartus_sta syntest_complete -c syntest_complete --mode=finalize
 Info: qsta_default_script.tcl version: #1
 Info (16677): Loading final database
@@ -518,8 +518,8 @@ Info (332146): Worst-case minimum pulse width slack is 1.594
 Info (332102): Design is not fully constrained for setup requirements
 Info (332102): Design is not fully constrained for hold requirements
 Info: Quartus Prime Timing Analyzer was successful. 0 errors, 1 warning
-    Info: Peak virtual memory: 7544 megabytes
-    Info: Processing ended: Mon Apr 15 11:29:43 2019
+    Info: Peak virtual memory: 7552 megabytes
+    Info: Processing ended: Tue Apr 16 15:54:52 2019
     Info: Elapsed time: 00:00:09
 
 

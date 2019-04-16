@@ -1,5 +1,5 @@
 Flow report for syntest_complete
-Mon Apr 15 11:30:28 2019
+Tue Apr 16 15:55:37 2019
 Quartus Prime Version 18.1.0 Build 222 09/21/2018 SJ Pro Edition
 
 
@@ -50,7 +50,7 @@ refer to the applicable agreement for further details.
 +--------------------------------------------------------------------------+
 ; Flow Summary                                                             ;
 +-----------------------------+--------------------------------------------+
-; Flow Status                 ; Successful - Mon Apr 15 11:30:28 2019      ;
+; Flow Status                 ; Successful - Tue Apr 16 15:55:37 2019      ;
 ; Quartus Prime Version       ; 18.1.0 Build 222 09/21/2018 SJ Pro Edition ;
 ; Revision Name               ; syntest_complete                           ;
 ; Top-level Entity Name       ; syntest_complete                           ;
@@ -74,7 +74,7 @@ refer to the applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 04/15/2019 11:26:55 ;
+; Start date & time ; 04/16/2019 15:51:57 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; syntest_complete    ;
 +-------------------+---------------------+
@@ -85,7 +85,7 @@ refer to the applicable agreement for further details.
 +--------------------------------+---------------------------------------+---------------+-------------+------------+
 ; Assignment Name                ; Value                                 ; Default Value ; Entity Name ; Section Id ;
 +--------------------------------+---------------------------------------+---------------+-------------+------------+
-; COMPILER_SIGNATURE_ID          ; 157221603133.155532041510444          ; --            ; --          ; --         ;
+; COMPILER_SIGNATURE_ID          ; 157221603133.155542271709872          ; --            ; --          ; --         ;
 ; MAX_CORE_JUNCTION_TEMP         ; 100                                   ; --            ; --          ; --         ;
 ; MIN_CORE_JUNCTION_TEMP         ; -40                                   ; --            ; --          ; --         ;
 ; POWER_BOARD_THERMAL_MODEL      ; None (CONSERVATIVE)                   ; --            ; --          ; --         ;
@@ -102,10 +102,10 @@ refer to the applicable agreement for further details.
 ; Module Name     ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ;
 +-----------------+--------------+-------------------------+---------------------+
 ; Synthesis       ; 00:00:05     ; 1.0                     ; 5108 MB             ;
-; Fitter          ; 00:02:30     ; 1.0                     ; 10855 MB            ;
-; Timing Analyzer ; 00:00:08     ; 1.0                     ; 7544 MB             ;
-; Assembler       ; 00:00:44     ; 1.7                     ; 10501 MB            ;
-; Total           ; 00:03:27     ; --                      ; --                  ;
+; Fitter          ; 00:02:37     ; 1.0                     ; 10859 MB            ;
+; Timing Analyzer ; 00:00:08     ; 1.0                     ; 7552 MB             ;
+; Assembler       ; 00:00:43     ; 1.7                     ; 10503 MB            ;
+; Total           ; 00:03:33     ; --                      ; --                  ;
 +-----------------+--------------+-------------------------+---------------------+
 
 
