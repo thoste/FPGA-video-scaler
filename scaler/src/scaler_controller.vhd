@@ -43,11 +43,11 @@ entity scaler_controller is
 
       -- Config
       rx_video_width_o           : out std_logic_vector(15 downto 0);
-      rx_video_height_o          : out std_logic_vector(15 downto 0);
+      rx_video_height_o          : out std_logic_vector(15 downto 0)
 
-      -- Framebuffer
-      fb_wr_addr     : out integer := 0;
-      fb_wr_en       : out std_logic := '0'
+      ---- Framebuffer
+      --fb_wr_addr     : out integer := 0;
+      --fb_wr_en       : out std_logic := '0'
 
       --mode_in_i   : in t_mode; -- t_mode := 720p, 1080p
       --mode_out_i  : in t_mode; 
@@ -108,7 +108,7 @@ begin
 
                   -- Reset endofpacket
                   ctrl_endofpacket_o <= '0';
-                  v_fb_index := 0;
+                  --v_fb_index := 0;
                end if;
 
 
@@ -125,9 +125,9 @@ begin
                   end if;
                   ctrl_data_o  <= ctrl_data_i;
                   ctrl_valid_o   <= '1';
-                  fb_wr_en <= '1';
-                  fb_wr_addr <= v_fb_index;
-                  v_fb_index := v_fb_index + 1;
+                  --fb_wr_en <= '1';
+                  --fb_wr_addr <= v_fb_index;
+                  --v_fb_index := v_fb_index + 1;
                   ctrl_startofpacket_o <= '0';
                end if;
 

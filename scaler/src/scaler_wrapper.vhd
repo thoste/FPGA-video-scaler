@@ -57,9 +57,19 @@ architecture scaler_wrapper_arc of scaler_wrapper is
    signal ctrl_ready_o  : std_logic;
    signal ctrl_valid_i  : std_logic;
    signal ctrl_valid_o  : std_logic;
+   signal ctrl_data_i   : std_logic_vector(g_data_width-1 downto 0);
+   signal ctrl_data_o   : std_logic_vector(g_data_width-1 downto 0);
 
    signal rx_video_width_o          : std_logic_vector(15 downto 0);
    signal rx_video_height_o         : std_logic_vector(15 downto 0);
+
+   -- Scaler
+   signal scaler_ready_i  : std_logic;
+   signal scaler_ready_o  : std_logic;
+   signal scaler_valid_i  : std_logic;
+   signal scaler_valid_o  : std_logic;
+   signal scaler_data_i   : std_logic_vector(g_data_width-1 downto 0);
+   signal scaler_data_o   : std_logic_vector(g_data_width-1 downto 0);
 
    -- Framebuffer
    signal fb_data_i     : std_logic_vector(g_data_width-1 downto 0) := (others => '0');
@@ -98,7 +108,7 @@ begin
       --empty_i           => fifo_in_data_o(c_empty_range_fifo-1 downto c_data_range_fifo),
       ctrl_startofpacket_i   => startofpacket_i,
       ctrl_endofpacket_i     => endofpacket_i,
-      ctrl_data_i            => data_i,
+      ctrl_data_i            => ctrl_data_i,
       ctrl_empty_i           => empty_i,
       ctrl_valid_i           => ctrl_valid_i,
       ctrl_ready_o           => ctrl_ready_o,
@@ -106,18 +116,18 @@ begin
       -- From scaler_controller
       ctrl_startofpacket_o   => startofpacket_o,
       ctrl_endofpacket_o     => endofpacket_o,
-      ctrl_data_o            => fb_data_i,
+      ctrl_data_o            => ctrl_data_o,
       ctrl_empty_o           => empty_o,
       ctrl_valid_o           => ctrl_valid_o,
       ctrl_ready_i           => ctrl_ready_i,
 
       -- Config
       rx_video_width_o           => rx_video_width_o,
-      rx_video_height_o          => rx_video_height_o,
+      rx_video_height_o          => rx_video_height_o
 
-      -- Framebuffer
-      fb_wr_addr        => fb_wr_addr_i,
-      fb_wr_en          => fb_wr_en_i
+      ---- Framebuffer
+      --fb_wr_addr        => fb_wr_addr_i,
+      --fb_wr_en          => fb_wr_en_i
 
       ---- Input FIFO
       --fifo_in_wr_en_i         => fifo_in_wr_en_i,
@@ -127,41 +137,56 @@ begin
       --fifo_in_empty_o         => fifo_in_empty_o
    );
 
-   ctrl_ready_i   <= ready_i;
-   ctrl_valid_i   <= valid_i;
-   ready_o        <= ctrl_ready_o;
-   valid_o        <= ctrl_valid_o;
+   --ctrl_ready_i   <= ready_i;
+   --ctrl_valid_i   <= valid_i;
+   --ready_o        <= ctrl_ready_o;
+   --valid_o        <= ctrl_valid_o;
 
-   framebuffer : entity work.simple_dpram
-   generic map (
-      g_ram_width    => g_data_width,
-      g_ram_depth    => 20,
-      g_ramstyle     => "M20K",
-      g_output_reg   => true
-   )
+
+
+   scaler : entity work.scaler
+   generic map(
+         g_data_width => g_data_width,
+         g_tx_video_width => g_tx_video_width,
+         g_tx_video_height => g_tx_video_height
+      )
    port map(
-      clk_i          => clk_i,
-      -- Write
-      data_i         => fb_data_i,
-      wr_addr_i      => fb_wr_addr_i,
-      wr_en_i        => fb_wr_en_i,
-      -- Read
-      data_o         => fb_data_o,
-      rd_addr_i      => fb_rd_addr_i
+      clk_i => clk_i,
+      sreset_i => sreset_i,
+
+      scaler_data_i  => scaler_data_i,
+      scaler_valid_i => scaler_valid_i,
+      scaler_ready_o => scaler_ready_o,
+
+      scaler_data_o  => scaler_data_o,
+      scaler_valid_o => scaler_valid_o,
+      scaler_ready_i => scaler_ready_i
    );
 
-   p_empty_framebuffer : process(clk_i) is
-      variable v_index : integer := 0;
-   begin
-      if rising_edge(clk_i) then
-         fb_rd_addr_i <= v_index;
-         data_o <= fb_data_o;
-         v_index := v_index + 1;
-         if v_index = 19 then
-            v_index := 0;
-         end if;
-      end if;
-   end process p_empty_framebuffer;
+   scaler_ready_i    <= ready_i;
+   valid_o           <= scaler_valid_o;
+   data_o            <= scaler_data_o;
+
+   ctrl_ready_i      <= scaler_ready_o;
+   scaler_valid_i    <= ctrl_valid_o;
+   scaler_data_i     <= ctrl_data_o;
+
+   ready_o           <= ctrl_ready_o;
+   ctrl_valid_i      <= valid_i; 
+   ctrl_data_i       <= data_i;
+
+   --p_empty_framebuffer : process(clk_i) is
+   --   variable v_index : integer := 0;
+   --begin
+   --   if rising_edge(clk_i) then
+   --      fb_rd_addr_i <= v_index;
+   --      data_o <= fb_data_o;
+   --      v_index := v_index + 1;
+   --      if v_index = 19 then
+   --         v_index := 0;
+   --      end if;
+   --   end if;
+   --end process p_empty_framebuffer;
 
 
    --fifo_in : entity work.fifo_generic
