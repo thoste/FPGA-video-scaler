@@ -31,10 +31,10 @@ begin
    i_mut : entity work.scaler
    generic map(
       g_data_width         => 80, 
-      g_rx_video_width     => 2,
-      g_rx_video_height    => 2,
-      g_tx_video_width     => 4,
-      g_tx_video_height    => 4
+      g_rx_video_width     => 480,
+      g_rx_video_height    => 270,
+      g_tx_video_width     => 960,
+      g_tx_video_height    => 540
    )
    port map(
       clk_i             => clk_i,

@@ -35,10 +35,10 @@ architecture tb_scaler_arc of tb_scaler is
    constant C_DATA_WIDTH      : natural := 80;
    constant C_DATA_LENGTH     : natural := 16;
 
-   constant C_RX_VIDEO_WIDTH  : natural := 2;
-   constant C_RX_VIDEO_HEIGHT : natural := 2;
-   constant C_TX_VIDEO_WIDTH  : natural := 4;
-   constant C_TX_VIDEO_HEIGHT  : natural := 4;
+   constant C_RX_VIDEO_WIDTH  : natural := 960;
+   constant C_RX_VIDEO_HEIGHT : natural := 540;
+   constant C_TX_VIDEO_WIDTH  : natural := 1920;
+   constant C_TX_VIDEO_HEIGHT  : natural := 1080;
 
    -- DSP interface and general control signals
    signal clk_i               : std_logic := '0';
@@ -114,7 +114,7 @@ begin
       ready_i <= '1';
 
       for i in 1 to C_RX_VIDEO_WIDTH loop
-         v_data := 100 * i;
+         v_data := (100 * i) + 1;
          for j in 1 to C_RX_VIDEO_HEIGHT loop
             data_i   <= std_logic_vector(to_unsigned(v_data, data_i'length));
             valid_i  <= '1';
@@ -131,12 +131,13 @@ begin
       --   wait until rising_edge(clk_i);
       --end loop;
 
-
+      wait for 10*C_CLK_PERIOD;
+      wait for C_TX_VIDEO_WIDTH*C_TX_VIDEO_HEIGHT*C_CLK_PERIOD;
 
       -----------------------------------------------------------------------------
       -- Ending the simulation
       -----------------------------------------------------------------------------
-      wait for 500 ns;             -- to allow some time for completion
+      --wait for 1000 ns;             -- to allow some time for completion
       report_alert_counters(FINAL); -- Report final counters and print conclusion for simulation (Success/Fail)
       log(ID_LOG_HDR, "SIMULATION COMPLETED", C_SCOPE);
 

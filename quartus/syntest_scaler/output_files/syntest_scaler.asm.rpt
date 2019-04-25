@@ -1,5 +1,5 @@
 Assembler report for syntest_scaler
-Wed Apr 24 20:50:55 2019
+Thu Apr 25 20:45:49 2019
 Quartus Prime Version 18.1.0 Build 222 09/21/2018 SJ Pro Edition
 
 
@@ -38,7 +38,7 @@ refer to the applicable agreement for further details.
 +---------------------------------------------------------------+
 ; Assembler Summary                                             ;
 +-----------------------+---------------------------------------+
-; Assembler Status      ; Successful - Wed Apr 24 20:50:55 2019 ;
+; Assembler Status      ; Successful - Thu Apr 25 20:45:49 2019 ;
 ; Revision Name         ; syntest_scaler                        ;
 ; Top-level Entity Name ; syntest_scaler                        ;
 ; Family                ; Arria 10                              ;
@@ -101,14 +101,14 @@ refer to the applicable agreement for further details.
 Info: *******************************************************************
 Info: Running Quartus Prime Assembler
     Info: Version 18.1.0 Build 222 09/21/2018 SJ Pro Edition
-    Info: Processing started: Wed Apr 24 20:50:21 2019
+    Info: Processing started: Thu Apr 25 20:45:15 2019
 Info: Command: quartus_asm --read_settings_files=on --write_settings_files=off syntest_scaler -c syntest_scaler
 Info (16677): Loading final database
 Info (16734): Loading "final" snapshot for partition "root_partition".
 Info (16678): Successfully loaded final database: elapsed time is 00:00:02
 Info: Quartus Prime Assembler was successful. 0 errors, 0 warnings
-    Info: Peak virtual memory: 10501 megabytes
-    Info: Processing ended: Wed Apr 24 20:50:57 2019
+    Info: Peak virtual memory: 10530 megabytes
+    Info: Processing ended: Thu Apr 25 20:45:51 2019
     Info: Elapsed time: 00:00:36
 
 
@@ -127,7 +127,7 @@ Info: Quartus Prime Assembler was successful. 0 errors, 0 warnings
 ; Option         ; Setting                                                                                                         ;
 +----------------+-----------------------------------------------------------------------------------------------------------------+
 ; JTAG usercode  ; 0xFFFFFFFF                                                                                                      ;
-; Checksum       ; 0x30707858                                                                                                      ;
+; Checksum       ; 0x30C8ACF6                                                                                                      ;
 +----------------+-----------------------------------------------------------------------------------------------------------------+
 
 

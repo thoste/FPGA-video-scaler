@@ -1,5 +1,5 @@
 Synthesis report
-Wed Apr 24 20:48:10 2019
+Thu Apr 25 20:41:42 2019
 Quartus Prime Version 18.1.0 Build 222 09/21/2018 SJ Pro Edition
 
 
@@ -36,7 +36,7 @@ Quartus Prime Version 18.1.0 Build 222 09/21/2018 SJ Pro Edition
 +---------------------------------------------------------------+
 ; Synthesis Summary                                             ;
 +-----------------------+---------------------------------------+
-; Synthesis Status      ; Successful - Wed Apr 24 20:48:10 2019 ;
+; Synthesis Status      ; Successful - Thu Apr 25 20:41:42 2019 ;
 ; Revision Name         ; syntest_scaler                        ;
 ; Top-level Entity Name ; syntest_scaler                        ;
 ; Family                ; Arria 10                              ;
@@ -163,7 +163,9 @@ Quartus Prime Version 18.1.0 Build 222 09/21/2018 SJ Pro Edition
 ; altram.inc                                                                                                                  ; Auto-Found AHDL File                   ; c:/intelfpga_pro/18.1/quartus/libraries/megafunctions/altram.inc                                                                                                                ;         ;
 ; altdpram.inc                                                                                                                ; Auto-Found AHDL File                   ; c:/intelfpga_pro/18.1/quartus/libraries/megafunctions/altdpram.inc                                                                                                              ;         ;
 ; cbx.lst                                                                                                                     ; Auto-Found Unspecified File            ; c:/intelfpga_pro/18.1/quartus/libraries/megafunctions/cbx.lst                                                                                                                   ;         ;
-; C:/Users/stens/Documents/NTNU/FPGA-video-scaler/quartus/syntest_scaler/tmp-clearbox/syntest_scaler/9172/altsyncram_3812.tdf ; Auto-Generated Megafunction            ; C:/Users/stens/Documents/NTNU/FPGA-video-scaler/quartus/syntest_scaler/tmp-clearbox/syntest_scaler/9172/altsyncram_3812.tdf                                                     ;         ;
+; C:/Users/stens/Documents/NTNU/FPGA-video-scaler/quartus/syntest_scaler/tmp-clearbox/syntest_scaler/4112/altsyncram_br12.tdf ; Auto-Generated Megafunction            ; C:/Users/stens/Documents/NTNU/FPGA-video-scaler/quartus/syntest_scaler/tmp-clearbox/syntest_scaler/4112/altsyncram_br12.tdf                                                     ;         ;
+; C:/Users/stens/Documents/NTNU/FPGA-video-scaler/quartus/syntest_scaler/tmp-clearbox/syntest_scaler/4112/decode_qda.tdf      ; Auto-Generated Megafunction            ; C:/Users/stens/Documents/NTNU/FPGA-video-scaler/quartus/syntest_scaler/tmp-clearbox/syntest_scaler/4112/decode_qda.tdf                                                          ;         ;
+; C:/Users/stens/Documents/NTNU/FPGA-video-scaler/quartus/syntest_scaler/tmp-clearbox/syntest_scaler/4112/mux_q9b.tdf         ; Auto-Generated Megafunction            ; C:/Users/stens/Documents/NTNU/FPGA-video-scaler/quartus/syntest_scaler/tmp-clearbox/syntest_scaler/4112/mux_q9b.tdf                                                             ;         ;
 ; qdb/_compiler/syntest_scaler/root_partition/18.1.0/partitioned/1/mifs/ram0_simple_dpram_a3835dd4.hdl.mif                    ; Auto-Found Memory Initialization File  ; C:/Users/stens/Documents/NTNU/FPGA-video-scaler/quartus/syntest_scaler/qdb/_compiler/syntest_scaler/root_partition/18.1.0/partitioned/1/mifs/ram0_simple_dpram_a3835dd4.hdl.mif ;         ;
 +-----------------------------------------------------------------------------------------------------------------------------+----------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------+
 
@@ -182,7 +184,7 @@ Quartus Prime Version 18.1.0 Build 222 09/21/2018 SJ Pro Edition
 +------------+--------+------------------+----------------------------+---------------------------------------------------------------------------------+
 ; Assignment ; Value  ; To               ; Reason                     ; Location                                                                        ;
 +------------+--------+------------------+----------------------------+---------------------------------------------------------------------------------+
-; ORIG_DEPTH ; 4      ; clk_write_port_0 ; Invalid assignment name    ; C:/Users/stens/Documents/NTNU/FPGA-video-scaler/scaler/src/simple_dpram.vhd(55) ;
+; ORIG_DEPTH ; 129600 ; clk_write_port_0 ; Invalid assignment name    ; C:/Users/stens/Documents/NTNU/FPGA-video-scaler/scaler/src/simple_dpram.vhd(55) ;
 ; ORIG_WIDTH ; 80     ; clk_write_port_0 ; Invalid assignment name    ; C:/Users/stens/Documents/NTNU/FPGA-video-scaler/scaler/src/simple_dpram.vhd(55) ;
 ; ramstyle   ; "M20K" ; clk_write_port_0 ; Invalid ramstyle or target ; C:/Users/stens/Documents/NTNU/FPGA-video-scaler/scaler/src/simple_dpram.vhd(55) ;
 +------------+--------+------------------+----------------------------+---------------------------------------------------------------------------------+
@@ -194,23 +196,23 @@ Quartus Prime Version 18.1.0 Build 222 09/21/2018 SJ Pro Edition
 ; Parameter Name    ; Value ; Type                   ;
 +-------------------+-------+------------------------+
 ; g_data_width      ; 80    ; Untyped                ;
-; g_rx_video_width  ; 2     ; Untyped                ;
-; g_rx_video_height ; 2     ; Untyped                ;
-; g_tx_video_width  ; 4     ; Untyped                ;
-; g_tx_video_height ; 4     ; Untyped                ;
+; g_rx_video_width  ; 480   ; Untyped                ;
+; g_rx_video_height ; 270   ; Untyped                ;
+; g_tx_video_width  ; 960   ; Untyped                ;
+; g_tx_video_height ; 540   ; Untyped                ;
 +-------------------+-------+------------------------+
 
 
 +----------------------------------------------------------------+
 ; Parameter Settings for User Entity Instance: i_mut|framebuffer ;
-+----------------+-------+---------------------------------------+
-; Parameter Name ; Value ; Type                                  ;
-+----------------+-------+---------------------------------------+
-; g_ram_width    ; 80    ; Untyped                               ;
-; g_ram_depth    ; 4     ; Untyped                               ;
-; g_ramstyle     ; M20K  ; String                                ;
-; g_output_reg   ; false ; Untyped                               ;
-+----------------+-------+---------------------------------------+
++----------------+--------+--------------------------------------+
+; Parameter Name ; Value  ; Type                                 ;
++----------------+--------+--------------------------------------+
+; g_ram_width    ; 80     ; Untyped                              ;
+; g_ram_depth    ; 129600 ; Untyped                              ;
+; g_ramstyle     ; M20K   ; String                               ;
+; g_output_reg   ; false  ; Untyped                              ;
++----------------+--------+--------------------------------------+
 
 
 +-------------------------------------------------------+
@@ -270,12 +272,14 @@ Quartus Prime Version 18.1.0 Build 222 09/21/2018 SJ Pro Edition
 +-------------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+--------+-----------------------------------------------------------------------------------------------+------------------+--------------+
 ; Compilation Hierarchy Node                      ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; IOPLLs ; Full Hierarchy Name                                                                           ; Entity Name      ; Library Name ;
 +-------------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+--------+-----------------------------------------------------------------------------------------------+------------------+--------------+
-; |                                               ; 652 (0)             ; 616 (0)                   ; 320               ; 0          ; 0    ; 0            ; 0 (0)  ; |                                                                                             ; syntest_scaler   ; altera_work  ;
-;    |i_mut|                                      ; 164 (164)           ; 298 (298)                 ; 320               ; 0          ; 0    ; 0            ; 0 (0)  ; i_mut                                                                                         ; scaler           ; altera_work  ;
-;       |framebuffer|                             ; 0 (0)               ; 0 (0)                     ; 320               ; 0          ; 0    ; 0            ; 0 (0)  ; i_mut|framebuffer                                                                             ; simple_dpram     ; altera_work  ;
-;          |ram_data_rtl_0|                       ; 0 (0)               ; 0 (0)                     ; 320               ; 0          ; 0    ; 0            ; 0 (0)  ; i_mut|framebuffer|ram_data_rtl_0                                                              ; altsyncram       ; work         ;
-;             |auto_generated|                    ; 0 (0)               ; 0 (0)                     ; 320               ; 0          ; 0    ; 0            ; 0 (0)  ; i_mut|framebuffer|ram_data_rtl_0|auto_generated                                               ; altsyncram_3812  ; work         ;
-;    |i_sink|                                     ; 487 (465)           ; 152 (130)                 ; 0                 ; 0          ; 0    ; 0            ; 0 (0)  ; i_sink                                                                                        ; atv_dummy_sink   ; altera_work  ;
+; |                                               ; 963 (0)             ; 675 (0)                   ; 10368000          ; 0          ; 0    ; 0            ; 0 (0)  ; |                                                                                             ; syntest_scaler   ; altera_work  ;
+;    |i_mut|                                      ; 476 (228)           ; 357 (354)                 ; 10368000          ; 0          ; 0    ; 0            ; 0 (0)  ; i_mut                                                                                         ; scaler           ; altera_work  ;
+;       |framebuffer|                             ; 248 (0)             ; 3 (0)                     ; 10368000          ; 0          ; 0    ; 0            ; 0 (0)  ; i_mut|framebuffer                                                                             ; simple_dpram     ; altera_work  ;
+;          |ram_data_rtl_0|                       ; 248 (0)             ; 3 (0)                     ; 10368000          ; 0          ; 0    ; 0            ; 0 (0)  ; i_mut|framebuffer|ram_data_rtl_0                                                              ; altsyncram       ; work         ;
+;             |auto_generated|                    ; 248 (0)             ; 3 (3)                     ; 10368000          ; 0          ; 0    ; 0            ; 0 (0)  ; i_mut|framebuffer|ram_data_rtl_0|auto_generated                                               ; altsyncram_br12  ; work         ;
+;                |decode2|                        ; 8 (8)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; 0 (0)  ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|decode2                                       ; decode_qda       ; altera_work  ;
+;                |mux3|                           ; 240 (240)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; 0 (0)  ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|mux3                                          ; mux_q9b          ; altera_work  ;
+;    |i_sink|                                     ; 486 (464)           ; 152 (130)                 ; 0                 ; 0          ; 0    ; 0            ; 0 (0)  ; i_sink                                                                                        ; atv_dummy_sink   ; altera_work  ;
 ;       |i_atv_dummy_reduce|                      ; 22 (17)             ; 22 (17)                   ; 0                 ; 0          ; 0    ; 0            ; 0 (0)  ; i_sink|i_atv_dummy_reduce                                                                     ; atv_dummy_reduce ; altera_work  ;
 ;          |\g_reduce_more:i_atv_dummy_reduce|    ; 5 (4)               ; 5 (4)                     ; 0                 ; 0          ; 0    ; 0            ; 0 (0)  ; i_sink|i_atv_dummy_reduce|\g_reduce_more:i_atv_dummy_reduce                                   ; atv_dummy_reduce ; altera_work  ;
 ;             |\g_reduce_more:i_atv_dummy_reduce| ; 1 (1)               ; 1 (1)                     ; 0                 ; 0          ; 0    ; 0            ; 0 (0)  ; i_sink|i_atv_dummy_reduce|\g_reduce_more:i_atv_dummy_reduce|\g_reduce_more:i_atv_dummy_reduce ; atv_dummy_reduce ; altera_work  ;
@@ -289,8 +293,8 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------+------------------------------------+
 ; Register name                          ; Reason for Removal                 ;
 +----------------------------------------+------------------------------------+
-; i_mut|v_dx[2..31]                      ; Lost fanout                        ;
-; i_mut|v_dy[1..30]                      ; Lost fanout                        ;
+; i_mut|dx[17..31]                       ; Lost fanout                        ;
+; i_mut|dy[12..31]                       ; Lost fanout                        ;
 ; i_sink|\i:2:counter[0]                 ; Merged with i_sink|\i:0:counter[0] ;
 ; i_sink|\i:4:counter[0]                 ; Merged with i_sink|\i:0:counter[0] ;
 ; i_sink|\i:6:counter[0]                 ; Merged with i_sink|\i:0:counter[0] ;
@@ -328,7 +332,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; i_sink|\i:15:counter[2]                ; Merged with i_sink|\i:7:counter[2] ;
 ; i_sink|\i:16:counter[3]                ; Merged with i_sink|\i:0:counter[3] ;
 ; i_sink|\i:5:counter[1]                 ; Merged with i_sink|\i:1:counter[1] ;
-; Total Number of Removed Registers = 97 ;                                    ;
+; Total Number of Removed Registers = 72 ;                                    ;
 +----------------------------------------+------------------------------------+
 
 
@@ -337,12 +341,12 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------------+-------------+
 ; Statistic                                    ; Value       ;
 +----------------------------------------------+-------------+
-; Total registers                              ; 616         ;
-; Number of registers using Synchronous Clear  ; 65          ;
+; Total registers                              ; 675         ;
+; Number of registers using Synchronous Clear  ; 64          ;
 ; Number of registers using Synchronous Load   ; 0           ;
 ; Number of registers using Asynchronous Clear ; 0           ;
 ; Number of registers using Asynchronous Load  ; 0           ;
-; Number of registers using Clock Enable       ; 324         ;
+; Number of registers using Clock Enable       ; 381         ;
 ; Number of registers using Preset             ; 0           ;
 +----------------------------------------------+-------------+
 
@@ -403,8 +407,8 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; WIDTH_BYTEENA                      ; 1                                                                                                        ; Untyped        ;
 ; OPERATION_MODE                     ; DUAL_PORT                                                                                                ; Untyped        ;
 ; WIDTH_A                            ; 80                                                                                                       ; Untyped        ;
-; WIDTHAD_A                          ; 2                                                                                                        ; Untyped        ;
-; NUMWORDS_A                         ; 4                                                                                                        ; Untyped        ;
+; WIDTHAD_A                          ; 17                                                                                                       ; Untyped        ;
+; NUMWORDS_A                         ; 129600                                                                                                   ; Untyped        ;
 ; OUTDATA_REG_A                      ; UNREGISTERED                                                                                             ; Untyped        ;
 ; ADDRESS_ACLR_A                     ; NONE                                                                                                     ; Untyped        ;
 ; OUTDATA_ACLR_A                     ; NONE                                                                                                     ; Untyped        ;
@@ -412,8 +416,8 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; INDATA_ACLR_A                      ; NONE                                                                                                     ; Untyped        ;
 ; BYTEENA_ACLR_A                     ; NONE                                                                                                     ; Untyped        ;
 ; WIDTH_B                            ; 80                                                                                                       ; Untyped        ;
-; WIDTHAD_B                          ; 2                                                                                                        ; Untyped        ;
-; NUMWORDS_B                         ; 4                                                                                                        ; Untyped        ;
+; WIDTHAD_B                          ; 17                                                                                                       ; Untyped        ;
+; NUMWORDS_B                         ; 129600                                                                                                   ; Untyped        ;
 ; INDATA_REG_B                       ; CLOCK1                                                                                                   ; Untyped        ;
 ; WRCONTROL_WRADDRESS_REG_B          ; CLOCK1                                                                                                   ; Untyped        ;
 ; RDCONTROL_REG_B                    ; CLOCK1                                                                                                   ; Untyped        ;
@@ -446,7 +450,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; ECC_PIPELINE_STAGE_ENABLED         ; FALSE                                                                                                    ; Untyped        ;
 ; WIDTH_ECCSTATUS                    ; 3                                                                                                        ; Untyped        ;
 ; DEVICE_FAMILY                      ; Arria 10                                                                                                 ; Untyped        ;
-; CBXI_PARAMETER                     ; altsyncram_3812                                                                                          ; Untyped        ;
+; CBXI_PARAMETER                     ; altsyncram_br12                                                                                          ; Untyped        ;
 +------------------------------------+----------------------------------------------------------------------------------------------------------+----------------+
 
 
@@ -456,29 +460,28 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; Type                   ; Count                                   ;
 +------------------------+-----------------------------------------+
 ; boundary_port          ; 2                                       ;
-; twentynm_ff            ; 616                                     ;
-;     ENA                ; 260                                     ;
+; twentynm_ff            ; 675                                     ;
+;     ENA                ; 317                                     ;
 ;     ENA SCLR           ; 64                                      ;
-;     SCLR               ; 1                                       ;
-;     plain              ; 291                                     ;
-; twentynm_lcell_comb    ; 652                                     ;
-;     arith              ; 126                                     ;
-;         1 data inputs  ; 124                                     ;
-;         2 data inputs  ; 2                                       ;
-;     normal             ; 526                                     ;
+;     plain              ; 294                                     ;
+; twentynm_lcell_comb    ; 963                                     ;
+;     arith              ; 189                                     ;
+;         1 data inputs  ; 165                                     ;
+;         2 data inputs  ; 24                                      ;
+;     normal             ; 774                                     ;
 ;         1 data inputs  ; 32                                      ;
 ;         2 data inputs  ; 9                                       ;
-;         3 data inputs  ; 25                                      ;
-;         4 data inputs  ; 9                                       ;
-;         5 data inputs  ; 25                                      ;
-;         6 data inputs  ; 426                                     ;
-; twentynm_ram_block     ; 80                                      ;
+;         3 data inputs  ; 103                                     ;
+;         4 data inputs  ; 17                                      ;
+;         5 data inputs  ; 34                                      ;
+;         6 data inputs  ; 579                                     ;
+; twentynm_ram_block     ; 640                                     ;
 ;                        ;                                         ;
-; Number of carry chains ; 4                                       ;
+; Number of carry chains ; 9                                       ;
 ; Max carry chain length ; 32                                      ;
 ;                        ;                                         ;
 ; Max LUT depth          ; 5.00                                    ;
-; Average LUT depth      ; 2.82                                    ;
+; Average LUT depth      ; 2.59                                    ;
 +------------------------+-----------------------------------------+
 
 
@@ -487,39 +490,39 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +---------------------------------------------+-------------------+
 ; Resource                                    ; Usage             ;
 +---------------------------------------------+-------------------+
-; Estimate of Logic utilization (ALMs needed) ; 588               ;
+; Estimate of Logic utilization (ALMs needed) ; 800               ;
 ;                                             ;                   ;
-; Combinational ALUT usage for logic          ; 652               ;
+; Combinational ALUT usage for logic          ; 963               ;
 ;     -- 7 input functions                    ; 0                 ;
-;     -- 6 input functions                    ; 426               ;
-;     -- 5 input functions                    ; 25                ;
-;     -- 4 input functions                    ; 9                 ;
-;     -- <=3 input functions                  ; 192               ;
+;     -- 6 input functions                    ; 579               ;
+;     -- 5 input functions                    ; 34                ;
+;     -- 4 input functions                    ; 17                ;
+;     -- <=3 input functions                  ; 333               ;
 ;                                             ;                   ;
-; Dedicated logic registers                   ; 616               ;
+; Dedicated logic registers                   ; 675               ;
 ;                                             ;                   ;
 ; I/O pins                                    ; 2                 ;
 ; Total MLAB memory bits                      ; 0                 ;
-; Total block memory bits                     ; 320               ;
+; Total block memory bits                     ; 10368000          ;
 ;                                             ;                   ;
 ; Total DSP Blocks                            ; 0                 ;
 ;     -- [A] Total Fixed Point DSP Blocks     ; 0                 ;
 ;     -- [B] Total Floating Point DSP Blocks  ; 0                 ;
 ;                                             ;                   ;
 ; Maximum fan-out node                        ; clk_i             ;
-; Maximum fan-out                             ; 696               ;
-; Total fan-out                               ; 5273              ;
-; Average fan-out                             ; 3.91              ;
+; Maximum fan-out                             ; 1315              ;
+; Total fan-out                               ; 26099             ;
+; Average fan-out                             ; 11.45             ;
 +---------------------------------------------+-------------------+
 
 
-+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Synthesis RAM Summary for Partition "root_partition"                                                                                                                                                                                                                     ;
-+------------------------------------------------------------+------------+------------------+--------------+--------------+--------------+--------------+------+----------------------------------------------------------------------------------------------------------+
-; Name                                                       ; Type       ; Mode             ; Port A Depth ; Port A Width ; Port B Depth ; Port B Width ; Size ; MIF                                                                                                      ;
-+------------------------------------------------------------+------------+------------------+--------------+--------------+--------------+--------------+------+----------------------------------------------------------------------------------------------------------+
-; i_mut|framebuffer|ram_data_rtl_0|auto_generated|ALTSYNCRAM ; M20K block ; Simple Dual Port ; 4            ; 80           ; 4            ; 80           ; 320  ; qdb/_compiler/syntest_scaler/root_partition/18.1.0/partitioned/1/mifs/ram0_simple_dpram_a3835dd4.hdl.mif ;
-+------------------------------------------------------------+------------+------------------+--------------+--------------+--------------+--------------+------+----------------------------------------------------------------------------------------------------------+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Synthesis RAM Summary for Partition "root_partition"                                                                                                                                                                                                                         ;
++------------------------------------------------------------+------------+------------------+--------------+--------------+--------------+--------------+----------+----------------------------------------------------------------------------------------------------------+
+; Name                                                       ; Type       ; Mode             ; Port A Depth ; Port A Width ; Port B Depth ; Port B Width ; Size     ; MIF                                                                                                      ;
++------------------------------------------------------------+------------+------------------+--------------+--------------+--------------+--------------+----------+----------------------------------------------------------------------------------------------------------+
+; i_mut|framebuffer|ram_data_rtl_0|auto_generated|ALTSYNCRAM ; M20K block ; Simple Dual Port ; 129600       ; 80           ; 129600       ; 80           ; 10368000 ; qdb/_compiler/syntest_scaler/root_partition/18.1.0/partitioned/1/mifs/ram0_simple_dpram_a3835dd4.hdl.mif ;
++------------------------------------------------------------+------------+------------------+--------------+--------------+--------------+--------------+----------+----------------------------------------------------------------------------------------------------------+
 
 
 +--------------------+
@@ -528,7 +531,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus Prime Synthesis
     Info: Version 18.1.0 Build 222 09/21/2018 SJ Pro Edition
-    Info: Processing started: Wed Apr 24 20:48:02 2019
+    Info: Processing started: Thu Apr 25 20:35:49 2019
 Info: Command: quartus_syn --read_settings_files=on --write_settings_files=off syntest_scaler -c syntest_scaler
 Info: qis_default_flow_script.tcl version: #1
 Info: Initializing Synthesis...
@@ -538,8 +541,8 @@ Info: Analyzing source files
 Info: Elaborating from top-level entity "syntest_scaler"
 Info (18235): Library search order is as follows: "ctp". Quartus will look for undefined design units in your libraries in that order. To modify the ordering, please specify a semi-colon separated library list using the assignment LIBRARY_SEARCH_ORDER.
 Info (19337): VHDL info at syntest_scaler.vhd(18): executing entity "syntest_scaler" with architecture "rtl" File: C:/Users/stens/Documents/NTNU/FPGA-video-scaler/scaler/syntest/syntest_scaler.vhd Line: 18
-Info (19337): VHDL info at scaler.vhd(17): executing entity "scaler(g_data_width=80,g_rx_video_width=2,g_rx_video_height=2,g_tx_video_width=4,g_tx_video_height=4)" with architecture "scaler_arc" File: C:/Users/stens/Documents/NTNU/FPGA-video-scaler/scaler/src/scaler.vhd Line: 17
-Info (19337): VHDL info at simple_dpram.vhd(18): executing entity "simple_dpram(g_ram_width=80,g_ram_depth=4)(1,4)" with architecture "rtl" File: C:/Users/stens/Documents/NTNU/FPGA-video-scaler/scaler/src/simple_dpram.vhd Line: 18
+Info (19337): VHDL info at scaler.vhd(17): executing entity "scaler(g_data_width=80,g_rx_video_width=480,g_rx_video_height=270,g_tx_video_width=960,g_tx_video_height=540)" with architecture "scaler_arc" File: C:/Users/stens/Documents/NTNU/FPGA-video-scaler/scaler/src/scaler.vhd Line: 17
+Info (19337): VHDL info at simple_dpram.vhd(18): executing entity "simple_dpram(g_ram_width=80,g_ram_depth=129600)(1,4)" with architecture "rtl" File: C:/Users/stens/Documents/NTNU/FPGA-video-scaler/scaler/src/simple_dpram.vhd Line: 18
 Info (19337): VHDL info at atv_dummy_source.vhd(40): executing entity "atv_dummy_source(g_ports=83)" with architecture "rtl" File: C:/Users/stens/Documents/NTNU/atv/atv_lib/atv_dummy_source.vhd Line: 40
 Info (19337): VHDL info at atv_dummy_sink.vhd(115): executing entity "atv_dummy_sink(g_ports=82)" with architecture "rtl" File: C:/Users/stens/Documents/NTNU/atv/atv_lib/atv_dummy_sink.vhd Line: 115
 Info (19337): VHDL info at atv_dummy_sink.vhd(23): executing entity "atv_dummy_reduce(g_logic_levels=5,g_inputs=82)" with architecture "rtl" File: C:/Users/stens/Documents/NTNU/atv/atv_lib/atv_dummy_sink.vhd Line: 23
@@ -557,11 +560,11 @@ Info (19000): Inferred 1 megafunctions from design logic
     Info (276029): Inferred altsyncram megafunction from the following design logic: "i_mut|framebuffer|ram_data_rtl_0" 
         Info (286033): Parameter OPERATION_MODE set to DUAL_PORT
         Info (286033): Parameter WIDTH_A set to 80
-        Info (286033): Parameter WIDTHAD_A set to 2
-        Info (286033): Parameter NUMWORDS_A set to 4
+        Info (286033): Parameter WIDTHAD_A set to 17
+        Info (286033): Parameter NUMWORDS_A set to 129600
         Info (286033): Parameter WIDTH_B set to 80
-        Info (286033): Parameter WIDTHAD_B set to 2
-        Info (286033): Parameter NUMWORDS_B set to 4
+        Info (286033): Parameter WIDTHAD_B set to 17
+        Info (286033): Parameter NUMWORDS_B set to 129600
         Info (286033): Parameter ADDRESS_ACLR_A set to NONE
         Info (286033): Parameter OUTDATA_REG_B set to UNREGISTERED
         Info (286033): Parameter ADDRESS_ACLR_B set to NONE
@@ -572,18 +575,21 @@ Info (19000): Inferred 1 megafunctions from design logic
         Info (286033): Parameter RAM_BLOCK_TYPE set to M20K
         Info (286033): Parameter INIT_FILE set to qdb/_compiler/syntest_scaler/root_partition/18.1.0/partitioned/1/mifs/ram0_simple_dpram_a3835dd4.hdl.mif
         Info (286033): Parameter READ_DURING_WRITE_MODE_MIXED_PORTS set to OLD_DATA
+Warning (113028): 1472 out of 131072 addresses are uninitialized. The Quartus Prime software will initialize them to "0". There are 1 warnings found, and 1 warnings are reported. File: C:/Users/stens/Documents/NTNU/FPGA-video-scaler/quartus/syntest_scaler/qdb/_compiler/syntest_scaler/root_partition/18.1.0/partitioned/1/mifs/ram0_simple_dpram_a3835dd4.hdl.mif Line: 1
+    Warning (113027): Addresses ranging from 129600 to 131071 are not initialized File: C:/Users/stens/Documents/NTNU/FPGA-video-scaler/quartus/syntest_scaler/qdb/_compiler/syntest_scaler/root_partition/18.1.0/partitioned/1/mifs/ram0_simple_dpram_a3835dd4.hdl.mif Line: 1
+Critical Warning (127004): Memory depth (129600) in the design file differs from memory depth (131072) in the Memory Initialization File "C:/Users/stens/Documents/NTNU/FPGA-video-scaler/quartus/syntest_scaler/qdb/_compiler/syntest_scaler/root_partition/18.1.0/partitioned/1/mifs/ram0_simple_dpram_a3835dd4.hdl.mif" -- truncated remaining initial content value to fit RAM File: C:/Users/stens/Documents/NTNU/FPGA-video-scaler/quartus/syntest_scaler/tmp-clearbox/syntest_scaler/4112/altsyncram_br12.tdf Line: 44
 Info (286030): Timing-Driven Synthesis is running
-Info (17049): 60 registers lost all their fanouts during netlist optimizations.
-Info (21057): Implemented 1063 device resources after synthesis - the final resource count might be different
+Info (17049): 35 registers lost all their fanouts during netlist optimizations.
+Info (21057): Implemented 1876 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 1 input pins
     Info (21059): Implemented 1 output pins
-    Info (21061): Implemented 981 logic cells
-    Info (21064): Implemented 80 RAM segments
+    Info (21061): Implemented 1234 logic cells
+    Info (21064): Implemented 640 RAM segments
 Info: Successfully synthesized partition
 Info: Saving post-synthesis snapshots for 1 partition(s)
-Info: Quartus Prime Synthesis was successful. 0 errors, 1 warning
-    Info: Peak virtual memory: 5115 megabytes
-    Info: Processing ended: Wed Apr 24 20:48:10 2019
-    Info: Elapsed time: 00:00:08
+Info: Quartus Prime Synthesis was successful. 0 errors, 4 warnings
+    Info: Peak virtual memory: 5224 megabytes
+    Info: Processing ended: Thu Apr 25 20:41:42 2019
+    Info: Elapsed time: 00:05:53
 
 

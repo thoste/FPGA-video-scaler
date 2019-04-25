@@ -26,13 +26,13 @@ entity scaler is
       clk_i             : in  std_logic;
       sreset_i          : in  std_logic;
 
-      scaler_data_i            : in  std_logic_vector(g_data_width-1 downto 0);
-      scaler_valid_i           : in  std_logic;
-      scaler_ready_o           : out std_logic := '0';
+      scaler_data_i     : in  std_logic_vector(g_data_width-1 downto 0);
+      scaler_valid_i    : in  std_logic;
+      scaler_ready_o    : out std_logic := '0';
 
-      scaler_data_o            : out std_logic_vector(g_data_width-1 downto 0) := (others => '0');
-      scaler_valid_o           : out std_logic := '0';
-      scaler_ready_i           : in  std_logic
+      scaler_data_o     : out std_logic_vector(g_data_width-1 downto 0) := (others => '0');
+      scaler_valid_o    : out std_logic := '0';
+      scaler_ready_i    : in  std_logic
    );
 end scaler;
 
@@ -96,7 +96,7 @@ begin
          if fb_count = g_rx_video_width*g_rx_video_height then 
             fb_full <= true;
          end if;
-         if out_count >= 15 then
+         if out_count >= (g_tx_video_width*g_tx_video_height) then
             fb_full <= false;
          end if;
       end if;
@@ -115,17 +115,17 @@ begin
          --scaler_data_o <= fb_data_o;
 
          if fb_full then
-            dx <= x_count/2;
-            dy <= y_count/2;
+            dx <= x_count/(g_tx_video_width/g_rx_video_width);
+            dy <= y_count/(g_tx_video_height/g_rx_video_height);
 
             fb_rd_addr_i <= g_rx_video_width*dy + dx;
             scaler_valid_o <= '0' when out_count < 3 else '1';
 
             x_count <= x_count + 1;
 
-            if x_count = 3 then
+            if x_count = g_tx_video_width-1 then
                x_count <= 0;
-               y_count <= 0 when y_count = 3 else y_count + 1 ;
+               y_count <= 0 when y_count = g_tx_video_height-1 else y_count + 1 ;
             end if;
 
             --if y_count < g_tx_video_height and x_count = g_tx_video_width-1 then
