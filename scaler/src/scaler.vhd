@@ -13,6 +13,8 @@
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
+use ieee.fixed_pkg.all;
+--use ieee.math_real.all;
 
 entity scaler is
    generic (
@@ -37,6 +39,9 @@ entity scaler is
 end scaler;
 
 architecture scaler_arc of scaler is
+   signal vid_width_ufixed    : ufixed(15 downto -8) := (others => '0');
+   signal vid_height_ufixed   : ufixed(15 downto -8) := (others => '0');
+
    -- Framebuffer
    signal fb_data_i     : std_logic_vector(g_data_width-1 downto 0) := (others => '0');
    signal fb_wr_addr_i  : integer := 0;
@@ -72,6 +77,9 @@ begin
       data_o         => fb_data_o,
       rd_addr_i      => fb_rd_addr_i
    );
+
+   -- Calc scaling ratio
+   vid_width_ufixed <= to_ufixed(6.30, vid_width_ufixed);   
 
    -- Asseart ready out
    scaler_ready_o <= scaler_ready_i or not scaler_valid_o;
@@ -121,6 +129,8 @@ begin
             fb_rd_addr_i <= g_rx_video_width*dy + dx;
             scaler_valid_o <= '0' when out_count < 3 else '1';
 
+            out_count <= out_count + 1;
+
             x_count <= x_count + 1;
 
             if x_count = g_tx_video_width-1 then
@@ -148,11 +158,10 @@ begin
             --if y_count = g_tx_video_height then
             --   y_count := 0;
             --end if;
-            scaler_data_o <= fb_data_o;
-            out_count <= out_count + 1;
-
+            
+            
          end if;
-         
+         scaler_data_o <= fb_data_o;
       end if;
    end process p_nearest;
 

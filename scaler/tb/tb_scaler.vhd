@@ -35,10 +35,10 @@ architecture tb_scaler_arc of tb_scaler is
    constant C_DATA_WIDTH      : natural := 80;
    constant C_DATA_LENGTH     : natural := 16;
 
-   constant C_RX_VIDEO_WIDTH  : natural := 960;
-   constant C_RX_VIDEO_HEIGHT : natural := 540;
-   constant C_TX_VIDEO_WIDTH  : natural := 1920;
-   constant C_TX_VIDEO_HEIGHT  : natural := 1080;
+   constant C_RX_VIDEO_WIDTH  : natural := 2;
+   constant C_RX_VIDEO_HEIGHT : natural := 2;
+   constant C_TX_VIDEO_WIDTH  : natural := 5;
+   constant C_TX_VIDEO_HEIGHT  : natural := 5;
 
    -- DSP interface and general control signals
    signal clk_i               : std_logic := '0';
