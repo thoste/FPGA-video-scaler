@@ -24,7 +24,7 @@ end entity syntest_scaler;
 
 architecture rtl of syntest_scaler is
    signal source : std_logic_vector(82 downto 0) := (others => '0');
-   signal sink   : std_logic_vector(81  downto 0) := (others => '0');
+   signal sink   : std_logic_vector(81 downto 0) := (others => '0');
 
 begin
 
@@ -33,8 +33,8 @@ begin
       g_data_width         => 80, 
       g_rx_video_width     => 480,
       g_rx_video_height    => 270,
-      g_tx_video_width     => 960,
-      g_tx_video_height    => 540
+      g_tx_video_width     => 1280,
+      g_tx_video_height    => 720
    )
    port map(
       clk_i             => clk_i,

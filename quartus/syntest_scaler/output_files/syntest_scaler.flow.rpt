@@ -1,5 +1,5 @@
 Flow report for syntest_scaler
-Thu Apr 25 20:45:49 2019
+Mon Apr 29 22:50:08 2019
 Quartus Prime Version 18.1.0 Build 222 09/21/2018 SJ Pro Edition
 
 
@@ -50,15 +50,15 @@ refer to the applicable agreement for further details.
 +--------------------------------------------------------------------------+
 ; Flow Summary                                                             ;
 +-----------------------------+--------------------------------------------+
-; Flow Status                 ; Successful - Thu Apr 25 20:45:49 2019      ;
+; Flow Status                 ; Successful - Mon Apr 29 22:50:08 2019      ;
 ; Quartus Prime Version       ; 18.1.0 Build 222 09/21/2018 SJ Pro Edition ;
 ; Revision Name               ; syntest_scaler                             ;
 ; Top-level Entity Name       ; syntest_scaler                             ;
 ; Family                      ; Arria 10                                   ;
 ; Device                      ; 10AX115S2F45I2SG                           ;
 ; Timing Models               ; Final                                      ;
-; Logic utilization (in ALMs) ; 636 / 427,200 ( < 1 % )                    ;
-; Total registers             ; 711                                        ;
+; Logic utilization (in ALMs) ; 880 / 427,200 ( < 1 % )                    ;
+; Total registers             ; 687                                        ;
 ; Total pins                  ; 2 / 960 ( < 1 % )                          ;
 ; Total virtual pins          ; 0                                          ;
 ; Total block memory bits     ; 10,368,000 / 55,562,240 ( 19 % )           ;
@@ -74,7 +74,7 @@ refer to the applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 04/25/2019 20:35:49 ;
+; Start date & time ; 04/29/2019 22:40:26 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; syntest_scaler      ;
 +-------------------+---------------------+
@@ -85,7 +85,7 @@ refer to the applicable agreement for further details.
 +--------------------------------+---------------------------------------+--------------------------------------+-------------+------------+
 ; Assignment Name                ; Value                                 ; Default Value                        ; Entity Name ; Section Id ;
 +--------------------------------+---------------------------------------+--------------------------------------+-------------+------------+
-; COMPILER_SIGNATURE_ID          ; 193989711024204.155621734904112       ; --                                   ; --          ; --         ;
+; COMPILER_SIGNATURE_ID          ; 193989711024204.155657042605020       ; --                                   ; --          ; --         ;
 ; MAX_CORE_JUNCTION_TEMP         ; 100                                   ; --                                   ; --          ; --         ;
 ; MIN_CORE_JUNCTION_TEMP         ; -40                                   ; --                                   ; --          ; --         ;
 ; POWER_BOARD_THERMAL_MODEL      ; None (CONSERVATIVE)                   ; --                                   ; --          ; --         ;
@@ -102,11 +102,11 @@ refer to the applicable agreement for further details.
 +-----------------+--------------+-------------------------+---------------------+
 ; Module Name     ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ;
 +-----------------+--------------+-------------------------+---------------------+
-; Synthesis       ; 00:05:53     ; 1.0                     ; 5224 MB             ;
-; Fitter          ; 00:03:18     ; 1.1                     ; 11057 MB            ;
-; Timing Analyzer ; 00:00:09     ; 1.1                     ; 7631 MB             ;
-; Assembler       ; 00:00:34     ; 2.1                     ; 10530 MB            ;
-; Total           ; 00:09:54     ; --                      ; --                  ;
+; Synthesis       ; 00:05:53     ; 1.0                     ; 5256 MB             ;
+; Fitter          ; 00:03:01     ; 1.1                     ; 11068 MB            ;
+; Timing Analyzer ; 00:00:10     ; 1.2                     ; 7633 MB             ;
+; Assembler       ; 00:00:34     ; 2.1                     ; 10519 MB            ;
+; Total           ; 00:09:38     ; --                      ; --                  ;
 +-----------------+--------------+-------------------------+---------------------+
 
 

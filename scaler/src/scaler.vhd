@@ -13,8 +13,10 @@
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
-use ieee.fixed_pkg.all;
+--use ieee.fixed_pkg.all;
 --use ieee.math_real.all;
+
+use work.my_fixed_pkg.all;
 
 entity scaler is
    generic (
@@ -39,8 +41,13 @@ entity scaler is
 end scaler;
 
 architecture scaler_arc of scaler is
-   signal vid_width_ufixed    : ufixed(15 downto -8) := (others => '0');
-   signal vid_height_ufixed   : ufixed(15 downto -8) := (others => '0');
+   signal vid_width_ufixed    : ufixed(12 downto -6) := (others => '0');
+   signal vid_height_ufixed   : ufixed(12 downto -6) := (others => '0');
+
+   signal tx_width_ufixed    : ufixed(12 downto -6) := (others => '0');
+   signal tx_height_ufixed    : ufixed(12 downto -6) := (others => '0');
+   signal rx_width_ufixed    : ufixed(12 downto -6) := (others => '0');
+   signal rx_height_ufixed    : ufixed(12 downto -6) := (others => '0');
 
    -- Framebuffer
    signal fb_data_i     : std_logic_vector(g_data_width-1 downto 0) := (others => '0');
@@ -53,12 +60,14 @@ architecture scaler_arc of scaler is
    signal fb_count : integer := 0;
    signal fb_full : boolean := false;
 
-   signal dx : integer := 0;
-   signal dy : integer := 0;
+   signal dx : ufixed(18 downto -13) := (others => '0');
+   signal dy : ufixed(18 downto -13) := (others => '0');
    signal x_count : integer := 0;
    signal y_count : integer := 0;
 
    signal out_count : integer := 0;
+   signal frame_done : boolean := false;
+
 begin
    framebuffer : entity work.simple_dpram
    generic map (
@@ -79,8 +88,13 @@ begin
    );
 
    -- Calc scaling ratio
-   vid_width_ufixed <= to_ufixed(6.30, vid_width_ufixed);   
-
+   rx_width_ufixed <= to_ufixed(g_rx_video_width, rx_width_ufixed);
+   rx_height_ufixed <= to_ufixed(g_rx_video_height, rx_width_ufixed);
+   tx_width_ufixed <= to_ufixed(g_tx_video_width, tx_width_ufixed);
+   tx_height_ufixed <= to_ufixed(g_tx_video_height, tx_width_ufixed);
+   vid_width_ufixed <= resize(tx_width_ufixed/rx_width_ufixed, vid_width_ufixed'high, vid_width_ufixed'low);  
+   vid_height_ufixed <= resize(tx_height_ufixed/rx_height_ufixed, vid_height_ufixed'high, vid_height_ufixed'low);  
+   
    -- Asseart ready out
    scaler_ready_o <= scaler_ready_i or not scaler_valid_o;
 
@@ -98,71 +112,60 @@ begin
       end if;
    end process p_fill_fb;
 
+
    p_fb_full : process(clk_i) is
    begin
       if rising_edge(clk_i) then
          if fb_count = g_rx_video_width*g_rx_video_height then 
             fb_full <= true;
          end if;
-         if out_count >= (g_tx_video_width*g_tx_video_height) then
+         if frame_done then
             fb_full <= false;
          end if;
       end if;
    end process p_fb_full;
 
-   p_nearest : process(clk_i) is
+
+   p_reverse_mapping : process(clk_i) is
    begin
       if rising_edge(clk_i) then
-
-         --if fb_full then
-         --   dx := 3/2;
-         --   dy := 3/2;
-
-         --   fb_rd_addr_i <= g_rx_video_width*dy + dx;
-         --end if;
-         --scaler_data_o <= fb_data_o;
-
          if fb_full then
-            dx <= x_count/(g_tx_video_width/g_rx_video_width);
-            dy <= y_count/(g_tx_video_height/g_rx_video_height);
+               --dx <= x_count/vid_width_ufixed;
+               --dy <= y_count/vid_width_ufixed;
+               dx <= resize(x_count/vid_width_ufixed, dx'high, dx'low);
+               dy <= resize(y_count/vid_height_ufixed, dy'high, dy'low);
 
-            fb_rd_addr_i <= g_rx_video_width*dy + dx;
-            scaler_valid_o <= '0' when out_count < 3 else '1';
-
-            out_count <= out_count + 1;
-
-            x_count <= x_count + 1;
-
-            if x_count = g_tx_video_width-1 then
-               x_count <= 0;
-               y_count <= 0 when y_count = g_tx_video_height-1 else y_count + 1 ;
-            end if;
-
-            --if y_count < g_tx_video_height and x_count = g_tx_video_width-1 then
+               --dx <= (x_count/vid_width_ufixed) + (0.5 * (1 - 1/vid_width_ufixed));
+               --dy <= (y_count/vid_height_ufixed) + (0.5 * (1 - 1/vid_height_ufixed));
+               --dx <= resize((x_count/vid_width_ufixed) + (0.5 * (1 - 1/vid_width_ufixed)), dx'high, dx'low);
+               --dy <= resize((y_count/vid_height_ufixed) + (0.5 * (1 - 1/vid_height_ufixed)), dy'high, dy'low);
                
-            --   y_count <= y_count + 1;
-            --   x_count <= 0;
-            --end if;
-            
-            
-            --if v_count = 2 then
-            --   scaler_valid_o <= '1';
-            --else
-            --   v_count := v_count + 1;
-            --end if;
-            
+               x_count <= x_count + 1;
 
-            --if x_count = g_tx_video_width then
-            --   x_count := 0;
-            --end if;
-            --if y_count = g_tx_video_height then
-            --   y_count := 0;
-            --end if;
-            
-            
+               if x_count = g_tx_video_width-1 then
+                  x_count <= 0;
+                  y_count <= y_count + 1;
+               end if;
+
+               if y_count = g_tx_video_height-1 and x_count = g_tx_video_width-2 then
+                  frame_done <= true;
+               end if;
+
+               out_count <= out_count + 1;
+            end if;
+         end if;
+   end process p_reverse_mapping;
+
+
+   p_interpolation : process(clk_i) is
+   begin
+      if rising_edge(clk_i) then
+         if fb_full then
+            fb_rd_addr_i <= g_rx_video_width*to_integer(dy) + to_integer(dx);    
+            scaler_valid_o <= '1'; 
          end if;
          scaler_data_o <= fb_data_o;
       end if;
-   end process p_nearest;
+   end process p_interpolation;
 
 end scaler_arc;

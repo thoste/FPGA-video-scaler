@@ -1,5 +1,5 @@
 Fitter Finalize Stage Report for syntest_scaler
-Thu Apr 25 20:45:01 2019
+Mon Apr 29 22:49:20 2019
 Quartus Prime Version 18.1.0 Build 222 09/21/2018 SJ Pro Edition
 
 
@@ -37,15 +37,15 @@ refer to the applicable agreement for further details.
 ; Resource                                               ; Usage           ; %    ;
 +--------------------------------------------------------+-----------------+------+
 ;                                                        ;                 ;      ;
-; Programmable power technology high-speed tiles         ; 1,560 / 18,244  ; 9 %  ;
-; Programmable power technology low-power tiles          ; 16,684 / 18,244 ; 91 % ;
-;     -- low-power tiles that are used by the design     ; 2,066 / 16,684  ; 12 % ;
-;     -- unused tiles (low-power)                        ; 14,618 / 16,684 ; 88 % ;
+; Programmable power technology high-speed tiles         ; 783 / 18,244    ; 4 %  ;
+; Programmable power technology low-power tiles          ; 17,461 / 18,244 ; 96 % ;
+;     -- low-power tiles that are used by the design     ; 2,640 / 17,461  ; 15 % ;
+;     -- unused tiles (low-power)                        ; 14,821 / 17,461 ; 85 % ;
 ;                                                        ;                 ;      ;
-; Programmable power technology high-speed LAB tiles     ; 920 / 13,898    ; 7 %  ;
-; Programmable power technology low-power LAB tiles      ; 12,978 / 13,898 ; 93 % ;
-;     -- low-power LAB tiles that are used by the design ; 2,010 / 12,978  ; 15 % ;
-;     -- unused LAB tiles (low-power)                    ; 10,968 / 12,978 ; 85 % ;
+; Programmable power technology high-speed LAB tiles     ; 143 / 13,898    ; 1 %  ;
+; Programmable power technology low-power LAB tiles      ; 13,755 / 13,898 ; 99 % ;
+;     -- low-power LAB tiles that are used by the design ; 2,607 / 13,755  ; 19 % ;
+;     -- unused LAB tiles (low-power)                    ; 11,148 / 13,755 ; 81 % ;
 ;                                                        ;                 ;      ;
 +--------------------------------------------------------+-----------------+------+
 
@@ -56,11 +56,11 @@ refer to the applicable agreement for further details.
 Info: *******************************************************************
 Info: Running Quartus Prime Fitter
     Info: Version 18.1.0 Build 222 09/21/2018 SJ Pro Edition
-    Info: Processing started: Thu Apr 25 20:41:44 2019
+    Info: Processing started: Mon Apr 29 22:46:20 2019
 Info: Command: quartus_fit --read_settings_files=on --write_settings_files=off syntest_scaler -c syntest_scaler
 Info: qfit2_default_script.tcl version: #1
 Info: Project  = syntest_scaler
 Info: Revision = syntest_scaler
-Info (11888): Total time spent on timing analysis during Post-Routing is 0.15 seconds.
+Info (11888): Total time spent on timing analysis during Post-Routing is 0.07 seconds.
 
 

@@ -1,5 +1,5 @@
 Fitter Plan Stage Report for syntest_scaler
-Thu Apr 25 20:42:21 2019
+Mon Apr 29 22:46:56 2019
 Quartus Prime Version 18.1.0 Build 222 09/21/2018 SJ Pro Edition
 
 
@@ -96,7 +96,7 @@ The pin-out file can be found in C:/Users/stens/Documents/NTNU/FPGA-video-scaler
 +-------+-------+----------+--------------+--------------+--------------+-----------------------+--------------------+--------+----------------+----------+--------------+--------------+-------------+---------------------------+----------------------+-----------+
 ; Name  ; Pin # ; I/O Bank ; X coordinate ; Y coordinate ; Z coordinate ; Combinational Fan-Out ; Registered Fan-Out ; Global ; Input Register ; Bus Hold ; Weak Pull Up ; I/O Standard ; Termination ; Termination Control Block ; Location assigned by ; Slew Rate ;
 +-------+-------+----------+--------------+--------------+--------------+-----------------------+--------------------+--------+----------------+----------+--------------+--------------+-------------+---------------------------+----------------------+-----------+
-; clk_i ; G26   ; 2L       ; 78           ; 196          ; 46           ; 1315                  ; 0                  ; yes    ; no             ; no       ; Off          ; 1.8 V        ; Off         ; --                        ; Fitter               ; no        ;
+; clk_i ; G26   ; 2L       ; 78           ; 196          ; 46           ; 1279                  ; 0                  ; yes    ; no             ; no       ; Off          ; 1.8 V        ; Off         ; --                        ; Fitter               ; no        ;
 +-------+-------+----------+--------------+--------------+--------------+-----------------------+--------------------+--------+----------------+----------+--------------+--------------+-------------+---------------------------+----------------------+-----------+
 
 
@@ -2104,8 +2104,8 @@ Note: Pin directions (input, output or bidir) are based on device operating in u
 +---------------------------------------------------------------+------------+---------+--------------+----------------------+
 ; Name                                                          ; Location   ; Fan-Out ; Usage        ; Global Resource Used ;
 +---------------------------------------------------------------+------------+---------+--------------+----------------------+
-; clk_i                                                         ; PIN_G26    ; 1315    ; Clock        ;                      ;
-; i_mut|fb_full                                                 ; Unassigned ; 193     ; Clock enable ;                      ;
+; clk_i                                                         ; PIN_G26    ; 1279    ; Clock        ;                      ;
+; i_mut|fb_full                                                 ; Unassigned ; 77      ; Clock enable ;                      ;
 ; i_mut|fb_wr_addr_i[16]~0                                      ; Unassigned ; 130     ; Clock enable ;                      ;
 ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|decode2|rtl~0 ; Unassigned ; 80      ; Write enable ;                      ;
 ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|decode2|rtl~1 ; Unassigned ; 80      ; Write enable ;                      ;
@@ -2115,8 +2115,7 @@ Note: Pin directions (input, output or bidir) are based on device operating in u
 ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|decode2|rtl~5 ; Unassigned ; 80      ; Write enable ;                      ;
 ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|decode2|rtl~6 ; Unassigned ; 80      ; Write enable ;                      ;
 ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|decode2|rtl~7 ; Unassigned ; 80      ; Write enable ;                      ;
-; i_mut|reduce_nor_1                                            ; Unassigned ; 33      ; Sync. clear  ;                      ;
-; i_mut|reduce_nor_2                                            ; Unassigned ; 32      ; Sync. clear  ;                      ;
+; i_mut|reduce_nor_5                                            ; Unassigned ; 32      ; Sync. clear  ;                      ;
 ; i_mut|y_count[31]~0                                           ; Unassigned ; 32      ; Clock enable ;                      ;
 ; i_sink|\i:0:counter[0]                                        ; Unassigned ; 171     ; Clock enable ;                      ;
 ; i_sink|\i:1:counter[0]                                        ; Unassigned ; 168     ; Clock enable ;                      ;
@@ -2140,7 +2139,7 @@ Note: Pin directions (input, output or bidir) are based on device operating in u
 +-------+----------+---------+-------------+----------------+----------------------+
 ; Name  ; Location ; Fan-Out ; Signal Type ; Promotion Type ; Global Resource Used ;
 +-------+----------+---------+-------------+----------------+----------------------+
-; clk_i ; PIN_G26  ; 1315    ; Global      ; Automatic      ; Global Clock Region  ;
+; clk_i ; PIN_G26  ; 1279    ; Global      ; Automatic      ; Global Clock Region  ;
 +-------+----------+---------+-------------+----------------+----------------------+
 
 
@@ -2152,7 +2151,7 @@ Note: Pin directions (input, output or bidir) are based on device operating in u
 ; Name                                   ; clk_i                ;
 ;     -- Source Type                     ; I/O pad              ;
 ;     -- Source Location                 ; PIN_G26              ;
-;     -- Fan-Out                         ; 1315                 ;
+;     -- Fan-Out                         ; 1279                 ;
 ;     -- Promotion Type                  ; Automatic Promotion  ;
 ;     -- Global Buffer                   ; clk_i~inputCLKENA0   ;
 ;     -- Global Buffer Location          ; CLKCTRL_2L_G_I6      ;
@@ -2194,7 +2193,7 @@ Critical Warning (18655): There are 72 unused TX channels in the design.
     Info (19540): Add the QSF assignment 'set_instance_assignment -name PRESERVE_UNUSED_XCVR_CHANNEL ON -to <pin_name>' for each unused channel that will be used in future.
     Info (19541): The above QSF assignment will preserve the performance of specified channels over time, and works only if the design uses at least 1 transceiver channel.
 Info (11191): Automatically promoted 1 clock (1 global)
-    Info (13173): clk_i~inputCLKENA0 (1315 fanout) drives Global Clock Region, with the buffer placed at CLKCTRL_2L_G_I6
+    Info (13173): clk_i~inputCLKENA0 (1279 fanout) drives Global Clock Region, with the buffer placed at CLKCTRL_2L_G_I6
 Info (176233): Starting register packing
 Info (19539): Reading the HDL-embedded SDC files elapsed 00:00:00.
 Info (332104): Reading SDC File: '../syntest_timing.sdc'

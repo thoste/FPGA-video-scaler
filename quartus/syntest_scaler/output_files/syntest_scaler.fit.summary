@@ -1,12 +1,12 @@
-Fitter Status : Successful - Thu Apr 25 20:45:02 2019
+Fitter Status : Successful - Mon Apr 29 22:49:21 2019
 Quartus Prime Version : 18.1.0 Build 222 09/21/2018 SJ Pro Edition
 Revision Name : syntest_scaler
 Top-level Entity Name : syntest_scaler
 Family : Arria 10
 Device : 10AX115S2F45I2SG
 Timing Models : Final
-Logic utilization (in ALMs) : 636 / 427,200 ( < 1 % )
-Total registers : 711
+Logic utilization (in ALMs) : 880 / 427,200 ( < 1 % )
+Total registers : 687
 Total pins : 2 / 960 ( < 1 % )
 Total virtual pins : 0
 Total block memory bits : 10,368,000 / 55,562,240 ( 19 % )
