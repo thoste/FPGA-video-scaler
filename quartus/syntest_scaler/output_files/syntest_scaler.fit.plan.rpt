@@ -1,5 +1,5 @@
 Fitter Plan Stage Report for syntest_scaler
-Mon Apr 29 22:46:56 2019
+Tue Apr 30 14:40:45 2019
 Quartus Prime Version 18.1.0 Build 222 09/21/2018 SJ Pro Edition
 
 
@@ -18,7 +18,9 @@ Quartus Prime Version 18.1.0 Build 222 09/21/2018 SJ Pro Edition
  10. Control Signals
  11. Global & Other Fast Signals Summary
  12. Global & Other Fast Signals Details
- 13. Plan Messages
+ 13. Fixed Point DSP Register Packing Summary
+ 14. Fixed Point DSP Register Packing Details
+ 15. Plan Messages
 
 
 
@@ -96,7 +98,7 @@ The pin-out file can be found in C:/Users/stens/Documents/NTNU/FPGA-video-scaler
 +-------+-------+----------+--------------+--------------+--------------+-----------------------+--------------------+--------+----------------+----------+--------------+--------------+-------------+---------------------------+----------------------+-----------+
 ; Name  ; Pin # ; I/O Bank ; X coordinate ; Y coordinate ; Z coordinate ; Combinational Fan-Out ; Registered Fan-Out ; Global ; Input Register ; Bus Hold ; Weak Pull Up ; I/O Standard ; Termination ; Termination Control Block ; Location assigned by ; Slew Rate ;
 +-------+-------+----------+--------------+--------------+--------------+-----------------------+--------------------+--------+----------------+----------+--------------+--------------+-------------+---------------------------+----------------------+-----------+
-; clk_i ; G26   ; 2L       ; 78           ; 196          ; 46           ; 1279                  ; 0                  ; yes    ; no             ; no       ; Off          ; 1.8 V        ; Off         ; --                        ; Fitter               ; no        ;
+; clk_i ; G26   ; 2L       ; 78           ; 196          ; 46           ; 1045                  ; 0                  ; yes    ; no             ; no       ; Off          ; 1.8 V        ; Off         ; --                        ; Fitter               ; no        ;
 +-------+-------+----------+--------------+--------------+--------------+-----------------------+--------------------+--------+----------------+----------+--------------+--------------+-------------+---------------------------+----------------------+-----------+
 
 
@@ -2104,28 +2106,24 @@ Note: Pin directions (input, output or bidir) are based on device operating in u
 +---------------------------------------------------------------+------------+---------+--------------+----------------------+
 ; Name                                                          ; Location   ; Fan-Out ; Usage        ; Global Resource Used ;
 +---------------------------------------------------------------+------------+---------+--------------+----------------------+
-; clk_i                                                         ; PIN_G26    ; 1279    ; Clock        ;                      ;
-; i_mut|fb_full                                                 ; Unassigned ; 77      ; Clock enable ;                      ;
-; i_mut|fb_wr_addr_i[16]~0                                      ; Unassigned ; 130     ; Clock enable ;                      ;
+; clk_i                                                         ; PIN_G26    ; 1045    ; Clock        ;                      ;
+; i_mut|fb_full                                                 ; Unassigned ; 229     ; Clock enable ;                      ;
+; i_mut|fb_wr_addr_i[15]~0                                      ; Unassigned ; 129     ; Clock enable ;                      ;
 ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|decode2|rtl~0 ; Unassigned ; 80      ; Write enable ;                      ;
 ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|decode2|rtl~1 ; Unassigned ; 80      ; Write enable ;                      ;
 ; i_mut|framebuffer|ram_data_rtl_0|auto_generated|decode2|rtl~2 ; Unassigned ; 80      ; Write enable ;                      ;
-; i_mut|framebuffer|ram_data_rtl_0|auto_generated|decode2|rtl~3 ; Unassigned ; 80      ; Write enable ;                      ;
-; i_mut|framebuffer|ram_data_rtl_0|auto_generated|decode2|rtl~4 ; Unassigned ; 80      ; Write enable ;                      ;
-; i_mut|framebuffer|ram_data_rtl_0|auto_generated|decode2|rtl~5 ; Unassigned ; 80      ; Write enable ;                      ;
-; i_mut|framebuffer|ram_data_rtl_0|auto_generated|decode2|rtl~6 ; Unassigned ; 80      ; Write enable ;                      ;
-; i_mut|framebuffer|ram_data_rtl_0|auto_generated|decode2|rtl~7 ; Unassigned ; 80      ; Write enable ;                      ;
+; i_mut|i1132                                                   ; Unassigned ; 32      ; Sync. clear  ;                      ;
 ; i_mut|reduce_nor_5                                            ; Unassigned ; 32      ; Sync. clear  ;                      ;
-; i_mut|y_count[31]~0                                           ; Unassigned ; 32      ; Clock enable ;                      ;
+; i_mut|y_count[12]~0                                           ; Unassigned ; 32      ; Clock enable ;                      ;
 ; i_sink|\i:0:counter[0]                                        ; Unassigned ; 171     ; Clock enable ;                      ;
 ; i_sink|\i:1:counter[0]                                        ; Unassigned ; 168     ; Clock enable ;                      ;
 ; i_sink|add_0~0                                                ; Unassigned ; 2       ; Clock enable ;                      ;
 ; i_sink|add_10~0                                               ; Unassigned ; 2       ; Clock enable ;                      ;
+; i_sink|add_11~0                                               ; Unassigned ; 2       ; Clock enable ;                      ;
 ; i_sink|add_16~0                                               ; Unassigned ; 3       ; Clock enable ;                      ;
 ; i_sink|add_1~0                                                ; Unassigned ; 7       ; Clock enable ;                      ;
 ; i_sink|add_2~0                                                ; Unassigned ; 4       ; Clock enable ;                      ;
-; i_sink|add_3~0                                                ; Unassigned ; 2       ; Clock enable ;                      ;
-; i_sink|add_3~1                                                ; Unassigned ; 4       ; Clock enable ;                      ;
+; i_sink|add_3~0                                                ; Unassigned ; 4       ; Clock enable ;                      ;
 ; i_sink|add_4~0                                                ; Unassigned ; 4       ; Clock enable ;                      ;
 ; i_sink|add_5~0                                                ; Unassigned ; 4       ; Clock enable ;                      ;
 ; i_sink|add_6~0                                                ; Unassigned ; 4       ; Clock enable ;                      ;
@@ -2139,7 +2137,7 @@ Note: Pin directions (input, output or bidir) are based on device operating in u
 +-------+----------+---------+-------------+----------------+----------------------+
 ; Name  ; Location ; Fan-Out ; Signal Type ; Promotion Type ; Global Resource Used ;
 +-------+----------+---------+-------------+----------------+----------------------+
-; clk_i ; PIN_G26  ; 1279    ; Global      ; Automatic      ; Global Clock Region  ;
+; clk_i ; PIN_G26  ; 1045    ; Global      ; Automatic      ; Global Clock Region  ;
 +-------+----------+---------+-------------+----------------+----------------------+
 
 
@@ -2151,7 +2149,7 @@ Note: Pin directions (input, output or bidir) are based on device operating in u
 ; Name                                   ; clk_i                ;
 ;     -- Source Type                     ; I/O pad              ;
 ;     -- Source Location                 ; PIN_G26              ;
-;     -- Fan-Out                         ; 1279                 ;
+;     -- Fan-Out                         ; 1045                 ;
 ;     -- Promotion Type                  ; Automatic Promotion  ;
 ;     -- Global Buffer                   ; clk_i~inputCLKENA0   ;
 ;     -- Global Buffer Location          ; CLKCTRL_2L_G_I6      ;
@@ -2160,6 +2158,27 @@ Note: Pin directions (input, output or bidir) are based on device operating in u
 ;     -- Bounding Box Drivable by Buffer ; (0, 0) to (224, 224) ;
 ;     -- Clock Region Line               ; 6                    ;
 +----------------------------------------+----------------------+
+
+
++---------------------------------------------------------------+
+; Fixed Point DSP Register Packing Summary                      ;
++---------------------------------------------+-----------------+
+; Fully registered fixed point DSP blocks     ; 0 / 3 ( 0 % )   ;
+; Partially registered fixed point DSP blocks ; 3 / 3 ( 100 % ) ;
+; Unregistered fixed point DSP blocks         ; 0 / 3 ( 0 % )   ;
++---------------------------------------------+-----------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Fixed Point DSP Register Packing Details                                                                                                                                                                                                                                                                                                            ;
++-----------------+-------------------+----------------------+-------------------------------------+----------------------------------+----------------------------------+----+-------------+-----------+----+--------------+-----------------+--------------+----------------+-------------------+-------------------------+-------------------------+
+; Name            ; Mode              ; Register Usage       ; Reasons Preventing Register Packing ; AX/CoefSelA                      ; AY/ScanIn                        ; AZ ; BX/CoefSelB ; BY/ScanIn ; BZ ; Pipeline     ; Output Register ; Uses Scan-In ; Uses Pre-Adder ; Uses Coefficients ; Uses Output Adder Chain ; Uses Output Accumulator ;
++-----------------+-------------------+----------------------+-------------------------------------+----------------------------------+----------------------------------+----+-------------+-----------+----+--------------+-----------------+--------------+----------------+-------------------+-------------------------+-------------------------+
+; i_mut|mult_2~12 ; Independent 18x18 ; partially registered ;                                     ; unregistered - input is constant ; registered                       ; -- ; --          ; --        ; -- ; registered   ; unregistered    ; no           ; no             ; no                ; no                      ; no                      ;
+; i_mut|mult_0~12 ; Independent 18x18 ; partially registered ;                                     ; unregistered                     ; unregistered - input is constant ; -- ; --          ; --        ; -- ; registered   ; registered      ; no           ; no             ; no                ; no                      ; no                      ;
+; i_mut|mult_1~12 ; Independent 18x18 ; partially registered ;                                     ; unregistered                     ; unregistered - input is constant ; -- ; --          ; --        ; -- ; unregistered ; registered      ; no           ; no             ; no                ; no                      ; no                      ;
++-----------------+-------------------+----------------------+-------------------------------------+----------------------------------+----------------------------------+----+-------------+-----------+----+--------------+-----------------+--------------+----------------+-------------------+-------------------------+-------------------------+
+Note: Some of these fixed point DSP blocks may disappear in the final design as a result of DSP merging during placement (see the Fitter Netlist Optimizations report).
 
 
 +---------------+
@@ -2179,7 +2198,7 @@ Info (171003): Fitter is performing an Auto Fit compilation, which may decrease 
 Info (176045): Design uses memory blocks. Violating setup or hold times of memory block address registers for either read or write operations could cause memory contents to be corrupted. Make sure that all memory block address registers meet the setup and hold time requirements.
 Info (12262): Starting Fitter periphery placement operations
 Info (12290): Loading the periphery placement data.
-Info (12291): Periphery placement data loaded: elapsed time is 00:00:13
+Info (12291): Periphery placement data loaded: elapsed time is 00:00:14
 Info (12627): Pin ~ALTERA_DATA0~ is reserved at location AU27
 Warning (15714): Some pins have incomplete I/O assignments. Refer to the I/O Assignment Warnings report for details
 Critical Warning (12677): No exact pin location assignment(s) for 2 pins of 2 total pins. For the list of pins please refer to the I/O Assignment Warnings table in the fitter report
@@ -2193,7 +2212,7 @@ Critical Warning (18655): There are 72 unused TX channels in the design.
     Info (19540): Add the QSF assignment 'set_instance_assignment -name PRESERVE_UNUSED_XCVR_CHANNEL ON -to <pin_name>' for each unused channel that will be used in future.
     Info (19541): The above QSF assignment will preserve the performance of specified channels over time, and works only if the design uses at least 1 transceiver channel.
 Info (11191): Automatically promoted 1 clock (1 global)
-    Info (13173): clk_i~inputCLKENA0 (1279 fanout) drives Global Clock Region, with the buffer placed at CLKCTRL_2L_G_I6
+    Info (13173): clk_i~inputCLKENA0 (1122 fanout) drives Global Clock Region, with the buffer placed at CLKCTRL_2L_G_I6
 Info (176233): Starting register packing
 Info (19539): Reading the HDL-embedded SDC files elapsed 00:00:00.
 Info (332104): Reading SDC File: '../syntest_timing.sdc'
@@ -2206,7 +2225,9 @@ Info (332111): Found 1 clocks
     Info (332111): ======== ============
     Info (332111):    3.333        clk_i
 Info (176235): Finished register packing
-    Extra Info (176219): No registers were packed into other blocks
+    Extra Info (176218): Packed 80 registers into blocks of type DSP block
+Warning (16067): 3 out of 3 DSP block(s) in the design are not fully utilizing recommended internal DSP register banks. Design performance may be limited. To take full advantage of device resources, you should either enable the register banks directly (if using WYSIWYG entry) or provide additional registers in your design that the Quartus register packing optimization algorithm can convert to internal DSP register banks. The "Fixed Point DSP Register Packing Details" Fitter report indicates which DSP blocks are affected.
+    Warning (16069): 3 DSP block(s) are partially registered - they use some, but not all of the recommended internal DSP register banks. Intel advises using all the recommended internal DSP register banks for high performance designs.
 Info (20273): Intermediate fitter snapshots will not be committed because ENABLE_INTERMEDIATE_SNAPSHOTS QSF assignment is disabled during compilation.
 
 

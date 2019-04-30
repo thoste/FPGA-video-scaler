@@ -1,5 +1,5 @@
 Fitter Finalize Stage Report for syntest_scaler
-Mon Apr 29 22:49:20 2019
+Tue Apr 30 14:42:38 2019
 Quartus Prime Version 18.1.0 Build 222 09/21/2018 SJ Pro Edition
 
 
@@ -37,15 +37,15 @@ refer to the applicable agreement for further details.
 ; Resource                                               ; Usage           ; %    ;
 +--------------------------------------------------------+-----------------+------+
 ;                                                        ;                 ;      ;
-; Programmable power technology high-speed tiles         ; 783 / 18,244    ; 4 %  ;
-; Programmable power technology low-power tiles          ; 17,461 / 18,244 ; 96 % ;
-;     -- low-power tiles that are used by the design     ; 2,640 / 17,461  ; 15 % ;
-;     -- unused tiles (low-power)                        ; 14,821 / 17,461 ; 85 % ;
+; Programmable power technology high-speed tiles         ; 366 / 18,244    ; 2 %  ;
+; Programmable power technology low-power tiles          ; 17,878 / 18,244 ; 98 % ;
+;     -- low-power tiles that are used by the design     ; 679 / 17,878    ; 4 %  ;
+;     -- unused tiles (low-power)                        ; 17,199 / 17,878 ; 96 % ;
 ;                                                        ;                 ;      ;
-; Programmable power technology high-speed LAB tiles     ; 143 / 13,898    ; 1 %  ;
-; Programmable power technology low-power LAB tiles      ; 13,755 / 13,898 ; 99 % ;
-;     -- low-power LAB tiles that are used by the design ; 2,607 / 13,755  ; 19 % ;
-;     -- unused LAB tiles (low-power)                    ; 11,148 / 13,755 ; 81 % ;
+; Programmable power technology high-speed LAB tiles     ; 163 / 13,898    ; 1 %  ;
+; Programmable power technology low-power LAB tiles      ; 13,735 / 13,898 ; 99 % ;
+;     -- low-power LAB tiles that are used by the design ; 678 / 13,735    ; 5 %  ;
+;     -- unused LAB tiles (low-power)                    ; 13,057 / 13,735 ; 95 % ;
 ;                                                        ;                 ;      ;
 +--------------------------------------------------------+-----------------+------+
 
@@ -56,7 +56,7 @@ refer to the applicable agreement for further details.
 Info: *******************************************************************
 Info: Running Quartus Prime Fitter
     Info: Version 18.1.0 Build 222 09/21/2018 SJ Pro Edition
-    Info: Processing started: Mon Apr 29 22:46:20 2019
+    Info: Processing started: Tue Apr 30 14:40:07 2019
 Info: Command: quartus_fit --read_settings_files=on --write_settings_files=off syntest_scaler -c syntest_scaler
 Info: qfit2_default_script.tcl version: #1
 Info: Project  = syntest_scaler

@@ -1,17 +1,20 @@
 ------------------------------------------------------------------------------------------
 -- Project: FPGA video scaler
 -- Author: Thomas Stenseth
--- Date: 2019-03-11
+-- Date: 2019-04-30
 -- Version: 0.1
 ------------------------------------------------------------------------------------------
--- Description:
+-- Description : Custom version of fixed point package using fixed_truncate round style 
+--             : instead of the default fixed_round
 ------------------------------------------------------------------------------------------
--- v0.1:
+-- v0.1        : 2019-04-30 - Initial version
 ------------------------------------------------------------------------------------------
 
 
 library ieee;
 use ieee.fixed_float_types.all;
+
+
 package my_fixed_pkg is new ieee.fixed_generic_pkg
    generic map (
       fixed_round_style    => fixed_truncate,
@@ -19,4 +22,3 @@ package my_fixed_pkg is new ieee.fixed_generic_pkg
       fixed_guard_bits     => 3,
       no_warning           => false
    );
-
