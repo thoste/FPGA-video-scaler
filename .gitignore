@@ -7,3 +7,8 @@ scaler/sim/
 # Ignore ModelSim extra files
 _Alert.txt
 _Log.txt
+
+# Ignore Quartus output files
+output_files/
+qdb/
+tmp-clearbox/
