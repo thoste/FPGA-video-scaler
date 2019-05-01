@@ -1,4 +1,4 @@
-%% Converts RGB image to grayscale binary image
+%% Converts RGB image to binary image
 
 function output = img2bin(img, filename, bits)
     fileID = fopen(filename,'w');

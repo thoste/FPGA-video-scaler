@@ -10,5 +10,5 @@ RGB = cat(3, R, G, B);
 
 
 % Convert to bin
-img = img2bin(RGB, 'img_bin.txt', 8);
+img = img2bin(RGB, 'img_bin.txt', 80);
 imshow(img);
