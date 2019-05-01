@@ -89,6 +89,10 @@ architecture scaler_wrapper_arc of scaler_wrapper is
    --signal fifo_in_data_reg       : std_logic_vector(g_fifo_data_width-1 downto 0);
 
 begin
+   ------------------------------------------------
+   -- CONTROLLER
+   ------------------------------------------------
+
    scaler_controller : entity work.scaler_controller
    generic map(
       g_data_width      => g_data_width,
@@ -137,43 +141,53 @@ begin
       --fifo_in_empty_o         => fifo_in_empty_o
    );
 
-   --ctrl_ready_i   <= ready_i;
-   --ctrl_valid_i   <= valid_i;
-   --ready_o        <= ctrl_ready_o;
-   --valid_o        <= ctrl_valid_o;
+   -- Test without scaler
+   ctrl_ready_i   <= ready_i;
+   ctrl_valid_i   <= valid_i;
+   ctrl_data_i    <= data_i;
+   ready_o        <= ctrl_ready_o;
+   valid_o        <= ctrl_valid_o;
+   data_o         <= ctrl_data_o;
+
+   ------------------------------------------------
+   -- SCALER
+   ------------------------------------------------
+
+   --scaler : entity work.scaler
+   --generic map(
+   --      g_data_width => g_data_width,
+   --      g_tx_video_width => g_tx_video_width,
+   --      g_tx_video_height => g_tx_video_height
+   --   )
+   --port map(
+   --   clk_i => clk_i,
+   --   sreset_i => sreset_i,
+
+   --   scaler_data_i  => scaler_data_i,
+   --   scaler_valid_i => scaler_valid_i,
+   --   scaler_ready_o => scaler_ready_o,
+
+   --   scaler_data_o  => scaler_data_o,
+   --   scaler_valid_o => scaler_valid_o,
+   --   scaler_ready_i => scaler_ready_i
+   --);
+
+   --scaler_ready_i    <= ready_i;
+   --valid_o           <= scaler_valid_o;
+   --data_o            <= scaler_data_o;
+
+   --ctrl_ready_i      <= scaler_ready_o;
+   --scaler_valid_i    <= ctrl_valid_o;
+   --scaler_data_i     <= ctrl_data_o;
+
+   --ready_o           <= ctrl_ready_o;
+   --ctrl_valid_i      <= valid_i; 
+   --ctrl_data_i       <= data_i;
 
 
-
-   scaler : entity work.scaler
-   generic map(
-         g_data_width => g_data_width,
-         g_tx_video_width => g_tx_video_width,
-         g_tx_video_height => g_tx_video_height
-      )
-   port map(
-      clk_i => clk_i,
-      sreset_i => sreset_i,
-
-      scaler_data_i  => scaler_data_i,
-      scaler_valid_i => scaler_valid_i,
-      scaler_ready_o => scaler_ready_o,
-
-      scaler_data_o  => scaler_data_o,
-      scaler_valid_o => scaler_valid_o,
-      scaler_ready_i => scaler_ready_i
-   );
-
-   scaler_ready_i    <= ready_i;
-   valid_o           <= scaler_valid_o;
-   data_o            <= scaler_data_o;
-
-   ctrl_ready_i      <= scaler_ready_o;
-   scaler_valid_i    <= ctrl_valid_o;
-   scaler_data_i     <= ctrl_data_o;
-
-   ready_o           <= ctrl_ready_o;
-   ctrl_valid_i      <= valid_i; 
-   ctrl_data_i       <= data_i;
+   ------------------------------------------------
+   -- FIFO
+   ------------------------------------------------
 
    --p_empty_framebuffer : process(clk_i) is
    --   variable v_index : integer := 0;

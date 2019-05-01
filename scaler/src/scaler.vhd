@@ -143,9 +143,11 @@ begin
       if rising_edge(clk_i) then
          if fb_count = g_rx_video_width*g_rx_video_height then 
             fb_full <= true;
+            scaler_valid_o <= '1'; 
          end if;
          if frame_done then
             fb_full <= false;
+            scaler_valid_o <= '0';
          end if;
       end if;
    end process p_fb_full;
@@ -155,40 +157,35 @@ begin
    begin
       if rising_edge(clk_i) then
          if fb_full then
-            x_count_reg <= x_count;
-            y_count_reg <= y_count;
-
             --dx <= x_count*sf_width;
             --dy <= y_count*sf_width;
             dx <= resize(x_count_reg*sr_width_reg, dx'high, dx'low);
             dy <= resize(y_count_reg*sr_height_reg, dy'high, dy'low);
 
-
             --dx <= resize((x_count*sr_width_reg) + (0.5 * (1 - 1*sr_width_reg)), dx'high, dx'low);
             --dy <= resize((y_count*sr_height_reg) + (0.5 * (1 - 1*sr_height_reg)), dy'high, dy'low);
 
-            dx_reg <= dx;
-            dy_reg <= dy;
-
-            -- Floor round function from my_fixed_pkg 
-            dx_int <= to_integer(dx_reg);
-            dy_int <= to_integer(dy_reg);
-            
+            -- Next pixel in target frame
             x_count <= x_count + 1;
             
-
+            -- Check if a row in target frame is completed
             if x_count = g_tx_video_width-1 then
                x_count <= 0;
                y_count <= y_count + 1;
             end if;
 
+            -- Check if all rows are completed
             if y_count = g_tx_video_height-1 and x_count = g_tx_video_width-2 then
                y_count <= 0;
-               
                frame_done <= true;
             end if;
-            end if;
          end if;
+
+         dx_reg <= dx;
+         dy_reg <= dy;
+         x_count_reg <= x_count;
+         y_count_reg <= y_count;
+      end if;
    end process p_reverse_mapping;
 
 
@@ -196,11 +193,15 @@ begin
    begin
       if rising_edge(clk_i) then
          if fb_full then
+            -- Floor rounding function from my_fixed_pkg 
+            dx_int <= to_integer(dx_reg);
+            dy_int <= to_integer(dy_reg);
+
             fb_rd_addr <= g_rx_video_width*dy_int + dx_int;
-            fb_rd_addr_reg <= fb_rd_addr;
-            fb_data_o_reg <= fb_data_o;    
-            scaler_valid_o <= '1'; 
+
          end if;
+         fb_rd_addr_reg <= fb_rd_addr;
+         fb_data_o_reg <= fb_data_o;
          fb_rd_addr_i <= fb_rd_addr_reg;
          scaler_data_o <= fb_data_o_reg;
       end if;

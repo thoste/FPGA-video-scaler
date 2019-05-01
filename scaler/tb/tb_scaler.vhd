@@ -13,6 +13,8 @@
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
+use std.textio.all;
+use ieee.std_logic_textio.all;
 
 library uvvm_util;
 context uvvm_util.uvvm_util_context;
@@ -32,7 +34,7 @@ architecture tb_scaler_arc of tb_scaler is
    constant C_CLK_PERIOD   : time := 10 ns; -- 100 MHz
 
    -- Avalon-ST bus widths
-   constant C_DATA_WIDTH      : natural := 80;
+   constant C_DATA_WIDTH      : natural := 10;
    constant C_DATA_LENGTH     : natural := 16;
 
    constant C_RX_VIDEO_WIDTH  : natural := 2;
@@ -48,6 +50,7 @@ architecture tb_scaler_arc of tb_scaler is
    signal data_i              : std_logic_vector(C_DATA_WIDTH-1 downto 0) := (others => '0');
    signal valid_i             : std_logic := '0';
    signal ready_i             : std_logic := '0';
+
    -- DUT scaler outputs
    signal data_o              : std_logic_vector(C_DATA_WIDTH-1 downto 0) := (others => '0');
    signal valid_o             : std_logic := '0';
@@ -111,7 +114,7 @@ begin
       -- Test scaler
       -----------------------------------------------------------------------------
       wait until rising_edge(clk_i);
-      ready_i <= '1';
+      --ready_i <= '1';
 
       for i in 1 to C_RX_VIDEO_WIDTH loop
          v_data := (100 * i) + 1;
@@ -132,7 +135,7 @@ begin
       --end loop;
 
       wait for 10*C_CLK_PERIOD;
-      wait for C_TX_VIDEO_WIDTH*C_TX_VIDEO_HEIGHT*C_CLK_PERIOD;
+      --wait for C_TX_VIDEO_WIDTH*C_TX_VIDEO_HEIGHT*C_CLK_PERIOD;
 
       -----------------------------------------------------------------------------
       -- Ending the simulation

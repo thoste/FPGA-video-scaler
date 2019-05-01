@@ -7,7 +7,7 @@ add wave -noupdate -expand -group {Global} -radix hexadecimal /tb_scaler_complet
 add wave -noupdate -expand -group {Global} -radix hexadecimal /tb_scaler_complete/i_test_harness/i_scaler/scaler_controller/state
 
 # AVALON_ST SOURCE
-#  add wave -noupdate -expand -group {Avalon-ST Source} -radix hexadecimal /tb_scaler_complete/i_test_harness/source_data_o
+#  add wave -noupdate -expand -group {Avalon-ST Source} -radix unsigned /tb_scaler_complete/i_test_harness/source_data_o
 #  add wave -noupdate -expand -group {Avalon-ST Source} -radix hexadecimal /tb_scaler_complete/i_test_harness/source_ready_i
 #  add wave -noupdate -expand -group {Avalon-ST Source} -radix hexadecimal /tb_scaler_complete/i_test_harness/source_valid_o
 #  add wave -noupdate -expand -group {Avalon-ST Source} -radix hexadecimal /tb_scaler_complete/i_test_harness/source_empty_o
@@ -16,7 +16,7 @@ add wave -noupdate -expand -group {Global} -radix hexadecimal /tb_scaler_complet
 
 # SCALER IN
 add wave -noupdate -expand -group {Scaler in} -radix hexadecimal /tb_scaler_complete/i_test_harness/ready_o
-add wave -noupdate -expand -group {Scaler in} -radix hexadecimal /tb_scaler_complete/i_test_harness/data_i
+add wave -noupdate -expand -group {Scaler in} -radix unsigned /tb_scaler_complete/i_test_harness/data_i
 # 	add wave -noupdate -expand -group {Scaler in} -radix hexadecimal /tb_scaler_complete/i_test_harness/empty_i
 add wave -noupdate -expand -group {Scaler in} -radix hexadecimal /tb_scaler_complete/i_test_harness/valid_i
 add wave -noupdate -expand -group {Scaler in} -radix hexadecimal /tb_scaler_complete/i_test_harness/startofpacket_i
@@ -25,7 +25,7 @@ add wave -noupdate -expand -group {Scaler in} -radix hexadecimal /tb_scaler_comp
 
 # FIFO IN
 #  add wave -noupdate -expand -group {FIFO in} -radix hexadecimal /tb_scaler_complete/i_test_harness/i_scaler/fifo_in/*
-#	add wave -noupdate -expand -group {FIFO in} -radix hexadecimal /tb_scaler_complete/i_test_harness/i_scaler/fifo_in/data_i
+#	add wave -noupdate -expand -group {FIFO in} -radix unsigned /tb_scaler_complete/i_test_harness/i_scaler/fifo_in/data_i
 #	add wave -noupdate -expand -group {FIFO in} -radix hexadecimal /tb_scaler_complete/i_test_harness/i_scaler/fifo_in/wr_en_i
 #	add wave -noupdate -expand -group {FIFO in} -radix hexadecimal /tb_scaler_complete/i_test_harness/i_scaler/fifo_in/wr_ok
 #	add wave -noupdate -expand -group {FIFO in} -radix hexadecimal /tb_scaler_complete/i_test_harness/i_scaler/fifo_in/full_o
@@ -46,7 +46,7 @@ add wave -noupdate -expand -group {Ctrl} -radix hexadecimal /tb_scaler_complete/
 
 # SCALER OUT
 add wave -noupdate -expand -group {Scaler out} -radix hexadecimal /tb_scaler_complete/i_test_harness/ready_i
-add wave -noupdate -expand -group {Scaler out} -radix hexadecimal /tb_scaler_complete/i_test_harness/data_o
+add wave -noupdate -expand -group {Scaler out} -radix unsigned /tb_scaler_complete/i_test_harness/data_o
 # 	add wave -noupdate -expand -group {Scaler out} -radix hexadecimal /tb_scaler_complete/i_test_harness/empty_o
 add wave -noupdate -expand -group {Scaler out} -radix hexadecimal /tb_scaler_complete/i_test_harness/valid_o
 add wave -noupdate -expand -group {Scaler out} -radix hexadecimal /tb_scaler_complete/i_test_harness/startofpacket_o

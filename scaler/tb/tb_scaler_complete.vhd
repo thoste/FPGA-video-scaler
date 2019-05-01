@@ -13,6 +13,8 @@
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
+use std.textio.all;
+use ieee.std_logic_textio.all;
 
 library uvvm_util;
 context uvvm_util.uvvm_util_context;
@@ -39,14 +41,26 @@ architecture func of tb_scaler_complete is
    constant C_BIT_PERIOD         : time := 16 * C_CLK_PERIOD;
 
    -- Avalon-ST bus widths
-   constant C_DATA_WIDTH      : natural := 80;
-   constant C_BITS_PER_SYMBOL : natural := 10;
-   constant C_DATA_LENGTH     : natural := 16;
+   constant C_DATA_WIDTH      : natural := 8;
    constant C_EMPTY_WIDTH     : natural := 4;
 
    -- FIFOs
    constant C_FIFO_DATA_WIDTH : natural := C_DATA_WIDTH + C_EMPTY_WIDTH + 2;
    constant C_FIFO_DATA_DEPTH : natural := 6;
+
+   -- File I/O
+   constant c_INPUT_FILE   : string := "../data/grey_8bit_120x68.txt";
+   constant c_EXPECT_FILE  : string := "../data/grey_8bit_120x68.txt";
+   file     file_input     : text;
+   file     file_expect    : text;
+
+   -- Test data
+   constant C_RX_VIDEO_WIDTH  : natural := 120;
+   constant C_RX_VIDEO_HEIGHT : natural := 68;
+   constant C_TX_VIDEO_WIDTH  : natural := 120;
+   constant C_TX_VIDEO_HEIGHT : natural := 68;
+   constant C_DATA_LENGTH     : natural := C_RX_VIDEO_WIDTH*C_RX_VIDEO_HEIGHT;
+   constant C_EXPECT_LENGTH   : natural := C_TX_VIDEO_WIDTH*C_TX_VIDEO_HEIGHT;
 
 
    procedure wait_for_time_wrap(   -- Wait for next round time number - e.g. if now=2100ns, and round_time=1000ns, then next round time is 3000ns
@@ -77,14 +91,21 @@ begin
    ------------------------------------------------
    p_main: process
       variable v_ctrl_pkt_array  : t_slv_array(0 to 1)(C_DATA_WIDTH-1 downto 0)                 := (others => (others => '0'));
-      variable v_data_array      : t_slv_array(0 to C_DATA_LENGTH-1)(C_DATA_WIDTH-1 downto 0)   := (others => (others => '0'));
-      variable v_exp_data_array  : t_slv_array(0 to C_DATA_LENGTH-2)(C_DATA_WIDTH-1 downto 0)   := (others => (others => '0'));
+      variable v_data_array      : t_slv_array(0 to C_DATA_LENGTH)(C_DATA_WIDTH-1 downto 0)   := (others => (others => '0'));
+      variable v_exp_data_array  : t_slv_array(0 to C_EXPECT_LENGTH)(C_DATA_WIDTH-1 downto 0) := (others => (others => '0'));
       variable v_empty           : std_logic_vector(C_EMPTY_WIDTH-1 downto 0) := (others => '0');
 
       variable v_num_test_loops  : natural := 0;
 
       variable v_rx_video_width   : std_logic_vector(15 downto 0) := (others => '0');
       variable v_rx_video_height  : std_logic_vector(15 downto 0) := (others => '0');
+
+      variable v_file_input_line    : line;
+      variable v_file_expect_line   : line;
+      variable v_file_data_input    : std_logic_vector(C_DATA_WIDTH-1 downto 0);
+      variable v_file_data_expect   : std_logic_vector(C_DATA_WIDTH-1 downto 0);
+
+      variable v_counter : integer := 0;
    begin
 
    -- Wait for UVVM to finish initialization
@@ -169,31 +190,68 @@ begin
 
    for i in 1 to v_num_test_loops loop
       -- Create a random ready percentage for the recieve module
-      --shared_avalon_st_vvc_config(RX, 1).bfm_config.ready_percentage := random(1,100);
+      shared_avalon_st_vvc_config(RX, 1).bfm_config.ready_percentage := random(1,100);
       --shared_avalon_st_vvc_config(RX, 1).bfm_config.ready_percentage := 50;
 
-      -- Random empty signal between 0 and number of symbols - 1. 
-      --v_empty := std_logic_vector(to_unsigned(random(0,(C_DATA_WIDTH/C_BITS_PER_SYMBOL)-1), v_empty'length));
-
       -- Write packet info, Data[3:0] = 0 for video_packet
-      --v_data_array(0) := std_logic_vector(to_unsigned(0, C_DATA_WIDTH));
-      v_data_array(0) := (3 downto 0 => '0', others => '1');
+      --v_data_array(0)      := std_logic_vector(to_unsigned(0, C_DATA_WIDTH));
+      --v_exp_data_array(0)  := std_logic_vector(to_unsigned(0, C_DATA_WIDTH));
+      v_data_array(0)      := (3 downto 0 => '0', others => '1');
+      v_exp_data_array(0)  := (3 downto 0 => '0', others => '1');
 
-      -- Write random data to data_array
-      for j in 1 to C_DATA_LENGTH-1 loop
-         -- Generate random data
-         v_data_array(j) := random(C_DATA_WIDTH);
-         v_exp_data_array(j-1) := v_data_array(j);
+
+      --------------------------------------------------
+      -- Read input file and fill data array
+      --------------------------------------------------
+      file_open(file_input, c_INPUT_FILE, read_mode);
+
+      while not endfile(file_input) loop
+         v_counter := v_counter + 1;
+
+         -- Read input data and store to data array
+         readline(file_input, v_file_input_line);
+         read(v_file_input_line, v_file_data_input);
+         v_data_array(v_counter) := v_file_data_input;
       end loop;
+
+      file_close(file_input);
+
+      -- Reset v_counter
+      v_counter := 0;
+
+
+      --------------------------------------------------
+      -- Read expect file and fill expect data array
+      --------------------------------------------------
+      file_open(file_expect, c_EXPECT_FILE, read_mode);
+
+      while not endfile(file_expect) loop
+         v_counter := v_counter + 1;
+
+         -- Read expected output data and store to expect array
+         readline(file_expect, v_file_expect_line);
+         read(v_file_expect_line, v_file_data_expect);
+         v_exp_data_array(v_counter) := v_file_data_expect;
+      end loop;
+      
+      file_close(file_expect);
+
+      -- Reset v_counter
+      v_counter := 0;
 
       -- Margin
       wait for 10*C_CLK_PERIOD; 
+
+
+      --------------------------------------------------
+      -- Send/recieve using avalon st vvc
+      --------------------------------------------------
 
       log(ID_LOG_HDR, "Test loop " & to_string(i) & " of " & to_string(v_num_test_loops) & " tests. Sending " & to_string(C_DATA_LENGTH) & " pixels. Using ready percentage: " & to_string(shared_avalon_st_vvc_config(RX, 1).bfm_config.ready_percentage), C_SCOPE);
 
       -- Start send and receive VVC
       avalon_st_send(AVALON_ST_VVCT, 1, v_data_array, v_empty, "Sending v_data_array");
-      --avalon_st_expect(AVALON_ST_VVCT, 1, v_data_array, v_empty, "Checking data", ERROR);
+      --avalon_st_expect(AVALON_ST_VVCT, 1, v_exp_data_array, v_empty, "Checking data", ERROR);
       avalon_st_receive(AVALON_ST_VVCT, 1, "Receiving");
       
 
@@ -201,7 +259,6 @@ begin
       await_completion(AVALON_ST_VVCT, 1, RX, 100*C_DATA_LENGTH*C_CLK_PERIOD);
    end loop;
    
-
 
    -----------------------------------------------------------------------------
    -- Ending the simulation
