@@ -37,21 +37,25 @@ architecture tb_scaler_arc of tb_scaler is
    constant C_DATA_WIDTH      : natural := 10;
    constant C_DATA_LENGTH     : natural := 16;
 
-   constant C_RX_VIDEO_WIDTH  : natural := 2;
-   constant C_RX_VIDEO_HEIGHT : natural := 2;
-   constant C_TX_VIDEO_WIDTH  : natural := 5;
-   constant C_TX_VIDEO_HEIGHT  : natural := 5;
+   constant C_RX_VIDEO_WIDTH  : natural := 6;
+   constant C_RX_VIDEO_HEIGHT : natural := 6;
+   constant C_TX_VIDEO_WIDTH  : natural := 12;
+   constant C_TX_VIDEO_HEIGHT  : natural := 12;
 
    -- DSP interface and general control signals
    signal clk_i               : std_logic := '0';
    signal sreset_i            : std_logic := '0';
 
   -- DUT scaler inputs
+   signal startofpacket_i     : std_logic := '0';
+   signal endofpacket_i       : std_logic := '0';
    signal data_i              : std_logic_vector(C_DATA_WIDTH-1 downto 0) := (others => '0');
    signal valid_i             : std_logic := '0';
    signal ready_i             : std_logic := '0';
 
    -- DUT scaler outputs
+   signal startofpacket_o     : std_logic := '0';
+   signal endofpacket_o       : std_logic := '0';
    signal data_o              : std_logic_vector(C_DATA_WIDTH-1 downto 0) := (others => '0');
    signal valid_o             : std_logic := '0';
    signal ready_o             : std_logic := '0';
@@ -78,13 +82,17 @@ begin
       clk_i             => clk_i,
       sreset_i          => sreset_i,
 
-      scaler_data_i     => data_i,
-      scaler_valid_i    => valid_i,
-      scaler_ready_o    => ready_o,
+      scaler_startofpacket_i  => startofpacket_i,
+      scaler_endofpacket_i    => endofpacket_i,
+      scaler_data_i           => data_i,
+      scaler_valid_i          => valid_i,
+      scaler_ready_o          => ready_o,
 
-      scaler_data_o     => data_o,
-      scaler_valid_o    => valid_o,
-      scaler_ready_i    => ready_i
+      scaler_startofpacket_o  => startofpacket_o,
+      scaler_endofpacket_o    => endofpacket_o,
+      scaler_data_o           => data_o,
+      scaler_valid_o          => valid_o,
+      scaler_ready_i          => ready_i
    );
 
 
@@ -109,22 +117,30 @@ begin
       log(ID_LOG_HDR, "Starting simulation of FIFO", C_SCOPE);
       log("Wait 10 clock period for reset to be turned off");
       wait for (10 * C_CLK_PERIOD); 
-
+      wait until rising_edge(clk_i);
       -----------------------------------------------------------------------------
       -- Test scaler
       -----------------------------------------------------------------------------
+      -- Send video data control packet
+      ready_i <= '1';
+      data_i <= (others => '0');
+      valid_i <= '1';
+      startofpacket_i <= '1';
       wait until rising_edge(clk_i);
-      --ready_i <= '1';
+      startofpacket_i <= '0';
 
       for i in 1 to C_RX_VIDEO_WIDTH loop
          v_data := (100 * i) + 1;
          for j in 1 to C_RX_VIDEO_HEIGHT loop
+            while ready_o = '0' loop
+               wait until rising_edge(clk_i);
+            end loop;
+            endofpacket_i  <= '1' when (i = C_RX_VIDEO_WIDTH and j = C_RX_VIDEO_HEIGHT) else '0';
             data_i   <= std_logic_vector(to_unsigned(v_data, data_i'length));
             valid_i  <= '1';
             v_data := v_data + 1;
             wait until rising_edge(clk_i);
          end loop;
-         
       end loop;
 
       ---- Write random data
@@ -135,7 +151,7 @@ begin
       --end loop;
 
       wait for 10*C_CLK_PERIOD;
-      --wait for C_TX_VIDEO_WIDTH*C_TX_VIDEO_HEIGHT*C_CLK_PERIOD;
+      wait for C_TX_VIDEO_WIDTH*C_TX_VIDEO_HEIGHT*C_CLK_PERIOD;
 
       -----------------------------------------------------------------------------
       -- Ending the simulation

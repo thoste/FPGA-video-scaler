@@ -14,21 +14,27 @@ add wave -noupdate -expand -group {Scaler out} -radix hexadecimal    -label read
 add wave -noupdate -expand -group {Scaler out} -radix unsigned       -label data_o     /tb_scaler/data_o
 add wave -noupdate -expand -group {Scaler out} -radix hexadecimal    -label valid_o    /tb_scaler/valid_o
 
+# State
+add wave -noupdate -expand -group {State} -radix unsigned   -label state   /tb_scaler/i_scaler/state
 
-# Framebuffer
-add wave -noupdate -expand -group {Framebuffer} -radix hexadecimal   -label fb_full       /tb_scaler/i_scaler/fb_full
-add wave -noupdate -expand -group {Framebuffer} -radix hexadecimal   -label fb_rd_addr_i  /tb_scaler/i_scaler/fb_rd_addr_i
+# Framebuffer write
+add wave -noupdate -expand -group {Framebuffer write}       -radix unsigned   -label fb_wr_addr_i  /tb_scaler/i_scaler/fb_wr_addr_i
+add wave -noupdate -expand -group {Framebuffer write}       -radix unsigned   -label ram_data      /tb_scaler/i_scaler/framebuffer/ram_data
+
+# Framebuffer read
+add wave -noupdate -expand -group {Framebuffer read}        -radix unsigned   -label fb_rd_addr_i   /tb_scaler/i_scaler/fb_rd_addr_i
+add wave -noupdate -expand -group {Framebuffer read}        -radix unsigned   -label fb_data_o      /tb_scaler/i_scaler/fb_data_o
 
 # X
-add wave -noupdate -expand -group {X} -radix unsigned    -label x_count             /tb_scaler/i_scaler/x_count
-add wave -noupdate -expand -group {X} -radix ufixed      -label dx                  /tb_scaler/i_scaler/dx
+#add wave -noupdate -expand -group {X} -radix unsigned    -label x_count             /tb_scaler/i_scaler/x_count
+#add wave -noupdate -expand -group {X} -radix ufixed      -label dx                  /tb_scaler/i_scaler/dx
 
 # Y
-add wave -noupdate -expand -group {Y} -radix unsigned    -label y_count 	         /tb_scaler/i_scaler/y_count
-add wave -noupdate -expand -group {Y} -radix ufixed      -label dy 		            /tb_scaler/i_scaler/dy
+#add wave -noupdate -expand -group {Y} -radix unsigned    -label y_count 	         /tb_scaler/i_scaler/y_count
+#add wave -noupdate -expand -group {Y} -radix ufixed      -label dy 		            /tb_scaler/i_scaler/dy
 
 # SR
-add wave -noupdate -expand -group {SR} -radix ufixed     -label vid_width_ufixed 	/tb_scaler/i_scaler/sr_width_reg
-add wave -noupdate -expand -group {SR} -radix ufixed     -label vid_width_ufixed    /tb_scaler/i_scaler/sr_height_reg
+#add wave -noupdate -expand -group {SR} -radix ufixed     -label vid_width_ufixed 	/tb_scaler/i_scaler/sr_width_reg
+#add wave -noupdate -expand -group {SR} -radix ufixed     -label vid_width_ufixed    /tb_scaler/i_scaler/sr_height_reg
 
 TreeUpdate [SetDefaultTree]
