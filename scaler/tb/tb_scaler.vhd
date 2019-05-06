@@ -101,6 +101,7 @@ begin
    ------------------------------------------------
    p_main: process 
       variable v_data : integer := 0;
+      variable v_num_test_loops : integer := 0;
    begin
       -- Wait for UVVM to finish initialization
       await_uvvm_initialization(VOID);
@@ -121,6 +122,8 @@ begin
       -----------------------------------------------------------------------------
       -- Test scaler
       -----------------------------------------------------------------------------
+      v_num_test_loops := 1;
+
       -- Send video data control packet
       ready_i <= '1';
       data_i <= (others => '0');
@@ -129,19 +132,24 @@ begin
       wait until rising_edge(clk_i);
       startofpacket_i <= '0';
 
-      for i in 1 to C_RX_VIDEO_WIDTH loop
-         v_data := (100 * i) + 1;
-         for j in 1 to C_RX_VIDEO_HEIGHT loop
-            while ready_o = '0' loop
+      for n in 1 to v_num_test_loops loop
+         for i in 1 to C_RX_VIDEO_WIDTH loop
+            v_data := (100 * i) + 1;
+            for j in 1 to C_RX_VIDEO_HEIGHT loop
+               while ready_o = '0' loop
+                  wait until rising_edge(clk_i);
+               end loop;
+               endofpacket_i  <= '1' when (i = C_RX_VIDEO_WIDTH and j = C_RX_VIDEO_HEIGHT) else '0';
+               data_i   <= std_logic_vector(to_unsigned(v_data, data_i'length));
+               valid_i  <= '1';
+               v_data := v_data + 1;
                wait until rising_edge(clk_i);
+               --valid_i  <= '0';
+               --wait until rising_edge(clk_i);
             end loop;
-            endofpacket_i  <= '1' when (i = C_RX_VIDEO_WIDTH and j = C_RX_VIDEO_HEIGHT) else '0';
-            data_i   <= std_logic_vector(to_unsigned(v_data, data_i'length));
-            valid_i  <= '1';
-            v_data := v_data + 1;
-            wait until rising_edge(clk_i);
          end loop;
       end loop;
+      
 
       ---- Write random data
       --for i in 1 to C_RX_VIDEO_WIDTH*C_RX_VIDEO_HEIGHT loop

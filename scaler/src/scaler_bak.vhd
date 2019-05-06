@@ -36,8 +36,8 @@ entity scaler is
       scaler_valid_i          : in  std_logic;
       scaler_ready_o          : out std_logic := '0';
 
-      scaler_startofpacket_o  : in  std_logic := '0';
-      scaler_endofpacket_o    : in  std_logic := '0';
+      scaler_startofpacket_o  : in  std_logic;
+      scaler_endofpacket_o    : in  std_logic;
       scaler_data_o           : out std_logic_vector(g_data_width-1 downto 0) := (others => '0');
       scaler_valid_o          : out std_logic := '0';
       scaler_ready_i          : in  std_logic
@@ -45,7 +45,7 @@ entity scaler is
 end scaler;
 
 architecture scaler_arc of scaler is
-   type t_state is (s_idle, s_pre_fill_fb, s_process);
+   type t_state is (s_idle, s_fill_fb, s_process, s_empty_fb);
    signal state : t_state := s_idle;
 
     --Scaling ratio
@@ -53,8 +53,6 @@ architecture scaler_arc of scaler is
    signal sr_height        : ufixed(7 downto -10) := (others => '0');
    signal sr_width_reg     : ufixed(7 downto -10) := (others => '0');
    signal sr_height_reg    : ufixed(7 downto -10) := (others => '0');
-
-   signal sf : integer := 0;
 
    signal tx_width         : ufixed(11 downto -6) := (others => '0');
    signal tx_height        : ufixed(11 downto -6) := (others => '0');
@@ -67,23 +65,24 @@ architecture scaler_arc of scaler is
    signal rx_height_reg    : ufixed(11 downto -6) := (others => '0');
 
    -- Framebuffer
-   signal fb_wr_en_i       : std_logic := '0';
    signal fb_data_i        : std_logic_vector(g_data_width-1 downto 0) := (others => '0');
    signal fb_wr_addr_i     : integer := 0;
-   signal fb_wr_addr       : integer := 0;
-
+   signal fb_wr_en_i       : std_logic := '0';
    signal fb_data_o        : std_logic_vector(g_data_width-1 downto 0) := (others => '0');
    signal fb_rd_addr_i     : integer := 0;
+   signal fb_data_o_reg    : std_logic_vector(g_data_width-1 downto 0) := (others => '0');
    signal fb_rd_addr       : integer := 0;
+   signal fb_rd_addr_reg   : integer := 0;
 
+   signal fb_count         : integer := 0;
    signal fb_last_addr     : integer := 0;
    signal interpolate      : boolean := false;
 
    -- Mapping function
-   signal dx            : ufixed(15 downto -10) := (others => '0');
-   signal dy            : ufixed(15 downto -10) := (others => '0');
-   signal dx_reg        : ufixed(15 downto -10) := (others => '0');
-   signal dy_reg        : ufixed(15 downto -10) := (others => '0');
+   signal dx            : ufixed(15 downto -2) := (others => '0');
+   signal dy            : ufixed(15 downto -2) := (others => '0');
+   signal dx_reg        : ufixed(15 downto -2) := (others => '0');
+   signal dy_reg        : ufixed(15 downto -2) := (others => '0');
    signal dx_int        : integer := 0;
    signal dy_int        : integer := 0;
    signal x_count       : integer := 0;
@@ -91,25 +90,15 @@ architecture scaler_arc of scaler is
    signal x_count_reg   : integer := 0;
    signal y_count_reg   : integer := 0;
 
-   signal tot_count : integer := 0;
-
-   signal exp_input : integer := 0;
-   signal cur_input : integer := 0;
-   signal exp_output : integer := 0;
-   signal cur_output : integer := 0;
-   
-
    signal fsm_ready     : std_logic := '0';
-
-   constant C_LINE_BUFFERS : integer := 4;
 
 begin
    framebuffer : entity work.simple_dpram
    generic map (
       g_ram_width    => g_data_width,
-      g_ram_depth    => g_rx_video_width*C_LINE_BUFFERS,
+      g_ram_depth    => g_rx_video_width*6,
       g_ramstyle     => "M20K",
-      g_output_reg   => true
+      g_output_reg   => false
    )
    port map(
       clk_i          => clk_i,
@@ -136,71 +125,84 @@ begin
    sr_height      <= resize(1/(tx_height_reg/rx_height_reg), sr_height'high, sr_height'low);
    sr_width_reg   <= sr_width;
    sr_height_reg  <= sr_height;
-
-   sf <= to_integer(tx_width_reg/rx_width_reg);
-   exp_input <= g_rx_video_width*g_rx_video_height;
-   exp_output <= g_tx_video_width*g_tx_video_height;
+   --sr_width_reg   <= to_ufixed(0.4, sr_width_reg);
+   --sr_height_reg  <= to_ufixed(0.4, sr_height_reg); 
    
    -- Asseart ready out
-   --scaler_ready_o <= (scaler_ready_i or not scaler_valid_o) and fsm_ready;
+   scaler_ready_o <= (scaler_ready_i or not scaler_valid_o) and fsm_ready;
 
    p_fsm : process(clk_i) is
-      variable v_count : integer := 0;
    begin
       if rising_edge(clk_i) then
+         if scaler_ready_i = '1' then
+            scaler_valid_o <= '0';
+         end if;
+
+         fsm_ready <= '1';
+
          case(state) is
             when s_idle => 
-               scaler_ready_o <= '1';
-               if scaler_startofpacket_i = '1' then
-                  state <= s_pre_fill_fb;
-               end if;
-
-            when s_pre_fill_fb =>
-               -- Pre-fill framebuffer before starting the scaler
-               if scaler_valid_i = '1' then
-                  scaler_ready_o <= '1';
-                  fb_wr_en_i <= '1';
-                  fb_wr_addr <= fb_wr_addr + 1;
-                  cur_input <= cur_input + 1;
-                  if fb_wr_addr = (g_rx_video_width*2)-2 then
-                     scaler_ready_o <= '0';
-                     interpolate <= true;
-                     state <= s_process;
+               if scaler_ready_o = '1' and scaler_valid_i = '1' then
+                  if fb_count = 0 and scaler_startofpacket_i = '1' then
+                     state <= s_fill_fb;
                   end if;
                end if;
 
-            when s_process =>
-               if v_count = exp_output/exp_input and cur_input < exp_input then
-                  fb_wr_addr <= 0 when (fb_wr_addr = (g_rx_video_width*C_LINE_BUFFERS)-1) else fb_wr_addr + 1;
-                  scaler_ready_o <= '1';
+            when s_fill_fb =>
+               if scaler_ready_o = '1' and scaler_valid_i = '1' then
                   fb_wr_en_i <= '1';
-                  v_count := 0;
-                  cur_input <= cur_input + 1;
-                  
-               else
-                  scaler_ready_o <= '0';
-                  fb_wr_en_i <= '0';
-                  v_count := v_count + 1;
+                  fb_wr_addr_i <= fb_count;
+                  fb_data_i <= scaler_data_i;
+                  if fb_count = (g_rx_video_width*2)-1 then
+                     state <= s_process;
+                  else
+                     state <= s_fill_fb;
+                  end if;
+                  fb_count <= fb_count + 1;
                end if;
-               if cur_input >= exp_input-1 then
-                  -- Done filling fb
-                  scaler_ready_o <= '0';            
-               end if; 
-               if cur_output = exp_output-1 then
-                  scaler_ready_o <= '1';
-                  interpolate <= false;
-                  state <= s_idle;
-               end if;
-               cur_output <= cur_output + 1;
 
-               
-               
+            when s_process =>
+               fsm_ready <= '0';
+               if scaler_ready_i = '1' or scaler_valid_o = '0' then
+                  if scaler_endofpacket_i = '1' then
+                     -- Write last data to framebuffer
+                     fb_wr_en_i <= '0';
+                     fb_wr_addr_i <= fb_count;
+                     fb_data_i <= scaler_data_i;
+                     fb_last_addr <= fb_count;
+                     state <= s_empty_fb;
+                  else
+                     -- Continue fill framebuffer
+                     fb_wr_en_i <= '1';
+                     fb_wr_addr_i <= fb_count;
+                     fb_data_i <= scaler_data_i;
+                     state <= s_process;
+                  end if;
+                  if fb_count = (g_rx_video_width*6)-1 then
+                     fb_count <= 0;
+                  else
+                     fb_count <= fb_count + 1;
+                  end if;
+                  fsm_ready <= '1';
+                  interpolate <= true;
+               end if;
+
+            when s_empty_fb =>
+               if scaler_ready_o = '1' and scaler_valid_i = '1' then
+                  if fb_count = fb_last_addr then
+                     -- Done
+                     interpolate <= false;
+                     fb_count <= 0;
+                     state <= s_idle;
+                  else
+                     fb_count <= fb_count + 1;
+                  end if;
+               end if;
+
          end case;
 
-         fb_wr_addr_i <= fb_wr_addr;
-         fb_data_i <= scaler_data_i;
-
          if sreset_i = '1' then
+            scaler_valid_o <= '0';
             state <= s_idle;
          end if;
       end if;
@@ -208,65 +210,56 @@ begin
 
 
 
+
    p_reverse_mapping : process(clk_i) is
    begin
       if rising_edge(clk_i) then
          if interpolate then
-            if g_tx_video_width > g_rx_video_width then
-               -- Upscaling
-               dx <= resize(x_count*sr_width_reg, dx'high, dx'low);
-               dy <= resize(y_count*sr_height_reg, dy'high, dy'low);
+            dx <= resize(x_count_reg*sr_width_reg, dx'high, dx'low);
+            dy <= resize(y_count_reg*sr_height_reg, dy'high, dy'low);
 
-               fb_rd_addr_i <= g_rx_video_width*to_integer(dy) + to_integer(dx);
+            --dx <= resize((x_count*sr_width_reg) + (0.5 * (1 - 1*sr_width_reg)), dx'high, dx'low);
+            --dy <= resize((y_count*sr_height_reg) + (0.5 * (1 - 1*sr_height_reg)), dy'high, dy'low);
 
-               -- Next pixel in target frame
-               x_count <= x_count + 1;
-               tot_count <= tot_count + 1;
-               
-               -- Check if a row in target frame is completed
-               if x_count = g_tx_video_width-1 then
-                  x_count <= 0;
-                  y_count <= y_count + 1;
-               end if;
+            -- Next pixel in target frame
+            x_count <= x_count + 1;
+            
+            -- Check if a row in target frame is completed
+            if x_count = g_tx_video_width-1 then
+               x_count <= 0;
+               y_count <= y_count + 1;
+            end if;
 
-               -- Check if all rows are completed
-               if y_count = (C_LINE_BUFFERS*sf)-1 and x_count = g_tx_video_width-1 then
-                  y_count <= 0;
-                  tot_count <= 0;
-               end if;
+            -- Check if all rows are completed
+            if y_count = g_tx_video_height-1 and x_count = g_tx_video_width-2 then
+               y_count <= 0;
+            end if;
+         end if;
 
-            else
-               -- Downscaling
-               dx <= resize(x_count*sr_width_reg, dx'high, dx'low);
-               dy <= resize(y_count*sr_height_reg, dy'high, dy'low);
-
-               fb_rd_addr_i <= g_rx_video_width*to_integer(dy) + to_integer(dx);
-               --if fb_rd_addr_i > 0 then
-               --   fb_rd_addr_i <= fb_rd_addr_i - 1;
-               --end if;
-
-               -- Next pixel in target frame
-               x_count <= x_count + 1;
-               tot_count <= tot_count + 1;
-               
-               -- Check if a row in target frame is completed
-               if x_count = g_tx_video_width-1 then
-                  x_count <= 0;
-                  y_count <= y_count + 1;
-               end if;
-
-               -- Check if all rows are completed
-               if y_count = (C_LINE_BUFFERS*sf)-1 and x_count = g_tx_video_width-1 then
-                  y_count <= 0;
-                  tot_count <= 0;
-               end if;
-
-            end if; -- Up/downscaling
-         end if; -- Interpolate
-         scaler_data_o <= fb_data_o;
-
-      end if; -- rising_edge(clk_i)
+         dx_reg <= dx;
+         dy_reg <= dy;
+         x_count_reg <= x_count;
+         y_count_reg <= y_count;
+      end if;
    end process p_reverse_mapping;
 
+
+   p_interpolation : process(clk_i) is
+   begin
+      if rising_edge(clk_i) then
+         if interpolate then
+            -- Floor rounding function from my_fixed_pkg 
+            dx_int <= to_integer(dx_reg);
+            dy_int <= to_integer(dy_reg);
+
+            fb_rd_addr <= g_rx_video_width*dy_int + dx_int;
+
+         end if;
+         fb_rd_addr_reg <= fb_rd_addr;
+         fb_data_o_reg <= fb_data_o;
+         fb_rd_addr_i <= fb_rd_addr_reg;
+         scaler_data_o <= fb_data_o_reg;
+      end if;
+   end process p_interpolation;
 
 end scaler_arc;

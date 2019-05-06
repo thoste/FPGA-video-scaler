@@ -2,11 +2,11 @@
 clear all;
 clc;
 
-rx_video_width = 2;
-rx_video_height = 2;
+rx_video_width = 6;
+rx_video_height = 6;
 
-tx_video_width = 5;
-tx_video_height = 5;
+tx_video_width = 12;
+tx_video_height = 12;
 
 sf_y = 1/(tx_video_height/rx_video_height);
 sf_x = 1/(tx_video_width/rx_video_width);
