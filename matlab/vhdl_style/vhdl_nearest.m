@@ -2,11 +2,13 @@
 clear all;
 clc;
 
-rx_video_width = 6;
-rx_video_height = 6;
+num_line_buffers = 4;
 
-tx_video_width = 12;
-tx_video_height = 12;
+rx_video_width = 12;
+rx_video_height = 12;
+
+tx_video_width = 8;
+tx_video_height = 8;
 
 sf_y = 1/(tx_video_height/rx_video_height);
 sf_x = 1/(tx_video_width/rx_video_width);
@@ -26,8 +28,6 @@ while pixel_count < (tx_video_width*tx_video_height)
     %dx = (x_count/sf_x) + (0.5 * (1 - 1/sf_x));
     %dy = (y_count/sf_y) + (0.5 * (1 - 1/sf_y));
     
-    fb_addr = rx_video_width*floor(dy) + floor(dx);
-    
     x_count = x_count + 1;
     
     if x_count == tx_video_width
@@ -35,10 +35,12 @@ while pixel_count < (tx_video_width*tx_video_height)
        y_count = y_count + 1 ;
     end
     
-    if y_count == tx_video_height
-        done_flag = true;
+    if dy >= num_line_buffers
+        y_count = 0;
+        dy = 0;
     end
     
+    fb_addr = rx_video_width*floor(dy) + floor(dx);
        
     if fb_addr > (rx_video_width*rx_video_height)-1 
         fprintf('ERROR: fb_addr overflow => ');

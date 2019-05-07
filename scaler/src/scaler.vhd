@@ -48,6 +48,8 @@ architecture scaler_arc of scaler is
    type t_state is (s_idle, s_pre_fill_fb, s_process);
    signal state : t_state := s_idle;
 
+   constant C_LINE_BUFFERS : integer := 4;
+
     --Scaling ratio
    signal sr_width         : ufixed(7 downto -10) := (others => '0');
    signal sr_height        : ufixed(7 downto -10) := (others => '0');
@@ -74,7 +76,6 @@ architecture scaler_arc of scaler is
 
    signal fb_data_o        : std_logic_vector(g_data_width-1 downto 0) := (others => '0');
    signal fb_rd_addr_i     : integer := 0;
-   signal fb_rd_addr       : integer := 0;
 
    signal fb_last_addr     : integer := 0;
    signal interpolate      : boolean := false;
@@ -88,8 +89,7 @@ architecture scaler_arc of scaler is
    signal dy_int        : integer := 0;
    signal x_count       : integer := 0;
    signal y_count       : integer := 0;
-   signal x_count_reg   : integer := 0;
-   signal y_count_reg   : integer := 0;
+
 
    signal tot_count : integer := 0;
 
@@ -101,7 +101,7 @@ architecture scaler_arc of scaler is
 
    signal fsm_ready     : std_logic := '0';
 
-   constant C_LINE_BUFFERS : integer := 4;
+   
 
 begin
    framebuffer : entity work.simple_dpram
@@ -170,13 +170,24 @@ begin
                end if;
 
             when s_process =>
+               if g_rx_video_width < g_tx_video_width then
+                  -- Upscaling
+                  -- Cannot write before the fb_addr has been read
+                  -- It is faster to fill the fb than to empty it
+                  
+               else
+                  -- Downscaling
+                  -- Cannot read before the fb_addr has been written
+                  -- It is faster to empty the fb than to fill it
+               end if;
+
+               -- Old code
                if v_count = exp_output/exp_input and cur_input < exp_input then
                   fb_wr_addr <= 0 when (fb_wr_addr = (g_rx_video_width*C_LINE_BUFFERS)-1) else fb_wr_addr + 1;
                   scaler_ready_o <= '1';
                   fb_wr_en_i <= '1';
                   v_count := 0;
-                  cur_input <= cur_input + 1;
-                  
+                  cur_input <= cur_input + 1;            
                else
                   scaler_ready_o <= '0';
                   fb_wr_en_i <= '0';
@@ -186,15 +197,16 @@ begin
                   -- Done filling fb
                   scaler_ready_o <= '0';            
                end if; 
-               if cur_output = exp_output-1 then
-                  scaler_ready_o <= '1';
+
+               if cur_output >= exp_output+2 then
                   interpolate <= false;
+               end if;
+               if cur_output >= exp_output+6 then
+                  scaler_ready_o <= '1';
                   state <= s_idle;
                end if;
                cur_output <= cur_output + 1;
 
-               
-               
          end case;
 
          fb_wr_addr_i <= fb_wr_addr;
@@ -212,60 +224,35 @@ begin
    begin
       if rising_edge(clk_i) then
          if interpolate then
-            if g_tx_video_width > g_rx_video_width then
-               -- Upscaling
-               dx <= resize(x_count*sr_width_reg, dx'high, dx'low);
-               dy <= resize(y_count*sr_height_reg, dy'high, dy'low);
+            dx <= resize(x_count*sr_width_reg, dx'high, dx'low);
+            dy <= resize(y_count*sr_height_reg, dy'high, dy'low);
 
-               fb_rd_addr_i <= g_rx_video_width*to_integer(dy) + to_integer(dx);
+            dx_reg <= dx;
+            dy_reg <= dy;
 
-               -- Next pixel in target frame
-               x_count <= x_count + 1;
-               tot_count <= tot_count + 1;
-               
-               -- Check if a row in target frame is completed
-               if x_count = g_tx_video_width-1 then
-                  x_count <= 0;
-                  y_count <= y_count + 1;
-               end if;
+            -- Next pixel in target frame
+            x_count <= x_count + 1;
+            
+            -- Check if a row in target frame is completed
+            if x_count = g_tx_video_width-1 then
+               x_count <= 0;
+               y_count <= y_count + 1;
+            end if;
 
-               -- Check if all rows are completed
-               if y_count = (C_LINE_BUFFERS*sf)-1 and x_count = g_tx_video_width-1 then
-                  y_count <= 0;
-                  tot_count <= 0;
-               end if;
-
+            -- Check if all rowns in line buffer is completed
+            if dy_reg >= C_LINE_BUFFERS then
+               y_count <= 0;
+               dy_int <= 0;
             else
-               -- Downscaling
-               dx <= resize(x_count*sr_width_reg, dx'high, dx'low);
-               dy <= resize(y_count*sr_height_reg, dy'high, dy'low);
+               dy_int <= to_integer(dy_reg);
+            end if;
 
-               fb_rd_addr_i <= g_rx_video_width*to_integer(dy) + to_integer(dx);
-               --if fb_rd_addr_i > 0 then
-               --   fb_rd_addr_i <= fb_rd_addr_i - 1;
-               --end if;
+            dx_int <= to_integer(dx_reg);
+            fb_rd_addr_i <= g_rx_video_width*dy_int + dx_int;
+         end if;
 
-               -- Next pixel in target frame
-               x_count <= x_count + 1;
-               tot_count <= tot_count + 1;
-               
-               -- Check if a row in target frame is completed
-               if x_count = g_tx_video_width-1 then
-                  x_count <= 0;
-                  y_count <= y_count + 1;
-               end if;
-
-               -- Check if all rows are completed
-               if y_count = (C_LINE_BUFFERS*sf)-1 and x_count = g_tx_video_width-1 then
-                  y_count <= 0;
-                  tot_count <= 0;
-               end if;
-
-            end if; -- Up/downscaling
-         end if; -- Interpolate
          scaler_data_o <= fb_data_o;
-
-      end if; -- rising_edge(clk_i)
+      end if;
    end process p_reverse_mapping;
 
 

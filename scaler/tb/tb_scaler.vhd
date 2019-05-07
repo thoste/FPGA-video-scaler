@@ -34,8 +34,7 @@ architecture tb_scaler_arc of tb_scaler is
    constant C_CLK_PERIOD   : time := 10 ns; -- 100 MHz
 
    -- Avalon-ST bus widths
-   constant C_DATA_WIDTH      : natural := 10;
-   constant C_DATA_LENGTH     : natural := 16;
+   constant C_DATA_WIDTH      : natural := 30;
 
    constant C_RX_VIDEO_WIDTH  : natural := 6;
    constant C_RX_VIDEO_HEIGHT : natural := 6;
@@ -132,6 +131,7 @@ begin
       wait until rising_edge(clk_i);
       startofpacket_i <= '0';
 
+      -- Send video data
       for n in 1 to v_num_test_loops loop
          for i in 1 to C_RX_VIDEO_WIDTH loop
             v_data := (100 * i) + 1;

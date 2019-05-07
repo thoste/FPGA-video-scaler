@@ -23,31 +23,35 @@ entity syntest_scaler is
 end entity syntest_scaler;
 
 architecture rtl of syntest_scaler is
-   signal source : std_logic_vector(82 downto 0) := (others => '0');
-   signal sink   : std_logic_vector(81 downto 0) := (others => '0');
+   signal source : std_logic_vector(34 downto 0) := (others => '0');
+   signal sink   : std_logic_vector(33 downto 0) := (others => '0');
 
 begin
 
    i_mut : entity work.scaler
    generic map(
-      g_data_width         => 80, 
-      g_rx_video_width     => 200,
-      g_rx_video_height    => 200,
-      g_tx_video_width     => 500,
-      g_tx_video_height    => 500
+      g_data_width         => 30, 
+      g_rx_video_width     => 1280,
+      g_rx_video_height    => 720,
+      g_tx_video_width     => 1920,
+      g_tx_video_height    => 1080
    )
    port map(
       clk_i             => clk_i,
       sreset_i          => source(0),
 
-      scaler_valid_i    => source(1),
-      scaler_ready_o    => source(2),
-      scaler_data_i     => source(82 downto 3),
+      scaler_valid_i          => source(1),
+      scaler_ready_o          => source(2),
+      scaler_startofpacket_i  => source(3),
+      scaler_endofpacket_i    => source(4),
+      scaler_data_i           => source(34 downto 5),
 
 
-      scaler_valid_o    => sink(0),
-      scaler_ready_i    => sink(1),
-      scaler_data_o     => sink(81 downto 2)
+      scaler_valid_o          => sink(0),
+      scaler_ready_i          => sink(1),
+      scaler_startofpacket_o  => sink(2),
+      scaler_endofpacket_o    => sink(3),
+      scaler_data_o           => sink(33 downto 4)
    );
 
    i_source : entity work.atv_dummy_source
