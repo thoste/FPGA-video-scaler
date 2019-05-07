@@ -98,8 +98,15 @@ architecture scaler_arc of scaler is
    signal exp_output : integer := 0;
    signal cur_output : integer := 0;
    
+   signal up_input : integer := 0;
+   signal down_input : integer := 0;
+   signal up_output : integer := 0;
+   signal down_output : integer := 0;
 
    signal fsm_ready     : std_logic := '0';
+
+   signal avalon_ready : boolean := true;
+   signal avalon_ready_2 : boolean := true;
 
    
 
@@ -160,9 +167,11 @@ begin
                if scaler_valid_i = '1' then
                   scaler_ready_o <= '1';
                   fb_wr_en_i <= '1';
-                  fb_wr_addr <= fb_wr_addr + 1;
+                  fb_wr_addr <= 0 when (fb_wr_addr = (g_rx_video_width*C_LINE_BUFFERS)-1) else fb_wr_addr + 1;
                   cur_input <= cur_input + 1;
-                  if fb_wr_addr = (g_rx_video_width*2)-2 then
+                  down_input <= down_input + 1;
+                  if fb_wr_addr = (g_rx_video_width*C_LINE_BUFFERS)-2 then
+                     --up_input <= up_input + C_LINE_BUFFERS;
                      scaler_ready_o <= '0';
                      interpolate <= true;
                      state <= s_process;
@@ -174,25 +183,42 @@ begin
                   -- Upscaling
                   -- Cannot write before the fb_addr has been read
                   -- It is faster to fill the fb than to empty it
-                  
+                  tot_count <= up_output/sf;
+                  if up_output/sf > up_input then
+                     scaler_ready_o <= '1';
+                     if scaler_valid_i = '1' then
+                        fb_wr_addr <= 0 when (fb_wr_addr = (g_rx_video_width*C_LINE_BUFFERS)-1) else fb_wr_addr + 1;
+                        fb_wr_en_i <= '1';
+                        cur_input <= cur_input + 1;
+                     end if;                  
+                  else
+                     scaler_ready_o <= '0';
+                     fb_wr_en_i <= '0';
+                  end if;
+                  up_input <= fb_wr_addr/(g_rx_video_width-1);
+
+                  interpolate <= true;
                else
                   -- Downscaling
                   -- Cannot read before the fb_addr has been written
                   -- It is faster to empty the fb than to fill it
                end if;
 
-               -- Old code
-               if v_count = exp_output/exp_input and cur_input < exp_input then
-                  fb_wr_addr <= 0 when (fb_wr_addr = (g_rx_video_width*C_LINE_BUFFERS)-1) else fb_wr_addr + 1;
-                  scaler_ready_o <= '1';
-                  fb_wr_en_i <= '1';
-                  v_count := 0;
-                  cur_input <= cur_input + 1;            
-               else
-                  scaler_ready_o <= '0';
-                  fb_wr_en_i <= '0';
-                  v_count := v_count + 1;
-               end if;
+               ---- Old code
+               --if v_count = exp_output/exp_input and cur_input < exp_input then
+               --   fb_wr_addr <= 0 when (fb_wr_addr = (g_rx_video_width*C_LINE_BUFFERS)-1) else fb_wr_addr + 1;
+               --   scaler_ready_o <= '1';
+               --   fb_wr_en_i <= '1';
+               --   v_count := 0;
+               --   cur_input <= cur_input + 1;   
+               --   --up_input <= up_input + 1 when (fb_wr_addr mod (g_rx_video_width-1) = 0) else up_input;         
+               --   up_input <= fb_wr_addr/(g_rx_video_width-1); 
+               --else
+               --   scaler_ready_o <= '0';
+               --   fb_wr_en_i <= '0';
+               --   v_count := v_count + 1;
+               --end if;
+
                if cur_input >= exp_input-1 then
                   -- Done filling fb
                   scaler_ready_o <= '0';            
@@ -237,6 +263,7 @@ begin
             if x_count = g_tx_video_width-1 then
                x_count <= 0;
                y_count <= y_count + 1;
+               up_output <= up_output + 1 when ((dy_int mod 1 = 0) or (dy_int mod 2 = 0)) else up_output;
             end if;
 
             -- Check if all rowns in line buffer is completed

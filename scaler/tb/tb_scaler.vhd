@@ -137,6 +137,7 @@ begin
             v_data := (100 * i) + 1;
             for j in 1 to C_RX_VIDEO_HEIGHT loop
                while ready_o = '0' loop
+                  valid_i  <= '0';
                   wait until rising_edge(clk_i);
                end loop;
                endofpacket_i  <= '1' when (i = C_RX_VIDEO_WIDTH and j = C_RX_VIDEO_HEIGHT) else '0';

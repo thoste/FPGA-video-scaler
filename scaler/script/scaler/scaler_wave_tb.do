@@ -19,6 +19,8 @@ add wave -noupdate -expand -group {State} -radix unsigned   -label state   /tb_s
 
 # Framebuffer write
 add wave -noupdate -expand -group {Framebuffer write}       -radix unsigned   -label fb_wr_addr_i  /tb_scaler/i_scaler/fb_wr_addr_i
+add wave -noupdate -expand -group {Framebuffer write}       -radix unsigned   -label fb_wr_en_i     /tb_scaler/i_scaler/fb_wr_en_i
+add wave -noupdate -expand -group {Framebuffer write}       -radix unsigned   -label fb_data_i     /tb_scaler/i_scaler/fb_data_i
 add wave -noupdate -expand -group {Framebuffer write}       -radix unsigned   -label ram_data      /tb_scaler/i_scaler/framebuffer/ram_data
 
 # Framebuffer read
@@ -36,5 +38,10 @@ add wave -noupdate -expand -group {Framebuffer read}        -radix unsigned   -l
 # SR
 #add wave -noupdate -expand -group {SR} -radix ufixed     -label vid_width_ufixed 	/tb_scaler/i_scaler/sr_width_reg
 #add wave -noupdate -expand -group {SR} -radix ufixed     -label vid_width_ufixed    /tb_scaler/i_scaler/sr_height_reg
+
+# debug
+add wave -noupdate -expand -group {debug} -radix unsigned     -label up_input    /tb_scaler/i_scaler/up_input
+add wave -noupdate -expand -group {debug} -radix unsigned     -label up_output   /tb_scaler/i_scaler/up_output
+add wave -noupdate -expand -group {debug} -radix unsigned     -label tot_count   /tb_scaler/i_scaler/tot_count
 
 TreeUpdate [SetDefaultTree]
