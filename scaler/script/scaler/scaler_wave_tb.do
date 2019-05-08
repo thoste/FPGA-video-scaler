@@ -5,14 +5,17 @@ quietly WaveActivateNextPane {} 0
 add wave -noupdate -expand -group {Global} -radix hexadecimal     -label clk_i         /tb_scaler/clk_i
 
 # Scaler in
-add wave -noupdate -expand -group {Scaler in} -radix hexadecimal  -label ready_o       /tb_scaler/ready_o
-add wave -noupdate -expand -group {Scaler in} -radix unsigned     -label data_i        /tb_scaler/data_i
-add wave -noupdate -expand -group {Scaler in} -radix hexadecimal  -label valid_i       /tb_scaler/valid_i
+add wave -noupdate -expand -group {Scaler in} -radix hexadecimal  	-label ready_o            /tb_scaler/ready_o
+add wave -noupdate -expand -group {Scaler in} -radix unsigned     	-label data_i             /tb_scaler/data_i
+add wave -noupdate -expand -group {Scaler in} -radix hexadecimal  	-label valid_i            /tb_scaler/valid_i
+add wave -noupdate -expand -group {Scaler in} -radix hexadecimal 	   -label startofpacket_i 	  /tb_scaler/startofpacket_i
+add wave -noupdate -expand -group {Scaler in} -radix hexadecimal     -label endofpacket_i 	  /tb_scaler/endofpacket_i
 
 # Scaler out
 add wave -noupdate -expand -group {Scaler out} -radix hexadecimal    -label ready_i    /tb_scaler/ready_i
 add wave -noupdate -expand -group {Scaler out} -radix unsigned       -label data_o     /tb_scaler/data_o
 add wave -noupdate -expand -group {Scaler out} -radix hexadecimal    -label valid_o    /tb_scaler/valid_o
+
 
 # State
 add wave -noupdate -expand -group {State} -radix unsigned   -label state   /tb_scaler/i_scaler/state
@@ -39,9 +42,33 @@ add wave -noupdate -expand -group {Framebuffer read}        -radix unsigned   -l
 #add wave -noupdate -expand -group {SR} -radix ufixed     -label vid_width_ufixed 	/tb_scaler/i_scaler/sr_width_reg
 #add wave -noupdate -expand -group {SR} -radix ufixed     -label vid_width_ufixed    /tb_scaler/i_scaler/sr_height_reg
 
+# dy
+add wave -noupdate -expand -group {dy} -radix unsigned  sim:/tb_scaler/i_scaler/dy
+add wave -noupdate -expand -group {dy} -radix unsigned  sim:/tb_scaler/i_scaler/dy_int
+add wave -noupdate -expand -group {dy} -radix unsigned  sim:/tb_scaler/i_scaler/dy_int_last
+add wave -noupdate -expand -group {dy} -radix unsigned  sim:/tb_scaler/i_scaler/dy_change
+
 # debug
-add wave -noupdate -expand -group {debug} -radix unsigned     -label up_input    /tb_scaler/i_scaler/up_input
-add wave -noupdate -expand -group {debug} -radix unsigned     -label up_output   /tb_scaler/i_scaler/up_output
-add wave -noupdate -expand -group {debug} -radix unsigned     -label tot_count   /tb_scaler/i_scaler/tot_count
+add wave -position end  sim:/tb_scaler/i_scaler/exp_input
+add wave -position end  sim:/tb_scaler/i_scaler/cur_input
+add wave -position end  sim:/tb_scaler/i_scaler/exp_output
+add wave -position end  sim:/tb_scaler/i_scaler/cur_output
 
 TreeUpdate [SetDefaultTree]
+WaveRestoreCursors {{Cursor 1} {1411622 ps} 0}
+quietly wave cursor active 1
+configure wave -namecolwidth 221
+configure wave -valuecolwidth 100
+configure wave -justifyvalue left
+configure wave -signalnamewidth 2
+configure wave -snapdistance 10
+configure wave -datasetprefix 0
+configure wave -rowmargin 4
+configure wave -childrowmargin 2
+configure wave -gridoffset 0
+configure wave -gridperiod 1
+configure wave -griddelta 40
+configure wave -timeline 0
+configure wave -timelineunits ns
+update
+WaveRestoreZoom {0 ps} {27512625 ps}

@@ -150,6 +150,9 @@ begin
             end loop;
          end loop;
       end loop;
+
+      valid_i <= '0';
+      endofpacket_i <= '0';
       
 
       ---- Write random data
