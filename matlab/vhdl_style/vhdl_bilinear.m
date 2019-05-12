@@ -1,4 +1,4 @@
-% Nearest neighbor VHDL style
+% Bilinear interpolation VHDL style
 clear all;
 clc;
 
@@ -7,11 +7,11 @@ num_line_buffers = 4;
 rx_video_width = 6;
 rx_video_height = 6;
 
-tx_video_width = 10;
-tx_video_height = 10;
+tx_video_width = 12;
+tx_video_height = 12;
 
-sf_y = 1/(tx_video_height/rx_video_height);
-sf_x = 1/(tx_video_width/rx_video_width);
+sr_y = 1/(tx_video_height/rx_video_height);
+sr_x = 1/(tx_video_width/rx_video_width);
 
 fb_addr = 0;
 pixel_count = 0;
@@ -19,11 +19,16 @@ pixel_count = 0;
 x_count = 0;
 y_count = 0;
 
+x1 = 0;
+x2 = 0;
+y1 = 0;
+y2 = 0;
+
 done_flag = false;
 
 while pixel_count < (tx_video_width*tx_video_height)
-    dx = x_count*sf_x;
-    dy = y_count*sf_y;
+    dx = (x_count*sr_x) + (0.5 * (1 - 1*sr_x));
+    dy = (y_count*sr_y) + (0.5 * (1 - 1*sr_y));
     
     x_count = x_count + 1;
     
@@ -37,12 +42,24 @@ while pixel_count < (tx_video_width*tx_video_height)
         dy = 0;
     end
     
+    x2 = floor(dx);
+    if x2 == 0
+        x1 = 0;
+    else
+        x1 = x2 - 1;
+    end
+    
+    y2 = floor(dy);
+    if y2 == 0
+        y1 = 0;
+    else
+        y1 = y2 - 1;
+    end
+    
     fb_addr = rx_video_width*floor(dy) + floor(dx);
        
-    if fb_addr > (rx_video_width*rx_video_height)-1 
-        fprintf('ERROR: fb_addr overflow => ');
-    end
     fprintf('pixel: %i | dx: %f | dy: %f | fb_addr: %i\n', pixel_count, dx, dy, fb_addr);
+    fprintf(' x1: %i | x2: %i\n y1: %i | y2: %i\n', x1, x2, y1, y2);
     pixel_count = pixel_count + 1;
     
     if done_flag == true

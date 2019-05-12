@@ -23,3 +23,4 @@ set_global_assignment -name VHDL_FILE ../../../atv/atv_lib/atv_dummy_source.vhd
 set_global_assignment -name VHDL_FILE ../../../atv/atv_lib/atv_dummy_sink.vhd
 set_instance_assignment -name PARTITION_COLOUR 4290551807 -to syntest_scaler -entity syntest_scaler
 set_global_assignment -name FLOW_DISABLE_ASSEMBLER ON
+set_global_assignment -name OPTIMIZATION_MODE BALANCED

@@ -13,8 +13,6 @@
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
---use ieee.fixed_pkg.all;
---use ieee.math_real.all;
 
 use work.my_fixed_pkg.all;
 
@@ -36,8 +34,8 @@ entity scaler is
       scaler_valid_i          : in  std_logic;
       scaler_ready_o          : out std_logic := '0';
 
-      scaler_startofpacket_o  : in  std_logic := '0';
-      scaler_endofpacket_o    : in  std_logic := '0';
+      scaler_startofpacket_o  : out std_logic := '0';
+      scaler_endofpacket_o    : out std_logic := '0';
       scaler_data_o           : out std_logic_vector(g_data_width-1 downto 0) := (others => '0');
       scaler_valid_o          : out std_logic := '0';
       scaler_ready_i          : in  std_logic
@@ -45,7 +43,7 @@ entity scaler is
 end scaler;
 
 architecture scaler_arc of scaler is
-   type t_state is (s_idle, s_pre_fill_fb, s_comp_fill_fb, s_process, s_process_fill);
+   type t_state is (s_idle, s_pre_fill_fb, s_finish_fill_fb, s_upscale, s_upscale_and_fill);
    signal state : t_state := s_idle;
 
    constant C_LINE_BUFFERS : integer := 4;
@@ -55,8 +53,6 @@ architecture scaler_arc of scaler is
    signal sr_height        : ufixed(7 downto -10) := (others => '0');
    signal sr_width_reg     : ufixed(7 downto -10) := (others => '0');
    signal sr_height_reg    : ufixed(7 downto -10) := (others => '0');
-
-   signal scaling_factor : integer := 0;
 
    signal tx_width         : ufixed(11 downto -6) := (others => '0');
    signal tx_height        : ufixed(11 downto -6) := (others => '0');
@@ -75,11 +71,11 @@ architecture scaler_arc of scaler is
    signal fb_data_reg      : std_logic_vector(g_data_width-1 downto 0) := (others => '0');
    signal fb_wr_addr_i     : integer := 0;
    signal fb_wr_addr_reg   : integer := 0;
-
+   signal fb_valid_reg     : std_logic := '0';
    signal fb_data_o        : std_logic_vector(g_data_width-1 downto 0) := (others => '0');
    signal fb_rd_addr_i     : integer := 0;
 
-   signal fb_last_addr     : integer := 0;
+   -- Scaler
    signal interpolate      : boolean := false;
 
    -- Mapping function
@@ -89,20 +85,21 @@ architecture scaler_arc of scaler is
    signal dy_reg        : ufixed(15 downto -10) := (others => '0');
    signal dx_int        : integer := 0;
    signal dy_int        : integer := 0;
+   signal x1_int        : integer := 0;
+   signal x2_int        : integer := 0;
+   signal y1_int        : integer := 0;
+   signal y2_int        : integer := 0;
    signal x_count       : integer := 0;
    signal y_count       : integer := 0;
 
-   signal exp_input  : integer := 0;
-   signal cur_input  : integer := 0;
-   signal exp_output : integer := 0;
-   signal cur_output : integer := 0;
-   
-   signal fb_fill_count    : integer := 0;
-   signal fb_empty_count   : integer := 0;
+   signal y2_int_last   : integer := 0;
+   signal dy_change     : boolean := false;
 
-   signal fb_lines_filled    : integer := 0;
-   signal fb_lines_emptied    : integer := 0;
-   signal fb_lines_rel_emptied    : integer := 0;
+   -- Counters
+   signal exp_input     : integer := 0;
+   signal cur_input     : integer := 0;
+   signal exp_output    : integer := 0;
+   signal cur_output    : integer := 0;
   
 
 begin
@@ -139,26 +136,32 @@ begin
    sr_width_reg   <= sr_width;
    sr_height_reg  <= sr_height;
 
-   scaling_factor <= to_integer(tx_width_reg/rx_width_reg);
-   exp_input <= g_rx_video_width*g_rx_video_height;
-   exp_output <= g_tx_video_width*g_tx_video_height;
+   exp_input      <= g_rx_video_width*g_rx_video_height;
+   exp_output     <= g_tx_video_width*g_tx_video_height;
    
-   -- Asseart ready out
-   --scaler_ready_o <= (scaler_ready_i or not scaler_valid_o) and fsm_ready;
 
    p_fsm : process(clk_i) is
       variable v_count : integer := 0;
    begin
       if rising_edge(clk_i) then
+         -- Reset valid_o
+         fb_valid_reg <= '0';
+
          case(state) is
+
             when s_idle => 
-               scaler_ready_o <= '1';
+               scaler_ready_o       <= '1';
+               cur_input            <= 0;
+               cur_output           <= 0;
+               scaler_endofpacket_o <= '0';
+
                if scaler_ready_o = '1' and scaler_valid_i = '1' then
                   if scaler_startofpacket_i = '1' then
                      fb_wr_en_reg   <= '1';
                      state          <= s_pre_fill_fb;
                   end if;
                end if;
+
 
             when s_pre_fill_fb =>
                -- Pre-fill framebuffer before starting the scaler
@@ -168,84 +171,114 @@ begin
                      scaler_ready_o <= '0';
                      fb_wr_en_reg   <= '1';
                      fb_wr_addr_reg <= fb_wr_addr_reg + 1;
-                     fb_fill_count  <= fb_fill_count + 1;
-                     state          <= s_comp_fill_fb;
+                     cur_input      <= cur_input + 1;
+                     state          <= s_finish_fill_fb;
                   else
                      -- Fill framebuffer
                      scaler_ready_o <= '1';
                      fb_wr_en_reg   <= '1';
                      fb_wr_addr_reg <= fb_wr_addr_reg + 1;
-                     fb_fill_count  <= fb_fill_count + 1;
+                     cur_input      <= cur_input + 1;
                   end if;
                end if;
-               fb_lines_filled <= fb_wr_addr_reg/(g_rx_video_width-1);
 
-            when s_comp_fill_fb =>
+
+            when s_finish_fill_fb =>
                -- Fill the last data recieved after ready latency of 1
                if scaler_valid_i = '1' then
-                  if fb_wr_addr_reg = (g_rx_video_width*C_LINE_BUFFERS)-1 then
-                     fb_wr_en_reg   <= '0';
-                     fb_wr_addr_reg <= 0;
-                     state          <= s_process;
-                  else
-                     fb_wr_en_reg   <= '1';
+                  fb_wr_en_reg   <= '0';
+                  fb_wr_addr_reg <= 0 when (fb_wr_addr_reg = (g_rx_video_width*C_LINE_BUFFERS)-1) else fb_wr_addr_reg + 1;
+                  cur_input      <= cur_input + 1;
+
+                  -- Upscaling
+                  state <= s_upscale;
+                  if interpolate = true then
+                     cur_output     <= cur_output + 1;
+                     fb_valid_reg   <= '1';
                   end if;
                end if;
-               fb_lines_filled <= fb_wr_addr_reg/(g_rx_video_width-1);
 
-            when s_process =>
-               -- Start the interpolation process
+
+            when s_upscale =>
+               -- Upscaling process
                if scaler_ready_i = '1' then
-                  interpolate <= true;
+                  interpolate    <= true;
+                  cur_output     <= cur_output + 1;
                   scaler_ready_o <= '0';
                   fb_wr_en_reg   <= '0';
 
-                  fb_lines_rel_emptied <= fb_lines_emptied/scaling_factor;
-                  if fb_lines_filled < fb_lines_rel_emptied then
+                  if cur_output >= 6 then
+                     -- First data on output
+                     -- Need +6 because delay through scaler is 6 clock cycles
+                     fb_valid_reg <= '1';
+                     scaler_startofpacket_o <= '1' when cur_output = 7 else '0';
+                  end if;
+
+
+                  if dy_change and (cur_input < exp_input) then
+                     -- One line in framebuffer has been processed, ready to be refilled
                      scaler_ready_o <= '1';
                      fb_wr_en_reg   <= '1';
-                     state <= s_process_fill;
+                     interpolate    <= false;
+                     state          <= s_upscale_and_fill;
                   end if;
-                  fb_lines_filled <= fb_wr_addr_reg/(g_rx_video_width-1);
+
+                  if cur_output >= exp_output+3 then
+                     -- Done processing
+                     interpolate <= false;
+                  end if;
+
+                  if cur_output >= exp_output+6 then
+                     -- Last data on output
+                     -- Need +6 because delay through scaler is 6 clock cycles
+                     fb_valid_reg   <= '0';
+                     scaler_endofpacket_o <= '1';
+                     state          <= s_idle;
+                  end if;
                else
                   interpolate <= false;
                end if;
 
 
-            when s_process_fill =>
-               -- Fill and process
+            when s_upscale_and_fill =>
+               -- Fill one line in framebuffer while upscaling
                if scaler_ready_o = '1' and scaler_valid_i = '1' then
-                  scaler_ready_o <= '1';
-                  fb_wr_en_reg   <= '1';
-                  fb_wr_addr_reg <= fb_wr_addr_reg + 1;
-                  fb_fill_count  <= fb_fill_count + 1;
+                  if scaler_ready_i = '1' then
+                     interpolate    <= true;
+                     scaler_ready_o <= '1';
+                     fb_wr_en_reg   <= '1';
+                     fb_wr_addr_reg <= 0 when (fb_wr_addr_reg = (g_rx_video_width*C_LINE_BUFFERS)-1) else fb_wr_addr_reg + 1;
+                     cur_input      <= cur_input + 1;
 
-                  fb_lines_rel_emptied <= fb_lines_emptied/scaling_factor;
-                  fb_lines_filled <= fb_wr_addr_reg/(g_rx_video_width-1);
+                     v_count := v_count + 1;
+                     if v_count >= 2 then
+                        -- 2 clock cycles delay from fb_rd_addr is set to data is on output
+                        fb_valid_reg   <= '1';
+                        cur_output     <= cur_output + 1;
+                     end if;
 
-                  if fb_lines_filled >= fb_lines_rel_emptied then
-                     scaler_ready_o <= '0';
-                     state <= s_process;
+                     if v_count = g_rx_video_width-1 then
+                        -- One line has been filled.
+                        -- Ready latency of 1 on Avalon ST-video
+                        scaler_ready_o <= '0';
+                        v_count        := 0;
+                        state          <= s_finish_fill_fb;
+                     end if;
+                  else
+                     interpolate <= false;
                   end if;
                end if;
 
-               if g_rx_video_width < g_tx_video_width then
-                  -- Upscaling
-                  -- Cannot write before the fb_addr has been read
-                  -- It is faster to fill the fb than to empty it
-               else
-                  -- Downscaling
-                  -- Cannot read before the fb_addr has been written
-                  -- It is faster to empty the fb than to fill it
-               end if;
-               
 
          end case;
 
-         fb_wr_en_i <= fb_wr_en_reg;
-         fb_wr_addr_i <= fb_wr_addr_reg;
-         fb_data_i <= scaler_data_i;
+         -- Connect registers
+         fb_wr_en_i     <= fb_wr_en_reg;
+         fb_wr_addr_i   <= fb_wr_addr_reg;
+         fb_data_i      <= scaler_data_i;
+         scaler_valid_o <= fb_valid_reg;
 
+         -- Handle reset
          if sreset_i = '1' then
             state <= s_idle;
          end if;
@@ -258,33 +291,45 @@ begin
    begin
       if rising_edge(clk_i) then
          if interpolate then
-            dx <= resize(x_count*sr_width_reg, dx'high, dx'low);
-            dy <= resize(y_count*sr_height_reg, dy'high, dy'low);
+            --dx <= resize(x_count*sr_width_reg, dx'high, dx'low);
+            --dy <= resize(y_count*sr_height_reg, dy'high, dy'low);
+            dx <= resize((x_count*sr_width_reg) + (0.5 * (1 - 1*sr_width_reg)), dx'high, dx'low);
+            dy <= resize((y_count*sr_height_reg) + (0.5 * (1 - 1*sr_height_reg)), dy'high, dy'low);
 
             dx_reg <= dx;
             dy_reg <= dy;
 
+            dx_int <= to_integer(dx_reg);
+
+            x1_int <= 0 when dx_int = 0 else dx_int - 1;
+            x2_int <= dx_int;
+
             -- Next pixel in target frame
             x_count <= x_count + 1;
-            fb_empty_count <= fb_empty_count + 1;
             
             -- Check if a row in target frame is completed
             if x_count = g_tx_video_width-1 then
                x_count <= 0;
                y_count <= y_count + 1;
-               fb_lines_emptied <= fb_lines_emptied + 1 when ((dy_int mod 1 = 0) or (dy_int mod 2 = 0)) else fb_lines_emptied;
             end if;
 
             -- Check if all rowns in line buffer is completed
             if dy_reg >= C_LINE_BUFFERS then
-               y_count <= 0;
-               dy_int <= 0;
+               y_count  <= 0;
+               dy_int   <= 0;
             else
                dy_int <= to_integer(dy_reg);
             end if;
 
-            dx_int <= to_integer(dx_reg);
-            fb_rd_addr_i <= g_rx_video_width*dy_int + dx_int;
+            y1_int <= 0 when dy_int = 0 else dy_int - 1;
+            y2_int <= dy_int;
+
+            --fb_rd_addr_i   <= g_rx_video_width*dy_int + dx_int;
+
+            -- Check if scaler is done with a framebuffer line 
+            y2_int_last <= y2_int;
+            
+            dy_change   <= true when y2_int_last /= y2_int else false; 
          end if;
 
          scaler_data_o <= fb_data_o;

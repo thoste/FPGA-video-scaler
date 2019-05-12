@@ -31,22 +31,22 @@ add wave -noupdate -expand -group {Framebuffer read}        -radix unsigned   -l
 add wave -noupdate -expand -group {Framebuffer read}        -radix unsigned   -label fb_data_o      /tb_scaler/i_scaler/fb_data_o
 
 # X
-#add wave -noupdate -expand -group {X} -radix unsigned    -label x_count             /tb_scaler/i_scaler/x_count
-#add wave -noupdate -expand -group {X} -radix ufixed      -label dx                  /tb_scaler/i_scaler/dx
+add wave -noupdate -expand -group {X} -radix unsigned    -label x_count             /tb_scaler/i_scaler/x_count
+add wave -noupdate -expand -group {X} -radix ufixed      -label dx                  /tb_scaler/i_scaler/dx
+add wave -noupdate -expand -group {X} -radix ufixed      -label dx_reg              /tb_scaler/i_scaler/dx_reg
+add wave -noupdate -expand -group {X} -radix unsigned    -label dx_int              /tb_scaler/i_scaler/dx_int
+add wave -noupdate -expand -group {X} -radix unsigned    -label x1                  /tb_scaler/i_scaler/x1_int
+add wave -noupdate -expand -group {X} -radix unsigned    -label x2                  /tb_scaler/i_scaler/x2_int
 
 # Y
-#add wave -noupdate -expand -group {Y} -radix unsigned    -label y_count 	         /tb_scaler/i_scaler/y_count
-#add wave -noupdate -expand -group {Y} -radix ufixed      -label dy 		            /tb_scaler/i_scaler/dy
-
-# SR
-#add wave -noupdate -expand -group {SR} -radix ufixed     -label vid_width_ufixed 	/tb_scaler/i_scaler/sr_width_reg
-#add wave -noupdate -expand -group {SR} -radix ufixed     -label vid_width_ufixed    /tb_scaler/i_scaler/sr_height_reg
-
-# dy
-add wave -noupdate -expand -group {dy} -radix unsigned  sim:/tb_scaler/i_scaler/dy
-add wave -noupdate -expand -group {dy} -radix unsigned  sim:/tb_scaler/i_scaler/dy_int
-add wave -noupdate -expand -group {dy} -radix unsigned  sim:/tb_scaler/i_scaler/dy_int_last
-add wave -noupdate -expand -group {dy} -radix unsigned  sim:/tb_scaler/i_scaler/dy_change
+add wave -noupdate -expand -group {Y} -radix unsigned    -label y_count 	         /tb_scaler/i_scaler/y_count
+add wave -noupdate -expand -group {Y} -radix ufixed      -label dy 		            /tb_scaler/i_scaler/dy
+add wave -noupdate -expand -group {Y} -radix ufixed      -label dy_reg              /tb_scaler/i_scaler/dy_reg
+add wave -noupdate -expand -group {Y} -radix unsigned    -label dy_int              /tb_scaler/i_scaler/dy_int
+add wave -noupdate -expand -group {Y} -radix unsigned    -label y1                  /tb_scaler/i_scaler/y1_int
+add wave -noupdate -expand -group {Y} -radix unsigned    -label y2                  /tb_scaler/i_scaler/y2_int
+add wave -noupdate -expand -group {Y} -radix unsigned    -label y2_int_last         /tb_scaler/i_scaler/y2_int_last
+add wave -noupdate -expand -group {Y} -radix unsigned    -label dy_change           /tb_scaler/i_scaler/dy_change
 
 # debug
 add wave -position end  sim:/tb_scaler/i_scaler/exp_input

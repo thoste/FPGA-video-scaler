@@ -31,4 +31,4 @@ set compdirectives "-2008 -work $lib_name"
 
 eval vcom  $compdirectives  $simple_dpram_part_path/src/my_fixed_pkg.vhd
 eval vcom  $compdirectives  $simple_dpram_part_path/src/simple_dpram.vhd
-eval vcom  $compdirectives  $simple_dpram_part_path/src/scaler.vhd
+eval vcom  $compdirectives  $simple_dpram_part_path/src/scaler_bilinear.vhd
