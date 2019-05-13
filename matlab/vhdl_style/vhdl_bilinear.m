@@ -13,7 +13,6 @@ tx_video_height = 12;
 sr_y = 1/(tx_video_height/rx_video_height);
 sr_x = 1/(tx_video_width/rx_video_width);
 
-fb_addr = 0;
 pixel_count = 0;
 
 x_count = 0;
@@ -55,10 +54,8 @@ while pixel_count < (tx_video_width*tx_video_height)
     else
         y1 = y2 - 1;
     end
-    
-    fb_addr = rx_video_width*floor(dy) + floor(dx);
        
-    fprintf('pixel: %i | dx: %f | dy: %f | fb_addr: %i\n', pixel_count, dx, dy, fb_addr);
+    fprintf('pixel: %i \n dx: %f | dy: %f \n', pixel_count, dx, dy);
     fprintf(' x1: %i | x2: %i\n y1: %i | y2: %i\n', x1, x2, y1, y2);
     pixel_count = pixel_count + 1;
     

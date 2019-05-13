@@ -41,14 +41,13 @@ begin
       sreset_i          => source(0),
 
       scaler_valid_i          => source(1),
-      scaler_ready_o          => source(2),
+      scaler_ready_i          => source(2),
       scaler_startofpacket_i  => source(3),
       scaler_endofpacket_i    => source(4),
       scaler_data_i           => source(34 downto 5),
 
-
       scaler_valid_o          => sink(0),
-      scaler_ready_i          => sink(1),
+      scaler_ready_o          => sink(1),
       scaler_startofpacket_o  => sink(2),
       scaler_endofpacket_o    => sink(3),
       scaler_data_o           => sink(33 downto 4)

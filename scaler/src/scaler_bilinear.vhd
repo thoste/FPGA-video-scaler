@@ -13,6 +13,7 @@
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
+--use ieee.fixed_pkg.all;
 
 use work.my_fixed_pkg.all;
 
@@ -72,28 +73,44 @@ architecture scaler_arc of scaler is
    signal fb_wr_addr_i     : integer := 0;
    signal fb_wr_addr_reg   : integer := 0;
    signal fb_valid_reg     : std_logic := '0';
-   signal fb_data_o        : std_logic_vector(g_data_width-1 downto 0) := (others => '0');
-   signal fb_rd_addr_i     : integer := 0;
+   signal fb_data_a_o      : std_logic_vector(g_data_width-1 downto 0) := (others => '0');
+   signal fb_data_b_o      : std_logic_vector(g_data_width-1 downto 0) := (others => '0');
+   signal fb_data_c_o      : std_logic_vector(g_data_width-1 downto 0) := (others => '0');
+   signal fb_data_d_o      : std_logic_vector(g_data_width-1 downto 0) := (others => '0');
+   signal fb_rd_addr_a_i   : integer := 0;
+   signal fb_rd_addr_b_i   : integer := 0;
+   signal fb_rd_addr_c_i   : integer := 0;
+   signal fb_rd_addr_d_i   : integer := 0;
 
    -- Scaler
    signal interpolate      : boolean := false;
 
    -- Mapping function
+   signal x_count       : integer := 1; -- Needs to be 1 because of dx/dy algorithm
+   signal y_count       : integer := 1; -- Needs to be 1 because of dx/dy algorithm
    signal dx            : ufixed(15 downto -10) := (others => '0');
    signal dy            : ufixed(15 downto -10) := (others => '0');
    signal dx_reg        : ufixed(15 downto -10) := (others => '0');
    signal dy_reg        : ufixed(15 downto -10) := (others => '0');
-   signal dx_int        : integer := 0;
-   signal dy_int        : integer := 0;
-   signal x1_int        : integer := 0;
-   signal x2_int        : integer := 0;
-   signal y1_int        : integer := 0;
-   signal y2_int        : integer := 0;
-   signal x_count       : integer := 0;
-   signal y_count       : integer := 0;
+   
 
-   signal y2_int_last   : integer := 0;
+   signal x1_int        : integer := 1;
+   signal x2_int        : integer := 2;
+   signal y1_int        : integer := 1;
+   signal y2_int        : integer := 2;
+   signal pix1_int      : integer := 0;
+   signal pix2_int      : integer := 0;
+   signal pix3_int      : integer := 0;
+   signal pix4_int      : integer := 0;
+   signal pix1_data     : std_logic_vector(g_data_width-1 downto 0) := (others => '0');
+   signal pix2_data     : std_logic_vector(g_data_width-1 downto 0) := (others => '0');
+   signal pix3_data     : std_logic_vector(g_data_width-1 downto 0) := (others => '0');
+   signal pix4_data     : std_logic_vector(g_data_width-1 downto 0) := (others => '0');
+   
+   signal dy_int        : integer := 1;
+   signal dy_int_last   : integer := 1;
    signal dy_change     : boolean := false;
+   signal first_round   : boolean := true;
 
    -- Counters
    signal exp_input     : integer := 0;
@@ -103,7 +120,7 @@ architecture scaler_arc of scaler is
   
 
 begin
-   framebuffer : entity work.simple_dpram
+   framebuffer : entity work.multiport_ram
    generic map (
       g_ram_width    => g_data_width,
       g_ram_depth    => g_rx_video_width*C_LINE_BUFFERS,
@@ -117,8 +134,14 @@ begin
       wr_addr_i      => fb_wr_addr_i,
       wr_en_i        => fb_wr_en_i,
       -- Read
-      data_o         => fb_data_o,
-      rd_addr_i      => fb_rd_addr_i
+      data_a_o       => fb_data_a_o,
+      data_b_o       => fb_data_b_o,
+      data_c_o       => fb_data_c_o,
+      data_d_o       => fb_data_d_o,
+      rd_addr_a_i    => fb_rd_addr_a_i,
+      rd_addr_b_i    => fb_rd_addr_b_i,
+      rd_addr_c_i    => fb_rd_addr_c_i,
+      rd_addr_d_i    => fb_rd_addr_d_i
    );
 
    -- Calc scaling ratio
@@ -219,7 +242,7 @@ begin
                      -- One line in framebuffer has been processed, ready to be refilled
                      scaler_ready_o <= '1';
                      fb_wr_en_reg   <= '1';
-                     interpolate    <= false;
+                     interpolate    <= false; -- TODO: DO I NEED THIS????
                      state          <= s_upscale_and_fill;
                   end if;
 
@@ -291,48 +314,89 @@ begin
    begin
       if rising_edge(clk_i) then
          if interpolate then
-            --dx <= resize(x_count*sr_width_reg, dx'high, dx'low);
-            --dy <= resize(y_count*sr_height_reg, dy'high, dy'low);
             dx <= resize((x_count*sr_width_reg) + (0.5 * (1 - 1*sr_width_reg)), dx'high, dx'low);
             dy <= resize((y_count*sr_height_reg) + (0.5 * (1 - 1*sr_height_reg)), dy'high, dy'low);
 
             dx_reg <= dx;
             dy_reg <= dy;
 
-            dx_int <= to_integer(dx_reg);
-
-            x1_int <= 0 when dx_int = 0 else dx_int - 1;
-            x2_int <= dx_int;
-
             -- Next pixel in target frame
             x_count <= x_count + 1;
             
             -- Check if a row in target frame is completed
-            if x_count = g_tx_video_width-1 then
-               x_count <= 0;
+            if x_count = g_tx_video_width then
+               x_count <= 1;
                y_count <= y_count + 1;
             end if;
 
-            -- Check if all rowns in line buffer is completed
-            if dy_reg >= C_LINE_BUFFERS then
-               y_count  <= 0;
-               dy_int   <= 0;
+            -- Keep kernel within boundaries
+            if dx_reg < 1 then
+               x1_int <= 1;
+               x2_int <= 2;
+            elsif dx_reg > g_rx_video_width then
+               x1_int <= g_rx_video_width - 1;
+               x2_int <= g_rx_video_width;
             else
-               dy_int <= to_integer(dy_reg);
+               x1_int <= to_integer(dx_reg);
+               x2_int <= to_integer(dx_reg) + 1;
             end if;
 
-            y1_int <= 0 when dy_int = 0 else dy_int - 1;
-            y2_int <= dy_int;
+            -- Keep kernel within boundaries
+            if dy_reg < 1 then
+               dy_int   <= 1;
+               y1_int   <= 1;
+               y2_int   <= 2;
+            elsif dy_reg >= C_LINE_BUFFERS+1 then 
+               -- Start from beginning of framebuffer when both lines have been completed
+               y_count  <= 1;
+               dy_int   <= 1;
+               y1_int   <= 1;
+               y2_int   <= 2;
+            elsif dy_reg >= C_LINE_BUFFERS then
+               -- Special case when one line has completed but not the other one
+               dy_int   <= C_LINE_BUFFERS;
+               y1_int   <= C_LINE_BUFFERS;
+               y2_int   <= 1;
+            else
+               dy_int   <= to_integer(dy_reg);
+               y1_int   <= to_integer(dy_reg);
+               y2_int   <= to_integer(dy_reg) + 1;
+            end if;
 
-            --fb_rd_addr_i   <= g_rx_video_width*dy_int + dx_int;
+            -- Calculate framebuffer addresses for each pixel
+            pix1_int <= ((y1_int-1)*g_rx_video_width) + (x1_int - 1);
+            pix2_int <= ((y1_int-1)*g_rx_video_width) + (x2_int - 1);
+            pix3_int <= ((y2_int-1)*g_rx_video_width) + (x1_int - 1);
+            pix4_int <= ((y2_int-1)*g_rx_video_width) + (x2_int - 1);
 
-            -- Check if scaler is done with a framebuffer line 
-            y2_int_last <= y2_int;
-            
-            dy_change   <= true when y2_int_last /= y2_int else false; 
+            -- Read data from framebuffer
+            fb_rd_addr_a_i <= pix1_int;
+            fb_rd_addr_b_i <= pix2_int;
+            fb_rd_addr_c_i <= pix3_int;
+            fb_rd_addr_d_i <= pix4_int;
+
+            pix1_data <= fb_data_a_o;
+            pix2_data <= fb_data_b_o;
+            pix3_data <= fb_data_c_o;
+            pix4_data <= fb_data_d_o;
+
+            ---------------------------------------------------
+            -- MATLAB algorithm:
+            -- A_y1 = (x2 - dx)*A(y1,x1) + (dx - x1)*A(y1,x2);
+            -- A_y2 = (x2 - dx)*A(y2,x1) + (dx - x1)*A(y2,x2);
+            -- A = (y2 - dy)*A_y1 + (dy - y1)*A_y2;
+            ---------------------------------------------------
+
+            -- Check if scaler is done with a framebuffer line
+            dy_int_last <= dy_int;
+            dy_change   <= true when dy_int_last /= dy_int else false; 
          end if;
 
-         scaler_data_o <= fb_data_o;
+         -- Handle reset
+         if sreset_i = '1' then
+            x_count <= 1; -- Needs to be 1 because of dx/dy algorithm
+            y_count <= 1; -- Needs to be 1 because of dx/dy algorithm
+         end if;
       end if;
    end process p_reverse_mapping;
 
