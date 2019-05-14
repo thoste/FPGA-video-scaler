@@ -49,20 +49,20 @@ architecture scaler_arc of scaler is
    constant C_LINE_BUFFERS : integer := 4;
 
     --Scaling ratio
-   signal sr_width         : ufixed(7 downto -10) := (others => '0');
-   signal sr_height        : ufixed(7 downto -10) := (others => '0');
-   signal sr_width_reg     : ufixed(7 downto -10) := (others => '0');
-   signal sr_height_reg    : ufixed(7 downto -10) := (others => '0');
+   signal sr_width         : ufixed(32 downto -32) := (others => '0');
+   signal sr_height        : ufixed(32 downto -32) := (others => '0');
+   signal sr_width_reg     : ufixed(32 downto -32) := (others => '0');
+   signal sr_height_reg    : ufixed(32 downto -32) := (others => '0');
 
-   signal tx_width         : ufixed(11 downto -6) := (others => '0');
-   signal tx_height        : ufixed(11 downto -6) := (others => '0');
-   signal rx_width         : ufixed(11 downto -6) := (others => '0');
-   signal rx_height        : ufixed(11 downto -6) := (others => '0');
+   signal tx_width         : ufixed(32 downto -32) := (others => '0');
+   signal tx_height        : ufixed(32 downto -32) := (others => '0');
+   signal rx_width         : ufixed(32 downto -32) := (others => '0');
+   signal rx_height        : ufixed(32 downto -32) := (others => '0');
 
-   signal tx_width_reg     : ufixed(11 downto -6) := (others => '0');
-   signal tx_height_reg    : ufixed(11 downto -6) := (others => '0');
-   signal rx_width_reg     : ufixed(11 downto -6) := (others => '0');
-   signal rx_height_reg    : ufixed(11 downto -6) := (others => '0');
+   signal tx_width_reg     : ufixed(32 downto -32) := (others => '0');
+   signal tx_height_reg    : ufixed(32 downto -32) := (others => '0');
+   signal rx_width_reg     : ufixed(32 downto -32) := (others => '0');
+   signal rx_height_reg    : ufixed(32 downto -32) := (others => '0');
 
    -- Framebuffer
    signal fb_wr_en_i       : std_logic := '0';
@@ -79,10 +79,10 @@ architecture scaler_arc of scaler is
    signal interpolate      : boolean := false;
 
    -- Mapping function
-   signal dx            : ufixed(15 downto -10) := (others => '0');
-   signal dy            : ufixed(15 downto -10) := (others => '0');
-   signal dx_reg        : ufixed(15 downto -10) := (others => '0');
-   signal dy_reg        : ufixed(15 downto -10) := (others => '0');
+   signal dx            : ufixed(32 downto -32) := (others => '0');
+   signal dy            : ufixed(32 downto -32) := (others => '0');
+   signal dx_reg        : ufixed(32 downto -32) := (others => '0');
+   signal dy_reg        : ufixed(32 downto -32) := (others => '0');
    signal dx_int        : integer := 0;
    signal dy_int        : integer := 0;
    signal x_count       : integer := 0;
@@ -118,10 +118,10 @@ begin
    );
 
    -- Calc scaling ratio
-   rx_width       <= to_ufixed(g_rx_video_width, rx_width_reg);
-   rx_height      <= to_ufixed(g_rx_video_height, rx_width_reg);
-   tx_width       <= to_ufixed(g_tx_video_width, tx_width_reg);
-   tx_height      <= to_ufixed(g_tx_video_height, tx_width_reg);
+   rx_width       <= to_ufixed(g_rx_video_width, rx_width);
+   rx_height      <= to_ufixed(g_rx_video_height, rx_height);
+   tx_width       <= to_ufixed(g_tx_video_width, tx_width);
+   tx_height      <= to_ufixed(g_tx_video_height, tx_height);
    rx_width_reg   <= rx_width;
    rx_height_reg  <= rx_height;
    tx_width_reg   <= tx_width;
@@ -287,10 +287,10 @@ begin
    begin
       if rising_edge(clk_i) then
          if interpolate then
-            dx <= resize(x_count*sr_width_reg, dx'high, dx'low);
-            dy <= resize(y_count*sr_height_reg, dy'high, dy'low);
-            --dx <= resize((x_count*sr_width_reg) + (0.5 * (1 - 1*sr_width_reg)), dx'high, dx'low);
-            --dy <= resize((y_count*sr_height_reg) + (0.5 * (1 - 1*sr_height_reg)), dy'high, dy'low);
+            --dx <= resize(x_count*sr_width_reg, dx'high, dx'low);
+            --dy <= resize(y_count*sr_height_reg, dy'high, dy'low);
+            dx <= resize((x_count*sr_width_reg) + (0.5 * (1 - 1*sr_width_reg)), dx'high, dx'low);
+            dy <= resize((y_count*sr_height_reg) + (0.5 * (1 - 1*sr_height_reg)), dy'high, dy'low);
 
             dx_reg <= dx;
             dy_reg <= dy;

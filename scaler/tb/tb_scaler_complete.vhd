@@ -42,21 +42,21 @@ architecture func of tb_scaler_complete is
 
    -- Avalon-ST bus widths
    constant C_DATA_WIDTH      : natural := 8;
-   constant C_EMPTY_WIDTH     : natural := 4;
+   constant C_EMPTY_WIDTH     : natural := 1;
 
    -- FIFOs
    constant C_FIFO_DATA_WIDTH : natural := C_DATA_WIDTH + C_EMPTY_WIDTH + 2;
    constant C_FIFO_DATA_DEPTH : natural := 6;
 
    -- File I/O
-   constant c_INPUT_FILE   : string := "../data/grey_8bit_120x68.txt";
-   constant c_EXPECT_FILE  : string := "../data/grey_8bit_120x68.txt";
+   constant c_INPUT_FILE   : string := "../../data/lionking/lionking_ycbcr444_8bit_34.bin";
+   constant c_EXPECT_FILE  : string := "../../data/lionking/lionking_ycbcr444_8bit_68.bin";
    file     file_input     : text;
    file     file_expect    : text;
 
    -- Test data
-   constant C_RX_VIDEO_WIDTH  : natural := 120;
-   constant C_RX_VIDEO_HEIGHT : natural := 68;
+   constant C_RX_VIDEO_WIDTH  : natural := 60;
+   constant C_RX_VIDEO_HEIGHT : natural := 34;
    constant C_TX_VIDEO_WIDTH  : natural := 120;
    constant C_TX_VIDEO_HEIGHT : natural := 68;
    constant C_DATA_LENGTH     : natural := C_RX_VIDEO_WIDTH*C_RX_VIDEO_HEIGHT;
@@ -80,9 +80,10 @@ begin
       g_empty_width     => C_EMPTY_WIDTH,
       g_fifo_data_width => C_FIFO_DATA_WIDTH,
       g_fifo_data_depth => C_FIFO_DATA_DEPTH,
-      g_tx_video_width  => 4,
-      g_tx_video_height => 4,
-      g_tx_video_scaling_method => 0
+      g_rx_video_width  => C_RX_VIDEO_WIDTH,
+      g_rx_video_height => C_RX_VIDEO_HEIGHT,
+      g_tx_video_width  => C_TX_VIDEO_WIDTH,
+      g_tx_video_height => C_TX_VIDEO_HEIGHT
    );
 
 
@@ -92,7 +93,7 @@ begin
    p_main: process
       variable v_ctrl_pkt_array  : t_slv_array(0 to 1)(C_DATA_WIDTH-1 downto 0)                 := (others => (others => '0'));
       variable v_data_array      : t_slv_array(0 to C_DATA_LENGTH)(C_DATA_WIDTH-1 downto 0)   := (others => (others => '0'));
-      variable v_exp_data_array  : t_slv_array(0 to C_EXPECT_LENGTH)(C_DATA_WIDTH-1 downto 0) := (others => (others => '0'));
+      variable v_exp_data_array  : t_slv_array(0 to C_EXPECT_LENGTH-1)(C_DATA_WIDTH-1 downto 0) := (others => (others => '0'));
       variable v_empty           : std_logic_vector(C_EMPTY_WIDTH-1 downto 0) := (others => '0');
 
       variable v_num_test_loops  : natural := 0;
@@ -122,8 +123,8 @@ begin
    enable_log_msg(ID_LOG_HDR);
    enable_log_msg(ID_UVVM_SEND_CMD);
 
-   enable_log_msg(AVALON_ST_VVCT, 1, TX, ALL_MESSAGES);
-   enable_log_msg(AVALON_ST_VVCT, 1, RX, ALL_MESSAGES);
+   disable_log_msg(AVALON_ST_VVCT, 1, TX, ALL_MESSAGES);
+   disable_log_msg(AVALON_ST_VVCT, 1, RX, ALL_MESSAGES);
 
    enable_log_msg(AVALON_ST_VVCT, 1, TX, ID_BFM);
    enable_log_msg(AVALON_ST_VVCT, 1, TX, ID_PACKET_INITIATE);
@@ -197,7 +198,7 @@ begin
       --v_data_array(0)      := std_logic_vector(to_unsigned(0, C_DATA_WIDTH));
       --v_exp_data_array(0)  := std_logic_vector(to_unsigned(0, C_DATA_WIDTH));
       v_data_array(0)      := (3 downto 0 => '0', others => '1');
-      v_exp_data_array(0)  := (3 downto 0 => '0', others => '1');
+      --v_exp_data_array(0)  := (3 downto 0 => '0', others => '1');
 
 
       --------------------------------------------------
@@ -226,12 +227,11 @@ begin
       file_open(file_expect, c_EXPECT_FILE, read_mode);
 
       while not endfile(file_expect) loop
-         v_counter := v_counter + 1;
-
          -- Read expected output data and store to expect array
          readline(file_expect, v_file_expect_line);
          read(v_file_expect_line, v_file_data_expect);
          v_exp_data_array(v_counter) := v_file_data_expect;
+         v_counter := v_counter + 1;
       end loop;
       
       file_close(file_expect);
@@ -251,8 +251,8 @@ begin
 
       -- Start send and receive VVC
       avalon_st_send(AVALON_ST_VVCT, 1, v_data_array, v_empty, "Sending v_data_array");
-      --avalon_st_expect(AVALON_ST_VVCT, 1, v_exp_data_array, v_empty, "Checking data", ERROR);
-      avalon_st_receive(AVALON_ST_VVCT, 1, "Receiving");
+      avalon_st_expect(AVALON_ST_VVCT, 1, v_exp_data_array, v_empty, "Checking data", ERROR);
+      --avalon_st_receive(AVALON_ST_VVCT, 1, "Receiving");
       
 
       -- Wait for completion

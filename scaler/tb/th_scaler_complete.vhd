@@ -31,9 +31,10 @@ entity th_scaler_complete is
          g_empty_width              : natural;
          g_fifo_data_width          : natural;
          g_fifo_data_depth          : natural;
+         g_rx_video_width           : natural;
+         g_rx_video_height          : natural;
          g_tx_video_width           : natural;
-         g_tx_video_height          : natural;
-         g_tx_video_scaling_method  : natural
+         g_tx_video_height          : natural
       );
 end entity;
 
@@ -74,8 +75,7 @@ architecture struct of th_scaler_complete is
    signal source_valid_o             : std_logic := '0';
    signal source_ready_i             : std_logic;
 
-
-   constant C_CLK_PERIOD : time := 10 ns; -- 100 MHz
+   constant C_CLK_PERIOD      : time := 10 ns; -- 100 MHz
 begin
    -----------------------------------------------------------------------------
    -- Instantiate the concurrent procedure that initializes UVVM
@@ -85,35 +85,59 @@ begin
    -----------------------------------------------------------------------------
    -- Instantiate DUT
    -----------------------------------------------------------------------------
-   i_scaler: entity work.scaler_wrapper
-   generic map (
-      g_data_width      => g_data_width,
-      g_empty_width     => g_empty_width,
-      g_fifo_data_width => g_fifo_data_width,
-      g_fifo_data_depth => g_fifo_data_depth,
-      g_tx_video_width  => g_tx_video_width,
-      g_tx_video_height => g_tx_video_height,
-      g_tx_video_scaling_method => g_tx_video_scaling_method
+   --i_scaler: entity work.scaler_wrapper
+   --generic map (
+   --   g_data_width      => g_data_width,
+   --   g_empty_width     => g_empty_width,
+   --   g_fifo_data_width => g_fifo_data_width,
+   --   g_fifo_data_depth => g_fifo_data_depth,
+   --   g_tx_video_width  => g_tx_video_width,
+   --   g_tx_video_height => g_tx_video_height
+   --)
+   --port map (
+   --   clk_i             => clk_i,
+   --   sreset_i          => sreset_i,
+
+   --   -- x -> scaler
+   --   data_i            => data_i,
+   --   ready_o           => ready_o,
+   --   valid_i           => valid_i,
+   --   empty_i           => empty_i,
+   --   endofpacket_i     => endofpacket_i,
+   --   startofpacket_i   => startofpacket_i,
+      
+   --   -- scaler -> x
+   --   data_o            => data_o,
+   --   ready_i           => ready_i,
+   --   valid_o           => valid_o,
+   --   empty_o           => empty_o,
+   --   endofpacket_o     => endofpacket_o,
+   --   startofpacket_o   => startofpacket_o
+   --);
+
+   i_scaler: entity work.scaler
+   generic map(
+      g_data_width         => g_data_width, 
+      g_rx_video_width     => g_rx_video_width,
+      g_rx_video_height    => g_rx_video_height,
+      g_tx_video_width     => g_tx_video_width,
+      g_tx_video_height    => g_tx_video_height
    )
-   port map (
+   port map(
       clk_i             => clk_i,
       sreset_i          => sreset_i,
 
-      -- x -> scaler
-      data_i            => data_i,
-      ready_o           => ready_o,
-      valid_i           => valid_i,
-      empty_i           => empty_i,
-      endofpacket_i     => endofpacket_i,
-      startofpacket_i   => startofpacket_i,
-      
-      -- scaler -> x
-      data_o            => data_o,
-      ready_i           => ready_i,
-      valid_o           => valid_o,
-      empty_o           => empty_o,
-      endofpacket_o     => endofpacket_o,
-      startofpacket_o   => startofpacket_o
+      scaler_startofpacket_i  => startofpacket_i,
+      scaler_endofpacket_i    => endofpacket_i,
+      scaler_data_i           => data_i,
+      scaler_valid_i          => valid_i,
+      scaler_ready_o          => ready_o,
+
+      scaler_startofpacket_o  => startofpacket_o,
+      scaler_endofpacket_o    => endofpacket_o,
+      scaler_data_o           => data_o,
+      scaler_valid_o          => valid_o,
+      scaler_ready_i          => ready_i
    );
 
 

@@ -3,7 +3,9 @@ clc;
 addpath('functions');
 
 % Read data from binary file
-read_bin = bin2img('..\data\file.bin', 1280, 720, true, 8);
+read_bin = bin2img('..\data\vhdl\lionking_vhdl_540_to_1080.bin', 1920, 1080, true, 8);
 
 % Create image from binary file
-imwrite(ycbcr2rgb(read_bin), '..\img\out.png');
+imwrite(ycbcr2rgb(read_bin), '..\img\vhdl\lionking_vhdl_540_to_1080_new.png');
+
+imshow(ycbcr2rgb(read_bin));

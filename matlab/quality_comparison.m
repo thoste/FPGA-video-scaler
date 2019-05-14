@@ -2,9 +2,9 @@ clear all;
 clc;
 
 % Read image files
-orig_img = imread('..\img\rgb_720.png');
-matlab_img = imread('..\img\rgb_720.png');
-vhdl_img = imread('..\img\rgb_720.png');
+orig_img = imread('..\img\orig\lionking_rgb_1080.png');
+matlab_img = imread('..\img\matlab\lionking_matlab_720_to_1080.png');
+vhdl_img = imread('..\img\vhdl\lionking_vhdl_720_to_1080.png');
 
 
 % Calculate PSN and SNR
