@@ -7,7 +7,7 @@ num_line_buffers = 4;
 rx_video_width = 6;
 rx_video_height = 6;
 
-tx_video_width = 10;
+tx_video_width = 10;c
 tx_video_height = 10;
 
 sf_y = 1/(tx_video_height/rx_video_height);

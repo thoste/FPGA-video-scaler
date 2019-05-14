@@ -41,7 +41,8 @@ function output_image = bilinear(input_image, scale_factor)
             end
             y2 = y1 + 1;
             
-            fprintf(' dx: %f | dy: %f \n x1: %i | x2: %i \n y1: %i | y2: %i \n',dx, dy, x1, x2, y1, y2);
+            % Debug printing
+            %fprintf(' dx: %f | dy: %f \n x1: %i | x2: %i \n y1: %i | y2: %i \n',dx, dy, x1, x2, y1, y2);
             
             Ax_y1 = (x2 - dx)*A(y1,x1) + (dx - x1)*A(y1,x2);
             Ax_y2 = (x2 - dx)*A(y2,x1) + (dx - x1)*A(y2,x2);
