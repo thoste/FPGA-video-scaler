@@ -3,12 +3,7 @@
 function output = bin2img(filename, width, height, colours, bits)
     % Read data from file
     fileID = fopen(filename);
-    if colours
-        num = (width*height*bits*4);
-    else
-        num = ((width*height*bits)+(width*height)-1);
-    end
-    
+    num = (width*height*(bits*3+2) - 2);
     data_serial = fread(fileID,[1 num], '*char');
     
     % Convert data to characters

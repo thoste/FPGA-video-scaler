@@ -8,7 +8,11 @@ function output = img2bin(img, filename, bits)
             for z = colors:-1:1
                 fprintf(fileID,dec2bin(img(y,x,z),bits));
             end
-            fprintf(fileID,'\n');
+            if (y == height) && (x == width) && (z == 1)
+                % No new line
+            else
+                fprintf(fileID,'\n');
+            end
         end
     end
     fclose(fileID);

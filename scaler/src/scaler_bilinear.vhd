@@ -52,18 +52,11 @@ architecture scaler_arc of scaler is
     --Scaling ratio
    signal sr_width         : ufixed(7 downto -10) := (others => '0');
    signal sr_height        : ufixed(7 downto -10) := (others => '0');
-   signal sr_width_reg     : ufixed(7 downto -10) := (others => '0');
-   signal sr_height_reg    : ufixed(7 downto -10) := (others => '0');
 
    signal tx_width         : ufixed(11 downto -6) := (others => '0');
    signal tx_height        : ufixed(11 downto -6) := (others => '0');
    signal rx_width         : ufixed(11 downto -6) := (others => '0');
    signal rx_height        : ufixed(11 downto -6) := (others => '0');
-
-   signal tx_width_reg     : ufixed(11 downto -6) := (others => '0');
-   signal tx_height_reg    : ufixed(11 downto -6) := (others => '0');
-   signal rx_width_reg     : ufixed(11 downto -6) := (others => '0');
-   signal rx_height_reg    : ufixed(11 downto -6) := (others => '0');
 
    -- Framebuffer
    signal fb_wr_en_i       : std_logic := '0';
@@ -145,19 +138,13 @@ begin
    );
 
    -- Calc scaling ratio
-   rx_width       <= to_ufixed(g_rx_video_width, rx_width_reg);
-   rx_height      <= to_ufixed(g_rx_video_height, rx_width_reg);
-   tx_width       <= to_ufixed(g_tx_video_width, tx_width_reg);
-   tx_height      <= to_ufixed(g_tx_video_height, tx_width_reg);
-   rx_width_reg   <= rx_width;
-   rx_height_reg  <= rx_height;
-   tx_width_reg   <= tx_width;
-   tx_height_reg  <= tx_height;
+   rx_width       <= to_ufixed(g_rx_video_width, rx_width);
+   rx_height      <= to_ufixed(g_rx_video_height, rx_width);
+   tx_width       <= to_ufixed(g_tx_video_width, tx_width);
+   tx_height      <= to_ufixed(g_tx_video_height, tx_width);
    
-   sr_width       <= resize(1/(tx_width_reg/rx_width_reg), sr_width'high, sr_width'low);  
-   sr_height      <= resize(1/(tx_height_reg/rx_height_reg), sr_height'high, sr_height'low);
-   sr_width_reg   <= sr_width;
-   sr_height_reg  <= sr_height;
+   sr_width       <= resize(1/(tx_width/rx_width), sr_width'high, sr_width'low);  
+   sr_height      <= resize(1/(tx_height/rx_height), sr_height'high, sr_height'low);
 
    exp_input      <= g_rx_video_width*g_rx_video_height;
    exp_output     <= g_tx_video_width*g_tx_video_height;
@@ -314,8 +301,8 @@ begin
    begin
       if rising_edge(clk_i) then
          if interpolate then
-            dx <= resize((x_count*sr_width_reg) + (0.5 * (1 - 1*sr_width_reg)), dx'high, dx'low);
-            dy <= resize((y_count*sr_height_reg) + (0.5 * (1 - 1*sr_height_reg)), dy'high, dy'low);
+            dx <= resize((x_count*sr_width) + (0.5 * (1 - 1*sr_width)), dx'high, dx'low);
+            dy <= resize((y_count*sr_height) + (0.5 * (1 - 1*sr_height)), dy'high, dy'low);
 
             dx_reg <= dx;
             dy_reg <= dy;
