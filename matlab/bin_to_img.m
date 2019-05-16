@@ -3,7 +3,7 @@ clc;
 addpath('functions');
 
 image = 'lionking';
-in_height = 360;
+in_height = 720;
 out_width = 1920;
 out_height = 1080;
 scaling_method = 'nearest';

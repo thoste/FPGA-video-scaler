@@ -2,7 +2,7 @@ clear all;
 clc;
 
 image = 'lionking';
-in_height = 360;
+in_height = 720;
 out_height = 1080;
 scaling_method = 'nearest';
 bit = 8;

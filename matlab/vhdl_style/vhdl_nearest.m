@@ -7,11 +7,11 @@ num_line_buffers = 4;
 rx_video_width = 6;
 rx_video_height = 6;
 
-tx_video_width = 10;c
-tx_video_height = 10;
+tx_video_width = 9;
+tx_video_height = 9;
 
-sf_y = 1/(tx_video_height/rx_video_height);
-sf_x = 1/(tx_video_width/rx_video_width);
+sr_y = 1/(tx_video_height/rx_video_height);
+sr_x = 1/(tx_video_width/rx_video_width);
 
 fb_addr = 0;
 pixel_count = 0;
@@ -22,8 +22,8 @@ y_count = 0;
 done_flag = false;
 
 while pixel_count < (tx_video_width*tx_video_height)
-    dx = x_count*sf_x;
-    dy = y_count*sf_y;
+    dx = (x_count*sr_x) + (0.5 * (1 - 1*sr_x));
+    dy = (y_count*sr_y) + (0.5 * (1 - 1*sr_y));
     
     x_count = x_count + 1;
     

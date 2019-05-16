@@ -1,7 +1,7 @@
 set_global_assignment -name TOP_LEVEL_ENTITY syntest_scaler_nearest
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 18.1.0
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "20:55:56  MAY 15, 2019"
-set_global_assignment -name LAST_QUARTUS_VERSION "18.1.0 Pro Edition"
+set_global_assignment -name LAST_QUARTUS_VERSION "19.1.0 Pro Edition"
 set_global_assignment -name VHDL_FILE ../../scaler/syntest/syntest_scaler_nearest.vhd
 set_global_assignment -name VHDL_FILE ../../scaler/src/simple_dpram.vhd
 set_global_assignment -name VHDL_FILE ../../scaler/src/scaler_nearest.vhd
