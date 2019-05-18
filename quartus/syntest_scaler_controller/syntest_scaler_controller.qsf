@@ -1,7 +1,7 @@
 set_global_assignment -name TOP_LEVEL_ENTITY syntest_scaler_controller
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 18.1.0
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "16:06:12  APRIL 03, 2019"
-set_global_assignment -name LAST_QUARTUS_VERSION "18.1.0 Pro Edition"
+set_global_assignment -name LAST_QUARTUS_VERSION "19.1.0 Pro Edition"
 set_global_assignment -name SDC_FILE ../syntest_timing.sdc
 set_global_assignment -name VHDL_FILE ../../scaler/syntest/syntest_scaler_controller.vhd
 set_global_assignment -name VHDL_FILE ../../scaler/src/scaler_controller.vhd
@@ -18,3 +18,4 @@ set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 
 set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
 set_global_assignment -name VHDL_INPUT_VERSION VHDL_2008
 set_global_assignment -name VHDL_SHOW_LMF_MAPPING_MESSAGES OFF
+set_global_assignment -name FLOW_DISABLE_ASSEMBLER ON

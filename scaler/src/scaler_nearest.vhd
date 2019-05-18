@@ -271,32 +271,27 @@ begin
 
 
 
-   p_reverse_mapping : process(clk_i) is
+   p_nearest : process(clk_i) is
    begin
       if rising_edge(clk_i) then
          if interpolate then
-            --------------------------------------------------------------------------------
-            --dx <= resize((x_count*sr_width) + (0.5 * (1 - sr_width)), dx'high, dx'low);
-            --dy <= resize((y_count*sr_height) + (0.5 * (1 - sr_height)), dy'high, dy'low);
-            --------------------------------------------------------------------------------
-
             -- Make x/y_count ufixed
             x_count_ufx       <= to_ufixed(x_count, 11, 0);
             y_count_ufx       <= to_ufixed(y_count, 11, 0);
             x_count_ufx_reg   <= x_count_ufx;
             y_count_ufx_reg   <= y_count_ufx;
 
-            -- DSP multiplication
+            -- Fixed point DSP multiplication of variable part of dx/dy calculation
             dx_1     <= x_count_ufx_reg * scaling_ratio_reg;
             dy_1     <= y_count_ufx_reg * scaling_ratio_reg;
             dx_1_reg <= dx_1;
             dy_1_reg <= dy_1;
 
-            -- Constant
+            -- Constant part of dx/dy calculation
             dxy_2       <= to_ufixed(0.5, 1, -2) * (1 - resize(scaling_ratio_reg, 12, -14));
             dxy_2_reg   <= dxy_2;
 
-            -- Calculate dx/dy
+            -- Final dx/dy calculation
             dx       <= dx_1_reg + dxy_2_reg;
             dy       <= dy_1_reg + dxy_2_reg;
             dx_reg   <= dx;
@@ -313,21 +308,28 @@ begin
 
             -- Check if all rowns in line buffer is completed
             if dy_reg >= C_LINE_BUFFERS then
+               -- Reset y_count for frambuffer addresses
                y_count           <= 0;
                y_count_ufx       <= to_ufixed(0, 11, 0);
                y_count_ufx_reg   <= to_ufixed(0, 11, 0);
+               -- Variable part of dx/dy is zero, use only constant part
                dy                <= resize(dxy_2_reg, dy'high, dy'low);
                dy_reg            <= resize(dxy_2_reg, dy'high, dy'low);
                dy_int            <= 0;
+               -- Unable to set dx_1/dy_1 to zero, as this ruins fixed point DSP implementation
+               -- This is instead handled by setting y_count_ufx/y_count_ufx_reg to zero. 
+               -- This will give wrong dx_1/dy_1 calculation on current clock cycle, 
+               -- but this is fixed by forcing dy_int <= 0 and having y_count set to zero.
             else
                dy_int <= to_integer(dy_reg);
             end if;
 
-            -- Use floor to get dx/dy to integer for fb_rd_addr
+            -- Use floor from my_fixed_pkg to get dx/dy to integer for fb_rd_addr
             dx_int      <= to_integer(dx_reg);
             dx_int_reg  <= dx_int;
             dy_int_reg  <= dy_int;
 
+            -- Find nearest neighbor address for framebuffer
             fb_rd_addr_i <= g_rx_video_width*dy_int_reg + dx_int_reg;
 
             -- Check if scaler is done with a framebuffer line
@@ -337,7 +339,7 @@ begin
 
          scaler_data_o <= fb_data_o;
       end if;
-   end process p_reverse_mapping;
+   end process p_nearest;
 
 
 
@@ -345,6 +347,7 @@ begin
    begin
       if rising_edge(clk_i) then
          -- Calc scaling ratio
+         -- Needs to be inside clocked process to become registers for fixed point DSP implementation
          rx_height         <= to_ufixed(g_rx_video_height, rx_height);
          tx_height         <= to_ufixed(g_tx_video_height, tx_height);
          rx_height_reg     <= rx_height;

@@ -23,25 +23,25 @@ entity syntest_simple_dpram is
 end entity syntest_simple_dpram;
 
 architecture rtl of syntest_simple_dpram is
-   signal source : std_logic_vector(52 downto 0) := (others => '0');
-   signal sink   : std_logic_vector(19  downto 0) := (others => '0');
+   signal source : std_logic_vector(56 downto 0) := (others => '0');
+   signal sink   : std_logic_vector(23  downto 0) := (others => '0');
 
 begin
 
    i_mut : entity work.simple_dpram
    generic map(
-      g_ram_width    => 20,
-      g_ram_depth    => 23040,
-      g_ramstyle     => "no_rw_check, M20K",
+      g_ram_width    => 24,
+      g_ram_depth    => 15360,
+      g_ramstyle     => "M20K",
       g_output_reg   => true
    )
    port map(
       clk_i       => clk_i,
       wr_en_i     => source(0),
-      data_i      => source(20 downto 1),
-      wr_addr_i   => to_integer(unsigned(source(36 downto 21))),
-      rd_addr_i   => to_integer(unsigned(source(52 downto 37))),
-      data_o      => sink(19 downto 0)
+      data_i      => source(24 downto 1),
+      wr_addr_i   => to_integer(unsigned(source(40 downto 25))),
+      rd_addr_i   => to_integer(unsigned(source(56 downto 41))),
+      data_o      => sink(23 downto 0)
    );
 
    i_source : entity work.atv_dummy_source

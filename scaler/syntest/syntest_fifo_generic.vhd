@@ -23,15 +23,15 @@ entity syntest_fifo_generic is
 end entity syntest_fifo_generic;
 
 architecture rtl of syntest_fifo_generic is
-   signal source : std_logic_vector(88 downto 0) := (others => '0');
-   signal sink   : std_logic_vector(88 downto 0) := (others => '0');
+   signal source : std_logic_vector(26 downto 0) := (others => '0');
+   signal sink   : std_logic_vector(26 downto 0) := (others => '0');
 
 begin
 
    i_mut : entity work.fifo_generic
    generic map(
-      g_width        => 86,
-      g_depth        => 512,
+      g_width        => 24,
+      g_depth        => 1024,
       g_ramstyle     => "M20K",
       g_output_reg   => true
    )
@@ -40,11 +40,11 @@ begin
       sreset_i       => source(0),
       wr_en_i        => source(1),
       rd_en_i        => source(2),
-		data_i         => source(88 downto 3),
+		data_i         => source(26 downto 3),
       full_o         => sink(0),
       almostfull_o   => sink (1),
       empty_o        => sink(2),
-		data_o         => sink(88 downto 3)
+		data_o         => sink(26 downto 3)
    );
 
    i_source : entity work.atv_dummy_source

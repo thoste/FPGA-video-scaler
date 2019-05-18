@@ -13,7 +13,6 @@
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
---use ieee.fixed_pkg.all;
 
 use work.my_fixed_pkg.all;
 

@@ -45,13 +45,6 @@ entity scaler_controller is
       rx_video_width_o           : out std_logic_vector(15 downto 0);
       rx_video_height_o          : out std_logic_vector(15 downto 0)
 
-      ---- Framebuffer
-      --fb_wr_addr     : out integer := 0;
-      --fb_wr_en       : out std_logic := '0'
-
-      --mode_in_i   : in t_mode; -- t_mode := 720p, 1080p
-      --mode_out_i  : in t_mode; 
-
       ---- Input FIFO
       --fifo_in_wr_en_i   : in  std_logic;
       --fifo_in_rd_en_i   : in  std_logic;
@@ -77,7 +70,6 @@ begin
    p_fsm : process(clk_i) is
       variable v_tx_video_width : std_logic_vector(15 downto 0);
       variable v_tx_video_height : std_logic_vector(15 downto 0);
-      variable v_fb_index : integer := 0;
    begin
       if rising_edge(clk_i) then
          if ctrl_ready_i = '1' then
@@ -108,7 +100,6 @@ begin
 
                   -- Reset endofpacket
                   ctrl_endofpacket_o <= '0';
-                  --v_fb_index := 0;
                end if;
 
 
@@ -125,9 +116,6 @@ begin
                   end if;
                   ctrl_data_o  <= ctrl_data_i;
                   ctrl_valid_o   <= '1';
-                  --fb_wr_en <= '1';
-                  --fb_wr_addr <= v_fb_index;
-                  --v_fb_index := v_fb_index + 1;
                   ctrl_startofpacket_o <= '0';
                end if;
 
@@ -135,33 +123,33 @@ begin
             when s_control_packet =>
                if ctrl_ready_o = '1' and ctrl_valid_i = '1' then
                   if g_data_width = 80 then
-                     ---- Decode input video resolution
-                     --rx_video_width_o(3 downto 0)     <= ctrl_data_i(33 downto 30);
-                     --rx_video_width_o(7 downto 4)     <= ctrl_data_i(23 downto 20);
-                     --rx_video_width_o(11 downto 8)    <= ctrl_data_i(13 downto 10);
-                     --rx_video_width_o(15 downto 12)   <= ctrl_data_i(3 downto 0);
-                     --rx_video_height_o(3 downto 0)    <= ctrl_data_i(73 downto 70);
-                     --rx_video_height_o(7 downto 4)    <= ctrl_data_i(63 downto 60);
-                     --rx_video_height_o(11 downto 8)   <= ctrl_data_i(53 downto 50);
-                     --rx_video_height_o(15 downto 12)  <= ctrl_data_i(43 downto 40);
+                     -- Decode input video resolution
+                     rx_video_width_o(3 downto 0)     <= ctrl_data_i(33 downto 30);
+                     rx_video_width_o(7 downto 4)     <= ctrl_data_i(23 downto 20);
+                     rx_video_width_o(11 downto 8)    <= ctrl_data_i(13 downto 10);
+                     rx_video_width_o(15 downto 12)   <= ctrl_data_i(3 downto 0);
+                     rx_video_height_o(3 downto 0)    <= ctrl_data_i(73 downto 70);
+                     rx_video_height_o(7 downto 4)    <= ctrl_data_i(63 downto 60);
+                     rx_video_height_o(11 downto 8)   <= ctrl_data_i(53 downto 50);
+                     rx_video_height_o(15 downto 12)  <= ctrl_data_i(43 downto 40);
 
-                     ---- Set output to slv format
-                     --v_tx_video_width  := std_logic_vector(to_unsigned(g_tx_video_width, v_tx_video_width'length));
-                     --v_tx_video_height := std_logic_vector(to_unsigned(g_tx_video_height, v_tx_video_height'length));
+                     -- Set output to slv format
+                     v_tx_video_width  := std_logic_vector(to_unsigned(g_tx_video_width, v_tx_video_width'length));
+                     v_tx_video_height := std_logic_vector(to_unsigned(g_tx_video_height, v_tx_video_height'length));
 
-                     ---- Send output resolution and endofpacket
-                     --ctrl_data_o(3 downto 0)   <= v_tx_video_width(15 downto 12);
-                     --ctrl_data_o(13 downto 10) <= v_tx_video_width(11 downto 8);
-                     --ctrl_data_o(23 downto 20) <= v_tx_video_width(7 downto 4);
-                     --ctrl_data_o(33 downto 30) <= v_tx_video_width(3 downto 0);
-                     --ctrl_data_o(43 downto 40) <= v_tx_video_height(15 downto 12);
-                     --ctrl_data_o(53 downto 50) <= v_tx_video_height(11 downto 8);
-                     --ctrl_data_o(63 downto 60) <= v_tx_video_height(7 downto 4);
-                     --ctrl_data_o(73 downto 70) <= v_tx_video_height(3 downto 0);
+                     -- Send output resolution and endofpacket
+                     ctrl_data_o(3 downto 0)   <= v_tx_video_width(15 downto 12);
+                     ctrl_data_o(13 downto 10) <= v_tx_video_width(11 downto 8);
+                     ctrl_data_o(23 downto 20) <= v_tx_video_width(7 downto 4);
+                     ctrl_data_o(33 downto 30) <= v_tx_video_width(3 downto 0);
+                     ctrl_data_o(43 downto 40) <= v_tx_video_height(15 downto 12);
+                     ctrl_data_o(53 downto 50) <= v_tx_video_height(11 downto 8);
+                     ctrl_data_o(63 downto 60) <= v_tx_video_height(7 downto 4);
+                     ctrl_data_o(73 downto 70) <= v_tx_video_height(3 downto 0);
 
-                     --ctrl_valid_o   <= '1';
-                     --ctrl_startofpacket_o <= '0';
-                     --ctrl_endofpacket_o <= '1';
+                     ctrl_valid_o   <= '1';
+                     ctrl_startofpacket_o <= '0';
+                     ctrl_endofpacket_o <= '1';
                   end if;
                   -- Next state
                   state <= s_idle;

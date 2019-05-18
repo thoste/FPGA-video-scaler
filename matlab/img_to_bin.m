@@ -2,8 +2,8 @@ clear all;
 clc;
 addpath('functions');
 
-image = 'lionking';
-resolution = 360;
+image = 'planetearth2c';
+resolution = 720;
 bit = 8;
 
 input_file_name = strcat('..\img\pre_scaled\',image,'\',image,'_rgb_',string(resolution),'.png');

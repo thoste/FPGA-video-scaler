@@ -40,9 +40,9 @@ end fifo_generic;
 architecture fifo_generic_arc of fifo_generic is
    -- RAM
    type t_ram is array (natural range <>) of std_logic_vector(g_width-1 downto 0);
-   signal ram_data      : t_ram(g_depth-1 downto 0)               := (others => (others => 'Z'));
-   signal ram_out       : std_logic_vector(g_width-1 downto 0)    := (others => 'Z');
-   signal ram_out_reg   : std_logic_vector(g_width-1 downto 0)    := (others => 'Z');
+   signal ram_data      : t_ram(g_depth-1 downto 0)               := (others => (others => '0'));
+   signal ram_out       : std_logic_vector(g_width-1 downto 0)    := (others => '0');
+   signal ram_out_reg   : std_logic_vector(g_width-1 downto 0)    := (others => '0');
 
    -- RAM style
    attribute ramstyle : string;

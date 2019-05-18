@@ -2,7 +2,7 @@ clear all;
 clc;
 addpath('functions');
 
-image = 'lionking';
+image = 'planetearth2c';
 in_height = 720;
 out_width = 1920;
 out_height = 1080;

@@ -35,8 +35,8 @@ begin
    generic map(
       g_data_width               => C_DATA_WIDTH,
       g_empty_width              => C_EMPTY_WIDTH,
-      g_tx_video_width           => 1920,
-      g_tx_video_height          => 1080,
+      g_tx_video_width           => 3840,
+      g_tx_video_height          => 2160,
       g_tx_video_scaling_method  => 0
    )
    port map(

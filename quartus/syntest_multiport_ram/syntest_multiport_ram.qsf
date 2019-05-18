@@ -1,7 +1,7 @@
 set_global_assignment -name TOP_LEVEL_ENTITY syntest_multiport_ram
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 18.1.0
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "13:47:13  MAY 13, 2019"
-set_global_assignment -name LAST_QUARTUS_VERSION "18.1.0 Pro Edition"
+set_global_assignment -name LAST_QUARTUS_VERSION "19.1.0 Pro Edition"
 set_global_assignment -name VHDL_FILE ../../scaler/syntest/syntest_multiport_ram.vhd
 set_global_assignment -name VHDL_FILE ../../scaler/src/simple_dpram.vhd
 set_global_assignment -name VHDL_FILE ../../scaler/src/multiport_ram.vhd
