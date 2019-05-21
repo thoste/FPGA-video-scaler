@@ -2,11 +2,11 @@ clear all;
 clc;
 addpath('functions');
 
-image = 'planetearth2c';
-in_height = 720;
+image = 'lionking';
+in_height = 360;
 out_width = 1920;
 out_height = 1080;
-scaling_method = 'nearest';
+scaling_method = 'bilinear';
 bit = 8;
 
 input_file_name = strcat('..\data\vhdl_out\',image,'\',image,'_',scaling_method,'_',string(in_height),'_to_',string(out_height),'.bin');

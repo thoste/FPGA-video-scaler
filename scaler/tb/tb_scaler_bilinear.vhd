@@ -30,16 +30,30 @@ end tb_scaler;
 
 -- Test bench architecture
 architecture tb_scaler_arc of tb_scaler is
-   constant C_SCOPE        : string  := C_TB_SCOPE_DEFAULT;
-   constant C_CLK_PERIOD   : time := 10 ns; -- 100 MHz
+   constant C_SCOPE        : string := C_TB_SCOPE_DEFAULT;
+   constant C_CLK_PERIOD   : time   := 10 ns; -- 100 MHz
 
    -- Avalon-ST bus widths
-   constant C_DATA_WIDTH      : natural := 30;
+   constant C_DATA_WIDTH      : natural := 24; 
+   constant C_BITS_PIXEL      : natural := 8; 
 
-   constant C_RX_VIDEO_WIDTH  : natural := 6;
-   constant C_RX_VIDEO_HEIGHT : natural := 6;
-   constant C_TX_VIDEO_WIDTH  : natural := 12;
-   constant C_TX_VIDEO_HEIGHT  : natural := 12;
+   --constant C_RX_VIDEO_WIDTH  : natural := 6;
+   --constant C_RX_VIDEO_HEIGHT : natural := 6;
+   --constant C_TX_VIDEO_WIDTH  : natural := 12;
+   --constant C_TX_VIDEO_HEIGHT : natural := 12;
+
+   constant C_RX_VIDEO_WIDTH  : natural := 640;
+   constant C_RX_VIDEO_HEIGHT : natural := 360;
+   constant C_TX_VIDEO_WIDTH  : natural := 1920;
+   constant C_TX_VIDEO_HEIGHT : natural := 1080;
+
+   -- File I/O
+   constant C_IMAGE        : string := "lionking";
+   constant C_SCALING      : string := "bilinear";
+   constant C_INPUT_FILE   : string := "../../data/orig/" & C_IMAGE & "/" & C_IMAGE & "_ycbcr444_" & to_string(C_BITS_PIXEL) & "bit_" & to_string(C_RX_VIDEO_HEIGHT) & ".bin";
+   constant C_OUTPUT_FILE  : string := "../../data/vhdl_out/" & C_IMAGE & "/" & C_IMAGE & "_" & C_SCALING & "_" & to_string(C_RX_VIDEO_HEIGHT) & "_to_" & to_string(C_TX_VIDEO_HEIGHT) & ".bin";
+   file     file_input     : text;
+   file     file_output    : text;
 
    -- DSP interface and general control signals
    signal clk_i               : std_logic := '0';
@@ -99,8 +113,10 @@ begin
    -- PROCESS: p_main
    ------------------------------------------------
    p_main: process 
-      variable v_data : integer := 0;
-      variable v_num_test_loops : integer := 0;
+      variable v_input_line      : line;
+      variable v_data_slv        : std_logic_vector(C_DATA_WIDTH-1 downto 0) := (others => '0');
+      variable v_data            : integer := 0;
+      variable v_num_test_loops  : integer := 0;
    begin
       -- Wait for UVVM to finish initialization
       await_uvvm_initialization(VOID);
@@ -114,16 +130,19 @@ begin
       -----------------------------------------------------------------------------
       enable_log_msg(ALL_MESSAGES);
 
-      log(ID_LOG_HDR, "Starting simulation of FIFO", C_SCOPE);
+      log(ID_LOG_HDR, "Starting simulation of bilinear", C_SCOPE);
       log("Wait 10 clock period for reset to be turned off");
       wait for (10 * C_CLK_PERIOD); 
       wait until rising_edge(clk_i);
+      
       -----------------------------------------------------------------------------
       -- Test scaler
       -----------------------------------------------------------------------------
       v_num_test_loops := 1;
 
+      -----------------------------------------------------------------------------
       -- Send video data control packet
+      -----------------------------------------------------------------------------
       ready_i <= '1';
       data_i <= (others => '0');
       valid_i <= '1';
@@ -131,37 +150,58 @@ begin
       wait until rising_edge(clk_i);
       startofpacket_i <= '0';
 
-      -- Send video data
-      for n in 1 to v_num_test_loops loop
-         for i in 1 to C_RX_VIDEO_WIDTH loop
-            v_data := (100 * i) + 1;
-            for j in 1 to C_RX_VIDEO_HEIGHT loop
-               while ready_o = '0' loop
-                  valid_i  <= '0';
-                  wait until rising_edge(clk_i);
-               end loop;
-               endofpacket_i  <= '1' when (i = C_RX_VIDEO_WIDTH and j = C_RX_VIDEO_HEIGHT) else '0';
-               data_i   <= std_logic_vector(to_unsigned(v_data, data_i'length));
-               valid_i  <= '1';
-               v_data := v_data + 1;
-               wait until rising_edge(clk_i);
-               --valid_i  <= '0';
-               --wait until rising_edge(clk_i);
-            end loop;
+      -------------------------------------------------------------------------------
+      ---- Send known video data
+      -------------------------------------------------------------------------------
+      --for n in 1 to v_num_test_loops loop
+      --   for i in 1 to C_RX_VIDEO_WIDTH loop
+      --      v_data := (10 * i) + 1;
+      --      for j in 1 to C_RX_VIDEO_HEIGHT loop
+      --         while ready_o = '0' loop
+      --            valid_i  <= '0';
+      --            wait until rising_edge(clk_i);
+      --         end loop;
+      --         endofpacket_i  <= '1' when (i = C_RX_VIDEO_WIDTH and j = C_RX_VIDEO_HEIGHT) else '0';
+      --         data_i   <= std_logic_vector(to_unsigned(v_data, data_i'length));
+      --         valid_i  <= '1';
+      --         v_data := v_data + 1;
+      --         wait until rising_edge(clk_i);
+      --         --valid_i  <= '0';
+      --         --wait until rising_edge(clk_i);
+      --      end loop;
+      --   end loop;
+      --end loop;
+      --valid_i <= '0';
+      --endofpacket_i <= '0';
+
+      --------------------------------------------------
+      -- Read input file and send video data
+      --------------------------------------------------
+      file_open(file_input, C_INPUT_FILE, read_mode);
+
+      while not endfile(file_input) loop
+         while ready_o = '0' loop
+            valid_i  <= '0';
+            wait until rising_edge(clk_i);
          end loop;
+
+         -- Read input data and send
+         readline(file_input, v_input_line);
+         read(v_input_line, v_data_slv);
+         data_i <= v_data_slv;
+         valid_i <= '1';
+         wait until rising_edge(clk_i);
       end loop;
-
+      file_close(file_input);
       valid_i <= '0';
-      endofpacket_i <= '0';
-      
 
-      wait for 10*C_CLK_PERIOD;
-      wait for C_TX_VIDEO_WIDTH*C_TX_VIDEO_HEIGHT*C_CLK_PERIOD;
 
       -----------------------------------------------------------------------------
       -- Ending the simulation
       -----------------------------------------------------------------------------
-      --wait for 1000 ns;             -- to allow some time for completion
+      wait for 10*C_CLK_PERIOD;
+      wait for C_TX_VIDEO_WIDTH*C_TX_VIDEO_HEIGHT*C_CLK_PERIOD;
+
       report_alert_counters(FINAL); -- Report final counters and print conclusion for simulation (Success/Fail)
       log(ID_LOG_HDR, "SIMULATION COMPLETED", C_SCOPE);
 
@@ -169,6 +209,38 @@ begin
       std.env.stop;
       wait;  -- to stop completely
    end process p_main;
+
+
+   -----------------------------------------------------------------------------
+   -- Write data to binary file
+   -----------------------------------------------------------------------------  
+   p_write_data: process 
+      variable v_out_line  : line;
+      variable v_data_slv  : std_logic_vector(C_DATA_WIDTH-1 downto 0) := (others => '0');
+      variable v_sop       : boolean := false;
+   begin
+      file_open(file_output, C_OUTPUT_FILE, write_mode);
+      wait until rising_edge(clk_i);
+      
+      -- Wait for startofpacket_o
+      while not v_sop loop
+         wait until rising_edge(clk_i);
+         if startofpacket_o = '1' then
+            v_sop := true;
+         end if;
+      end loop;
+
+      -- Write data on eack clock as long as valid_o = '1'
+      while v_sop loop
+         if valid_o = '1' then
+            v_data_slv := data_o;
+            write(v_out_line, v_data_slv);
+            writeline(file_output, v_out_line);
+         end if;
+         wait until rising_edge(clk_i);
+      end loop;
+      file_close(file_output);
+   end process;
 
 
    -----------------------------------------------------------------------------

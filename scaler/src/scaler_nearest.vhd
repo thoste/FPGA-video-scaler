@@ -276,8 +276,8 @@ begin
       if rising_edge(clk_i) then
          if interpolate then
             -- Make x/y_count ufixed
-            x_count_ufx       <= to_ufixed(x_count, 11, 0);
-            y_count_ufx       <= to_ufixed(y_count, 11, 0);
+            x_count_ufx       <= to_ufixed(x_count, x_count_ufx);
+            y_count_ufx       <= to_ufixed(y_count, y_count_ufx);
             x_count_ufx_reg   <= x_count_ufx;
             y_count_ufx_reg   <= y_count_ufx;
 
@@ -310,8 +310,8 @@ begin
             if dy_reg >= C_LINE_BUFFERS then
                -- Reset y_count for frambuffer addresses
                y_count           <= 0;
-               y_count_ufx       <= to_ufixed(0, 11, 0);
-               y_count_ufx_reg   <= to_ufixed(0, 11, 0);
+               y_count_ufx       <= to_ufixed(0, y_count_ufx);
+               y_count_ufx_reg   <= to_ufixed(0, y_count_ufx_reg);
                -- Variable part of dx/dy is zero, use only constant part
                dy                <= resize(dxy_2_reg, dy'high, dy'low);
                dy_reg            <= resize(dxy_2_reg, dy'high, dy'low);
