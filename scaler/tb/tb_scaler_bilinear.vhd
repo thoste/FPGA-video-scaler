@@ -42,13 +42,13 @@ architecture tb_scaler_arc of tb_scaler is
    --constant C_TX_VIDEO_WIDTH  : natural := 12;
    --constant C_TX_VIDEO_HEIGHT : natural := 12;
 
-   constant C_RX_VIDEO_WIDTH  : natural := 640;
-   constant C_RX_VIDEO_HEIGHT : natural := 360;
+   constant C_RX_VIDEO_WIDTH  : natural := 1280;
+   constant C_RX_VIDEO_HEIGHT : natural := 720;
    constant C_TX_VIDEO_WIDTH  : natural := 1920;
    constant C_TX_VIDEO_HEIGHT : natural := 1080;
 
    -- File I/O
-   constant C_IMAGE        : string := "lionking";
+   constant C_IMAGE        : string := "planetearth2c";
    constant C_SCALING      : string := "bilinear";
    constant C_INPUT_FILE   : string := "../../data/orig/" & C_IMAGE & "/" & C_IMAGE & "_ycbcr444_" & to_string(C_BITS_PIXEL) & "bit_" & to_string(C_RX_VIDEO_HEIGHT) & ".bin";
    constant C_OUTPUT_FILE  : string := "../../data/vhdl_out/" & C_IMAGE & "/" & C_IMAGE & "_" & C_SCALING & "_" & to_string(C_RX_VIDEO_HEIGHT) & "_to_" & to_string(C_TX_VIDEO_HEIGHT) & ".bin";
@@ -200,7 +200,7 @@ begin
       -- Ending the simulation
       -----------------------------------------------------------------------------
       wait for 10*C_CLK_PERIOD;
-      wait for C_TX_VIDEO_WIDTH*C_TX_VIDEO_HEIGHT*C_CLK_PERIOD;
+      wait for 2*C_TX_VIDEO_WIDTH*C_TX_VIDEO_HEIGHT*C_CLK_PERIOD;
 
       report_alert_counters(FINAL); -- Report final counters and print conclusion for simulation (Success/Fail)
       log(ID_LOG_HDR, "SIMULATION COMPLETED", C_SCOPE);

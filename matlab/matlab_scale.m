@@ -3,7 +3,7 @@ clc;
 addpath('functions');
 
 image = 'planetearth2c';
-scaling_method = 'nearest';
+scaling_method = 'bilinear';
 
 % Read file
 in_file_1 = strcat('..\img\pre_scaled\',image,'\',image,'_rgb_360.png');

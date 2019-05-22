@@ -1,8 +1,8 @@
 clear all;
 clc;
 
-image = 'lionking';
-scaling_method = 'nearest';
+image = 'planetearth2c';
+scaling_method = 'bilinear';
 
 orig_file = strcat('..\img\pre_scaled\',image,'\',image,'_rgb_1080.png');
 

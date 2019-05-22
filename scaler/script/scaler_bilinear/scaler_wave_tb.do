@@ -41,31 +41,34 @@ add wave -noupdate -group {Framebuffer read}        -radix unsigned   -label fb_
 add wave -noupdate -group {X} -radix unsigned    -label x_count             /tb_scaler/i_scaler/x_count
 add wave -noupdate -group {X} -radix ufixed      -label dx                  /tb_scaler/i_scaler/dx
 add wave -noupdate -group {X} -radix ufixed      -label dx_reg              /tb_scaler/i_scaler/dx_reg
+add wave -noupdate -group {X} -radix ufixed      -label dx_reg_1              /tb_scaler/i_scaler/dx_reg_1
 
 # Y
 add wave -noupdate -group {Y} -radix unsigned    -label y_count 	         /tb_scaler/i_scaler/y_count
 add wave -noupdate -group {Y} -radix ufixed      -label dy 		            /tb_scaler/i_scaler/dy
 add wave -noupdate -group {Y} -radix ufixed      -label dy_reg              /tb_scaler/i_scaler/dy_reg
-add wave -noupdate -group {Y} -radix unsigned    -label dy_int              /tb_scaler/i_scaler/dy_int
-add wave -noupdate -group {Y} -radix unsigned    -label dy_change           /tb_scaler/i_scaler/dy_change
+add wave -noupdate -group {Y} -radix ufixed      -label dy_fb_reg              /tb_scaler/i_scaler/dy_fb_reg
+add wave -noupdate -group {Y} -radix ufixed      -label dy_reg_1              /tb_scaler/i_scaler/dy_reg_1
+
 
 # Kernel window
-add wave -noupdate -group {Kernel window} -radix unsigned    -label x1      /tb_scaler/i_scaler/x1_int
-add wave -noupdate -group {Kernel window} -radix unsigned    -label x2      /tb_scaler/i_scaler/x2_int
-add wave -noupdate -group {Kernel window} -radix unsigned    -label y1      /tb_scaler/i_scaler/y1_int
-add wave -noupdate -group {Kernel window} -radix unsigned    -label y2      /tb_scaler/i_scaler/y2_int
-add wave -noupdate -group {Kernel window} -radix unsigned    -label pix1    /tb_scaler/i_scaler/pix1_int
-add wave -noupdate -group {Kernel window} -radix unsigned    -label pix2    /tb_scaler/i_scaler/pix2_int
-add wave -noupdate -group {Kernel window} -radix unsigned    -label pix3    /tb_scaler/i_scaler/pix3_int
-add wave -noupdate -group {Kernel window} -radix unsigned    -label pix4    /tb_scaler/i_scaler/pix4_int
+add wave -noupdate -group {Kernel window} -radix unsigned    -label x1_int      /tb_scaler/i_scaler/x1_int
+add wave -noupdate -group {Kernel window} -radix unsigned    -label x2_int      /tb_scaler/i_scaler/x2_int
+add wave -noupdate -group {Kernel window} -radix unsigned    -label y1_int      /tb_scaler/i_scaler/y1_int
+add wave -noupdate -group {Kernel window} -radix unsigned    -label y2_int      /tb_scaler/i_scaler/y2_int
+
+
+# Pixel data
+#add wave -noupdate -group {Pixel data} -radix unsigned    -label pix1_data    /tb_scaler/i_scaler/pix1_data
+#add wave -noupdate -group {Pixel data} -radix unsigned    -label pix2_data    /tb_scaler/i_scaler/pix2_data
+#add wave -noupdate -group {Pixel data} -radix unsigned    -label pix3_data    /tb_scaler/i_scaler/pix3_data
+#add wave -noupdate -group {Pixel data} -radix unsigned    -label pix4_data    /tb_scaler/i_scaler/pix4_data
 
 # Pixel calc
-add wave -noupdate -group {Pixel calc} -radix ufixed    -label delta_x1       /tb_scaler/i_scaler/delta_x1
-add wave -noupdate -group {Pixel calc} -radix ufixed    -label delta_x2       /tb_scaler/i_scaler/delta_x2
-add wave -noupdate -group {Pixel calc} -radix ufixed    -label delta_y1       /tb_scaler/i_scaler/delta_y1
-add wave -noupdate -group {Pixel calc} -radix ufixed    -label delta_y2       /tb_scaler/i_scaler/delta_y2
-add wave -noupdate -group {Pixel calc} -radix ufixed    -label delta_y1_reg  /tb_scaler/i_scaler/delta_y1_reg
-add wave -noupdate -group {Pixel calc} -radix ufixed    -label delta_y2_reg  /tb_scaler/i_scaler/delta_y2_reg
+#add wave -noupdate -group {Pixel calc} -radix ufixed    -label delta1       /tb_scaler/i_scaler/delta1
+#add wave -noupdate -group {Pixel calc} -radix ufixed    -label delta2       /tb_scaler/i_scaler/delta2
+#add wave -noupdate -group {Pixel calc} -radix ufixed    -label delta3       /tb_scaler/i_scaler/delta3
+#add wave -noupdate -group {Pixel calc} -radix ufixed    -label delta4       /tb_scaler/i_scaler/delta4
 add wave -noupdate -group {Pixel calc} -radix ufixed    -label A_y1           /tb_scaler/i_scaler/A_y1
 add wave -noupdate -group {Pixel calc} -radix ufixed    -label A_y2           /tb_scaler/i_scaler/A_y2
 add wave -noupdate -group {Pixel calc} -radix ufixed    -label A              /tb_scaler/i_scaler/A
