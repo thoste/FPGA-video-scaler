@@ -43,7 +43,7 @@ entity scaler is
 end scaler;
 
 architecture scaler_arc of scaler is
-   type t_state is (s_idle, s_pre_fill_fb, s_finish_fill_fb, s_upscale);
+   type t_state is (s_idle, s_pre_fill_fb, s_finish_fill_fb, s_upscale, s_upscale_and_fill);
    signal state : t_state := s_idle;
 
    constant C_LINE_BUFFERS : integer := 4;
@@ -81,20 +81,13 @@ architecture scaler_arc of scaler is
    -- Mapping function
    signal dx            : ufixed(16 downto -16) := (others => '0');
    signal dy            : ufixed(16 downto -16) := (others => '0');
-   signal dy_fb         : ufixed(16 downto -16) := (others => '0');
    signal dx_reg        : ufixed(16 downto -16) := (others => '0');
    signal dy_reg        : ufixed(16 downto -16) := (others => '0');
-   signal dy_fb_reg     : ufixed(16 downto -16) := (others => '0');
-
-   signal dx_reg_1      : ufixed(16 downto -16) := (others => '0');
-   signal dy_reg_1      : ufixed(16 downto -16) := (others => '0');
 
    signal dx_1          : ufixed(15 downto -12) := (others => '0');
    signal dy_1          : ufixed(15 downto -12) := (others => '0');
-   signal dy_fb_1       : ufixed(15 downto -12) := (others => '0');
    signal dx_1_reg      : ufixed(15 downto -12) := (others => '0');
    signal dy_1_reg      : ufixed(15 downto -12) := (others => '0');
-   signal dy_fb_1_reg   : ufixed(15 downto -12) := (others => '0');
 
    signal dxy_2         : ufixed(15 downto -16) := (others => '0');
    signal dxy_2_reg     : ufixed(15 downto -16) := (others => '0');
@@ -102,88 +95,94 @@ architecture scaler_arc of scaler is
    -- Needs to be 1 because of dx/dy algorithm
    signal x_count          : integer := 1; 
    signal y_count          : integer := 1;
-   signal y_count_fb       : integer := 1;
    signal x_count_ufx      : ufixed(11 downto 0) := 12x"1";
    signal y_count_ufx      : ufixed(11 downto 0) := 12x"1";
-   signal y_count_fb_ufx   : ufixed(11 downto 0) := 12x"1";
    signal x_count_ufx_reg  : ufixed(11 downto 0) := 12x"1";
    signal y_count_ufx_reg  : ufixed(11 downto 0) := 12x"1";
-   signal y_count_fb_ufx_reg  : ufixed(11 downto 0) := 12x"1";
    
 
    signal x1_int        : integer := 1;
    signal x2_int        : integer := 2;
    signal y1_int        : integer := 1;
    signal y2_int        : integer := 2;
-   signal y1_fb_int     : integer := 1;
-   signal y2_fb_int     : integer := 2;
-   
    signal pix1_int      : integer := 0;
    signal pix2_int      : integer := 0;
    signal pix3_int      : integer := 0;
    signal pix4_int      : integer := 0;
-   signal pix1_data     : std_logic_vector(g_data_width-1 downto 0) := (others => '0');
-   signal pix2_data     : std_logic_vector(g_data_width-1 downto 0) := (others => '0');
-   signal pix3_data     : std_logic_vector(g_data_width-1 downto 0) := (others => '0');
-   signal pix4_data     : std_logic_vector(g_data_width-1 downto 0) := (others => '0');
    
    signal dy_int        : integer := 1;
    signal dy_int_last   : integer := 1;
-   signal dy_change        : boolean := false;
+   signal dy_change     : boolean := false;
+
+   -- Delays
+   signal dx_reg_1      : ufixed(16 downto -16) := (others => '0');
+   signal dy_reg_1      : ufixed(16 downto -16) := (others => '0');
+   signal dx_reg_2      : ufixed(16 downto -16) := (others => '0');
+   signal dy_reg_2      : ufixed(16 downto -16) := (others => '0');
+   signal dx_reg_3      : ufixed(16 downto -16) := (others => '0');
+   signal dy_reg_3      : ufixed(16 downto -16) := (others => '0');
+   signal dx_reg_4      : ufixed(16 downto -16) := (others => '0');
+   signal dy_reg_4      : ufixed(16 downto -16) := (others => '0');
+   signal dx_reg_5      : ufixed(16 downto -16) := (others => '0');
+   signal dy_reg_5      : ufixed(16 downto -16) := (others => '0');
+   signal dx_reg_6      : ufixed(16 downto -16) := (others => '0');
+   signal dy_reg_6      : ufixed(16 downto -16) := (others => '0');
+   signal dx_reg_7      : ufixed(16 downto -16) := (others => '0');
+   signal dy_reg_7      : ufixed(16 downto -16) := (others => '0');
 
    signal x1_int_reg_1  : integer := 0;
    signal x2_int_reg_1  : integer := 0;
    signal y1_int_reg_1  : integer := 0;
    signal y2_int_reg_1  : integer := 0;
-
    signal x1_int_reg_2  : integer := 0;
    signal x2_int_reg_2  : integer := 0;
    signal y1_int_reg_2  : integer := 0;
    signal y2_int_reg_2  : integer := 0;
+   signal x1_int_reg_3  : integer := 0;
+   signal x2_int_reg_3  : integer := 0;
+   signal y1_int_reg_3  : integer := 0;
+   signal y2_int_reg_3  : integer := 0;
+   signal x1_int_reg_4  : integer := 0;
+   signal x2_int_reg_4  : integer := 0;
+   signal y1_int_reg_4  : integer := 0;
+   signal y2_int_reg_4  : integer := 0;
+   signal x1_int_reg_5  : integer := 0;
+   signal x2_int_reg_5  : integer := 0;
+   signal y1_int_reg_5  : integer := 0;
+   signal y2_int_reg_5  : integer := 0;
+   signal x1_int_reg_6  : integer := 0;
+   signal x2_int_reg_6  : integer := 0;
+   signal y1_int_reg_6  : integer := 0;
+   signal y2_int_reg_6  : integer := 0;
 
    -- Coefficients
-   signal delta1      : ufixed(1 downto -16) := (others => '0');
-   signal delta2      : ufixed(1 downto -16) := (others => '0');
-   signal delta3      : ufixed(1 downto -16) := (others => '0');
-   signal delta4      : ufixed(1 downto -16) := (others => '0');
+   signal delta_x1      : ufixed(1 downto -16) := (others => '0');
+   signal delta_x2      : ufixed(1 downto -16) := (others => '0');
+   signal delta_y1      : ufixed(1 downto -16) := (others => '0');
+   signal delta_y2      : ufixed(1 downto -16) := (others => '0');
+   signal delta_x1_reg  : ufixed(1 downto -16) := (others => '0');
+   signal delta_x2_reg  : ufixed(1 downto -16) := (others => '0');
+   signal delta_y1_reg  : ufixed(1 downto -16) := (others => '0');
+   signal delta_y2_reg  : ufixed(1 downto -16) := (others => '0');
 
-   signal delta1_reg_1  : ufixed(1 downto -16) := (others => '0');
-   signal delta2_reg_1  : ufixed(1 downto -16) := (others => '0');
-   signal delta3_reg_1  : ufixed(1 downto -16) := (others => '0');
-   signal delta4_reg_1  : ufixed(1 downto -16) := (others => '0');
+   signal delta_y1_reg_1  : ufixed(1 downto -16) := (others => '0');
+   signal delta_y2_reg_1  : ufixed(1 downto -16) := (others => '0');
+   signal delta_y1_reg_2  : ufixed(1 downto -16) := (others => '0');
+   signal delta_y2_reg_2  : ufixed(1 downto -16) := (others => '0');
+   signal delta_y1_reg_3  : ufixed(1 downto -16) := (others => '0');
+   signal delta_y2_reg_3  : ufixed(1 downto -16) := (others => '0');
+   signal delta_y1_reg_4  : ufixed(1 downto -16) := (others => '0');
+   signal delta_y2_reg_4  : ufixed(1 downto -16) := (others => '0');
 
-   signal delta1_reg_2  : ufixed(1 downto -16) := (others => '0');
-   signal delta2_reg_2  : ufixed(1 downto -16) := (others => '0');
-   signal delta3_reg_2  : ufixed(1 downto -16) := (others => '0');
-   signal delta4_reg_2  : ufixed(1 downto -16) := (others => '0');
+   signal pix1_data_ufx : ufixed(g_data_width-1 downto 0)   := (others => '0');
+   signal pix2_data_ufx : ufixed(g_data_width-1 downto 0)   := (others => '0');
+   signal pix3_data_ufx : ufixed(g_data_width-1 downto 0)   := (others => '0');
+   signal pix4_data_ufx : ufixed(g_data_width-1 downto 0)   := (others => '0');
 
-   signal delta1_reg_3  : ufixed(1 downto -16) := (others => '0');
-   signal delta2_reg_3  : ufixed(1 downto -16) := (others => '0');
-   signal delta3_reg_3  : ufixed(1 downto -16) := (others => '0');
-   signal delta4_reg_3  : ufixed(1 downto -16) := (others => '0');
-
-   signal delta1_reg_4  : ufixed(1 downto -16) := (others => '0');
-   signal delta2_reg_4  : ufixed(1 downto -16) := (others => '0');
-   signal delta3_reg_4  : ufixed(1 downto -16) := (others => '0');
-   signal delta4_reg_4  : ufixed(1 downto -16) := (others => '0');
-
-   signal delta1_reg_5  : ufixed(1 downto -16) := (others => '0');
-   signal delta2_reg_5  : ufixed(1 downto -16) := (others => '0');
-   signal delta3_reg_5  : ufixed(1 downto -16) := (others => '0');
-   signal delta4_reg_5  : ufixed(1 downto -16) := (others => '0');
-
-   signal pix1_data_A : ufixed(7 downto 0)   := (others => '0');
-   signal pix2_data_A : ufixed(7 downto 0)   := (others => '0');
-   signal pix3_data_A : ufixed(7 downto 0)   := (others => '0');
-   signal pix4_data_A : ufixed(7 downto 0)   := (others => '0');
-   signal pix1_data_B : ufixed(7 downto 0)   := (others => '0');
-   signal pix2_data_B : ufixed(7 downto 0)   := (others => '0');
-   signal pix3_data_B : ufixed(7 downto 0)   := (others => '0');
-   signal pix4_data_B : ufixed(7 downto 0)   := (others => '0');
-   signal pix1_data_C : ufixed(7 downto 0)   := (others => '0');
-   signal pix2_data_C : ufixed(7 downto 0)   := (others => '0');
-   signal pix3_data_C : ufixed(7 downto 0)   := (others => '0');
-   signal pix4_data_C : ufixed(7 downto 0)   := (others => '0');
+   signal pix1_data_ufx_reg : ufixed(g_data_width-1 downto 0)   := (others => '0');
+   signal pix2_data_ufx_reg : ufixed(g_data_width-1 downto 0)   := (others => '0');
+   signal pix3_data_ufx_reg : ufixed(g_data_width-1 downto 0)   := (others => '0');
+   signal pix4_data_ufx_reg : ufixed(g_data_width-1 downto 0)   := (others => '0');
 
    signal A_y1_a        : ufixed(9 downto -16) := (others => '0');
    signal A_y1_b        : ufixed(9 downto -16) := (others => '0');
@@ -215,6 +214,36 @@ architecture scaler_arc of scaler is
    signal C_2           : ufixed(7 downto -8) := (others => '0');
    signal C             : ufixed(7 downto 0) := (others => '0');
 
+   signal A_y1_a_reg    : ufixed(9 downto -16) := (others => '0');
+   signal A_y1_b_reg    : ufixed(9 downto -16) := (others => '0');
+   signal A_y2_a_reg    : ufixed(9 downto -16) := (others => '0');
+   signal A_y2_b_reg    : ufixed(9 downto -16) := (others => '0');
+   signal A_y1_reg      : ufixed(7 downto -8) := (others => '0');
+   signal A_y2_reg      : ufixed(7 downto -8) := (others => '0');
+   signal A_1_reg       : ufixed(7 downto -8) := (others => '0');
+   signal A_2_reg       : ufixed(7 downto -8) := (others => '0');
+   signal A_reg         : ufixed(7 downto 0) := (others => '0');
+
+   signal B_y1_a_reg    : ufixed(9 downto -16) := (others => '0');
+   signal B_y1_b_reg    : ufixed(9 downto -16) := (others => '0');
+   signal B_y2_a_reg    : ufixed(9 downto -16) := (others => '0');
+   signal B_y2_b_reg    : ufixed(9 downto -16) := (others => '0');
+   signal B_y1_reg      : ufixed(7 downto -8) := (others => '0');
+   signal B_y2_reg      : ufixed(7 downto -8) := (others => '0');
+   signal B_1_reg       : ufixed(7 downto -8) := (others => '0');
+   signal B_2_reg       : ufixed(7 downto -8) := (others => '0');
+   signal B_reg         : ufixed(7 downto 0) := (others => '0');
+
+   signal C_y1_a_reg    : ufixed(9 downto -16) := (others => '0');
+   signal C_y1_b_reg    : ufixed(9 downto -16) := (others => '0');
+   signal C_y2_a_reg    : ufixed(9 downto -16) := (others => '0');
+   signal C_y2_b_reg    : ufixed(9 downto -16) := (others => '0');
+   signal C_y1_reg      : ufixed(7 downto -8) := (others => '0');
+   signal C_y2_reg      : ufixed(7 downto -8) := (others => '0');
+   signal C_1_reg       : ufixed(7 downto -8) := (others => '0');
+   signal C_2_reg       : ufixed(7 downto -8) := (others => '0');
+   signal C_reg         : ufixed(7 downto 0) := (others => '0');
+
    -- Counters
    signal cur_input     : integer := 0;
    signal cur_output    : integer := 0;
@@ -224,7 +253,7 @@ begin
    framebuffer : entity work.multiport_ram
    generic map (
       g_ram_width    => g_data_width,
-      g_ram_depth    => g_rx_video_width*g_rx_video_height,
+      g_ram_depth    => g_rx_video_width*C_LINE_BUFFERS,
       g_ramstyle     => "M20K",
       g_output_reg   => true
    )
@@ -271,7 +300,7 @@ begin
             when s_pre_fill_fb =>
                -- Pre-fill framebuffer before starting the scaler
                if scaler_ready_o = '1' and scaler_valid_i = '1' then
-                  if fb_wr_addr_reg = (g_rx_video_width*g_rx_video_height)-2 then
+                  if fb_wr_addr_reg = (g_rx_video_width*C_LINE_BUFFERS)-2 then
                      -- Ready latency of 1 on Avalon ST-video
                      scaler_ready_o <= '0';
                      fb_wr_en_reg   <= '1';
@@ -292,11 +321,15 @@ begin
                -- Fill the last data recieved after ready latency of 1
                if scaler_valid_i = '1' then
                   fb_wr_en_reg   <= '0';
-                  fb_wr_addr_reg <= 0 when (fb_wr_addr_reg = (g_rx_video_width*g_rx_video_height)-1) else fb_wr_addr_reg + 1;
+                  fb_wr_addr_reg <= 0 when (fb_wr_addr_reg = (g_rx_video_width*C_LINE_BUFFERS)-1) else fb_wr_addr_reg + 1;
                   cur_input      <= cur_input + 1;
 
                   -- Upscaling
                   state <= s_upscale;
+                  if interpolate = true then
+                     cur_output     <= cur_output + 1;
+                     fb_valid_reg   <= '1';
+                  end if;
                end if;
 
 
@@ -308,11 +341,20 @@ begin
                   scaler_ready_o <= '0';
                   fb_wr_en_reg   <= '0';
 
-                  if cur_output >= 13 then
+                  if cur_output >= 18 then
                      -- First data on output
                      -- Need +17 because delay through scaler is 17 clock cycles
                      fb_valid_reg <= '1';
-                     scaler_startofpacket_o <= '1' when cur_output = 14 else '0';
+                     scaler_startofpacket_o <= '1' when cur_output = 19 else '0';
+                  end if;
+
+
+                  if dy_change and (cur_input < (g_rx_video_width*g_rx_video_height)) then
+                     -- One line in framebuffer has been processed, ready to be refilled
+                     scaler_ready_o <= '1';
+                     fb_wr_en_reg   <= '1';
+                     interpolate    <= false;
+                     state          <= s_upscale_and_fill;
                   end if;
 
                   if cur_output >= (g_tx_video_width*g_tx_video_height)+24 then
@@ -328,6 +370,37 @@ begin
                   end if;
                else
                   interpolate <= false;
+               end if;
+
+
+            when s_upscale_and_fill =>
+               -- Fill one line in framebuffer while upscaling
+               if scaler_ready_o = '1' and scaler_valid_i = '1' then
+                  if scaler_ready_i = '1' then
+                     interpolate    <= true;
+                     scaler_ready_o <= '1';
+                     fb_wr_en_reg   <= '1';
+                     fb_wr_addr_reg <= 0 when (fb_wr_addr_reg = (g_rx_video_width*C_LINE_BUFFERS)-1) else fb_wr_addr_reg + 1;
+                     cur_input      <= cur_input + 1;
+                     fb_valid_reg <= '0';
+
+                     v_count := v_count + 1;
+                     if v_count >= 3 then
+                        -- 2 clock cycles delay from fb_rd_addr is set to data is on output
+                        fb_valid_reg   <= '1';
+                        cur_output     <= cur_output + 1;
+                     end if;
+
+                     if v_count = g_rx_video_width-1 then
+                        -- One line has been filled.
+                        -- Ready latency of 1 on Avalon ST-video
+                        scaler_ready_o <= '0';
+                        v_count        := 0;
+                        state          <= s_finish_fill_fb;
+                     end if;
+                  else
+                     interpolate <= false;
+                  end if;
                end if;
 
          end case;
@@ -351,38 +424,35 @@ begin
    begin
       if rising_edge(clk_i) then
          if interpolate then
+            --dx <= resize((x_count*sr_width) + (0.5 * (1 - 1*sr_width)), dx'high, dx'low);
+            --dy <= resize((y_count*sr_height) + (0.5 * (1 - 1*sr_height)), dy'high, dy'low);
+
             -- Make x/y_count ufixed
-            x_count_ufx          <= to_ufixed(x_count, x_count_ufx);
-            y_count_ufx          <= to_ufixed(y_count, x_count_ufx);
-            y_count_fb_ufx       <= to_ufixed(y_count, x_count_ufx);
-            x_count_ufx_reg      <= x_count_ufx;
-            y_count_ufx_reg      <= y_count_ufx;
-            y_count_fb_ufx_reg   <= y_count_fb_ufx;
+            x_count_ufx       <= to_ufixed(x_count, x_count_ufx);
+            y_count_ufx       <= to_ufixed(y_count, x_count_ufx);
+            x_count_ufx_reg   <= x_count_ufx;
+            y_count_ufx_reg   <= y_count_ufx;
 
             -- Fixed point DSP multiplication of variable part of dx/dy calculation
-            dx_1        <= x_count_ufx_reg * scaling_ratio_reg;
-            dy_1        <= y_count_ufx_reg * scaling_ratio_reg;
-            dy_fb_1     <= y_count_fb_ufx_reg * scaling_ratio_reg;
-            dx_1_reg    <= dx_1;
-            dy_1_reg    <= dy_1;
-            dy_fb_1_reg <= dy_fb_1;
+            dx_1     <= x_count_ufx_reg * scaling_ratio_reg;
+            dy_1     <= y_count_ufx_reg * scaling_ratio_reg;
+            dx_1_reg <= dx_1;
+            dy_1_reg <= dy_1;
 
             -- Constant part of dx/dy calculation
             dxy_2       <= to_ufixed(0.5, 1, -2) * (1 - resize(scaling_ratio_reg, 12, -14));
             dxy_2_reg   <= dxy_2;
 
             -- Final dx/dy calculation
-            dx          <= dx_1_reg + dxy_2_reg;
-            dy          <= dy_1_reg + dxy_2_reg;
-            dy_fb       <= dy_fb_1_reg + dxy_2_reg;
-            dx_reg      <= dx;
-            dy_reg      <= dy;
-            dy_fb_reg   <= dy_fb;
+            dx       <= dx_1_reg + dxy_2_reg;
+            dy       <= dy_1_reg + dxy_2_reg;
+            dx_reg   <= dx;
+            dy_reg   <= dy;
 
             -- Next pixel in target frame
             x_count <= x_count + 1;
             
-           -- Check if a row in target frame is completed
+            -- Check if a row in target frame is completed
             if x_count = g_tx_video_width then
                x_count <= 1;
                y_count <= y_count + 1;
@@ -405,41 +475,98 @@ begin
 
             -- Keep kernel within boundaries
             if dy_reg < 1 then
-               y1_int <= 1;
-               y2_int <= 2;
+               dy_int   <= 1;
+               y1_int   <= 1;
+               y2_int   <= 2;
                dy_reg_1 <= to_ufixed(1, dy_reg);
-            elsif dy_reg > g_rx_video_height then
-               y1_int <= g_rx_video_height - 1;
-               y2_int <= g_rx_video_height;
-               dy_reg_1 <= to_ufixed(g_rx_video_width, dy_reg);
+            elsif dy_reg >= C_LINE_BUFFERS+1 then 
+               -- Start from beginning of framebuffer when both lines have been completed
+               y_count           <= 1;
+               y_count_ufx       <= to_ufixed(1, y_count_ufx);
+               y_count_ufx_reg   <= to_ufixed(1, y_count_ufx_reg);
+               dy                <= resize(scaling_ratio_reg + dxy_2_reg, dy);
+               dy_reg            <= resize(scaling_ratio_reg + dxy_2_reg, dy);
+               dy_1              <= resize(scaling_ratio_reg, dy_1);
+               dy_int            <= 1;
+               y1_int            <= 1;
+               y2_int            <= 2;
+               dy_reg_1          <= to_ufixed(1, dy_reg);
+            elsif dy_reg >= C_LINE_BUFFERS then
+               -- Special case when one line has completed but not the other one
+               dy_int   <= C_LINE_BUFFERS;
+               y1_int   <= C_LINE_BUFFERS;
+               y2_int   <= 1;
+               dy_reg_1 <= dy_reg;
             else
-               y1_int <= to_integer(dy_reg);
-               y2_int <= to_integer(dy_reg) + 1;
+               dy_int   <= to_integer(dy_reg);
+               y1_int   <= to_integer(dy_reg);
+               y2_int   <= to_integer(dy_reg) + 1;
                dy_reg_1 <= dy_reg;
             end if;
 
 
+            -- Calculate framebuffer addresses for each pixel
+            pix1_int <= ((y1_int-1)*g_rx_video_width) + (x1_int - 1);
+            pix2_int <= ((y1_int-1)*g_rx_video_width) + (x2_int - 1);
+            pix3_int <= ((y2_int-1)*g_rx_video_width) + (x1_int - 1);
+            pix4_int <= ((y2_int-1)*g_rx_video_width) + (x2_int - 1);
 
             -- Read data from framebuffer
-            fb_rd_addr_a_i <= ((y1_int-1)*g_rx_video_width) + (x1_int - 1);
-            fb_rd_addr_b_i <= ((y1_int-1)*g_rx_video_width) + (x2_int - 1);
-            fb_rd_addr_c_i <= ((y2_int-1)*g_rx_video_width) + (x1_int - 1);
-            fb_rd_addr_d_i <= ((y2_int-1)*g_rx_video_width) + (x2_int - 1);
+            fb_rd_addr_a_i <= pix1_int;
+            fb_rd_addr_b_i <= pix2_int;
+            fb_rd_addr_c_i <= pix3_int;
+            fb_rd_addr_d_i <= pix4_int;
 
-            pix1_data_A <= to_ufixed(fb_data_a_o(7 downto 0), pix1_data_A);
-            pix2_data_A <= to_ufixed(fb_data_b_o(7 downto 0), pix2_data_A);
-            pix3_data_A <= to_ufixed(fb_data_c_o(7 downto 0), pix3_data_A);
-            pix4_data_A <= to_ufixed(fb_data_d_o(7 downto 0), pix4_data_A);
+            -- Get pixel values
+            pix1_data_ufx <= to_ufixed(fb_data_a_o, pix1_data_ufx);
+            pix2_data_ufx <= to_ufixed(fb_data_b_o, pix2_data_ufx);
+            pix3_data_ufx <= to_ufixed(fb_data_c_o, pix3_data_ufx);
+            pix4_data_ufx <= to_ufixed(fb_data_d_o, pix4_data_ufx);
 
-            pix1_data_B <= to_ufixed(fb_data_a_o(15 downto 8), pix1_data_B);
-            pix2_data_B <= to_ufixed(fb_data_b_o(15 downto 8), pix2_data_B);
-            pix3_data_B <= to_ufixed(fb_data_c_o(15 downto 8), pix3_data_B);
-            pix4_data_B <= to_ufixed(fb_data_d_o(15 downto 8), pix4_data_B);
+            pix1_data_ufx_reg <= pix1_data_ufx;
+            pix2_data_ufx_reg <= pix2_data_ufx;
+            pix3_data_ufx_reg <= pix3_data_ufx;
+            pix4_data_ufx_reg <= pix4_data_ufx;
 
-            pix1_data_C <= to_ufixed(fb_data_a_o(23 downto 16), pix1_data_C);
-            pix2_data_C <= to_ufixed(fb_data_b_o(23 downto 16), pix2_data_C);
-            pix3_data_C <= to_ufixed(fb_data_c_o(23 downto 16), pix3_data_C);
-            pix4_data_C <= to_ufixed(fb_data_d_o(23 downto 16), pix4_data_C);
+            -- Delays
+            -- TODO: shift register
+            dx_reg_2 <= dx_reg_1;
+            dy_reg_2 <= dy_reg_1;
+            dx_reg_3 <= dx_reg_2;
+            dy_reg_3 <= dy_reg_2;
+            dx_reg_4 <= dx_reg_3;
+            dy_reg_4 <= dy_reg_3;
+            dx_reg_5 <= dx_reg_4;
+            dy_reg_5 <= dy_reg_4;
+            dx_reg_6 <= dx_reg_5;
+            dy_reg_6 <= dy_reg_5;
+            dx_reg_7 <= dx_reg_6;
+            dy_reg_7 <= dy_reg_6;
+
+            x1_int_reg_1 <= x1_int;
+            x2_int_reg_1 <= x2_int;
+            y1_int_reg_1 <= y1_int;
+            y2_int_reg_1 <= y2_int;
+            x1_int_reg_2 <= x1_int_reg_1;
+            x2_int_reg_2 <= x2_int_reg_1;
+            y1_int_reg_2 <= y1_int_reg_1;
+            y2_int_reg_2 <= y2_int_reg_1;
+            x1_int_reg_3 <= x1_int_reg_2;
+            x2_int_reg_3 <= x2_int_reg_2;
+            y1_int_reg_3 <= y1_int_reg_2;
+            y2_int_reg_3 <= y2_int_reg_2;
+            x1_int_reg_4 <= x1_int_reg_3;
+            x2_int_reg_4 <= x2_int_reg_3;
+            y1_int_reg_4 <= y1_int_reg_3;
+            y2_int_reg_4 <= y2_int_reg_3;
+            x1_int_reg_5 <= x1_int_reg_4;
+            x2_int_reg_5 <= x2_int_reg_4;
+            y1_int_reg_5 <= y1_int_reg_4;
+            y2_int_reg_5 <= y2_int_reg_4;
+            x1_int_reg_6 <= x1_int_reg_5;
+            x2_int_reg_6 <= x2_int_reg_5;
+            y1_int_reg_6 <= y1_int_reg_5;
+            y2_int_reg_6 <= y2_int_reg_5;
 
 
             ---------------------------------------------------
@@ -449,52 +576,120 @@ begin
             -- A = (y2 - dy)*A_y1 + (dy - y1)*A_y2;
             ---------------------------------------------------
 
-            delta1 <= resize(x2_int - dx_reg_1, delta1);
-            delta2 <= resize(dx_reg_1 - x1_int, delta2);
-            delta3 <= resize(y2_int - dy_reg_1, delta3);
-            delta4 <= resize(dy_reg_1 - y1_int, delta4);
+            -- Calculate deltas
+            delta_x1 <= resize(dx_reg_6 - x1_int_reg_5, delta_x1);
+            delta_x2 <= resize(x2_int_reg_5 - dx_reg_6, delta_x2);
 
-            -- Delay
-            -- TODO: shift register
-            delta1_reg_1 <= delta1;
-            delta2_reg_1 <= delta2;
-            delta3_reg_1 <= delta3;
-            delta4_reg_1 <= delta4;
-            delta1_reg_2 <= delta1_reg_1;
-            delta2_reg_2 <= delta2_reg_1;
-            delta3_reg_2 <= delta3_reg_1;
-            delta4_reg_2 <= delta4_reg_1;
-            delta1_reg_3 <= delta1_reg_2;
-            delta2_reg_3 <= delta2_reg_2;
-            delta3_reg_3 <= delta3_reg_2;
-            delta4_reg_3 <= delta4_reg_2;
-            delta1_reg_4 <= delta1_reg_3;
-            delta2_reg_4 <= delta2_reg_3;
-            delta3_reg_4 <= delta3_reg_3;
-            delta4_reg_4 <= delta4_reg_3;
+            if y1_int_reg_5 = C_LINE_BUFFERS and y2_int_reg_5 = 1 then
+               -- Special case
+               delta_y1 <= resize(dy_reg_6 - y1_int_reg_5, delta_y1);
+               delta_y2 <= resize((y2_int_reg_5 + C_LINE_BUFFERS) - dy_reg_6, delta_y2);
+            else
+               delta_y1 <= resize(dy_reg_6 - y1_int_reg_5, delta_y1);
+               delta_y2 <= resize(y2_int_reg_5 - dy_reg_6, delta_y2);
+            end if;
 
-
+            -- Registers
+            delta_x1_reg   <= delta_x1;
+            delta_x2_reg   <= delta_x2;
+            delta_y1_reg   <= delta_y1;
+            delta_y2_reg   <= delta_y2;
             
-            A_y1 <= resize(delta1_reg_3*pix1_data_A + delta2_reg_3*pix2_data_A, A_y1);
-            A_y2 <= resize(delta1_reg_3*pix3_data_A + delta2_reg_3*pix4_data_A, A_y2);
-            A  <= resize(delta3_reg_4*A_y1 + delta4_reg_4*A_y2, A);
-            
-            B_y1 <= resize(delta1_reg_3*pix1_data_B + delta2_reg_3*pix2_data_B, B_y1);
-            B_y2 <= resize(delta1_reg_3*pix3_data_B + delta2_reg_3*pix4_data_B, B_y2);
-            B  <= resize(delta3_reg_4*B_y1 + delta4_reg_4*B_y2, B);
+            -- Delay 
+            delta_y1_reg_1 <= delta_y1_reg;
+            delta_y2_reg_1 <= delta_y2_reg;
+            delta_y1_reg_2 <= delta_y1_reg_1;
+            delta_y2_reg_2 <= delta_y2_reg_1;
+            delta_y1_reg_3 <= delta_y1_reg_2;
+            delta_y2_reg_3 <= delta_y2_reg_2;
+            delta_y1_reg_4 <= delta_y1_reg_3;
+            delta_y2_reg_4 <= delta_y2_reg_3;
 
-            C_y1 <= resize(delta1_reg_3*pix1_data_C + delta2_reg_3*pix2_data_C, C_y1);
-            C_y2 <= resize(delta1_reg_3*pix3_data_C + delta2_reg_3*pix4_data_C, C_y2);
-            C  <= resize(delta3_reg_4*C_y1 + delta4_reg_4*C_y2, C);
+            -- Calculate pixel values
+            A_y1_a <= delta_x2_reg*pix1_data_ufx_reg(7 downto 0);
+            A_y1_b <= delta_x1_reg*pix2_data_ufx_reg(7 downto 0);
+            A_y2_a <= delta_x2_reg*pix3_data_ufx_reg(7 downto 0);
+            A_y2_b <= delta_x1_reg*pix4_data_ufx_reg(7 downto 0); 
+
+            B_y1_a <= delta_x2_reg*pix1_data_ufx_reg(15 downto 8);
+            B_y1_b <= delta_x1_reg*pix2_data_ufx_reg(15 downto 8);
+            B_y2_a <= delta_x2_reg*pix3_data_ufx_reg(15 downto 8);
+            B_y2_b <= delta_x1_reg*pix4_data_ufx_reg(15 downto 8);
+
+            C_y1_a <= delta_x2_reg*pix1_data_ufx_reg(23 downto 16);
+            C_y1_b <= delta_x1_reg*pix2_data_ufx_reg(23 downto 16);
+            C_y2_a <= delta_x2_reg*pix3_data_ufx_reg(23 downto 16);
+            C_y2_b <= delta_x1_reg*pix4_data_ufx_reg(23 downto 16);
+
+            -- Registers
+            A_y1_a_reg <= A_y1_a;
+            A_y1_b_reg <= A_y1_b;
+            A_y2_a_reg <= A_y2_a;
+            A_y2_b_reg <= A_y2_b;
+            B_y1_a_reg <= B_y1_a;
+            B_y1_b_reg <= B_y1_b;
+            B_y2_a_reg <= B_y2_a;
+            B_y2_b_reg <= B_y2_b;
+            C_y1_a_reg <= C_y1_a;
+            C_y1_b_reg <= C_y1_b;
+            C_y2_a_reg <= C_y2_a;
+            C_y2_b_reg <= C_y2_b;
+
+            A_y1 <= resize(A_y1_a_reg + A_y1_b_reg, A_y1);
+            A_y2 <= resize(A_y2_a_reg + A_y2_b_reg, A_y2);
+
+            B_y1 <= resize(B_y1_a_reg + B_y1_b_reg, B_y1);
+            B_y2 <= resize(B_y2_a_reg + B_y2_b_reg, B_y2);
+
+            C_y1 <= resize(C_y1_a_reg + C_y1_b_reg, C_y1);
+            C_y2 <= resize(C_y2_a_reg + C_y2_b_reg, C_y2);
+
+            -- Registers
+            A_y1_reg <= A_y1;
+            A_y2_reg <= A_y2;
+            B_y1_reg <= B_y1;
+            B_y2_reg <= B_y2;
+            C_y1_reg <= C_y1;
+            C_y2_reg <= C_y2;
+
+            A_1 <= resize(delta_y2_reg_4*A_y1_reg, A_1);
+            A_2 <= resize(delta_y1_reg_4*A_y2_reg, A_2);
+
+            B_1 <= resize(delta_y2_reg_4*B_y1_reg, B_1);
+            B_2 <= resize(delta_y1_reg_4*B_y2_reg, B_2);
+
+            C_1 <= resize(delta_y2_reg_4*C_y1_reg, C_1);
+            C_2 <= resize(delta_y1_reg_4*C_y2_reg, C_2);
+
+            -- Registers
+            A_1_reg <= A_1;
+            A_2_reg <= A_2;
+            B_1_reg <= B_1;
+            B_2_reg <= B_2;
+            C_1_reg <= C_1;
+            C_2_reg <= C_2;
+
+            -- Final calculation of new pixel value
+            A  <= resize(A_1_reg + A_2_reg, A);
+            B  <= resize(B_1_reg + B_2_reg, B);
+            C  <= resize(C_1_reg + C_2_reg, C);
+
+            A_reg <= A;
+            B_reg <= B;
+            C_reg <= C;
+
+            --A_y1 <= resize(delta_x2*pix1_data_ufx + delta_x1*pix2_data_ufx, A_y1'high, A_y1'low);
+            --A_y2 <= resize(delta_x2*pix3_data_ufx + delta_x1*pix4_data_ufx, A_y2'high, A_y2'low);
+            --A <= resize(delta_y2_reg*A_y1 + delta_y1_reg*A_y2, A'high, A'low);
 
             -- Check if scaler is done with a framebuffer line
             dy_int_last <= dy_int;
             dy_change   <= true when dy_int_last /= dy_int else false; 
          end if;
 
-         scaler_data_o(7 downto 0)     <= std_logic_vector(unsigned(A));
-         scaler_data_o(15 downto 8)    <= std_logic_vector(unsigned(B));
-         scaler_data_o(23 downto 16)   <= std_logic_vector(unsigned(C));
+         scaler_data_o(7 downto 0)     <= std_logic_vector(unsigned(A_reg));
+         scaler_data_o(15 downto 8)    <= std_logic_vector(unsigned(B_reg));
+         scaler_data_o(23 downto 16)   <= std_logic_vector(unsigned(C_reg));
 
          -- Handle reset
          if sreset_i = '1' then

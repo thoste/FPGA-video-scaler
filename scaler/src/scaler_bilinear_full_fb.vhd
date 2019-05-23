@@ -390,31 +390,31 @@ begin
 
             -- Keep kernel within boundaries
             if dx_reg < 1 then
-               x1_int <= 1;
-               x2_int <= 2;
+               x1_int   <= 1;
+               x2_int   <= 2;
                dx_reg_1 <= to_ufixed(1, dx_reg);
             elsif dx_reg > g_rx_video_width then
-               x1_int <= g_rx_video_width - 1;
-               x2_int <= g_rx_video_width;
+               x1_int   <= g_rx_video_width - 1;
+               x2_int   <= g_rx_video_width;
                dx_reg_1 <= to_ufixed(g_rx_video_width, dx_reg);
             else
-               x1_int <= to_integer(dx_reg);
-               x2_int <= to_integer(dx_reg) + 1;
+               x1_int   <= to_integer(dx_reg);
+               x2_int   <= to_integer(dx_reg) + 1;
                dx_reg_1 <= dx_reg;
             end if;
 
             -- Keep kernel within boundaries
             if dy_reg < 1 then
-               y1_int <= 1;
-               y2_int <= 2;
+               y1_int   <= 1;
+               y2_int   <= 2;
                dy_reg_1 <= to_ufixed(1, dy_reg);
             elsif dy_reg > g_rx_video_height then
-               y1_int <= g_rx_video_height - 1;
-               y2_int <= g_rx_video_height;
+               y1_int   <= g_rx_video_height - 1;
+               y2_int   <= g_rx_video_height;
                dy_reg_1 <= to_ufixed(g_rx_video_width, dy_reg);
             else
-               y1_int <= to_integer(dy_reg);
-               y2_int <= to_integer(dy_reg) + 1;
+               y1_int   <= to_integer(dy_reg);
+               y2_int   <= to_integer(dy_reg) + 1;
                dy_reg_1 <= dy_reg;
             end if;
 
@@ -487,9 +487,6 @@ begin
             C_y2 <= resize(delta1_reg_3*pix3_data_C + delta2_reg_3*pix4_data_C, C_y2);
             C  <= resize(delta3_reg_4*C_y1 + delta4_reg_4*C_y2, C);
 
-            -- Check if scaler is done with a framebuffer line
-            dy_int_last <= dy_int;
-            dy_change   <= true when dy_int_last /= dy_int else false; 
          end if;
 
          scaler_data_o(7 downto 0)     <= std_logic_vector(unsigned(A));

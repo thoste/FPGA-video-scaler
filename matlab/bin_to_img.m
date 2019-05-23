@@ -2,10 +2,10 @@ clear all;
 clc;
 addpath('functions');
 
-image = 'planetearth2c';
-in_height = 720;
-out_width = 1920;
-out_height = 1080;
+image = 'lionking';
+in_height = 360;
+out_width = 960;
+out_height = 540;
 scaling_method = 'bilinear';
 bit = 8;
 
