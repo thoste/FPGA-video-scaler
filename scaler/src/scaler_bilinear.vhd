@@ -486,7 +486,6 @@ begin
                y_count_ufx_reg   <= to_ufixed(1, y_count_ufx_reg);
                dy                <= resize(scaling_ratio_reg + dxy_2_reg, dy);
                dy_reg            <= resize(scaling_ratio_reg + dxy_2_reg, dy);
-               dy_1              <= resize(scaling_ratio_reg, dy_1);
                dy_int            <= 1;
                y1_int            <= 1;
                y2_int            <= 2;
