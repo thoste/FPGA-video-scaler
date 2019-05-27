@@ -33,6 +33,5 @@ eval vcom  $compdirectives  $scaler_part_path/src/my_fixed_pkg.vhd
 eval vcom  $compdirectives  $scaler_part_path/src/fifo_generic.vhd
 eval vcom  $compdirectives  $scaler_part_path/src/simple_dpram.vhd
 eval vcom  $compdirectives  $scaler_part_path/src/multiport_ram.vhd
-eval vcom  $compdirectives  $scaler_part_path/src/scaler_nearest.vhd
 eval vcom  $compdirectives  $scaler_part_path/src/scaler_controller.vhd
 eval vcom  $compdirectives  $scaler_part_path/src/scaler_wrapper.vhd
