@@ -1,0 +1,42 @@
+# UVVM: ID_LOG_HDR                         0.0 ns  TB seq.                        Starting simulation of TB scaler
+# UVVM: ------------------------------------------------------------------------------------------------------------------------------------------------
+# UVVM: ID_SEQUENCER                       0.0 ns  TB seq.                        Wait 10 clock period for reset to be turned off
+# UVVM: 
+# UVVM: 
+# UVVM: ID_LOG_HDR                       100.0 ns  TB seq.                        Sending control packet
+# UVVM: ------------------------------------------------------------------------------------------------------------------------------------------------
+# UVVM: ID_POS_ACK                       100.0 ns  VVC                            check_value() => OK, for boolean true. 'avalon_st_send(AVALON_ST_VVC,1, 2 data entries)data_array length must be > 0'
+# UVVM: ID_UVVM_SEND_CMD                 100.0 ns  TB seq.(uvvm)                  ->avalon_st_send(AVALON_ST_VVC,1, 2 data entries): 'Sending v_data_array'. [9]
+# UVVM: ID_UVVM_CMD_ACK                  100.0 ns  TB seq.(uvvm)                      ACK received.   [9]
+# UVVM: ID_UVVM_SEND_CMD                 100.0 ns  TB seq.(uvvm)                  ->avalon_st_expect(): 'Checking data'. [10]
+# UVVM: ID_UVVM_CMD_ACK                  100.0 ns  TB seq.(uvvm)                      ACK received.   [10]
+# UVVM: ID_UVVM_SEND_CMD                 100.0 ns  TB seq.(uvvm)                  ->await_completion(AVALON_ST_VVC,1,rx, 23040000 ns): . [11]
+# UVVM: ID_PACKET_INITIATE               102.0 ns  AVALON_ST_VVC,1                avalon_st_send(80 bits) => 'Sending v_data_array'  [9]
+# UVVM: ID_PACKET_INITIATE               102.0 ns  AVALON_ST_VVC,1                avalon_st_receive(80 bits) => 'Checking data'  [10]
+# UVVM: ID_PACKET_COMPLETE               125.0 ns  AVALON_ST_VVC,1                avalon_st_send(80 bits) => Sent 2 data entries
+# UVVM: ID_PACKET_COMPLETE               135.0 ns  AVALON_ST_VVC,1                avalon_st_receive(80 bits) => Recieved 2 data entires
+# UVVM: ID_BFM                           135.0 ns  AVALON_ST_VVC,1                avalon_st_expect(80 data bits, 1 empty bits)=> OK, received 2 data entries. 'Checking data'  [10]
+# UVVM: ID_UVVM_CMD_ACK                  135.0 ns  TB seq.(uvvm)                      ACK received.   [11]
+# UVVM:      
+# UVVM:      ===========================================================================================================================================
+# UVVM:      *** FINAL SUMMARY OF ALL ALERTS  ***      
+# UVVM:      ===========================================================================================================================================
+# UVVM:                                REGARDED   EXPECTED  IGNORED      Comment?
+# UVVM:                NOTE         :      0         0         0         ok      
+# UVVM:                TB_NOTE      :      0         0         0         ok      
+# UVVM:                WARNING      :      0         0         0         ok      
+# UVVM:                TB_WARNING   :      0         0         0         ok      
+# UVVM:                MANUAL_CHECK :      0         0         0         ok      
+# UVVM:                ERROR        :      0         0         0         ok      
+# UVVM:                TB_ERROR     :      0         0         0         ok      
+# UVVM:                FAILURE      :      0         0         0         ok      
+# UVVM:                TB_FAILURE   :      0         0         0         ok      
+# UVVM:      ===========================================================================================================================================
+# UVVM:      >> Simulation SUCCESS: No mismatch between counted and expected serious alerts
+# UVVM:      ===========================================================================================================================================
+# UVVM:      
+# UVVM:      
+# UVVM: 
+# UVVM: 
+# UVVM: ID_LOG_HDR                      1235.0 ns  TB seq.                        SIMULATION COMPLETED
+# UVVM: ------------------------------------------------------------------------------------------------------------------------------------------------

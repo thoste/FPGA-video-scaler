@@ -39,7 +39,7 @@ architecture func of tb_scaler_complete is
    constant C_BIT_PERIOD         : time := 16 * C_CLK_PERIOD;
 
    -- Avalon-ST bus widths
-   constant C_DATA_WIDTH      : natural := 8;
+   constant C_DATA_WIDTH      : natural := 80;
    constant C_EMPTY_WIDTH     : natural := 1;
 
    -- FIFOs
@@ -47,16 +47,16 @@ architecture func of tb_scaler_complete is
    constant C_FIFO_DATA_DEPTH : natural := 6;
 
    -- File I/O
-   constant c_INPUT_FILE   : string := "../../data/lionking/lionking_ycbcr444_8bit_34.bin";
-   constant c_EXPECT_FILE  : string := "../../data/lionking/lionking_ycbcr444_8bit_68.bin";
+   constant c_INPUT_FILE   : string := "../../data/orig/lionking/lionking_ycbcr444_8bit_360.bin";
+   constant c_EXPECT_FILE  : string := "../../data/orig/lionking/lionking_ycbcr444_8bit_360.bin";
    file     file_input     : text;
    file     file_expect    : text;
 
    -- Test data
-   constant C_RX_VIDEO_WIDTH  : natural := 60;
-   constant C_RX_VIDEO_HEIGHT : natural := 34;
-   constant C_TX_VIDEO_WIDTH  : natural := 120;
-   constant C_TX_VIDEO_HEIGHT : natural := 68;
+   constant C_RX_VIDEO_WIDTH  : natural := 640;
+   constant C_RX_VIDEO_HEIGHT : natural := 360;
+   constant C_TX_VIDEO_WIDTH  : natural := 640;
+   constant C_TX_VIDEO_HEIGHT : natural := 360;
    constant C_DATA_LENGTH     : natural := C_RX_VIDEO_WIDTH*C_RX_VIDEO_HEIGHT;
    constant C_EXPECT_LENGTH   : natural := C_TX_VIDEO_WIDTH*C_TX_VIDEO_HEIGHT;
 
@@ -78,8 +78,8 @@ begin
       g_empty_width     => C_EMPTY_WIDTH,
       g_fifo_data_width => C_FIFO_DATA_WIDTH,
       g_fifo_data_depth => C_FIFO_DATA_DEPTH,
-      g_rx_video_width  => C_RX_VIDEO_WIDTH,
-      g_rx_video_height => C_RX_VIDEO_HEIGHT,
+      --g_rx_video_width  => C_RX_VIDEO_WIDTH,
+      --g_rx_video_height => C_RX_VIDEO_HEIGHT,
       g_tx_video_width  => C_TX_VIDEO_WIDTH,
       g_tx_video_height => C_TX_VIDEO_HEIGHT
    );
@@ -151,111 +151,111 @@ begin
    wait for (10 * C_CLK_PERIOD); 
 
 
-   -------------------------------------------------------------------------------
-   ---- Control packet
-   -------------------------------------------------------------------------------
-   --log(ID_LOG_HDR, "Sending control packet", C_SCOPE);
-   ---- Send control packet
-   --v_ctrl_pkt_array(0) := std_logic_vector(to_unsigned(15, C_DATA_WIDTH));
-   ---- Set rx resolution
-   --v_rx_video_width  := std_logic_vector(to_unsigned(4, v_rx_video_width'length));
-   --v_rx_video_height := std_logic_vector(to_unsigned(4, v_rx_video_height'length));
-   --v_ctrl_pkt_array(1)(3 downto 0)   := v_rx_video_width(15 downto 12);
-   --v_ctrl_pkt_array(1)(13 downto 10) := v_rx_video_width(11 downto 8);
-   --v_ctrl_pkt_array(1)(23 downto 20) := v_rx_video_width(7 downto 4);
-   --v_ctrl_pkt_array(1)(33 downto 30) := v_rx_video_width(3 downto 0);
-   --v_ctrl_pkt_array(1)(43 downto 40) := v_rx_video_height(15 downto 12);
-   --v_ctrl_pkt_array(1)(53 downto 50) := v_rx_video_height(11 downto 8);
-   --v_ctrl_pkt_array(1)(63 downto 60) := v_rx_video_height(7 downto 4);
-   --v_ctrl_pkt_array(1)(73 downto 70) := v_rx_video_height(3 downto 0);
+   -----------------------------------------------------------------------------
+   -- Control packet
+   -----------------------------------------------------------------------------
+   log(ID_LOG_HDR, "Sending control packet", C_SCOPE);
+   -- Send control packet
+   v_ctrl_pkt_array(0) := std_logic_vector(to_unsigned(15, C_DATA_WIDTH));
+   -- Set rx resolution
+   v_rx_video_width  := std_logic_vector(to_unsigned(C_RX_VIDEO_WIDTH, v_rx_video_width'length));
+   v_rx_video_height := std_logic_vector(to_unsigned(C_RX_VIDEO_HEIGHT, v_rx_video_height'length));
+   v_ctrl_pkt_array(1)(3 downto 0)   := v_rx_video_width(15 downto 12);
+   v_ctrl_pkt_array(1)(13 downto 10) := v_rx_video_width(11 downto 8);
+   v_ctrl_pkt_array(1)(23 downto 20) := v_rx_video_width(7 downto 4);
+   v_ctrl_pkt_array(1)(33 downto 30) := v_rx_video_width(3 downto 0);
+   v_ctrl_pkt_array(1)(43 downto 40) := v_rx_video_height(15 downto 12);
+   v_ctrl_pkt_array(1)(53 downto 50) := v_rx_video_height(11 downto 8);
+   v_ctrl_pkt_array(1)(63 downto 60) := v_rx_video_height(7 downto 4);
+   v_ctrl_pkt_array(1)(73 downto 70) := v_rx_video_height(3 downto 0);
 
-   ---- Start send and receive VVC
-   --avalon_st_send(AVALON_ST_VVCT, 1, v_ctrl_pkt_array, v_empty, "Sending v_data_array");
-   ----avalon_st_expect(AVALON_ST_VVCT, 1, v_ctrl_pkt_array, v_empty, "Checking data", ERROR);
+   -- Start send and receive VVC
+   avalon_st_send(AVALON_ST_VVCT, 1, v_ctrl_pkt_array, v_empty, "Sending v_data_array");
+   avalon_st_expect(AVALON_ST_VVCT, 1, v_ctrl_pkt_array, v_empty, "Checking data", ERROR);
    --avalon_st_receive(AVALON_ST_VVCT, 1, "Receiving");
 
-   ---- Wait for completion
-   --await_completion(AVALON_ST_VVCT, 1, RX, 10*C_DATA_LENGTH*C_CLK_PERIOD);
-   --wait for (10 * C_CLK_PERIOD); 
+   -- Wait for completion
+   await_completion(AVALON_ST_VVCT, 1, RX, 10*C_DATA_LENGTH*C_CLK_PERIOD);
+   wait for (10 * C_CLK_PERIOD); 
    
-   -----------------------------------------------------------------------------
-   -- Video data packet
-   -----------------------------------------------------------------------------
-   log(ID_LOG_HDR, "Sending video data packet", C_SCOPE);
-   -- Number of times to run the test loop
-   v_num_test_loops := 1;
+   -------------------------------------------------------------------------------
+   ---- Video data packet
+   -------------------------------------------------------------------------------
+   --log(ID_LOG_HDR, "Sending video data packet", C_SCOPE);
+   ---- Number of times to run the test loop
+   --v_num_test_loops := 1;
 
-   --wait_for_time_wrap(10000 ns);
+   ----wait_for_time_wrap(10000 ns);
 
-   for i in 1 to v_num_test_loops loop
-      -- Create a random ready percentage for the recieve module
-      shared_avalon_st_vvc_config(RX, 1).bfm_config.ready_percentage := random(1,100);
-      --shared_avalon_st_vvc_config(RX, 1).bfm_config.ready_percentage := 50;
+   --for i in 1 to v_num_test_loops loop
+   --   -- Create a random ready percentage for the recieve module
+   --   shared_avalon_st_vvc_config(RX, 1).bfm_config.ready_percentage := random(1,100);
+   --   --shared_avalon_st_vvc_config(RX, 1).bfm_config.ready_percentage := 50;
 
-      -- Write packet info, Data[3:0] = 0 for video_packet
-      --v_data_array(0)      := std_logic_vector(to_unsigned(0, C_DATA_WIDTH));
-      --v_exp_data_array(0)  := std_logic_vector(to_unsigned(0, C_DATA_WIDTH));
-      v_data_array(0)      := (3 downto 0 => '0', others => '1');
-      --v_exp_data_array(0)  := (3 downto 0 => '0', others => '1');
-
-
-      --------------------------------------------------
-      -- Read input file and fill data array
-      --------------------------------------------------
-      file_open(file_input, c_INPUT_FILE, read_mode);
-
-      while not endfile(file_input) loop
-         v_counter := v_counter + 1;
-
-         -- Read input data and store to data array
-         readline(file_input, v_file_input_line);
-         read(v_file_input_line, v_file_data_input);
-         v_data_array(v_counter) := v_file_data_input;
-      end loop;
-
-      file_close(file_input);
-
-      -- Reset v_counter
-      v_counter := 0;
+   --   -- Write packet info, Data[3:0] = 0 for video_packet
+   --   --v_data_array(0)      := std_logic_vector(to_unsigned(0, C_DATA_WIDTH));
+   --   --v_exp_data_array(0)  := std_logic_vector(to_unsigned(0, C_DATA_WIDTH));
+   --   v_data_array(0)      := (3 downto 0 => '0', others => '1');
+   --   --v_exp_data_array(0)  := (3 downto 0 => '0', others => '1');
 
 
-      --------------------------------------------------
-      -- Read expect file and fill expect data array
-      --------------------------------------------------
-      file_open(file_expect, c_EXPECT_FILE, read_mode);
+   --   --------------------------------------------------
+   --   -- Read input file and fill data array
+   --   --------------------------------------------------
+   --   file_open(file_input, c_INPUT_FILE, read_mode);
 
-      while not endfile(file_expect) loop
-         -- Read expected output data and store to expect array
-         readline(file_expect, v_file_expect_line);
-         read(v_file_expect_line, v_file_data_expect);
-         v_exp_data_array(v_counter) := v_file_data_expect;
-         v_counter := v_counter + 1;
-      end loop;
+   --   while not endfile(file_input) loop
+   --      v_counter := v_counter + 1;
+
+   --      -- Read input data and store to data array
+   --      readline(file_input, v_file_input_line);
+   --      read(v_file_input_line, v_file_data_input);
+   --      v_data_array(v_counter) := v_file_data_input;
+   --   end loop;
+
+   --   file_close(file_input);
+
+   --   -- Reset v_counter
+   --   v_counter := 0;
+
+
+   --   --------------------------------------------------
+   --   -- Read expect file and fill expect data array
+   --   --------------------------------------------------
+   --   file_open(file_expect, c_EXPECT_FILE, read_mode);
+
+   --   while not endfile(file_expect) loop
+   --      -- Read expected output data and store to expect array
+   --      readline(file_expect, v_file_expect_line);
+   --      read(v_file_expect_line, v_file_data_expect);
+   --      v_exp_data_array(v_counter) := v_file_data_expect;
+   --      v_counter := v_counter + 1;
+   --   end loop;
       
-      file_close(file_expect);
+   --   file_close(file_expect);
 
-      -- Reset v_counter
-      v_counter := 0;
+   --   -- Reset v_counter
+   --   v_counter := 0;
 
-      -- Margin
-      wait for 10*C_CLK_PERIOD; 
+   --   -- Margin
+   --   wait for 10*C_CLK_PERIOD; 
 
 
-      --------------------------------------------------
-      -- Send/recieve using avalon st vvc
-      --------------------------------------------------
+   --   --------------------------------------------------
+   --   -- Send/recieve using avalon st vvc
+   --   --------------------------------------------------
 
-      log(ID_LOG_HDR, "Test loop " & to_string(i) & " of " & to_string(v_num_test_loops) & " tests. Sending " & to_string(C_DATA_LENGTH) & " pixels. Using ready percentage: " & to_string(shared_avalon_st_vvc_config(RX, 1).bfm_config.ready_percentage), C_SCOPE);
+   --   log(ID_LOG_HDR, "Test loop " & to_string(i) & " of " & to_string(v_num_test_loops) & " tests. Sending " & to_string(C_DATA_LENGTH) & " pixels. Using ready percentage: " & to_string(shared_avalon_st_vvc_config(RX, 1).bfm_config.ready_percentage), C_SCOPE);
 
-      -- Start send and receive VVC
-      avalon_st_send(AVALON_ST_VVCT, 1, v_data_array, v_empty, "Sending v_data_array");
-      avalon_st_expect(AVALON_ST_VVCT, 1, v_exp_data_array, v_empty, "Checking data", ERROR);
-      --avalon_st_receive(AVALON_ST_VVCT, 1, "Receiving");
+   --   -- Start send and receive VVC
+   --   avalon_st_send(AVALON_ST_VVCT, 1, v_data_array, v_empty, "Sending v_data_array");
+   --   --avalon_st_expect(AVALON_ST_VVCT, 1, v_exp_data_array, v_empty, "Checking data", ERROR);
+   --   avalon_st_receive(AVALON_ST_VVCT, 1, "Receiving");
       
 
-      -- Wait for completion
-      await_completion(AVALON_ST_VVCT, 1, RX, 100*C_DATA_LENGTH*C_CLK_PERIOD);
-   end loop;
+   --   -- Wait for completion
+   --   await_completion(AVALON_ST_VVCT, 1, RX, 100*C_DATA_LENGTH*C_CLK_PERIOD);
+   --end loop;
    
 
    -----------------------------------------------------------------------------

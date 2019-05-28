@@ -1,0 +1,17 @@
+# UVVM: 100.0 ns  Sending control packet
+# UVVM: 
+# UVVM: 100.0 ns  check_value() => OK, for boolean true. 'avalon_st_send(AVALON_ST_VVC,1, 2 data entries)data_array length must be > 0'
+# UVVM: 100.0 ns  ->avalon_st_send(AVALON_ST_VVC,1, 2 data entries): 'Sending v_data_array'. [9]
+# UVVM: 100.0 ns      ACK received.   [9]
+# UVVM: 100.0 ns  ->avalon_st_expect(): 'Checking data'. [10]
+# UVVM: 100.0 ns      ACK received.   [10]
+# UVVM: 100.0 ns  ->await_completion(AVALON_ST_VVC,1,rx, 23040000 ns): . [11]
+# UVVM: 102.0 ns  avalon_st_send(80 bits) => 'Sending v_data_array'  [9]
+# UVVM: 102.0 ns  avalon_st_receive(80 bits) => 'Checking data'  [10]
+# UVVM: 125.0 ns  avalon_st_send(80 bits) => Sent 2 data entries
+# UVVM: 135.0 ns  avalon_st_receive(80 bits) => Recieved 2 data entires
+# UVVM: 135.0 ns  avalon_st_expect(80 data bits, 1 empty bits)=> OK, received 2 data entries. 'Checking data'  [10]
+# UVVM: 135.0 ns      ACK received.   [11]   
+# UVVM: 
+# UVVM: >> Simulation SUCCESS: No mismatch between counted and expected serious alerts
+# UVVM: 
