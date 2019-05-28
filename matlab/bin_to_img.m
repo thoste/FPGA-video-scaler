@@ -19,10 +19,3 @@ read_bin = bin2img(input_file_name, out_width, out_height, true, bit);
 imwrite(ycbcr2rgb(read_bin), output_file_name);
 
 imshow(ycbcr2rgb(read_bin));
-
-% fileID = fopen(input_file_name);
-% num = (out_width*out_height*(bit*3+2) - 2);
-% data_serial = fread(fileID,[1 num], '*char');
-% 
-% % Convert data to characters
-% data_lines = splitlines(data_serial);

@@ -1,13 +1,13 @@
-------------------------------------------------------------------------------------------
+--------------------------------------------------------
 -- Project: FPGA video scaler
 -- Author: Thomas Stenseth
 -- Date: 2019-01-21
 -- Version: 0.1
-------------------------------------------------------------------------------------------
--- Description:
-------------------------------------------------------------------------------------------
--- v0.1:
-------------------------------------------------------------------------------------------
+--------------------------------------------------------
+-- Description: Controller for the scaler design.
+--              Decodes the package received and 
+--              generates a new control packet
+--------------------------------------------------------
 
 
 library ieee;
@@ -44,18 +44,6 @@ entity scaler_controller is
       -- Config
       rx_video_width_o           : out std_logic_vector(15 downto 0);
       rx_video_height_o          : out std_logic_vector(15 downto 0)
-
-      ---- Input FIFO
-      --fifo_in_wr_en_i   : in  std_logic;
-      --fifo_in_rd_en_i   : in  std_logic;
-      --fifo_in_full_o    : out std_logic;
-      --fifo_in_empty_o   : out std_logic
-
-      ---- Output FIFO
-      --fifo_out_wr_en_i  : in  std_logic;
-      --fifo_out_rd_en_i  : in  std_logic;
-      --fifo_out_full_o   : out std_logic;
-      --fifo_out_empty_o  : out std_logic
       );
    end entity scaler_controller;
 

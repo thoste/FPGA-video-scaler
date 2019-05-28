@@ -1,13 +1,11 @@
-------------------------------------------------------------------------------------------
+--------------------------------------------------------
 -- Project: FPGA video scaler
 -- Author: Thomas Stenseth
 -- Date: 2019-03-11
 -- Version: 0.1
-------------------------------------------------------------------------------------------
--- Description:
-------------------------------------------------------------------------------------------
--- v0.1:
-------------------------------------------------------------------------------------------
+--------------------------------------------------------
+-- Description: Testbench for FIFO
+--------------------------------------------------------
 
 
 library ieee;
@@ -28,8 +26,8 @@ end tb_fifo_generic;
 
 -- Test bench architecture
 architecture tb_fifo_generic_arc of tb_fifo_generic is
-   constant C_SCOPE              : string  := C_TB_SCOPE_DEFAULT;
-   constant C_CLK_PERIOD : time := 10 ns; -- 100 MHz
+   constant C_SCOPE        : string  := C_TB_SCOPE_DEFAULT;
+   constant C_CLK_PERIOD   : time := 10 ns; -- 100 MHz
 
    -- Width and depth of FIFO
    constant C_WIDTH     : natural   := 20;

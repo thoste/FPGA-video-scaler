@@ -1,13 +1,12 @@
-------------------------------------------------------------------------------------------
+--------------------------------------------------------
 -- Project: FPGA video scaler
 -- Author: Thomas Stenseth
--- Date: 2019-01-21
+-- Date: 2019-04-14
 -- Version: 0.1
-------------------------------------------------------------------------------------------
--- Description:
-------------------------------------------------------------------------------------------
--- v0.1:
-------------------------------------------------------------------------------------------
+--------------------------------------------------------
+-- Description: Bilinear interpolation using
+--              framebuffer the size of rx video
+--------------------------------------------------------
 
 
 library ieee;
@@ -45,8 +44,6 @@ end scaler;
 architecture scaler_arc of scaler is
    type t_state is (s_idle, s_pre_fill_fb, s_finish_fill_fb, s_upscale);
    signal state : t_state := s_idle;
-
-   constant C_LINE_BUFFERS : integer := 4;
 
    -- Scaling ratio
    -- Using (others => '1') or else division by 0 error 

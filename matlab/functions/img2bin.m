@@ -1,4 +1,4 @@
-%% Converts image to binary image
+%% Converts image to binary serial data
 
 function output = img2bin(img, filename, bits)
     fileID = fopen(filename,'w');

@@ -1,14 +1,13 @@
-------------------------------------------------------------------------------------------
+--------------------------------------------------------
 -- Project: FPGA video scaler
 -- Author: Thomas Stenseth
--- Date: 2019-04-30
+-- Date: 2019-04-24
 -- Version: 0.1
-------------------------------------------------------------------------------------------
--- Description : Custom version of fixed point package using fixed_truncate round style 
---             : instead of the default fixed_round
-------------------------------------------------------------------------------------------
--- v0.1        : 2019-04-30 - Initial version
-------------------------------------------------------------------------------------------
+--------------------------------------------------------
+-- Description: Custom version of fixed point package
+--              using fixed_truncate round style
+--              instead of the default fixed_round
+--------------------------------------------------------
 
 
 library ieee;
@@ -22,3 +21,4 @@ package my_fixed_pkg is new ieee.fixed_generic_pkg
       fixed_guard_bits     => 3,
       no_warning           => false
    );
+end package my_fixed_pkg;

@@ -1,4 +1,4 @@
-%% Converts binary image to image
+%% Converts binary serial data to image
 
 function output = bin2img(filename, width, height, colours, bits)
     % Read data from file
